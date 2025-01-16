@@ -1,5 +1,8 @@
+import 'package:charlot/core/common/widgets/custom_btn.dart';
+import 'package:charlot/core/routes/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
@@ -10,13 +13,9 @@ class ProgressCard extends StatelessWidget {
     super.key,
     required this.percentage,
     required this.title,
-    required this.buttonText,
-    required this.onTap,
   });
   final double percentage;
   final String title;
-  final String buttonText;
-  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,6 +37,7 @@ class ProgressCard extends StatelessWidget {
           ),
           SizedBox(width: 10.w),
           Expanded(
+            flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,21 +51,34 @@ class ProgressCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 24.h),
-                ElevatedButton(
-                  onPressed: onTap,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomButton(
+                      width: 90.w,
+                      height: 30.h,
+                      text: ' الطلبات المكتمله',
+                      onPressed: () {
+                        context.go(RouterNames.managerCompleatedOrders);
+                      },
+                      backgroundColor: AppColors.white,
+                      textStyle: AppStyles.s10.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColor,
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    buttonText,
-                    style: AppStyles.s12.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
+                    CustomButton(
+                      width: 90.w,
+                      height: 30.h,
+                      text: 'الطلبات المنتهيه',
+                      onPressed: () {},
+                      backgroundColor: AppColors.white,
+                      textStyle: AppStyles.s10.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColor,
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),

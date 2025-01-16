@@ -1,11 +1,11 @@
-import 'package:charlot/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
+import '../../../../../../core/theme/app_colors.dart';
 import '../components/complete_orders_list_view.dart';
 
-class ManagerCompleatedOrders extends StatelessWidget {
-  const ManagerCompleatedOrders({super.key});
+class ManagerFinishOrders extends StatelessWidget {
+  const ManagerFinishOrders({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ManagerCompleatedOrders extends StatelessWidget {
         body: Column(
           children: [
             CustomAppBar(
-              title: "الطلبات المكتملة",
+              title: "طلبات منتهيه ",
               iconleft: Icons.arrow_back_ios,
             ),
             CompleteOrdersListView()
@@ -22,3 +22,4 @@ class ManagerCompleatedOrders extends StatelessWidget {
         ));
   }
 }
+//! still need to add the complete orders list view and navigation

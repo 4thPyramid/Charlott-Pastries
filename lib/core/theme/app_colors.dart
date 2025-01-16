@@ -6,6 +6,7 @@ abstract class AppColors {
   static const Color black = Color(0xFF000000);
   static const Color lightBlue = Color(0xFFE7F3ff);
   static const Color whiteGreyForText = Color(0xFF828193);
+
   static const Color scaffoldColor = Color(0xFFF9F9F9);
   static const Color greyForSelectTap = Color(0xFFF5F5F5);
   static const Color splashColor = Color(0xFFD4DDB7);
@@ -16,7 +17,7 @@ abstract class AppColors {
   static const Color greyForBackground = Color(0xFFFDFDFD);
   static const Color grey = Color(0xFFB8B8B8);
   static const Color openGrey = Color(0xFFf9f9f9);
-  static const Color greyForText = Color(0xFF838383);
+  static const Color greyForText = Color(0xFF0D1829);
   static const Color lightGrey = Color(0xFFF5F5F5);
   static const Color orange = Color(0xffFB6F3D);
   static const Color blueBlack = Color(0xff32343E);

@@ -29,10 +29,6 @@ class ManagerHomView extends StatelessWidget {
             ProgressCard(
               percentage: 70,
               title: "الطلبات التي تم الانتهاء منها",
-              buttonText: "عرض الطلبات المكتملة",
-              onTap: () {
-                context.go(RouterNames.managerCompleatedOrders);
-              },
             ),
             SizedBox(height: 20.h),
             const CustomTitle(

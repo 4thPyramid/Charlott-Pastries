@@ -1,3 +1,4 @@
+import 'package:charlot/core/common/widgets/shared_order_item_card.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/widgets/order_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +16,9 @@ class CompleatedOrdersListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: OrderItemCard(),
+              child: SharedOrderItemCard(
+                orderStatusColor: Colors.green,
+              ),
             );
           },
         ),
