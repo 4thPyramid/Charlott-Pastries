@@ -97,7 +97,7 @@ class ThirdColumn extends StatelessWidget {
         Row(children: [
           const Icon(
             Icons.calendar_month_outlined,
-            color: AppColors.greyForText,
+            color: AppColors.darkTextGrey,
           ),
           Text(
             "11/11/2023",

@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
+import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -88,6 +89,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.managerFinishOrders,
       builder: (context, state) => const ManagerFinishOrders(),
+    ),
+     GoRoute(
+      path: RouterNames.newestOrderDetails,
+      builder: (context, state) => const NewestOrderDetails(),
     ),
   ],
 );

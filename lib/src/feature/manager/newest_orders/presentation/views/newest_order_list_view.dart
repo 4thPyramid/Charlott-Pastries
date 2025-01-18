@@ -1,7 +1,9 @@
+import 'package:charlot/core/routes/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-import '../widgets/newest_order_card_item.dart';
+import '../../../home/presentation/widgets/newest_order_card_item.dart';
 
 class NewestOrderListView extends StatelessWidget {
   const NewestOrderListView({super.key});
@@ -14,8 +16,13 @@ class NewestOrderListView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 5,
       itemBuilder: (context, index) {
-        return NewestOrdersCardItem(
-            orderName: ' تورتة عيد ميلاد موسي', orderType: 'حلويات غربيه');
+        return InkWell(
+          onTap: () {
+            context.push(RouterNames.newestOrderDetails,);
+          },
+          child: const NewestOrdersCardItem(
+              orderName: ' تورتة عيد ميلاد موسي', orderType: 'حلويات غربيه'),
+        );
       },
       separatorBuilder: (context, index) {
         return SizedBox(height: 10.h);

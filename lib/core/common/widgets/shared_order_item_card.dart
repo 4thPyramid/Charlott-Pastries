@@ -116,13 +116,13 @@ class ThirdColumn extends StatelessWidget {
         Row(children: [
           Icon(
             Icons.calendar_month_outlined,
-            color: AppColors.greyForText.withOpacity(0.7),
+            color: AppColors.darkTextGrey.withOpacity(0.7),
           ),
           Text(
             "11/11/2023",
             style: AppStyles.s12.copyWith(
               fontWeight: FontWeight.w400,
-              color: AppColors.greyForText.withOpacity(0.7),
+              color: AppColors.darkTextGrey.withOpacity(0.7),
             ),
           ),
         ]),
@@ -156,7 +156,7 @@ class FirstColumn extends StatelessWidget {
           "تورتة عيد ميلاد",
           style: AppStyles.s12.copyWith(
             fontWeight: FontWeight.w400,
-            color: AppColors.greyForText.withOpacity(0.7),
+            color: AppColors.darkTextGrey.withOpacity(0.7),
           ),
         ),
         SizedBox(height: 32.h),
@@ -171,7 +171,7 @@ class FirstColumn extends StatelessWidget {
           "محمد عبد الله",
           style: AppStyles.s12.copyWith(
             fontWeight: FontWeight.w400,
-            color: AppColors.greyForText.withOpacity(0.7),
+            color: AppColors.darkTextGrey.withOpacity(0.7),
           ),
         ),
       ],

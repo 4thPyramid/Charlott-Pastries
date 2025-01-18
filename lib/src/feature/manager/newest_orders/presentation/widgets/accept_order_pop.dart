@@ -1,14 +1,15 @@
-import 'package:charlot/core/common/widgets/custom_btn.dart';
-import 'package:charlot/core/theme/app_colors.dart';
-import 'package:charlot/core/utils/app_assets.dart';
-import 'package:charlot/core/utils/app_image_view.dart';
+
 import 'package:charlot/core/utils/app_styles.dart';
-import 'package:charlot/core/utils/main_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
-showSuccessPop(
+import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/utils/app_image_view.dart';
+import '../../../../../../core/utils/main_function.dart';
+
+acceptOrderPop(
   BuildContext context,
   String routeName,
 ) {
@@ -24,39 +25,32 @@ showSuccessPop(
         children: [
           const Center(
             child: AppImageView(
-              AppAssets.logo,
+              AppAssets.successIcon,
               // width: 50.w,
               //  height: 50.h,
             ),
           ),
-          SizedBox(height: 13.h),
+          SizedBox(height: 36.h),
           Text(
-            "تم التحقق بنجاح",
+            "تم قبول  الطلب ",
             style: AppStyles.s20.copyWith(
               color: Colors.black,
               fontWeight: FontWeight.w700,
             ),
           ),
-          // SizedBox(height: 39.h),
-          // Text(
-          //   AppStrings.signInSuccessfully,
-          //   textAlign: TextAlign.center,
-          //   style: AppStyles.s16.copyWith(
-          //     fontWeight: FontWeight.w400,
-          //   ),
-          // ),
+        
           SizedBox(height: 20.h),
           CustomButton(
             height: 40.h,
-            width: 180.w,
-            text: "التالي",
+            width: 230.w,
+            text: "اختر الشيف",
             textStyle: AppStyles.s16.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
             ),
             onPressed: () {
               Navigator.pop(context);
-              context.go(routeName);
+              //context.go(routeName);
             },
           )
         ],

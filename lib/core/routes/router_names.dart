@@ -15,4 +15,5 @@ abstract class RouterNames {
   static const String managerCompleatedOrders = '/compleated-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/compleated-orders-details';
+  static const String newestOrderDetails = '/newestOrderDetails';
 }
