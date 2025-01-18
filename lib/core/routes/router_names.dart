@@ -16,14 +16,16 @@ abstract class RouterNames {
   static const String editOrder = '/edit-order';
 
   //!manager
-  static const String managerHomView = '/manager-home';
+  static const String managerHomView = '/';
   static const String managerCompleatedOrders = '/compleated-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/compleated-orders-details';
   static const String newestOrderDetails = '/newestOrderDetails';
+  static const String selectChef = '/select-chef';
+  static const String chefDetails = '/chefs-details';
 
   //!Cheaf
-  static const String chefHome = '/';
+  static const String chefHome = '/chef-home';
   static const String chefOrders = '/chef-orders';
   static const String chefOrdersDetails = '/chef-orders-details';
 }

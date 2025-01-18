@@ -2,8 +2,10 @@
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/app_image_view.dart';
@@ -49,7 +51,8 @@ acceptOrderPop(
               fontWeight: FontWeight.w700,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              context.push(RouterNames.selectChef);
+              //Navigator.pop(context);
               //context.go(routeName);
             },
           )

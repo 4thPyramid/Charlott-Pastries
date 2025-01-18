@@ -20,6 +20,8 @@ import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orde
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
+import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
 
@@ -116,7 +118,14 @@ final GoRouter router = GoRouter(
       path: RouterNames.newestOrderDetails,
       builder: (context, state) => const NewestOrderDetails(),
      ),
-
+      GoRoute(
+      path: RouterNames.selectChef,
+      builder: (context, state) => const SelectChefsView(),
+     ),
+   GoRoute(
+      path: RouterNames.chefDetails,
+      builder: (context, state) => const ChefDetailsView(),
+     ),
     //!Cheaf
 
     GoRoute(
