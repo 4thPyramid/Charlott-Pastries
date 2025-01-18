@@ -59,7 +59,9 @@ class ProgressCard extends StatelessWidget {
                       height: 30.h,
                       text: ' الطلبات المكتمله',
                       onPressed: () {
-                        context.go(RouterNames.managerCompleatedOrders);
+                        context.push(
+                          RouterNames.managerCompleatedOrders,
+                        );
                       },
                       backgroundColor: AppColors.white,
                       textStyle: AppStyles.s10.copyWith(
@@ -71,7 +73,11 @@ class ProgressCard extends StatelessWidget {
                       width: 90.w,
                       height: 30.h,
                       text: 'الطلبات المنتهيه',
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(
+                          RouterNames.managerFinishOrders,
+                        );
+                      },
                       backgroundColor: AppColors.white,
                       textStyle: AppStyles.s10.copyWith(
                         fontWeight: FontWeight.bold,

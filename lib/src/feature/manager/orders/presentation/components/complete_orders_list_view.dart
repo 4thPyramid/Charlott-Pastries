@@ -16,7 +16,12 @@ class CompleteOrdersListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h),
-              child: const SharedOrderItemCard(),
+              child: const SharedOrderItemCard(
+                id: 0,
+                orderTitle: 'طلب مكتمله',
+                pageTitle: 'تفااصيل الطلب المكتمل',
+                orderStatusColor: Colors.green,
+              ),
             );
           },
         ),

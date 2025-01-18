@@ -26,7 +26,7 @@ class ManagerHomView extends StatelessWidget {
             SizedBox(height: 70.h),
             const HomeAppBar(),
             SizedBox(height: 20.h),
-            ProgressCard(
+            const ProgressCard(
               percentage: 70,
               title: "الطلبات التي تم الانتهاء منها",
             ),

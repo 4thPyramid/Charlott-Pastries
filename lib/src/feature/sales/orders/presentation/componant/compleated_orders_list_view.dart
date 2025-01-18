@@ -18,6 +18,9 @@ class CompleatedOrdersListView extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: SharedOrderItemCard(
                 orderStatusColor: Colors.green,
+                id: 0,
+                orderTitle: 'طلبات مكتمله',
+                pageTitle: 'تفاصيل الطلب المكمل ',
               ),
             );
           },

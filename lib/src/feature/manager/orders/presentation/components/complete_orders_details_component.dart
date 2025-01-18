@@ -1,6 +1,9 @@
-import 'package:charlot/core/common/widgets/custom_btn.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:charlot/core/common/widgets/custom_btn.dart';
+
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/app_styles.dart';
@@ -10,7 +13,11 @@ import '../widgets/image_list_grid_view.dart';
 class CompleteOrdersDetailsComponant extends StatelessWidget {
   const CompleteOrdersDetailsComponant({
     super.key,
+    required this.orderTitle,
+    this.statusColor,
   });
+  final String orderTitle;
+  final Color? statusColor;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,11 +73,11 @@ class CompleteOrdersDetailsComponant extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                     decoration: BoxDecoration(
-                      color: AppColors.lightGreen,
+                      color: statusColor ?? AppColors.lightGreen,
                       borderRadius: BorderRadius.circular(10.r),
                     ),
-                    child: const Text(
-                      'تم اكتمال الطلب',
+                    child: Text(
+                      orderTitle,
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

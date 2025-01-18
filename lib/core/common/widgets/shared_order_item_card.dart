@@ -5,11 +5,21 @@ import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../routes/router_names.dart';
 
 class SharedOrderItemCard extends StatelessWidget {
-  const SharedOrderItemCard({super.key, this.orderStatusColor});
+  const SharedOrderItemCard(
+      {super.key,
+      this.orderStatusColor,
+      required this.id,
+      required this.orderTitle,
+      required this.pageTitle});
   final Color? orderStatusColor;
-
+  final int id;
+  final String orderTitle;
+  final String pageTitle;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,7 +65,13 @@ class SharedOrderItemCard extends StatelessWidget {
               width: 150.w,
               height: 30.h,
               text: "عرض التفاصيل",
-              onPressed: () {}),
+              onPressed: () {
+                context.push(RouterNames.completeOrdersDetails, extra: {
+                  'pageTitle': pageTitle,
+                  'orderTitle': orderTitle,
+                  'color': orderStatusColor?.value,
+                });
+              }),
         ],
       ),
     );

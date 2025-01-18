@@ -37,7 +37,14 @@ class OrderItemCard extends StatelessWidget {
           ),
           ButtonColumn(
             onPressed: () {
-              context.go(RouterNames.completeOrdersDetails);
+              context.go(
+                RouterNames.completeOrdersDetails,
+                extra: {
+                  'orderTitle': 'طلب مكتمل',
+                  'pageTitle': 'تفاصيل الطلب المكتمل',
+                  'orderStatusColor': AppColors.green,
+                },
+              );
             },
           ),
           ThirdColumn(

@@ -6,11 +6,13 @@ import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/sales_register_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
-import 'package:charlot/src/feature/manager/orders/presentation/views/complete_orders_details.dart';
+import 'package:charlot/src/feature/manager/orders/presentation/views/orders_details.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_compleated_orders.dart';
+import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/new_orders.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
@@ -74,7 +76,18 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouterNames.completeOrdersDetails,
-      builder: (context, state) => const CompleteOrdersDetails(),
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+        return CompleteOrdersDetails(
+          orderTitle: data['orderTitle'] as String? ?? '',
+          pageTitle: data['pageTitle'] as String? ?? '',
+          orderStatusColor: Color(data['color']),
+        );
+      },
+    ),
+    GoRoute(
+      path: RouterNames.managerFinishOrders,
+      builder: (context, state) => const ManagerFinishOrders(),
     ),
   ],
 );
