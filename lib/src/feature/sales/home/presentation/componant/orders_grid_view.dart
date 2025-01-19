@@ -1,14 +1,23 @@
+import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/grid_view_item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OrdersGridView extends StatelessWidget {
   OrdersGridView({super.key});
   final List<GridViewmodel> gridViewmodel = [
-    GridViewmodel(number: "14", title: "طلب جديد ", icon: Icons.checklist),
     GridViewmodel(
+      RouterNames.newOrders,
+      number: "14",
+      title: "طلب جديد ",
+      icon: Icons.checklist,
+    ),
+    GridViewmodel(RouterNames.waitingOrders,
         number: "20", title: "طلب قيد التنفيذ ", icon: Icons.timelapse_sharp),
-    GridViewmodel(number: "3", title: "طلب مكتمل ", icon: Icons.done_all),
-    GridViewmodel(number: "18", title: "طلب غير مكتمل ", icon: Icons.cancel),
+    GridViewmodel(RouterNames.completeOrdersDetails,
+        number: "3", title: "طلب مكتمل ", icon: Icons.done_all),
+    GridViewmodel(RouterNames.compleatedOrders,
+        number: "18", title: "طلب غير مكتمل ", icon: Icons.cancel),
   ];
 
   @override
@@ -25,10 +34,12 @@ class OrdersGridView extends StatelessWidget {
           itemCount: gridViewmodel.length,
           itemBuilder: (context, index) {
             return GridViewItem(
-              number: gridViewmodel[index].number,
-              title: gridViewmodel[index].title,
-              icon: gridViewmodel[index].icon,
-            );
+                number: gridViewmodel[index].number,
+                title: gridViewmodel[index].title,
+                icon: gridViewmodel[index].icon,
+                onTap: () {
+                  context.go(gridViewmodel[index].route);
+                });
           }),
     );
   }
@@ -38,6 +49,7 @@ class GridViewmodel {
   final String number;
   final String title;
   final IconData icon;
-  GridViewmodel(
+  final String route;
+  GridViewmodel(this.route,
       {required this.number, required this.title, required this.icon});
 }

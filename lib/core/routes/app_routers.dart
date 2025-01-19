@@ -1,5 +1,4 @@
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/src/feature/chef/home/presentation/views/chef_home_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
@@ -11,12 +10,19 @@ import 'package:charlot/src/feature/manager/orders/presentation/views/orders_det
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_compleated_orders.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/view/edit_order_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
+import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
+import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated_orderes.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/new_orders.dart';
+import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orders.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
+import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
+import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -64,6 +70,23 @@ final GoRouter router = GoRouter(
       path: RouterNames.newOrders,
       builder: (context, state) => const NewOrdersView(),
     ),
+    GoRoute(
+      path: RouterNames.compleatedOrders,
+      builder: (context, state) => const CompleatedOrders(),
+    ),
+    GoRoute(
+      path: RouterNames.incompleatedOrders,
+      builder: (context, state) => const IncompleatedOrderes(),
+    ),
+    GoRoute(
+      path: RouterNames.waitingOrders,
+      builder: (context, state) => const WaitingOrders(),
+    ),
+
+    GoRoute(
+      path: RouterNames.editOrder,
+      builder: (context, state) => const EditOrderView(),
+    ),
 
     //!manager
 
@@ -90,13 +113,5 @@ final GoRouter router = GoRouter(
       path: RouterNames.managerFinishOrders,
       builder: (context, state) => const ManagerFinishOrders(),
     ),
-
-    //chef
-     GoRoute(
-      path: RouterNames.ChefHomeView,
-      builder: (context, state) => const ChefHomeView(),
-    ),
-    
-
   ],
 );

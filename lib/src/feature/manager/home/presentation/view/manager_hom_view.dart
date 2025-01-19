@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../sales/home/presentation/widgets/home_app_bar_widget.dart';
 
-import '../components/newest_order_list_view.dart';
+import '../../../newest_orders/presentation/views/newest_order_list_view.dart';
 import '../components/order_in_progress_list.dart';
 import '../widgets/custom_title.dart';
 import '../widgets/progress_card.dart';

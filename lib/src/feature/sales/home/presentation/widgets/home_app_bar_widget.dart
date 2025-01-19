@@ -14,7 +14,7 @@ class HomeAppBar extends StatelessWidget {
       contentPadding: const EdgeInsets.all(0),
       title: Text("اهلا بك",
           style: AppStyles.s12.copyWith(
-            color: AppColors.greyForText,
+            color: AppColors.darkTextGrey,
             fontWeight: FontWeight.w700,
           )),
       subtitle: Text(name,
