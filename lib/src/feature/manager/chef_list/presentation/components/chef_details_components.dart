@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +14,7 @@ class ChefDetailsComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.all(20.0.r),
+      padding: EdgeInsets.all(20.0.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,31 +25,38 @@ class ChefDetailsComponents extends StatelessWidget {
             avatarUrl: 'https://example.com/chef-avatar.jpg',
             ordersCount: 25,
           ),
-           SizedBox(height: 20.h),
+          SizedBox(height: 20.h),
           const CustomTitle(title: 'نبذه عن الشيف'),
-           SizedBox(height: 10.h),
+          SizedBox(height: 10.h),
           Text(
             'بأكثر من 10 سنوات خبرة. معروف بإبداعه في تصميم الكيك وتقديم محمد عمرو شيف حلويات شرقي محترف يعمل في مجال الطهي منذ 5 سنوات',
-            style:AppStyles.s12,
+            style: AppStyles.s12,
           ),
-           SizedBox(height: 20.h),
+          SizedBox(height: 20.h),
           const CustomTitle(title: 'طرق التواصل بالشيف'),
-           SizedBox(height: 20.h),
-          const ConnectWithChefCard(email: 'karimelsad@gmail.com', phone: '01023933834',),
-           SizedBox(height: 20.h),
+          SizedBox(height: 20.h),
+          const ConnectWithChefCard(
+            email: 'karimelsad@gmail.com',
+            phone: '01023933834',
+          ),
+          SizedBox(height: 20.h),
           const CustomTitle(title: 'قائمه الطلباتة الحاليه '),
-           SizedBox(height: 20.h),
-        const CurrentChefOrderList(),
-           SizedBox(height: 40.h),
-           Align(child: CustomButton(text: 'ارسال الطلب للشيف', onPressed: () {
-                              acceptOrderPop(context ,"routeName", title: ' تم ارسال الطلب للمندوب', buttonTitle: 'رجوع',
-                              onPressed: () => Navigator.pop(context),
-                               );
-
-           })),
-           SizedBox(height: 40.h),
-
-
+          SizedBox(height: 20.h),
+          const CurrentChefOrderList(),
+          SizedBox(height: 40.h),
+          Align(
+              child: CustomButton(
+                  text: 'ارسال الطلب للشيف',
+                  onPressed: () {
+                    acceptOrderPop(
+                      context,
+                      "routeName",
+                      title: ' تم ارسال الطلب للمندوب',
+                      buttonTitle: 'رجوع',
+                      onPressed: () => Navigator.pop(context),
+                    );
+                  })),
+          SizedBox(height: 40.h),
         ],
       ),
     );
