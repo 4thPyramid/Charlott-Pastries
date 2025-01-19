@@ -23,9 +23,9 @@ class SharedOrderItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 205.h,
+      //height: 205.h,
       width: 370.w,
-      padding: EdgeInsets.symmetric(vertical: 10.h),
+      padding: EdgeInsets.symmetric(vertical: 16.h),
       decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(10),
@@ -51,13 +51,10 @@ class SharedOrderItemCard extends StatelessWidget {
                 orderDate: '',
                 color: orderStatusColor,
               ),
-              AppImageView(
-                AppAssets.home,
-                radius: BorderRadius.circular(60.r),
-                height: 80.h,
-                isAvatar: true,
-                width: 80.w,
-                fit: BoxFit.fill,
+              CircleAvatar(
+                radius: 60.r,
+                backgroundImage: const AssetImage(AppAssets.home,),
+              
               ),
             ],
           ),
@@ -70,6 +67,7 @@ class SharedOrderItemCard extends StatelessWidget {
                   'pageTitle': pageTitle,
                   'orderTitle': orderTitle,
                   'color': orderStatusColor?.value,
+                  
                 });
               }),
         ],

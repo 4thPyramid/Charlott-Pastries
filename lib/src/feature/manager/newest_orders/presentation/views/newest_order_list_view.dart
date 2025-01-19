@@ -21,7 +21,7 @@ class NewestOrderListView extends StatelessWidget {
             context.push(RouterNames.newestOrderDetails,);
           },
           child: const NewestOrdersCardItem(
-              orderName: ' تورتة عيد ميلاد موسي', orderType: 'حلويات غربيه'),
+              orderName: ' تورتة عيد ميلاد موسي', orderType: 'حلويات غربيه',date:  "2025/1/16",),
         );
       },
       separatorBuilder: (context, index) {

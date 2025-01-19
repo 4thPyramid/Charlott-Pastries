@@ -12,7 +12,7 @@ class NewOrdersView extends StatelessWidget {
       children: [
         CustomAppBar(
           title: "الطلبات الجديدة",
-          iconleft: Icons.arrow_back_ios,
+          iconLeft: Icons.arrow_back_ios,
         ),
         NewOrdersListView()
       ],

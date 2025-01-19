@@ -14,7 +14,8 @@ import '../../../../../../core/utils/main_function.dart';
 acceptOrderPop(
   BuildContext context,
   String routeName,
-) {
+  {required String title, required String buttonTitle,required void Function() onPressed}) 
+ {
   customAlertDialog(
     marginHPadding: 20.h,
     marginVPadding: 20.h,
@@ -34,7 +35,7 @@ acceptOrderPop(
           ),
           SizedBox(height: 36.h),
           Text(
-            "تم قبول  الطلب ",
+            title,
             style: AppStyles.s20.copyWith(
               color: Colors.black,
               fontWeight: FontWeight.w700,
@@ -45,16 +46,12 @@ acceptOrderPop(
           CustomButton(
             height: 40.h,
             width: 230.w,
-            text: "اختر الشيف",
+            text: buttonTitle,
             textStyle: AppStyles.s16.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
             ),
-            onPressed: () {
-              context.push(RouterNames.selectChef);
-              //Navigator.pop(context);
-              //context.go(routeName);
-            },
+            onPressed: onPressed,
           )
         ],
       ),

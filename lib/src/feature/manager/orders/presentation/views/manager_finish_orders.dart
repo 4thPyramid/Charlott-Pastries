@@ -15,7 +15,7 @@ class ManagerFinishOrders extends StatelessWidget {
           children: [
             CustomAppBar(
               title: "طلبات منتهيه ",
-              iconleft: Icons.arrow_back_ios,
+              iconLeft: Icons.arrow_back_ios,
               onPressedLeft: () {
                 Navigator.pop(context);
               },

@@ -16,10 +16,10 @@ class ManagerCompleatedOrders extends StatelessWidget {
           children: [
             CustomAppBar(
               title: "الطلبات المكتملة",
-              iconleft: Icons.arrow_back_ios,
+              iconLeft: Icons.arrow_back_ios,
               onPressedLeft: () => context.pop(),
             ),
-            const CompleteOrdersListView()
+            const ManagerCompleteOrdersListView()
           ],
         ));
   }

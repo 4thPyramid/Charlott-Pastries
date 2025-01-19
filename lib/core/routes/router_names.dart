@@ -16,8 +16,14 @@ abstract class RouterNames {
   static const String editOrder = '/edit-order';
 
   //!manager
-  static const String managerHomView = '/mmmm';
-  static const String managerCompleatedOrders = '/compleated-orders';
+  static const String managerHomView = '/';
+  static const String chefDetails = '/chefDetails';
+   static const String newestOrderDetails = '/newestOrderDetails';
+  static const String selectChef = '/select-chef';
+  static const String selectDeliveryBoy = '/select-delivery';
+  static const String deliveryBoyDetails= '/delivery-details';
+  
+  static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';
-  static const String completeOrdersDetails = '/compleated-orders-details';
+  static const String completeOrdersDetails = '/complete-orders-details';
 }

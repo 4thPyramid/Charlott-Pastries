@@ -16,7 +16,7 @@ class CheafHomeView extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 70.h),
-              const HomeAppBar(),
+              const HomeAppBar(name: '',),
               SizedBox(height: 20.h),
               const HomeIntroImage(),
               SizedBox(height: 20.h),

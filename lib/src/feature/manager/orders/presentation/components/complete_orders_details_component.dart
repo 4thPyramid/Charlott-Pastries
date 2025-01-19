@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:charlot/core/common/widgets/custom_btn.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/app_styles.dart';
@@ -15,9 +17,11 @@ class CompleteOrdersDetailsComponant extends StatelessWidget {
     super.key,
     required this.orderTitle,
     this.statusColor,
+     this.isCompleted = false,
   });
   final String orderTitle;
   final Color? statusColor;
+  final bool? isCompleted ;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -97,6 +101,8 @@ class CompleteOrdersDetailsComponant extends StatelessWidget {
               Divider(color: AppColors.grey, thickness: 1, height: 10.h),
               buildInfoField('اسم الشيف', 'احمد ماهر'),
               Divider(color: AppColors.grey, thickness: 1, height: 10.h),
+              buildInfoField('اسم العميل', 'لما يتم تعين مندوب '),
+              Divider(color: AppColors.grey, thickness: 1, height: 10.h),
               const SizedBox(height: 20),
               Text('الصور',
                   style: AppStyles.s16.copyWith(
@@ -109,7 +115,9 @@ class CompleteOrdersDetailsComponant extends StatelessWidget {
             ],
           ),
         ),
-        CustomButton(width: 240.w, text: "اختر المندوب", onPressed: () {}),
+        if (isCompleted == false) CustomButton(width: 240.w, text: "اختر المندوب", onPressed: () {
+          context.push( RouterNames.selectDeliveryBoy,);
+        }),
         SizedBox(height: 40.h),
       ],
     );

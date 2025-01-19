@@ -4,29 +4,25 @@ import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChefAndDeliveryCard extends StatelessWidget {
+class ChefAndDeliveryDetailsCardItem extends StatelessWidget {
   final String name;
   final String status;
-  final String buttonText;
   final String avatarUrl;
   final int ordersCount;
-  final VoidCallback onViewDetails;
   final String specialization;
-  const ChefAndDeliveryCard({
+  const ChefAndDeliveryDetailsCardItem({
     super.key,
     required this.name,
     required this.status,
     required this.avatarUrl,
     required this.ordersCount,
-    required this.onViewDetails,
-    required this.specialization, required this.buttonText,
+    required this.specialization,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
-      margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
       decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(10),
@@ -95,11 +91,7 @@ class ChefAndDeliveryCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          Align(
-            alignment: Alignment.center,
-            child: CustomButton(
-                width: 160.w, text: buttonText, onPressed: onViewDetails),
-          )
+         
         ],
       ),
     );

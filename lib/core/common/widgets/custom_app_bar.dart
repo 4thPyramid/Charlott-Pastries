@@ -7,7 +7,7 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     required this.title,
-    this.iconleft,
+    this.iconLeft,
     this.iconright,
     this.onPressedLeft,
     this.onPressedRight,
@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget {
   });
 
   final String title;
-  final IconData? iconleft;
+  final IconData? iconLeft;
   final IconData? iconright;
   final VoidCallback? onPressedLeft;
   final VoidCallback? onPressedRight;
@@ -27,11 +27,11 @@ class CustomAppBar extends StatelessWidget {
       padding: EdgeInsets.only(top: padding ?? 70.h, bottom: 16.h),
       child: Row(
         children: [
-          iconleft != null
+          iconLeft != null
               ? IconButton(
                   onPressed: onPressedLeft,
                   icon: Icon(
-                    iconleft,
+                    iconLeft,
                     color: AppColors.black,
                   ),
                 )

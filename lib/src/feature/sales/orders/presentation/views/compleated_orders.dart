@@ -12,7 +12,7 @@ class CompleatedOrders extends StatelessWidget {
       children: [
         CustomAppBar(
           title: "الطلبات المكتملة",
-          iconleft: Icons.arrow_back_ios,
+          iconLeft: Icons.arrow_back_ios,
         ),
         NewOrdersListView()
       ],

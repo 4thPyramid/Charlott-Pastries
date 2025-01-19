@@ -7,10 +7,10 @@ import '../../../../../../core/utils/app_styles.dart';
 
 class NewestOrdersCardItem extends StatelessWidget {
   const NewestOrdersCardItem(
-      {super.key, required this.orderName, required this.orderType});
+      {super.key, required this.orderName, required this.orderType, required this.date});
   final String orderName;
   final String orderType;
-
+final String date;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -36,7 +36,7 @@ class NewestOrdersCardItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "2025/1/16",
+               date,
                 style: AppStyles.s14.copyWith(
                   color: AppColors.grey,
                   fontWeight: FontWeight.w600,

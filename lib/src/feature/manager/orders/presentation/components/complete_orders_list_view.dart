@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/common/widgets/shared_order_item_card.dart';
 
-class CompleteOrdersListView extends StatelessWidget {
-  const CompleteOrdersListView({super.key});
+class ManagerCompleteOrdersListView extends StatelessWidget {
+  const ManagerCompleteOrdersListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class CompleteOrdersListView extends StatelessWidget {
       child: SizedBox(
         child: ListView.builder(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
-          itemCount: 10,
+          itemCount: 1,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -21,6 +21,7 @@ class CompleteOrdersListView extends StatelessWidget {
                 orderTitle: 'طلب مكتمله',
                 pageTitle: 'تفااصيل الطلب المكتمل',
                 orderStatusColor: Colors.green,
+                
               ),
             );
           },

@@ -16,7 +16,7 @@ class EditOrderView extends StatelessWidget {
           children: [
             const CustomAppBar(
               title: "تعديل طلب",
-              iconleft: Icons.arrow_back_ios,
+              iconLeft: Icons.arrow_back_ios,
             ),
             const AuthTextFieldWidget(
               isPassword: false,

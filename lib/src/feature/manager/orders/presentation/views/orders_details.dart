@@ -21,13 +21,14 @@ class CompleteOrdersDetails extends StatelessWidget {
           children: [
             CustomAppBar(
               title: pageTitle,
-              iconleft: Icons.arrow_back_ios,
+              iconLeft: Icons.arrow_back_ios,
               onPressedLeft: () => context.pop(),
             ),
             SizedBox(height: 10.h),
             CompleteOrdersDetailsComponant(
               orderTitle: orderTitle,
               statusColor: orderStatusColor,
+              
             ),
           ],
         ),

@@ -16,7 +16,7 @@ class AddOrderView extends StatelessWidget {
           children: [
             const CustomAppBar(
               title: "اضافة طلب جديد",
-              iconleft: Icons.arrow_back_ios,
+              iconLeft: Icons.arrow_back_ios,
             ),
             const AuthTextFieldWidget(
               isPassword: false,

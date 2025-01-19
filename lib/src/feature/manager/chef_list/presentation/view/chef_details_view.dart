@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../core/theme/app_colors.dart';
+import '../components/chef_details_components.dart';
 
 class ChefDetailsView extends StatelessWidget {
   const ChefDetailsView({super.key});
@@ -15,15 +16,15 @@ class ChefDetailsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomAppBar(
-                title: "تفاصيل الشيف"  ,
-                iconleft: Icons.arrow_back_ios,
+                title: "تفاصيل الشيف",
+                iconLeft: Icons.arrow_back_ios,
                 onPressedLeft: () {
                   Navigator.pop(context);
                 },
               ),
+              const ChefDetailsComponents(),
             ],
           ),
         ));
   }
 }
-//! still not finished

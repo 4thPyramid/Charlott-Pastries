@@ -60,7 +60,7 @@ class ProgressCard extends StatelessWidget {
                       text: ' الطلبات المكتمله',
                       onPressed: () {
                         context.push(
-                          RouterNames.managerCompleatedOrders,
+                          RouterNames.managerCompletedOrders,
                         );
                       },
                       backgroundColor: AppColors.white,

@@ -2,7 +2,9 @@ import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/common/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
+import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../home/presentation/widgets/custom_title.dart';
 import '../widgets/accept_order_pop.dart';
@@ -24,7 +26,7 @@ class NewestOrderDetails extends StatelessWidget {
             children: [
               CustomAppBar(
                 title: " تفاصيل الطلب الجديد ",
-                iconleft: Icons.arrow_back_ios,
+                iconLeft: Icons.arrow_back_ios,
                 onPressedLeft: () {
                   Navigator.pop(context);
                 },
@@ -60,7 +62,9 @@ class NewestOrderDetailsComponents extends StatelessWidget {
                 child: CustomButton(
                
                   text: "قبول الطلب", onPressed: () {
-                  acceptOrderPop(context ,"routeName");
+                  acceptOrderPop(context ,"routeName", title: ' تم قبول  الطلب ', buttonTitle: '"اختر الشيف"',onPressed: (){
+                     context.push(RouterNames.selectChef);
+                  } );
                 })),
             const SizedBox(height: 40),
           ],

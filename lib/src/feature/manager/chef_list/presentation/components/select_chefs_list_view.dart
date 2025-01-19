@@ -16,12 +16,13 @@ class SelectChefsListView extends StatelessWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ChefCard(
+          return ChefAndDeliveryCard(
             name: 'محمد عمرو',
             specialization:'شيف حلويات شرقي ',
             status: 'متاح',
             avatarUrl: 'https://example.com/chef-avatar.jpg',
             ordersCount: 25,
+            buttonText:'تفاصيل الشيف',
             onViewDetails: () {
               context.push( RouterNames.chefDetails,);
               // Handle view details button tap
