@@ -1,13 +1,10 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
-import 'package:charlot/core/common/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../home/presentation/widgets/custom_title.dart';
 import '../widgets/accept_order_pop.dart';
 import '../widgets/first_container_for_order_date.dart';
-import '../widgets/newest_order_build_info_field.dart';
 import '../widgets/second_container_for_details.dart';
 import '../widgets/third_container_for_customer.dart';
 
