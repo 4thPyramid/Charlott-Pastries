@@ -1,4 +1,5 @@
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:charlot/src/feature/cheaf/notification/presentation/view/notification_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
@@ -51,6 +52,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.resetPasswordView,
       builder: (context, state) => const ResetPasswordView(),
+    ),
+    GoRoute(
+      path: RouterNames.notification,
+      builder: (context, state) => const NotificationView(),
     ),
 
     //! Sales

@@ -14,6 +14,7 @@ abstract class RouterNames {
   static const String waitingOrders = '/waiting-orders';
   static const String compleatedOrders = '/compleated-orders';
   static const String editOrder = '/edit-order';
+  static const String notification = "/";
 
   //!manager
   static const String managerHomView = '/';
