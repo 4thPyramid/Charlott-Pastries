@@ -1,9 +1,6 @@
-import 'package:charlot/core/routes/app_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../../core/routes/router_names.dart';
 import '../../../../sales/home/presentation/widgets/home_app_bar_widget.dart';
 
 import '../components/newest_order_list_view.dart';
@@ -24,7 +21,7 @@ class ManagerHomView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 70.h),
-            const HomeAppBar(),
+            const HomeAppBar(name: '',),
             SizedBox(height: 20.h),
             const ProgressCard(
               percentage: 70,

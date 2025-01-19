@@ -5,7 +5,8 @@ import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+  const HomeAppBar({super.key, required this.name});
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class HomeAppBar extends StatelessWidget {
             color: AppColors.greyForText,
             fontWeight: FontWeight.w700,
           )),
-      subtitle: Text("محمد عمرو",
+      subtitle: Text(name,
           style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w600,
           )),

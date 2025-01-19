@@ -11,8 +11,11 @@ abstract class RouterNames {
   static const String newOrders = '/new-orders';
 
   //!manager
-  static const String managerHomView = '/';
+  static const String managerHomView = '/mmmm';
   static const String managerCompleatedOrders = '/compleated-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/compleated-orders-details';
+
+  //chef
+  static const String ChefHomeView = '/';
 }

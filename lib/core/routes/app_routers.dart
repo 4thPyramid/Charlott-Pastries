@@ -1,4 +1,5 @@
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:charlot/src/feature/chef/home/presentation/views/chef_home_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
@@ -89,5 +90,13 @@ final GoRouter router = GoRouter(
       path: RouterNames.managerFinishOrders,
       builder: (context, state) => const ManagerFinishOrders(),
     ),
+
+    //chef
+     GoRoute(
+      path: RouterNames.ChefHomeView,
+      builder: (context, state) => const ChefHomeView(),
+    ),
+    
+
   ],
 );
