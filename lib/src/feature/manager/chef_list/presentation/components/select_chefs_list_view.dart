@@ -23,7 +23,7 @@ class SelectChefsListView extends StatelessWidget {
             avatarUrl: 'https://example.com/chef-avatar.jpg',
             ordersCount: 25,
             onViewDetails: () {
-              context.push( RouterNames.chefDetails,);
+              // context.push( RouterNames.chefDetails,);
               // Handle view details button tap
               print('View details tapped');
             },

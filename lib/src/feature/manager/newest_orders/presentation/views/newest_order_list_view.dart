@@ -18,7 +18,7 @@ class NewestOrderListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            context.push(RouterNames.newestOrderDetails,);
+            // context.push(RouterNames.newestOrderDetails,);
           },
           child: const NewestOrdersCardItem(
               orderName: ' تورتة عيد ميلاد موسي', orderType: 'حلويات غربيه'),
