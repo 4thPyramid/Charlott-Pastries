@@ -19,7 +19,7 @@ class ProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160.h,
+      height: 170.h,
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -29,7 +29,7 @@ class ProgressCard extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 14.w,
+              horizontal: 8.w,
             ),
             child: ProgressCircle(
               percentage: percentage,
@@ -37,7 +37,7 @@ class ProgressCard extends StatelessWidget {
           ),
           SizedBox(width: 10.w),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

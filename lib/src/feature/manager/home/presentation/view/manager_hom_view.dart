@@ -13,32 +13,32 @@ class ManagerHomView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 70.h),
-            const HomeAppBar(name: '',),
-            SizedBox(height: 20.h),
-            const ProgressCard(
-              percentage: 70,
-              title: "الطلبات التي تم الانتهاء منها",
-            ),
-            SizedBox(height: 20.h),
-            const CustomTitle(
-              title: "طلبات قيد التنفيذ",
-            ),
-            SizedBox(height: 20.h),
-            const OrdersInProgressList(),
-            SizedBox(height: 20.h),
-            const CustomTitle(title: "طلبات جديده"),
-            SizedBox(height: 20.h),
-            const NewestOrderListView()
-          ],
-        ),
+    return SingleChildScrollView(
+        child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 70.h),
+          const HomeAppBar(
+            name: '',
+          ),
+          SizedBox(height: 20.h),
+          const ProgressCard(
+            percentage: 70,
+            title: "الطلبات التي تم الانتهاء منها",
+          ),
+          SizedBox(height: 20.h),
+          const CustomTitle(
+            title: "طلبات قيد التنفيذ",
+          ),
+          SizedBox(height: 20.h),
+          const OrdersInProgressList(),
+          SizedBox(height: 20.h),
+          const CustomTitle(title: "طلبات جديده"),
+          SizedBox(height: 20.h),
+          const NewestOrderListView()
+        ],
       ),
     ));
   }

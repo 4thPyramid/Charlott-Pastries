@@ -7,6 +7,7 @@ abstract class AppAssets {
   static const String profileImage = "assets/images/profileImage.png";
   static const String mapImage = "assets/images/mapImage.png";
   static const String home = "assets/images/home.png";
+  static const String chefImage = "assets/images/chef_image.png";
 
   // icons
   static const String successIcon = "assets/svg/successIcon.svg";

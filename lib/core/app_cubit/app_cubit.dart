@@ -18,17 +18,17 @@ class AppCubit extends Cubit<AppState> {
         );
 
   //! ----------- Change Theme ----------- //
-  void changeTheme([ThemeEnum? themeEnum]) {
-    final newTheme =
-        themeEnum ?? (state.themeEnum == ThemeEnum.light ? ThemeEnum.dark : ThemeEnum.light);
+  // void changeTheme([ThemeEnum? themeEnum]) {
+  //   final newTheme =
+  //       themeEnum ?? (state.themeEnum == ThemeEnum.light ? ThemeEnum.dark : ThemeEnum.light);
 
-    emit(state.copyWith(themeEnum: newTheme));
+  //   emit(state.copyWith(themeEnum: newTheme));
 
-    CacheHelper.saveData(
-      key: 'theme',
-      value: newTheme == ThemeEnum.light ? "light" : "dark",
-    );
-  }
+  //   CacheHelper.saveData(
+  //     key: 'theme',
+  //     value: newTheme == ThemeEnum.light ? "light" : "dark",
+  //   );
+  // }
 
   //! ----------- Change BottomNavBar Selected Index ----------- //
   void changeBottomNavBarSelectedIndex(int index) {
@@ -36,11 +36,11 @@ class AppCubit extends Cubit<AppState> {
   }
 
   //! ----------- Change Language ----------- //
-  Future<void> changeLanguage([String? value]) async {
-    final newLanguage = state.language == "ar" ? "en" : "ar";
+  // Future<void> changeLanguage([String? value]) async {
+  //   final newLanguage = state.language == "ar" ? "en" : "ar";
 
-    emit(state.copyWith(language: newLanguage));
+  //   emit(state.copyWith(language: newLanguage));
 
-    await CacheHelper.saveData(key: 'language', value: newLanguage);
-  }
+  //   await CacheHelper.saveData(key: 'language', value: newLanguage);
+  // }
 }
