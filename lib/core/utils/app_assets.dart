@@ -11,6 +11,8 @@ abstract class AppAssets {
 
   // icons
   static const String successIcon = "assets/svg/successIcon.svg";
+  static const String whiteLogo = "assets/svg/whiteLogo.svg";
+  static const String blackLogo = "assets/svg/blackLogo.svg";
   static const String editIcon = "assets/svg/editIcon.svg";
   static const String editCamera = "assets/svg/editCamera.svg";
   static const String inProgressIcon = "assets/svg/inProgressIcon.svg";

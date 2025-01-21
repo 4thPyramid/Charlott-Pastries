@@ -31,10 +31,15 @@ import '../../src/feature/manager/newest_orders/presentation/views/newest_order_
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
 import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
 import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
+import '../../src/feature/splash/splash_view.dart';
 import '../services/service_locator.dart';
 
 final GoRouter router = GoRouter(
   routes: [
+    GoRoute(
+      path: RouterNames.splashView,
+      builder: (context, state) => const AnimatedSplashScreen(),
+    ),
     GoRoute(
       path: RouterNames.userTypeView,
       builder: (context, state) => const UserTypeView(),

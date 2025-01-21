@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../chef_list/presentation/widgets/chef_details_card_item.dart';
 import '../../../chef_list/presentation/widgets/connect_with_chef_card.dart';
@@ -44,9 +46,11 @@ class DeliveryDetailsComponents extends StatelessWidget {
         const CurrentDeliveryOrderList(),
            SizedBox(height: 40.h),
            Align(child: CustomButton(text: 'ارسال الطلب للمندوب', onPressed: () {
-                  acceptOrderPop(context ,"routeName", title: ' تم ارسال الطلب للمندوب', buttonTitle: 'رجوع', 
+                  acceptOrderPop(context , title: ' تم ارسال الطلب للمندوب', buttonTitle: 'رجوع', 
                   onPressed: () {
-                    Navigator.pop(context);
+                    context.go(
+                      RouterNames.managerBottomNavigationBarRoot,
+                    );
                   }
                   );
 

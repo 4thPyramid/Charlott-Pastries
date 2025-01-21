@@ -1,4 +1,5 @@
 abstract class RouterNames {
+  static const String splashView = '/';
   static const String userTypeView = '/user-type';
   static const String salesRegisterView = '/sales-register';
   static const String otpView = '/otp';
@@ -17,7 +18,7 @@ abstract class RouterNames {
   static const String notification = "/notification";
 
   //!
-  static const String managerBottomNavigationBarRoot = '/';
+  static const String managerBottomNavigationBarRoot = '/manager-bottom-navigation-bar-root';
   static const String managerHomView = '/manager-home';
   static const String chefDetails = '/chefDetails';
    static const String newestOrderDetails = '/newestOrderDetails';
