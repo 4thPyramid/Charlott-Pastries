@@ -1,8 +1,8 @@
 // lib/features/order_details/presentation/widgets/gallery_thumbnail.dart
 import 'package:charlot/core/utils/app_assets.dart';
-import 'package:charlot/src/feature/cheaf/orders/presentation/widget/action_button.dart';
-import 'package:charlot/src/feature/cheaf/orders/presentation/widget/order_image_galary.dart';
-import 'package:charlot/src/feature/cheaf/orders/presentation/widget/order_info_section.dart';
+import 'package:charlot/src/feature/chef/orders/presentation/widget/action_button.dart';
+import 'package:charlot/src/feature/chef/orders/presentation/widget/order_image_galary.dart';
+import 'package:charlot/src/feature/chef/orders/presentation/widget/order_info_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

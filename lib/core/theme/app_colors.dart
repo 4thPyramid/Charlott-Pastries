@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 abstract class AppColors {
   static const Color primaryColor = Color(0xFFA9411D);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color orange = Color(0xFFFC820A);
   static const Color black = Color(0xFF000000);
   static const Color lightBlue = Color(0xFFE7F3ff);
   static const Color whiteGreyForText = Color(0xFF828193);
+  static const Color greyForText = Color(0xFF666666);
 
   static const Color scaffoldColor = Color(0xFFF9F9F9);
   static const Color greyForSelectTap = Color(0xFFF5F5F5);
@@ -19,7 +21,6 @@ abstract class AppColors {
   static const Color openGrey = Color(0xFFf9f9f9);
   static const Color darkTextGrey = Color(0xFF0D1829);
   static const Color lightGrey = Color(0xFFF5F5F5);
-  static const Color orange = Color(0xffFB6F3D);
   static const Color blueBlack = Color(0xff32343E);
   static const Color errorColor = Color(0xFFFF5E5E);
   static const Color green = Colors.green;

@@ -32,6 +32,7 @@ class CustomAppBar extends StatelessWidget {
                   onPressed: onPressedLeft,
                   icon: Icon(
                     iconLeft,
+                    size: 30,
                     color: AppColors.black,
                   ),
                 )
