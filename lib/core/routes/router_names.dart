@@ -23,7 +23,6 @@ abstract class RouterNames {
   static const String mapPicker = "/map-picker";
 
   //!manager
-  static const String managerHomView = '/bbbbnnn';
   static const String chefDetails = '/chefDetails';
   static const String newestOrderDetails = '/newestOrderDetails';
   static const String selectChef = '/select-chef';
@@ -34,7 +33,6 @@ abstract class RouterNames {
   static const String personalInfoView = '/personalInfoView';
   static const String favoriteView = '/favoriteView';
   
-  static const String deliveryBoyDetails = '/delivery-details';
 
   static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';
