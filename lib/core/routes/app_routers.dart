@@ -1,5 +1,6 @@
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/src/feature/cheaf/notification/presentation/view/notification_view.dart';
+import 'package:charlot/core/services/service_locator.dart';
+import 'package:charlot/src/feature/chef/notification/presentation/view/notification_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
@@ -7,10 +8,13 @@ import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/sales_register_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
+import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
+import 'package:charlot/src/feature/location/presentation/views/map_picker_view.dart';
 import 'package:charlot/src/feature/manager/delivery/presentation/views/delivery_details_view.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/orders_details.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_compleated_orders.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
+import 'package:charlot/src/feature/orderDetails/presentation/view/order_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/edit_order_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
@@ -19,7 +23,9 @@ import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated
 import 'package:charlot/src/feature/sales/orders/presentation/views/new_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orders.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart';
 
 import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
 import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
@@ -57,6 +63,16 @@ final GoRouter router = GoRouter(
       path: RouterNames.notification,
       builder: (context, state) => const NotificationView(),
     ),
+    GoRoute(
+      path: RouterNames.mapPicker,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<MapPickerCubit>(),
+        child: const MapPickerView(),
+      ),
+    ),
+    GoRoute(
+        path: RouterNames.ordersDetails,
+        builder: (context, state) => const OrderDetailsView()),
 
     //! Sales
     //?auth
@@ -71,7 +87,7 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: RouterNames.addOrder,
-      builder: (context, state) => const AddOrderView(),
+      builder: (context, state) => const AddOrderViewFirst(),
     ),
     GoRoute(
       path: RouterNames.newOrders,
@@ -112,7 +128,7 @@ final GoRouter router = GoRouter(
         return CompleteOrdersDetails(
           orderTitle: data['orderTitle'] as String? ?? '',
           pageTitle: data['pageTitle'] as String? ?? '',
-          orderStatusColor: Color(data['color']??0xFF00ba69),
+          orderStatusColor: Color(data['color'] ?? 0xFF00ba69),
         );
       },
     ),
@@ -120,25 +136,25 @@ final GoRouter router = GoRouter(
       path: RouterNames.managerFinishOrders,
       builder: (context, state) => const ManagerFinishOrders(),
     ),
-     GoRoute(
-        path: RouterNames.newestOrderDetails,
+    GoRoute(
+      path: RouterNames.newestOrderDetails,
       builder: (context, state) => const NewestOrderDetails(),
-     ),
-      GoRoute(
+    ),
+    GoRoute(
       path: RouterNames.selectChef,
       builder: (context, state) => const SelectChefsView(),
-     ),
-   GoRoute(
+    ),
+    GoRoute(
       path: RouterNames.chefDetails,
       builder: (context, state) => const ChefDetailsView(),
-     ),
-      GoRoute(
+    ),
+    GoRoute(
       path: RouterNames.selectDeliveryBoy,
       builder: (context, state) => const SelectDeliveryView(),
-     ),
-      GoRoute(
+    ),
+    GoRoute(
       path: RouterNames.deliveryBoyDetails,
       builder: (context, state) => const DeliveryDetailsView(),
-     ),
+    ),
   ],
 );

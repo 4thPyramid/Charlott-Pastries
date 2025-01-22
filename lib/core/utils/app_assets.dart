@@ -1,11 +1,8 @@
 abstract class AppAssets {
   static const String logo = "assets/images/profile.png";
-  static const String onboarding1 = "assets/images/onboarding.png";
-  static const String onboarding2 = "assets/images/onboarding1.png";
-  static const String onboarding3 = "assets/images/onboarding2.png";
-  static const String onboardingSvg = "assets/images/onboarding1.svg";
-  static const String profileImage = "assets/images/profileImage.png";
-  static const String mapImage = "assets/images/mapImage.png";
+  static const String addOrder1 = "assets/images/add_order1.png";
+  static const String addOrder2 = "assets/images/add_order2.png";
+  static const String addOrder3 = "assets/images/add_order3.png";
   static const String home = "assets/images/home.png";
 
   // icons

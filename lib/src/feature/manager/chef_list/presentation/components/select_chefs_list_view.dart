@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,15 +17,17 @@ class SelectChefsListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return ChefAndDeliveryCard(
             name: 'محمد عمرو',
-            specialization:'شيف حلويات شرقي ',
+            specialization: 'شيف حلويات شرقي ',
             status: 'متاح',
             avatarUrl: 'https://example.com/chef-avatar.jpg',
             ordersCount: 25,
-            buttonText:'تفاصيل الشيف',
+            buttonText: 'تفاصيل الشيف',
             onViewDetails: () {
-              context.push( RouterNames.chefDetails,);
+              context.push(
+                RouterNames.chefDetails,
+              );
               // Handle view details button tap
-              print('View details tapped');
+              //print('View details tapped');
             },
           );
         });
