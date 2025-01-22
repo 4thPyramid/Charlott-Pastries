@@ -40,5 +40,6 @@ void setupLocator() {
   getIt.registerLazySingleton(() => GetAddressFromLatLng(getIt()));
 
   // Cubits //
-  getIt.registerFactory(() => MapPickerCubit());
+  getIt.registerFactory(
+      () => MapPickerCubit(apiKey: 'AIzaSyAvRUO9js6cWK6PC42iKxLr7X0T0wVyOBE'));
 }

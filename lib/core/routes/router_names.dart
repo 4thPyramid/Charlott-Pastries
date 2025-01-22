@@ -7,15 +7,15 @@ abstract class RouterNames {
   static const String resetPasswordView = '/reset-password';
   static const String verifyCodeView = '/verify-code';
   static const String salesHome = '/sales-home';
-  static const String addOrder = "/add-order";
+  static const String addOrder = "/";
   static const String newOrders = '/new-orders';
-  static const String ordersDetails = "/hhhhhggfff";
+  static const String ordersDetails = "/orders-details";
   static const String incompleatedOrders = '/incompleated-orders';
   static const String waitingOrders = '/waiting-orders';
   static const String compleatedOrders = '/compleated-orders';
   static const String editOrder = '/edit-order';
   static const String notification = "/notification";
-  static const String mapPicker = "/";
+  static const String mapPicker = "/map-picker";
 
   //!manager
   static const String managerHomView = '/bbbbnnn';

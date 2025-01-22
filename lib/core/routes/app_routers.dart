@@ -87,7 +87,7 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: RouterNames.addOrder,
-      builder: (context, state) => const AddOrderView(),
+      builder: (context, state) => const AddOrderViewFirst(),
     ),
     GoRoute(
       path: RouterNames.newOrders,

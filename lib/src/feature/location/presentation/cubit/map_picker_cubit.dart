@@ -1,15 +1,56 @@
-// map_picker_cubit.dart
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart'
+    as places;
 
 class MapPickerCubit extends Cubit<MapPickerState> {
-  MapPickerCubit() : super(MapPickerInitial());
-
-  Marker? marker;
+  final places.FlutterGooglePlacesSdk _placesSdk;
   GoogleMapController? mapController;
+  Marker? marker;
+
+  MapPickerCubit({required String apiKey})
+      : _placesSdk = places.FlutterGooglePlacesSdk(apiKey),
+        super(MapPickerInitial());
+
+  // دالة البحث الجديدة
+  Future<void> searchPlace(String query) async {
+    try {
+      emit(MapPickerLoading());
+
+      final predictions = await _placesSdk.findAutocompletePredictions(query);
+
+      if (predictions.predictions.isEmpty) {
+        emit(MapPickerError('No results found'));
+        return;
+      }
+
+      final placeId = predictions.predictions.first.placeId;
+      final placeDetails = await _placesSdk.fetchPlace(
+        placeId,
+        fields: [places.PlaceField.Location],
+      );
+
+      final lat = placeDetails.place?.latLng?.lat;
+      final lng = placeDetails.place?.latLng?.lng;
+
+      if (lat == null || lng == null) {
+        emit(MapPickerError('Invalid coordinates'));
+        return;
+      }
+
+      // تحديث الخريطة والعنوان
+      await getAddress(lat, lng);
+
+      mapController?.animateCamera(
+        CameraUpdate.newLatLngZoom(LatLng(lat, lng), 15),
+      );
+    } catch (e) {
+      emit(MapPickerError(e.toString()));
+    }
+  }
 
   void setMapController(GoogleMapController controller) {
     mapController = controller;
@@ -19,23 +60,11 @@ class MapPickerCubit extends Cubit<MapPickerState> {
     try {
       emit(MapPickerLoading());
 
-      // Update marker
       marker = Marker(
         markerId: const MarkerId('selected_location'),
         position: LatLng(latitude, longitude),
       );
 
-      // Move camera to new position
-      mapController?.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(latitude, longitude),
-            zoom: 15,
-          ),
-        ),
-      );
-
-      // Get address from coordinates
       List<Placemark> placemarks = await placemarkFromCoordinates(
         latitude,
         longitude,
@@ -51,7 +80,7 @@ class MapPickerCubit extends Cubit<MapPickerState> {
           longitude: longitude,
         ));
       } else {
-        emit(const MapPickerError('لم يتم العثور على عنوان'));
+        emit(const MapPickerError('Address not found'));
       }
     } catch (e) {
       emit(MapPickerError(e.toString()));
@@ -62,17 +91,15 @@ class MapPickerCubit extends Cubit<MapPickerState> {
     try {
       emit(MapPickerLoading());
 
-      // Check location permission
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          emit(const MapPickerError('تم رفض إذن الموقع'));
+          emit(const MapPickerError('Location permission denied'));
           return;
         }
       }
 
-      // Get current position
       final position = await Geolocator.getCurrentPosition();
       await getAddress(position.latitude, position.longitude);
     } catch (e) {
