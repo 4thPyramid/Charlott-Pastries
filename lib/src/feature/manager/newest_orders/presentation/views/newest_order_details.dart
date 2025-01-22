@@ -62,7 +62,7 @@ class NewestOrderDetailsComponents extends StatelessWidget {
                 child: CustomButton(
                
                   text: "قبول الطلب", onPressed: () {
-                  acceptOrderPop(context ,"routeName", title: ' تم قبول  الطلب ', buttonTitle: '"اختر الشيف"',onPressed: (){
+                  acceptOrderPop(context , title: ' تم قبول  الطلب ', buttonTitle: '"اختر الشيف"',onPressed: (){
                      context.push(RouterNames.selectChef);
                   } );
                 })),

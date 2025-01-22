@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
-  getIt<CacheHelper>().init();
+    await getIt<CacheHelper>().init();
+
   runApp(const MyApp());
 }

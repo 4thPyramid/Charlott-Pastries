@@ -13,7 +13,6 @@ import '../../../../../../core/utils/main_function.dart';
 
 acceptOrderPop(
   BuildContext context,
-  String routeName,
   {required String title, required String buttonTitle,required void Function() onPressed}) 
  {
   customAlertDialog(

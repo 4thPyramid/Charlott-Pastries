@@ -25,16 +25,24 @@ import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orde
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:path/path.dart';
 
 import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
 import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
 import '../../src/feature/manager/delivery/presentation/views/select_delivery_view.dart';
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
+import '../../src/feature/manager/manager_bottom_navigation_bar_root.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
+import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
+import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
+import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
+import '../../src/feature/splash/splash_view.dart';
 
 final GoRouter router = GoRouter(
   routes: [
+    GoRoute(
+      path: RouterNames.splashView,
+      builder: (context, state) => const AnimatedSplashScreen(),
+    ),
     GoRoute(
       path: RouterNames.userTypeView,
       builder: (context, state) => const UserTypeView(),
@@ -112,7 +120,10 @@ final GoRouter router = GoRouter(
     ),
 
     //!manager
-
+ GoRoute(
+      path: RouterNames.managerBottomNavigationBarRoot,
+      builder: (context, state) => const ManagerBottomNavigationBarRoot(),
+    ),
     GoRoute(
       path: RouterNames.managerHomView,
       builder: (context, state) => const ManagerHomView(),
@@ -155,6 +166,20 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.deliveryBoyDetails,
       builder: (context, state) => const DeliveryDetailsView(),
-    ),
+     ),
+     GoRoute(
+        path: RouterNames.personalInfoView,
+        builder: (context, state) => BlocProvider(
+              create: (context) => getIt<ProfileCubit>(),
+              child: const PersonalInfoView(),
+            )),
+    GoRoute(
+        path: RouterNames.settingView,
+        builder: (context, state) => const SettingsView()),
+    // GoRoute(
+    //     path: RouterNames.favoriteView,
+    //     builder: (context, state) => const FavoriteView()),
+
+   
   ],
 );

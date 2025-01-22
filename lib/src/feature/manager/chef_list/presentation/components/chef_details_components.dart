@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../home/presentation/widgets/custom_title.dart';
 import '../../../newest_orders/presentation/widgets/accept_order_pop.dart';
@@ -50,10 +52,12 @@ class ChefDetailsComponents extends StatelessWidget {
                   onPressed: () {
                     acceptOrderPop(
                       context,
-                      "routeName",
+                     
                       title: ' تم ارسال الطلب للمندوب',
                       buttonTitle: 'رجوع',
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => context.go(
+                      RouterNames.managerBottomNavigationBarRoot,
+                    )
                     );
                   })),
           SizedBox(height: 40.h),
