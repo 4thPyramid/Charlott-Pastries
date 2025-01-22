@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:charlot/core/routes/app_routers.dart';
 import 'package:charlot/core/theme/app_themes.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/app_cubit/app_cubit.dart';
 import 'core/services/service_locator.dart';

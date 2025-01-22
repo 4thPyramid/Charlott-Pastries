@@ -1,3 +1,11 @@
+import 'package:charlot/core/app_cubit/app_cubit.dart';
+import 'package:charlot/core/data/api/api_consumer.dart';
+import 'package:charlot/core/data/api/dio_consumer.dart';
+import 'package:charlot/core/data/cached/cache_helper.dart';
+import 'package:charlot/src/feature/location/data/datasource/map_picker_remote_data_source.dart';
+import 'package:charlot/src/feature/location/domain/repo/map_picker_repo.dart';
+import 'package:charlot/src/feature/location/domain/usecase/get_address_uc.dart';
+import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,12 +17,10 @@ import '../../src/feature/manager/profile/domain/usecase/get_profile_photo_uc.da
 import '../../src/feature/manager/profile/domain/usecase/update_profile_photo.dart';
 import '../../src/feature/manager/profile/domain/usecase/update_profile_uc.dart';
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
-import '../app_cubit/app_cubit.dart';
-import '../data/api/api_consumer.dart';
-import '../data/api/dio_consumer.dart';
-import '../data/cached/cache_helper.dart';
+
 
 final GetIt getIt = GetIt.instance;
+
 void setupLocator() {
   ///! FOR APP CUBIT ///
   getIt.registerFactory<AppCubit>(() => AppCubit());
@@ -25,10 +31,17 @@ void setupLocator() {
       .registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: getIt<Dio>()));
   getIt.registerLazySingleton<ImagePicker>(() => ImagePicker());
 
+
 //!Api Services //
   getIt.registerLazySingleton<ProfileApiService>(
       () => ProfileApiServiceImpl(getIt()));
 
+
+
+
+  getIt.registerLazySingleton<MapPickerRemoteDataSource>(
+    () => MapPickerRemoteDataSourceImpl(),
+  );
 
   ///! --DataSources-- ///
  getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -57,4 +70,15 @@ void setupLocator() {
         getIt(),
         getIt(),
       ));
+
+  getIt.registerFactory<MapPickerRepository>(
+    () => MapPickerRepositoryImpl(getIt<MapPickerRemoteDataSource>()),
+  );
+
+  /// -- UseCases -- ///
+  getIt.registerLazySingleton(() => GetAddressFromLatLng(getIt()));
+
+  // Cubits //
+  getIt.registerFactory(
+      () => MapPickerCubit(apiKey: 'AIzaSyAvRUO9js6cWK6PC42iKxLr7X0T0wVyOBE'));
 }
