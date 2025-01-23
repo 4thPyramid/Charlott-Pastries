@@ -19,9 +19,8 @@ class FinishOrderListView extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10.h),
               child: const SharedOrderItemCard(
                 id: 0,
-                orderTitle: ' تم الانتهاء منها',
                 pageTitle: ' تفاصيل الطلب المنتهيه',
-                orderStatusColor: AppColors.lightBlue2,
+                orderStatusColor: AppColors.lightBlue2, orderStatus: 'طلب منتهي',
               ),
             );
           },

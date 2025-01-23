@@ -16,7 +16,6 @@ import 'package:charlot/src/feature/manager/orders/presentation/views/manager_co
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/view/order_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/view/client_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/price_details_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
@@ -33,6 +32,8 @@ import '../../src/feature/manager/delivery/presentation/views/select_delivery_vi
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
 import '../../src/feature/manager/manager_bottom_navigation_bar_root.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
+import '../../src/feature/manager/orders/presentation/views/manager_refused_orders.dart';
+import '../../src/feature/manager/orders/presentation/views/manager_returned_orders.dart';
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
 import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
 import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
@@ -86,6 +87,7 @@ final GoRouter router = GoRouter(
           return OrderDetailsView(
             from: data['from'] as String? ?? '',
             title: data['title'] as String? ?? '',
+            orderStatus :data['orderStatus'] as String? ?? '',
           );
         }),
 
@@ -99,6 +101,7 @@ final GoRouter router = GoRouter(
       path: RouterNames.salesHome,
       builder: (context, state) => const SalesHomeView(),
     ),
+    
 
     GoRoute(
       path: RouterNames.addOrder,
@@ -124,10 +127,10 @@ final GoRouter router = GoRouter(
       path: RouterNames.priceDetailsView,
       builder: (context, state) => const PriceDetailsView(),
     ),
-    GoRoute(
-      path: RouterNames.addClientDetailsView,
-      builder: (context, state) => const ClientDetailsView(),
-    ),
+    // GoRoute(
+    //   path: RouterNames.addClientDetailsView,
+    //   builder: (context, state) => const ClientDetailsView(),
+    // ),
 
     //!manager
     GoRoute(
@@ -141,6 +144,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.managerCompletedOrders,
       builder: (context, state) => const ManagerCompletedOrders(),
+    ),
+     GoRoute(
+      path: RouterNames.managerReturnedOrders,
+      builder: (context, state) => const ManagerReturnedOrders(),
+    ),
+    GoRoute(
+      path: RouterNames.managerRefusedOrders,
+      builder: (context, state) => const ManagerRefusedOrders(),
     ),
     GoRoute(
       path: RouterNames.completeOrdersDetails,

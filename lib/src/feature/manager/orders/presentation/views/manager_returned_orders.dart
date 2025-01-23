@@ -1,26 +1,27 @@
-import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
-import '../components/complete_orders_list_view.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../components/returned_orders_list_view.dart';
 
-class ManagerCompletedOrders extends StatelessWidget {
-  const ManagerCompletedOrders({super.key});
+class ManagerReturnedOrders extends StatelessWidget {
+  const ManagerReturnedOrders({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+      return Scaffold(
         backgroundColor: AppColors.greyForSelectTap,
         body: Column(
           children: [
             CustomAppBar(
-              title: AppStrings.orderCompleted,
+              title: AppStrings.returnOrder,
               iconLeft: Icons.arrow_back_ios,
-              onPressedLeft: () => context.pop(),
+              onPressedLeft: () {
+                Navigator.pop(context);
+              },
             ),
-            const ManagerCompleteOrdersListView()
+            const ReturnedOrdersListView()
           ],
         ));
   }

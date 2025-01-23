@@ -57,16 +57,17 @@ class _OrderDetailsImageHeaderState extends State<OrderDetailsImageHeader> {
                   ),
                 ),
                 Container(
-                  height: 100.h,
-                )
+                  height: 50.h,
+                ),
               ],
             ),
             // Thumbnail images
 
             Positioned(
-              top: 230.h,
+             // top: 230.h,
               left: 10.w,
               right: 10.w,
+              bottom: 20,
               child: OrderImagesListView(
                 images: images,
                 pageController: _pageController,

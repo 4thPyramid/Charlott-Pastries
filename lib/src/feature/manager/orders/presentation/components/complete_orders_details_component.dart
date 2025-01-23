@@ -15,6 +15,6 @@ class CompleteOrdersDetailsComponent extends StatelessWidget {
   final bool? isCompleted ;
   @override
   Widget build(BuildContext context) {
-    return const OrderDetailsView(from :"completeOrder", title: '" تفاصيل الطلب المكتمله "',);
+    return const OrderDetailsView(from :"completeOrder", title: '" تفاصيل الطلب المكتمله "', orderStatus: 'طلب مكتمل',);
   }
 }

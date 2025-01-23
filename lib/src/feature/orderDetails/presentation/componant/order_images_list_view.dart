@@ -18,7 +18,7 @@ class OrderImagesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80.h,
+      height: 100.h,
       width: 350.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

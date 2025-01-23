@@ -12,27 +12,32 @@ import '../../../../../core/theme/app_colors.dart';
 import '../componant/team_data.dart';
 
 class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView({super.key, required this.from, required this.title});
-final String from;
-final String title;
+  const OrderDetailsView(
+      {super.key,
+      required this.from,
+      required this.title,
+      required this.orderStatus});
+  final String from;
+  final String title;
+  final String orderStatus;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.greyForSelectTap,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppBar(
-                title: title,
-                iconLeft: Icons.arrow_back_ios,
-                onPressedLeft: () {
-                  Navigator.pop(context);
-                },
-              ),
-                const OrderDetailsImageHeader(),
+      backgroundColor: AppColors.greyForSelectTap,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomAppBar(
+              title: title,
+              iconLeft: Icons.arrow_back_ios,
+              onPressedLeft: () {
+                Navigator.pop(context);
+              },
+            ),
+            const OrderDetailsImageHeader(),
             const OrderTimes(),
-             SizedBox(height: 16.h),
+            SizedBox(height: 16.h),
             const ClientData(),
             const TeamData(),
             const OrderData(),
@@ -44,14 +49,10 @@ final String title;
                 onPressed: () {},
               ),
             ),
-                         SizedBox(height: 16.h),
-
+            SizedBox(height: 16.h),
           ],
         ),
       ),
-        
     );
   }
 }
-
-

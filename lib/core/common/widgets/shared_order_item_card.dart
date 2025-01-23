@@ -13,11 +13,11 @@ class SharedOrderItemCard extends StatelessWidget {
       {super.key,
       this.orderStatusColor,
       required this.id,
-      required this.orderTitle,
+      required this.orderStatus,
       required this.pageTitle});
   final Color? orderStatusColor;
   final int id;
-  final String orderTitle;
+  final String orderStatus;
   final String pageTitle;
   @override
   Widget build(BuildContext context) {
@@ -65,6 +65,7 @@ class SharedOrderItemCard extends StatelessWidget {
                 context.push(RouterNames.ordersDetails, extra: {
                   'from': pageTitle,
                   'title': pageTitle,
+                  'orderStatus': orderStatus,
 
                
                 });

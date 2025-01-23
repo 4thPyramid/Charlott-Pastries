@@ -26,13 +26,13 @@ abstract class RouterNames {
       '/manager-bottom-navigation-bar-root';
 
   static const String managerHomView = '/manager-home';
-
+static const String managerRefusedOrders = '/manager-refused-orders';
   static const String chefDetails = '/chefDetails';
   static const String newestOrderDetails = '/newestOrderDetails';
   static const String selectChef = '/select-chef';
   static const String selectDeliveryBoy = '/select-delivery';
   static const String deliveryBoyDetails = '/delivery-details';
-
+static const String managerReturnedOrders = '/manager-returned-orders';
   static const String settingView = '/settingView';
   static const String personalInfoView = '/personalInfoView';
   static const String favoriteView = '/favoriteView';

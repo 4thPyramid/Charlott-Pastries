@@ -8,7 +8,7 @@ class NewestOrderDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const OrderDetailsView(
-      from: 'NewestOrderDetails', title: '" تفاصيل الطلب الجديد "',
+      from: 'NewestOrderDetails', title: ' تفاصيل الطلب الجديد ',orderStatus: 'طلب جديد',
     );
   }
 }

@@ -20,8 +20,8 @@ class WaitingOrdersListView extends StatelessWidget {
               child: SharedOrderItemCard(
                 orderStatusColor: Colors.yellow,
                 id: 0,
-                orderTitle: '',
-                pageTitle: '',
+                pageTitle: '', 
+                orderStatus: '',
               ),
             );
           },
