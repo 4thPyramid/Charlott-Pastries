@@ -14,7 +14,7 @@ class WaitingOrders extends StatelessWidget {
           title: "طلبات قيد التنفيذ",
           iconLeft: Icons.arrow_back_ios,
         ),
-        NewOrdersListView()
+        WaitingOrdersListView()
       ],
     ));
   }

@@ -19,10 +19,9 @@ class OrdersInProgressList extends StatelessWidget {
           itemBuilder: (context, index) {
             return buildOrderCard(
               onTap: () {
-                context.push(RouterNames.completeOrdersDetails, extra: {
-                  'pageTitle': 'الطلبات قيد الانتظار',
-                  'orderTitle': "قيد الانتظار",
-                  'color': AppColors.errorColor.value
+                context.push(RouterNames.ordersDetails, extra: {
+                  'from': "OrdersInProgressList",
+                  'title': 'تفاصيل الطلب قيد الانتظار',
                 });
               },
               color: AppColors.lightBlue,

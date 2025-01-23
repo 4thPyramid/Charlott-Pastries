@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../components/complete_orders_list_view.dart';
 
-class ManagerCompleatedOrders extends StatelessWidget {
-  const ManagerCompleatedOrders({super.key});
+class ManagerCompletedOrders extends StatelessWidget {
+  const ManagerCompletedOrders({super.key});
 
   @override
   Widget build(BuildContext context) {

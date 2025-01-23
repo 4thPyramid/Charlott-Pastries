@@ -14,7 +14,7 @@ class NewOrdersView extends StatelessWidget {
           title: "الطلبات الجديدة",
           iconLeft: Icons.arrow_back_ios,
         ),
-        NewOrdersListView()
+        WaitingOrdersListView()
       ],
     ));
   }

@@ -80,7 +80,13 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
         path: RouterNames.ordersDetails,
-        builder: (context, state) => const OrderDetailsView()),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return OrderDetailsView(
+            from: data['from'] as String? ?? '',
+            title: data['title'] as String? ?? '',
+          );
+        }),
 
     //! Sales
     //?auth
@@ -120,7 +126,7 @@ final GoRouter router = GoRouter(
     ),
 
     //!manager
- GoRoute(
+    GoRoute(
       path: RouterNames.managerBottomNavigationBarRoot,
       builder: (context, state) => const ManagerBottomNavigationBarRoot(),
     ),
@@ -130,7 +136,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouterNames.managerCompletedOrders,
-      builder: (context, state) => const ManagerCompleatedOrders(),
+      builder: (context, state) => const ManagerCompletedOrders(),
     ),
     GoRoute(
       path: RouterNames.completeOrdersDetails,
@@ -166,8 +172,8 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.deliveryBoyDetails,
       builder: (context, state) => const DeliveryDetailsView(),
-     ),
-     GoRoute(
+    ),
+    GoRoute(
         path: RouterNames.personalInfoView,
         builder: (context, state) => BlocProvider(
               create: (context) => getIt<ProfileCubit>(),
@@ -179,7 +185,5 @@ final GoRouter router = GoRouter(
     // GoRoute(
     //     path: RouterNames.favoriteView,
     //     builder: (context, state) => const FavoriteView()),
-
-   
   ],
 );

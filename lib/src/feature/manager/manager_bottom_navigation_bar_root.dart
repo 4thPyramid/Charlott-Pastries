@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
+import '../chef/notification/presentation/view/notification_view.dart';
 import 'accept_employee/presentation/view/accept_employee_view.dart';
 import 'home/presentation/view/manager_hom_view.dart';
 import 'profile/presentation/view/profile_view.dart';
@@ -18,8 +19,7 @@ class ManagerBottomNavigationBarRoot extends StatelessWidget {
         final List<Widget> pages = [
           const ManagerHomView(),
           const AcceptEmployeeView(),
-         
-         // const NotificationView(),
+          const NotificationView(),
           const ManagerProfileView(),
          
         ];
@@ -58,10 +58,10 @@ class ManagerBottomNavigationBarRoot extends StatelessWidget {
                   ),
                   label: 'add employee',
                 ),
-                // BottomNavigationBarItem(
-                //   icon: Icon(Icons.notifications_outlined),
-                //   label: 'Notification',
-                // ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.notifications_outlined),
+                  label: 'Notification',
+                ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person_outline),
                   label: 'Profile',

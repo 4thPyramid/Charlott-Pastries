@@ -4,6 +4,7 @@ abstract class AppAssets {
   static const String addOrder2 = "assets/images/add_order2.png";
   static const String addOrder3 = "assets/images/add_order3.png";
   static const String home = "assets/images/home.png";
+  static const String profileImage = "assets/images/profile.png";
   static const String chefImage = "assets/images/chef_image.png";
 
   // icons

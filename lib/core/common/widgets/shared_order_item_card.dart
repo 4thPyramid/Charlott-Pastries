@@ -1,7 +1,6 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_assets.dart';
-import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,11 +62,11 @@ class SharedOrderItemCard extends StatelessWidget {
               height: 30.h,
               text: "عرض التفاصيل",
               onPressed: () {
-                context.push(RouterNames.completeOrdersDetails, extra: {
-                  'pageTitle': pageTitle,
-                  'orderTitle': orderTitle,
-                  'color': orderStatusColor?.value,
-                  
+                context.push(RouterNames.ordersDetails, extra: {
+                  'from': pageTitle,
+                  'title': pageTitle,
+
+               
                 });
               }),
         ],

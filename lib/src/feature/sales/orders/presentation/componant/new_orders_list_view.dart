@@ -2,8 +2,8 @@ import 'package:charlot/src/feature/sales/orders/presentation/widgets/order_item
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NewOrdersListView extends StatelessWidget {
-  const NewOrdersListView({super.key});
+class WaitingOrdersListView extends StatelessWidget {
+  const WaitingOrdersListView({super.key});
 
   @override
   Widget build(BuildContext context) {

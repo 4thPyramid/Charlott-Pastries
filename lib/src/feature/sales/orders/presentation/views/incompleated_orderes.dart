@@ -14,7 +14,7 @@ class IncompleatedOrderes extends StatelessWidget {
           title: "الطلبات الغير المكتملة",
           iconLeft: Icons.arrow_back_ios,
         ),
-        NewOrdersListView()
+        WaitingOrdersListView()
       ],
     ));
   }

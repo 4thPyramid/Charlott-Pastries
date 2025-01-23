@@ -18,7 +18,7 @@ class ClientDataCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 353,
-      height: 232,
+    //  height: 232,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,

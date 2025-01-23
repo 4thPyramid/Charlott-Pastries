@@ -14,7 +14,7 @@ class CompleatedOrders extends StatelessWidget {
           title: "الطلبات المكتملة",
           iconLeft: Icons.arrow_back_ios,
         ),
-        NewOrdersListView()
+        WaitingOrdersListView()
       ],
     ));
   }

@@ -1,7 +1,6 @@
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/src/feature/sales/home/presentation/componant/orders_grid_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/componant/redy_order_componant.dart';
-import 'package:charlot/src/feature/sales/home/presentation/widgets/grid_view_item.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/home_app_bar_widget.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/home_intro_image.dart';
 import 'package:flutter/material.dart';

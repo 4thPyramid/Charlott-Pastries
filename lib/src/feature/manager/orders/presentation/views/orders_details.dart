@@ -25,7 +25,7 @@ class CompleteOrdersDetails extends StatelessWidget {
               onPressedLeft: () => context.pop(),
             ),
             SizedBox(height: 10.h),
-            CompleteOrdersDetailsComponant(
+            CompleteOrdersDetailsComponent(
               orderTitle: orderTitle,
               statusColor: orderStatusColor,
               
