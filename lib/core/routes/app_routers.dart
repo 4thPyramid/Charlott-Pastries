@@ -16,7 +16,8 @@ import 'package:charlot/src/feature/manager/orders/presentation/views/manager_co
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/view/order_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/view/edit_order_view.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/view/client_details_view.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/view/price_details_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated_orderes.dart';
@@ -105,10 +106,13 @@ final GoRouter router = GoRouter(
       path: RouterNames.waitingOrders,
       builder: (context, state) => const WaitingOrders(),
     ),
-
     GoRoute(
-      path: RouterNames.editOrder,
-      builder: (context, state) => const EditOrderView(),
+      path: RouterNames.priceDetailsView,
+      builder: (context, state) => const PriceDetailsView(),
+    ),
+    GoRoute(
+      path: RouterNames.addClientDetailsView,
+      builder: (context, state) => const ClientDetailsView(),
     ),
 
     //!manager

@@ -42,7 +42,9 @@ class CustomTextFormField extends StatelessWidget {
               horizontal: 12.0.w,
             ),
             hintText: hintText,
-            hintStyle: AppStyles.s12,
+            hintStyle: AppStyles.s12.copyWith(
+              color: AppColors.greyForText,
+            ),
             fillColor: fillColor ?? AppColors.white,
             filled: true,
             suffixIcon: isPassword
@@ -60,8 +62,7 @@ class CustomTextFormField extends StatelessWidget {
             prefixIcon: prefixIcon,
             border: InputBorder.none,
             enabledBorder: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: Color.fromARGB(255, 207, 205, 205)),
+              borderSide: const BorderSide(color: AppColors.grey),
               borderRadius: BorderRadius.circular(15.0),
             ),
             focusedBorder: OutlineInputBorder(
