@@ -8,7 +8,7 @@ abstract class RouterNames {
   static const String resetPasswordView = '/reset-password';
   static const String verifyCodeView = '/verify-code';
   static const String salesHome = '/sales-home';
-  static const String addOrder = "/";
+  static const String addOrder = "/add-order";
   static const String newOrders = '/new-orders';
   static const String ordersDetails = "/orders-details";
   static const String incompleatedOrders = '/incompleated-orders';
@@ -21,6 +21,8 @@ abstract class RouterNames {
   static const String managerBottomNavigationBarRoot = '/manager-bottom-navigation-bar-root';
   static const String managerHomView = '/manager-home';
   static const String mapPicker = "/map-picker";
+  static const String priceDetailsView = '/bvcxzmm';
+  static const String addClientDetailsView = '/';
 
   //!manager
   static const String chefDetails = '/chefDetails';
