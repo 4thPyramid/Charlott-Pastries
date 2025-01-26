@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../core/theme/app_colors.dart';
+import '../../../manager/accept_employee/presentation/widgets/accept_and_refuse_button.dart';
 import '../componant/team_data.dart';
 
 class OrderDetailsView extends StatelessWidget {
@@ -36,19 +37,46 @@ class OrderDetailsView extends StatelessWidget {
               },
             ),
             const OrderDetailsImageHeader(),
-            const OrderTimes(),
+            OrderTimes(
+              orderStatus: orderStatus,
+            ),
             SizedBox(height: 16.h),
             const ClientData(),
             const TeamData(),
             const OrderData(),
             const OrderPrice(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: CustomButton(
-                text: "تأكيد الطلب",
-                onPressed: () {},
+                        SizedBox(height: 16.h),
+
+            if (orderStatus == "طلب مكتمل")
+             Align(
+                alignment: Alignment.bottomCenter,
+                child: CustomButton(
+                  text: 'اختر المندوب ',
+                  onPressed: () {},
+                ),
+              )
+            else if (orderStatus == "طلب جديد")
+               Row(
+            mainAxisAlignment: MainAxisAlignment.center,  
+            children: [
+              AcceptAndRefuseButton(
+                text: 'قبول',
+                backgroundColor: AppColors.green,
+                onPressed: () {
+                },
               ),
-            ),
+              SizedBox(width: 16.w),
+              AcceptAndRefuseButton(
+                text: 'رفض',
+                backgroundColor: AppColors.red,
+                onPressed: () {
+                },
+              ),
+            ],
+          )
+            else
+                SizedBox(height: 16.h),
+
             SizedBox(height: 16.h),
           ],
         ),

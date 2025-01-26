@@ -36,6 +36,7 @@ static const String managerReturnedOrders = '/manager-returned-orders';
   static const String settingView = '/settingView';
   static const String personalInfoView = '/personalInfoView';
   static const String favoriteView = '/favoriteView';
+  static const String returnAndRefusedOrderDetails = '/refused-order-details';
 
   static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';

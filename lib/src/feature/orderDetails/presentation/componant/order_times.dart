@@ -5,18 +5,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderTimes extends StatelessWidget {
   const OrderTimes({
-    super.key,
+    super.key, required this.orderStatus,
   });
-
+final String orderStatus;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          const OrderDetailsSectionsTitleWidget(
+           OrderDetailsSectionsTitleWidget(
             title: 'مواعيد الطلب',
-            subtitle: "تم اكتمال الطلب",
+            subtitle: orderStatus,
           ),
           SizedBox(height: 16.h),
           const DatesContainerWidget(

@@ -23,7 +23,7 @@ final String imageUrl;
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
                 imageUrl,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 height: 54.h,
                 width: 54.w,
               ),
@@ -39,11 +39,14 @@ final String imageUrl;
                     children: [
                       TextSpan(
                           text: title,
-                          style: AppStyles.s14.copyWith(color: AppColors.grey)),
+                          style: AppStyles.s14.copyWith(color: AppColors.greyForText)),
                     ],
                   ),
                 ),
-                Text(time, style: AppStyles.s12),
+                Text(time, style: AppStyles.s12.copyWith(
+                    color: AppColors.greyForText,
+                    fontWeight: FontWeight.w400
+                )),
               ],
             )
           ],

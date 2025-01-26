@@ -42,11 +42,11 @@ class SharedOrderItemCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const FirstColumn(
-                order: '',
-                customer: '',
+                order: 'تورته عيد ميلاد',
+                customer: 'اخمد علي ',
               ),
               ThirdColumn(
-                orderStaus: '',
+                orderStatus: orderStatus,
                 orderDate: '',
                 color: orderStatusColor,
               ),
@@ -62,13 +62,20 @@ class SharedOrderItemCard extends StatelessWidget {
               height: 30.h,
               text: "عرض التفاصيل",
               onPressed: () {
+                if(orderStatus=='طلب مرتجع'){
+                  context.push(RouterNames.returnAndRefusedOrderDetails, extra: {
+                  'from': pageTitle,
+                  'title': pageTitle,
+                  'orderStatus': orderStatus,
+                });
+                }
+                else{
                 context.push(RouterNames.ordersDetails, extra: {
                   'from': pageTitle,
                   'title': pageTitle,
                   'orderStatus': orderStatus,
-
-               
                 });
+                }
               }),
         ],
       ),
@@ -79,11 +86,11 @@ class SharedOrderItemCard extends StatelessWidget {
 class ThirdColumn extends StatelessWidget {
   const ThirdColumn({
     super.key,
-    required this.orderStaus,
+    required this.orderStatus,
     required this.orderDate,
     this.color,
   });
-  final String orderStaus;
+  final String orderStatus;
   final String orderDate;
   final Color? color;
   @override
@@ -99,7 +106,7 @@ class ThirdColumn extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-          "طلب جديد",
+          orderStatus,
           style: AppStyles.s12.copyWith(
             fontWeight: FontWeight.w400,
             color: color ?? AppColors.green,
@@ -151,7 +158,7 @@ class FirstColumn extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-          "تورتة عيد ميلاد",
+         order,
           style: AppStyles.s12.copyWith(
             fontWeight: FontWeight.w400,
             color: AppColors.darkTextGrey.withOpacity(0.7),
@@ -166,7 +173,7 @@ class FirstColumn extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-          "محمد عبد الله",
+         customer,
           style: AppStyles.s12.copyWith(
             fontWeight: FontWeight.w400,
             color: AppColors.darkTextGrey.withOpacity(0.7),
