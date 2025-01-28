@@ -7,6 +7,8 @@ import 'package:charlot/src/feature/auth/presentation/widgets/have_an_account_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/utils/app_strings.dart';
+
 class VerificationCodePassword extends StatelessWidget {
   VerificationCodePassword({super.key});
   final List<TextEditingController> _controllers =
@@ -23,11 +25,11 @@ class VerificationCodePassword extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 100),
-            const Center(child: AppImageView(AppAssets.logo)),
+            const Center(child: AppImageView(AppAssets.blackLogo)),
             SizedBox(height: 40.h),
             const CustomAuthAppBar(
-              title: 'كود التحقق',
-              subTitle: "ادخل الكود المرسل اليك لتعين كلمة المرور الجديدة",
+              title: AppStrings.enterVerificationCode,
+              subTitle: AppStrings.enterVerificationCodeToAccessAccount,
             ),
             SizedBox(height: 40.h),
             OtpForm(

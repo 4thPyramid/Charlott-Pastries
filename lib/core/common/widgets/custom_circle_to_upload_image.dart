@@ -1,26 +1,24 @@
 import 'dart:io';
 
+import 'package:charlot/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../utils/app_assets.dart';
+import '../../utils/app_image_view.dart';
 
-import '../../../../../../core/theme/app_colors.dart';
-import '../../../../../../core/utils/app_assets.dart';
-import '../../../../../../core/utils/app_image_view.dart';
-import '../logic/profile_cubit.dart';
-
-class PersonalCircleImage extends StatefulWidget {
-  const PersonalCircleImage({super.key, this.profileImage});
+class CustomPersonalCircleImage extends StatefulWidget {
+  const CustomPersonalCircleImage({super.key, this.profileImage});
 
   final String? profileImage;
 
   @override
-  State<PersonalCircleImage> createState() => _PersonalCircleImageState();
+  State<CustomPersonalCircleImage> createState() =>
+      _CustomPersonalCircleImageState();
 }
 
-class _PersonalCircleImageState extends State<PersonalCircleImage> {
+class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
   String? profileImage;
 
   @override
@@ -28,7 +26,7 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
     super.initState();
     profileImage = widget.profileImage?.isNotEmpty == true
         ? widget.profileImage!
-        : AppAssets.profileImage;
+        : 'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc';
   }
 
   Future<void> _pickImage() async {
@@ -48,11 +46,10 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
                       await picker.pickImage(source: ImageSource.camera);
                   if (image != null) {
                     if (context.mounted) {
-                      Navigator.pop(context,
-                          image); // إرجاع الصورة للـ showModalBottomSheet
+                      Navigator.pop(context, image);
                     }
                   }
-                 // context.go(RouterNames.personalInfoView);
+                  //   context.go(RouterNames.personalInfoView);
                 },
               ),
               ListTile(
@@ -63,11 +60,10 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
                       await picker.pickImage(source: ImageSource.gallery);
                   if (image != null) {
                     if (context.mounted) {
-                      Navigator.pop(context,
-                          image); // إرجاع الصورة للـ showModalBottomSheet
+                      Navigator.pop(context, image);
                     }
                   }
-                  //context.go(RouterNames.personalInfoView);
+                  // context.go(RouterNames.personalInfoView);
                 },
               ),
             ],
@@ -83,7 +79,7 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
         profileImage = imageFile!.path;
       });
 
-      context.read<ProfileCubit>().updateProfilePhoto(imageFile);
+      // context.read<ProfileCubit>().updateProfilePhoto(imageFile);
     }
   }
 
@@ -91,13 +87,23 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(50),
-          child: Image.network(
-            profileImage ?? AppAssets.profileImage,
-            width: 120.r,
-            height: 120.r,
-            fit: BoxFit.cover,
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: AppColors.primaryColor,
+              width: 2, 
+            ),
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Image.network(
+              profileImage ??
+                  'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
+              width: 120.r,
+              height: 120.r,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Positioned(
@@ -108,10 +114,11 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
             child: CircleAvatar(
               radius: 20.r,
               backgroundColor: AppColors.primaryColor,
-              child: AppImageView(
-                AppAssets.editCamera,
-                height: 20.h,
-                width: 20.w,
+              child: Icon(
+               Icons.file_upload_outlined,
+                color: AppColors.white,
+               // size: 20.r,
+              
               ),
             ),
           ),

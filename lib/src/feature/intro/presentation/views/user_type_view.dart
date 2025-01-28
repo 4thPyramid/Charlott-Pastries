@@ -1,14 +1,13 @@
-import 'package:charlot/core/routes/app_routers.dart';
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
-import 'package:charlot/core/utils/app_shimmer.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/src/feature/intro/presentation/widgets/choose_your_type_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../../core/utils/app_strings.dart';
 
 class UserTypeView extends StatelessWidget {
   const UserTypeView({super.key});
@@ -20,26 +19,36 @@ class UserTypeView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Center(child: AppImageView(AppAssets.logo)),
+        const Center(child: AppImageView(AppAssets.blackLogo)),
         SizedBox(height: 20.h),
-        Text("مرحبا بكم", style: AppStyles.s24),
+        Text(AppStrings.welcom, style: AppStyles.s24),
         SizedBox(height: 20.h),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
           child: Text(
-            " في محلنا المخصص لادارة متجر الحلويات سجل دخولك الان",
+            AppStrings.welcomeInOurApp,
             style: AppStyles.s16,
             textAlign: TextAlign.center,
           ),
         ),
-        const ChooseUserTypeButton(text: 'مدير'),
         ChooseUserTypeButton(
-          text: 'سيلز',
+          text: AppStrings.manager,
           onTap: () {
-            context.go(RouterNames.salesRegisterView);
+            context.push(RouterNames.loginView, extra: {'userType': "manager"});
           },
         ),
-        const ChooseUserTypeButton(text: 'شيف'),
+        ChooseUserTypeButton(
+          text: AppStrings.sales,
+          onTap: () {
+            context.push(RouterNames.loginView, extra: {'userType': "sales"});
+          },
+        ),
+        ChooseUserTypeButton(
+          text:AppStrings.chef,
+          onTap: () {
+            context.push(RouterNames.loginView, extra: {'userType': "chef"});
+          },
+        ),
       ],
     ));
   }

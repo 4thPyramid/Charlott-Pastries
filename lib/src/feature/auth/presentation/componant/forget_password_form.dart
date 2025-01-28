@@ -51,7 +51,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
             controller: _tabController,
             children: [
               AuthTextFieldWidget(
-                titelOfField: "رقم الجوال",
+                titleOfField: "رقم الجوال",
                 prefixIcon: Icons.phone,
                 controller: _phoneController,
                 validator: Validator.validatePhoneNumber,
@@ -59,7 +59,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
                 isPassword: false,
               ),
               AuthTextFieldWidget(
-                titelOfField: "البريد الإلكتروني",
+                titleOfField: "البريد الإلكتروني",
                 prefixIcon: Icons.email,
                 controller: _emailController,
                 validator: Validator.validateEmail,

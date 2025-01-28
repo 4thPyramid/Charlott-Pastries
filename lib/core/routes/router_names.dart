@@ -22,6 +22,7 @@ abstract class RouterNames {
   static const String addClientDetailsView = '/';
 
   //!manager
+  static const String managerRegister = '/manager-register';
   static const String managerBottomNavigationBarRoot =
       '/manager-bottom-navigation-bar-root';
 
@@ -37,6 +38,7 @@ static const String managerReturnedOrders = '/manager-returned-orders';
   static const String personalInfoView = '/personalInfoView';
   static const String favoriteView = '/favoriteView';
   static const String returnAndRefusedOrderDetails = '/refused-order-details';
+  static const String managerBeingDeliveredOrdersView = "/manager-being-delivered-orders";
 
   static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';

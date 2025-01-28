@@ -14,14 +14,11 @@ class OrdersStatisticsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.white.withAlpha(70),
-      elevation: 0,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          // mainAxisSize: MainAxisSize.min,
           children: [
             CustomCardStatistics(
                 number: 453,
@@ -29,40 +26,41 @@ class OrdersStatisticsRow extends StatelessWidget {
                 onPressed: () {
                   context.push(RouterNames.managerCompletedOrders);
                 }),
-            Container(
-              color: AppColors.greyForBackground,
-              width: 0.5.w,
-              height: 99.h,
-            ),
-            CustomCardStatistics(
+                  CustomCardStatistics(
                 number: 453,
                 name: AppStrings.orderEnded,
                 onPressed: () {
                   context.push(RouterNames.managerFinishOrders);
                 }),
-            Container(
-              color: AppColors.greyForSelectTap,
-              width: 0.5.w,
-              height: 99.h,
-            ),
             CustomCardStatistics(
                 number: 453,
                 name: AppStrings.returnOrder,
                 onPressed: () {
                   context.push(RouterNames.managerReturnedOrders);
                 }),
-            Container(
-              color: AppColors.grey,
-              width: 0.5.w,
-              height: 99.h,
-            ),
-            CustomCardStatistics(
-                number: 453, name: AppStrings.refusedOrder, onPressed: () {
-              context.push(RouterNames.managerRefusedOrders);
-                }),
+            
           ],
         ),
-      ),
+       Row(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                           CustomCardStatistics(
+                  number: 453,
+                  name: AppStrings.refusedOrder,
+                  onPressed: () {
+                    context.push(RouterNames.managerRefusedOrders);
+                  }),
+                  CustomCardStatistics(
+                  number: 453,
+                  name: AppStrings.orderBeingDeliver,
+                  onPressed: () {
+                    context.push( RouterNames.managerBeingDeliveredOrdersView,);
+                  }),
+            ],
+        
+        )
+      ],
     );
   }
 }
@@ -81,21 +79,26 @@ class CustomCardStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 1.5.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(number.toString(),
-                style: AppStyles.s12.copyWith(
-                    color: AppColors.white, fontWeight: FontWeight.w700)),
-            SizedBox(height: 5.h),
-            Text(name,
-                style: AppStyles.s10.copyWith(
-                    color: AppColors.white, fontWeight: FontWeight.w700)),
-          ],
+    return Card(
+      color: const Color.fromARGB(255, 193, 171, 171).withAlpha(70),
+      margin: EdgeInsets.all(10.w),
+      elevation: 0,
+      child: InkWell(
+        onTap: onPressed,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 24.h),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(number.toString(),
+                  style: AppStyles.s12.copyWith(
+                      color: AppColors.white, fontWeight: FontWeight.w700)),
+              SizedBox(height: 5.h),
+              Text(name,
+                  style: AppStyles.s10.copyWith(
+                      color: AppColors.white, fontWeight: FontWeight.w700)),
+            ],
+          ),
         ),
       ),
     );

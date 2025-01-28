@@ -105,7 +105,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
                   child: Center(
                     child: CustomButton(text: 'التالي',
                      onPressed: (){
-                      context.go(RouterNames.managerBottomNavigationBarRoot);
+                      context.go( RouterNames.userTypeView);
                     })
                   ),
                 );

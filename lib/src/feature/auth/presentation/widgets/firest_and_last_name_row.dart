@@ -2,8 +2,8 @@ import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_fie
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FirestAndLastNameRow extends StatelessWidget {
-  const FirestAndLastNameRow({super.key});
+class FirstAndLastNameRow extends StatelessWidget {
+  const FirstAndLastNameRow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class FirestAndLastNameRow extends StatelessWidget {
           child: AuthTextFieldWidget(
             isPassword: false,
             hintText: "ادخل اسمك ",
-            titelOfField: "الاسم الاول",
+            titleOfField: "الاسم الاول",
             prefixIcon: Icons.edit_note,
           ),
         ),
@@ -22,7 +22,7 @@ class FirestAndLastNameRow extends StatelessWidget {
           child: AuthTextFieldWidget(
             isPassword: false,
             hintText: "اسم العائلة",
-            titelOfField: "الاسم الاخير",
+            titleOfField: "الاسم الاخير",
             prefixIcon: Icons.edit_note,
           ),
         ),

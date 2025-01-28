@@ -6,7 +6,7 @@ import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart'
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/sales_register_view.dart';
+import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:charlot/src/feature/location/presentation/views/map_picker_view.dart';
@@ -14,6 +14,7 @@ import 'package:charlot/src/feature/manager/delivery/presentation/views/delivery
 import 'package:charlot/src/feature/manager/orders/presentation/views/complete_orders_details.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_compleated_orders.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
+import 'package:charlot/src/feature/manager/register/presentation/view/manager_register_view.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/view/order_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/price_details_view.dart';
@@ -32,7 +33,7 @@ import '../../src/feature/manager/delivery/presentation/views/select_delivery_vi
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
 import '../../src/feature/manager/manager_bottom_navigation_bar_root.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
-import '../../src/feature/manager/orders/presentation/components/refused_order_list_view.dart';
+import '../../src/feature/manager/orders/presentation/views/manager_being_delivered_orders_view.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_refused_orders.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_returned_and_refused_orders_details.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_returned_orders.dart';
@@ -56,9 +57,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) => OtpView(),
     ),
     GoRoute(
-      path: RouterNames.loginView,
-      builder: (context, state) => const LoginView(),
-    ),
+        path: RouterNames.loginView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return LoginView(
+            userType: data['userType'] as String,
+          );
+        }),
     GoRoute(
       path: RouterNames.forgetPasswordView,
       builder: (context, state) => const ForgetPasswordView(),
@@ -78,13 +83,13 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.returnAndRefusedOrderDetails,
       builder: (context, state) {
-                  final data = state.extra as Map<String, dynamic>;
+        final data = state.extra as Map<String, dynamic>;
 
-         return ReturnedAndRefusedOrderDetails(
-            from: data['from'] as String? ?? '',
-            title: data['title'] as String? ?? '',
-            orderStatus :data['orderStatus'] as String? ?? '',
-          );
+        return ReturnedAndRefusedOrderDetails(
+          from: data['from'] as String? ?? '',
+          title: data['title'] as String? ?? '',
+          orderStatus: data['orderStatus'] as String? ?? '',
+        );
       },
     ),
     GoRoute(
@@ -101,9 +106,14 @@ final GoRouter router = GoRouter(
           return OrderDetailsView(
             from: data['from'] as String? ?? '',
             title: data['title'] as String? ?? '',
-            orderStatus :data['orderStatus'] as String? ?? '',
+            orderStatus: data['orderStatus'] as String? ?? '',
           );
         }),
+    GoRoute(
+      path: RouterNames.managerBeingDeliveredOrdersView,
+      builder: (context, state)=>const ManagerBeingDeliveredOrdersView()
+        ),
+
 
     //! Sales
     //?auth
@@ -115,7 +125,6 @@ final GoRouter router = GoRouter(
       path: RouterNames.salesHome,
       builder: (context, state) => const SalesHomeView(),
     ),
-    
 
     GoRoute(
       path: RouterNames.addOrder,
@@ -148,6 +157,10 @@ final GoRouter router = GoRouter(
 
     //!manager
     GoRoute(
+      path: RouterNames.managerRegister,
+      builder: (context, state) => const ManagerRegisterView(),
+      ),
+    GoRoute(
       path: RouterNames.managerBottomNavigationBarRoot,
       builder: (context, state) => const ManagerBottomNavigationBarRoot(),
     ),
@@ -159,7 +172,7 @@ final GoRouter router = GoRouter(
       path: RouterNames.managerCompletedOrders,
       builder: (context, state) => const ManagerCompletedOrders(),
     ),
-     GoRoute(
+    GoRoute(
       path: RouterNames.managerReturnedOrders,
       builder: (context, state) => const ManagerReturnedOrders(),
     ),
