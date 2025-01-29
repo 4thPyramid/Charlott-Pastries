@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../utils/app_assets.dart';
-import '../../utils/app_image_view.dart';
-
 class CustomPersonalCircleImage extends StatefulWidget {
-  const CustomPersonalCircleImage({super.key, this.profileImage});
-
+  final void Function(File) onImageSelected;
   final String? profileImage;
+
+  const CustomPersonalCircleImage({
+    super.key,
+    required this.onImageSelected,
+    this.profileImage,
+  });
 
   @override
   State<CustomPersonalCircleImage> createState() =>
@@ -20,6 +22,7 @@ class CustomPersonalCircleImage extends StatefulWidget {
 
 class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
   String? profileImage;
+  File? _imageFile;
 
   @override
   void initState() {
@@ -49,7 +52,6 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
                       Navigator.pop(context, image);
                     }
                   }
-                  //   context.go(RouterNames.personalInfoView);
                 },
               ),
               ListTile(
@@ -63,7 +65,6 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
                       Navigator.pop(context, image);
                     }
                   }
-                  // context.go(RouterNames.personalInfoView);
                 },
               ),
             ],
@@ -73,13 +74,11 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
     );
 
     if (pickedFile != null) {
-      final File? imageFile = File(pickedFile.path);
-
+      final File imageFile = File(pickedFile.path);
       setState(() {
-        profileImage = imageFile!.path;
+        _imageFile = imageFile;
       });
-
-      // context.read<ProfileCubit>().updateProfilePhoto(imageFile);
+      widget.onImageSelected(imageFile);
     }
   }
 
@@ -91,19 +90,26 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
           decoration: BoxDecoration(
             border: Border.all(
               color: AppColors.primaryColor,
-              width: 2, 
+              width: 2,
             ),
             borderRadius: BorderRadius.circular(50),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(50),
-            child: Image.network(
-              profileImage ??
-                  'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
-              width: 120.r,
-              height: 120.r,
-              fit: BoxFit.cover,
-            ),
+            child: _imageFile != null
+                ? Image.file(
+                    _imageFile!,
+                    width: 120.r,
+                    height: 120.r,
+                    fit: BoxFit.cover,
+                  )
+                : Image.network(
+                    profileImage ??
+                        'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
+                    width: 120.r,
+                    height: 120.r,
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
         Positioned(
@@ -115,10 +121,8 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
               radius: 20.r,
               backgroundColor: AppColors.primaryColor,
               child: Icon(
-               Icons.file_upload_outlined,
+                Icons.file_upload_outlined,
                 color: AppColors.white,
-               // size: 20.r,
-              
               ),
             ),
           ),

@@ -2,24 +2,31 @@ import 'package:charlot/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/common/models/branches_model.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
-
 class ChoiceBranch extends StatefulWidget {
-  const ChoiceBranch({super.key});
+  final void Function(Branch) onBranchSelected;
+  final Branch? initialBranch;
+
+  const ChoiceBranch({
+    super.key,
+    required this.onBranchSelected,
+    this.initialBranch,
+  });
 
   @override
   State<ChoiceBranch> createState() => _ChoiceBranchState();
 }
 
 class _ChoiceBranchState extends State<ChoiceBranch> {
-  String? selectedValue;
+  Branch? selectedBranch;
 
-  final List<String> items = const [
-    "الفرع الاول",
-    "الفرع الثاني",
-    "الفرع الثالث",
-  ];
+  @override
+  void initState() {
+    super.initState();
+    selectedBranch = widget.initialBranch;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +51,8 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                value: selectedValue,
+              child: DropdownButton<Branch>(
+                value: selectedBranch,
                 hint: const Row(
                   children: [
                     Icon(
@@ -62,7 +69,7 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
                   ],
                 ),
                 selectedItemBuilder: (BuildContext context) {
-                  return items.map<Widget>((String item) {
+                  return BranchesData.branches.map<Widget>((Branch branch) {
                     return Row(
                       children: [
                         const Icon(
@@ -71,7 +78,7 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          item,
+                          branch.name,
                           style: const TextStyle(
                             color: AppColors.primaryColor,
                           ),
@@ -87,21 +94,24 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 12.h),
                 borderRadius: BorderRadius.circular(10),
-                items: items.map((String item) {
-                  return DropdownMenuItem<String>(
-                    value: item,
+                items: BranchesData.branches.map((Branch branch) {
+                  return DropdownMenuItem<Branch>(
+                    value: branch,
                     child: Text(
-                      item,
+                      branch.name,
                       style: const TextStyle(
                         color: AppColors.primaryColor,
                       ),
                     ),
                   );
                 }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedValue = newValue;
-                  });
+                onChanged: (Branch? newBranch) {
+                  if (newBranch != null) {
+                    setState(() {
+                      selectedBranch = newBranch;
+                    });
+                    widget.onBranchSelected(newBranch);
+                  }
                 },
               ),
             ),

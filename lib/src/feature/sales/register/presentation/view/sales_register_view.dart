@@ -19,7 +19,7 @@ class SalesRegisterView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 70.h),
-            const SalesRegisterForm(),
+             SalesRegisterForm(),
             HaveAnAccountWidget(
               onTap: () {},
                title1: AppStrings.haveAnAccount,

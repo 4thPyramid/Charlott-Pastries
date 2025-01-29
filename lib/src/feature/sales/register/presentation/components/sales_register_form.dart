@@ -13,21 +13,28 @@ import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../auth/presentation/widgets/firest_and_last_name_row.dart';
 
 class SalesRegisterForm extends StatelessWidget {
-  const SalesRegisterForm({
+   SalesRegisterForm({
     super.key,
   });
+ final TextEditingController fNameController = TextEditingController();
+  final TextEditingController lNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const CustomAuthAppBar(
-          title: AppStrings.welcom,
+          title: AppStrings.welcome,
           subTitle: AppStrings.fillFormToCreateAccount,
         ),
         SizedBox(height: 30.h),
         const Center(child: AppImageView(AppAssets.logo)),
-        const FirstAndLastNameRow(),
+         FirstAndLastNameRow(firstNameController:fNameController , lastNameController: lNameController,),
         const AuthTextFieldWidget(
           isPassword: false,
           hintText: AppStrings.enterYourEmail,

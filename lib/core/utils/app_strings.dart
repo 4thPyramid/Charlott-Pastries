@@ -6,7 +6,7 @@ abstract class AppStrings {
       skip = "تخطي",
       welcomeInOurApp = " في محلنا المخصص لادارة متجر الحلويات سجل دخولك الان",
       createNewAccount = "انشاء حساب جديد !",
-      welcom = "مرحبا بك  ",
+      welcome = "مرحبا بك  ",
       welcomBack = "مرحبا بعودتك !",
       goToHome = "الذهاب الى الصفحه الرئيسية",
       signIn = "تسجيل الدخول",

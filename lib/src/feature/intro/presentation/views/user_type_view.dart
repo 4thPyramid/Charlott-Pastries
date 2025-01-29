@@ -21,7 +21,7 @@ class UserTypeView extends StatelessWidget {
       children: [
         const Center(child: AppImageView(AppAssets.blackLogo)),
         SizedBox(height: 20.h),
-        Text(AppStrings.welcom, style: AppStyles.s24),
+        Text(AppStrings.welcome, style: AppStyles.s24),
         SizedBox(height: 20.h),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),

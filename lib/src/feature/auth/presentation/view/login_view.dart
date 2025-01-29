@@ -28,7 +28,7 @@ final String userType;
               const Center(child: AppImageView(AppAssets.blackLogo)),
               SizedBox(height: 40.h),
               const CustomAuthAppBar(
-                  title: AppStrings.welcom,
+                  title: AppStrings.welcome,
                   subTitle:
                     AppStrings.happyToSeeYouAgain),
               SizedBox(height: 40.h),

@@ -40,6 +40,7 @@ import '../../src/feature/manager/orders/presentation/views/manager_returned_ord
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
 import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
 import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
+import '../../src/feature/manager/register/presentation/logic/manager_register/manager_register_cubit.dart';
 import '../../src/feature/splash/splash_view.dart';
 
 final GoRouter router = GoRouter(
@@ -110,10 +111,8 @@ final GoRouter router = GoRouter(
           );
         }),
     GoRoute(
-      path: RouterNames.managerBeingDeliveredOrdersView,
-      builder: (context, state)=>const ManagerBeingDeliveredOrdersView()
-        ),
-
+        path: RouterNames.managerBeingDeliveredOrdersView,
+        builder: (context, state) => const ManagerBeingDeliveredOrdersView()),
 
     //! Sales
     //?auth
@@ -158,8 +157,11 @@ final GoRouter router = GoRouter(
     //!manager
     GoRoute(
       path: RouterNames.managerRegister,
-      builder: (context, state) => const ManagerRegisterView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<ManagerRegisterCubit>(),
+        child: const ManagerRegisterView(),
       ),
+    ),
     GoRoute(
       path: RouterNames.managerBottomNavigationBarRoot,
       builder: (context, state) => const ManagerBottomNavigationBarRoot(),
