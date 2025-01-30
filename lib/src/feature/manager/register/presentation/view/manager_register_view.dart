@@ -17,7 +17,7 @@ class ManagerRegisterView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 70.h),
-             ManagerRegisterForm(),
+          const   ManagerRegisterForm(),
             HaveAnAccountWidget(
               onTap: () {},
               title1: AppStrings.haveAnAccount,

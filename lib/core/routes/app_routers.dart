@@ -41,6 +41,7 @@ import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart'
 import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
 import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
 import '../../src/feature/manager/register/presentation/logic/manager_register/manager_register_cubit.dart';
+import '../../src/feature/sales/register/presentation/logic/sales_register/sales_register_cubit.dart';
 import '../../src/feature/splash/splash_view.dart';
 
 final GoRouter router = GoRouter(
@@ -118,7 +119,10 @@ final GoRouter router = GoRouter(
     //?auth
     GoRoute(
       path: RouterNames.salesRegisterView,
-      builder: (context, state) => const SalesRegisterView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<SalesRegisterCubit>(),
+        child: const SalesRegisterView(),
+      ),
     ),
     GoRoute(
       path: RouterNames.salesHome,
