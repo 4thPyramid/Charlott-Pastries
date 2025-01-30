@@ -1,9 +1,7 @@
 import 'dart:developer';
-
 import 'package:charlot/core/common/functions/validator.dart';
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/email_and_phone_tap_bar.dart';
 import 'package:flutter/material.dart';

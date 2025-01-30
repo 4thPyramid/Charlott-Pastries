@@ -17,12 +17,16 @@ import 'package:charlot/src/feature/manager/orders/presentation/views/manager_fi
 import 'package:charlot/src/feature/manager/register/presentation/view/manager_register_view.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/view/order_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/view/client_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/price_details_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
+import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated_orderes.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/new_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orders.dart';
+import 'package:charlot/src/feature/sales/sales_bottom_navigation_bar_root.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -116,6 +120,7 @@ final GoRouter router = GoRouter(
         builder: (context, state) => const ManagerBeingDeliveredOrdersView()),
 
     //! Sales
+
     //?auth
     GoRoute(
       path: RouterNames.salesRegisterView,
@@ -133,30 +138,35 @@ final GoRouter router = GoRouter(
       path: RouterNames.addOrder,
       builder: (context, state) => const AddOrderViewFirst(),
     ),
+
     GoRoute(
-      path: RouterNames.newOrders,
-      builder: (context, state) => const NewOrdersView(),
+      path: RouterNames.priceDetailsView,
+      builder: (context, state) => const PriceDetailsView(),
     ),
     GoRoute(
-      path: RouterNames.compleatedOrders,
-      builder: (context, state) => const CompleatedOrders(),
+      path: RouterNames.addClientDetailsView,
+      builder: (context, state) => const ClientDetailsView(),
     ),
     GoRoute(
-      path: RouterNames.incompleatedOrders,
-      builder: (context, state) => const IncompleatedOrderes(),
+      path: RouterNames.allOrdersView,
+      builder: (context, state) => const AllOrdersView(),
     ),
     GoRoute(
       path: RouterNames.waitingOrders,
       builder: (context, state) => const WaitingOrders(),
     ),
     GoRoute(
-      path: RouterNames.priceDetailsView,
-      builder: (context, state) => const PriceDetailsView(),
+      path: RouterNames.compleatedOrders,
+      builder: (context, state) => const CompleatedOrdersSales(),
     ),
-    // GoRoute(
-    //   path: RouterNames.addClientDetailsView,
-    //   builder: (context, state) => const ClientDetailsView(),
-    // ),
+    GoRoute(
+      path: RouterNames.incompleatedOrders,
+      builder: (context, state) => const IncompleatedOrderes(),
+    ),
+    GoRoute(
+      path: RouterNames.addClientDetailsView,
+      builder: (context, state) => const ClientDetailsView(),
+    ),
 
     //!manager
     GoRoute(

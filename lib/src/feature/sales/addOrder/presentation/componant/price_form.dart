@@ -1,10 +1,13 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/common/widgets/custom_text_form_field.dart';
+import 'package:charlot/core/common/widgets/shared_order_item_card.dart';
+import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class PriceForm extends StatelessWidget {
   const PriceForm({super.key});
@@ -49,7 +52,12 @@ class PriceForm extends StatelessWidget {
                 size: 30, color: AppColors.green),
           ),
           SizedBox(height: 10.h),
-          Center(child: CustomButton(text: "التالي", onPressed: () {})),
+          Center(
+              child: CustomButton(
+                  text: "التالي",
+                  onPressed: () {
+                    context.go(RouterNames.addClientDetailsView);
+                  })),
         ],
       ),
     );

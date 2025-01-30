@@ -1,0 +1,42 @@
+import 'package:charlot/core/theme/app_colors.dart';
+import 'package:charlot/core/utils/app_assets.dart';
+import 'package:charlot/core/utils/app_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+
+class SalesHomeNewOrders extends StatelessWidget {
+  const SalesHomeNewOrders({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Container(
+        height: 165.h,
+        width: 353.w,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset(AppAssets.newOrder),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "اجمالي الطلبات الجديده",
+              style: AppStyles.s14,
+            ),
+            SizedBox(height: 10.h),
+            Text("10 من الطلبات الجديدة",
+                style: AppStyles.s24.copyWith(fontWeight: FontWeight.w700)),
+          ],
+        ),
+      ),
+    );
+  }
+}
