@@ -1,5 +1,5 @@
 abstract class RouterNames {
-  static const String splashView = '/';
+  static const String splashView = '/bnm,lkj';
   static const String userTypeView = '/user-type';
   static const String salesRegisterView = '/sales-register';
   static const String otpView = '/otp';
@@ -7,8 +7,8 @@ abstract class RouterNames {
   static const String forgetPasswordView = '/forget-password';
   static const String resetPasswordView = '/reset-password';
   static const String verifyCodeView = '/verify-code';
-  static const String salesHome = '/sales-home';
-  static const String addOrder = "/add-order";
+  static const String salesHome = '/';
+  static const String addOrder = "/ffsdfdsf";
   static const String newOrders = '/new-orders';
   static const String ordersDetails = "/orders-details";
   static const String incompleatedOrders = '/incompleated-orders';
@@ -16,10 +16,12 @@ abstract class RouterNames {
   static const String compleatedOrders = '/compleated-orders';
   static const String editOrder = '/edit-order';
   static const String notification = "/notification";
+  static const String salesBottomNavigationBarRoot = "/dfdf";
 
   static const String mapPicker = "/map-picker";
   static const String priceDetailsView = '/bvcxzmm';
-  static const String addClientDetailsView = '/';
+  static const String addClientDetailsView = '/add-client-details';
+  static const String allOrdersView = '/all_orders_view';
 
   //!manager
   static const String managerBottomNavigationBarRoot =

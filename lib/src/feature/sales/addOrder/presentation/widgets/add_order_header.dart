@@ -15,7 +15,7 @@ class AddOrderHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 320.h,
+      height: 300.h,
       child: Stack(
         children: [
           Column(
@@ -25,7 +25,7 @@ class AddOrderHeader extends StatelessWidget {
                 height: 240.h,
               ),
               Container(
-                height: 80.h,
+                height: 50.h,
                 decoration: const BoxDecoration(
                   color: AppColors.scaffoldColor,
                   boxShadow: [

@@ -45,10 +45,9 @@ class OrderDetailsView extends StatelessWidget {
             const TeamData(),
             const OrderData(),
             const OrderPrice(),
-                        SizedBox(height: 16.h),
-
+            SizedBox(height: 16.h),
             if (orderStatus == "طلب مكتمل")
-             Align(
+              Align(
                 alignment: Alignment.bottomCenter,
                 child: CustomButton(
                   text: 'اختر المندوب ',
@@ -56,27 +55,24 @@ class OrderDetailsView extends StatelessWidget {
                 ),
               )
             else if (orderStatus == "طلب جديد")
-               Row(
-            mainAxisAlignment: MainAxisAlignment.center,  
-            children: [
-              AcceptAndRefuseButton(
-                text: 'قبول',
-                backgroundColor: AppColors.green,
-                onPressed: () {
-                },
-              ),
-              SizedBox(width: 16.w),
-              AcceptAndRefuseButton(
-                text: 'رفض',
-                backgroundColor: AppColors.red,
-                onPressed: () {
-                },
-              ),
-            ],
-          )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AcceptAndRefuseButton(
+                    text: 'قبول',
+                    backgroundColor: AppColors.green,
+                    onPressed: () {},
+                  ),
+                  SizedBox(width: 16.w),
+                  AcceptAndRefuseButton(
+                    text: 'رفض',
+                    backgroundColor: AppColors.red,
+                    onPressed: () {},
+                  ),
+                ],
+              )
             else
-                SizedBox(height: 16.h),
-
+              SizedBox(height: 16.h),
             SizedBox(height: 16.h),
           ],
         ),

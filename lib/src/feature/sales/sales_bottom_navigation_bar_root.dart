@@ -1,23 +1,24 @@
+import 'package:charlot/src/feature/manager/profile/presentation/view/profile_view.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
+import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
+import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
 import '../chef/notification/presentation/view/notification_view.dart';
-import 'accept_employee/presentation/view/accept_employee_view.dart';
-import 'home/presentation/view/manager_hom_view.dart';
-import 'profile/presentation/view/profile_view.dart';
 
-class ManagerBottomNavigationBarRoot extends StatelessWidget {
-  const ManagerBottomNavigationBarRoot({super.key});
+class SalesBottomNavigationBarRoot extends StatelessWidget {
+  const SalesBottomNavigationBarRoot({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         final List<Widget> pages = [
-          const ManagerHomView(),
-          const AcceptEmployeeView(),
+          const SalesHomeView(),
+          const AllOrdersView(),
           const NotificationView(),
           const ManagerProfileView(),
         ];
@@ -52,7 +53,7 @@ class ManagerBottomNavigationBarRoot extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.add_circle_outline,
+                    Icons.shopping_bag_outlined,
                   ),
                   label: 'add employee',
                 ),

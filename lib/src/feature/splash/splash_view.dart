@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_assets.dart';
 
-
 class AnimatedSplashScreen extends StatefulWidget {
   const AnimatedSplashScreen({super.key});
 
@@ -17,7 +16,7 @@ class AnimatedSplashScreen extends StatefulWidget {
 
 class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     with SingleTickerProviderStateMixin {
- late AnimationController _controller;
+  late AnimationController _controller;
   late Animation<double> _topAnimation;
   late Animation<double> _bottomAnimation;
 
@@ -26,7 +25,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 6), 
+      duration: const Duration(seconds: 6),
     );
 
     _topAnimation = Tween<double>(
@@ -64,8 +63,8 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
         children: [
           // Center Logo
           const Center(
-            child:AppImageView(
-             AppAssets.blackLogo,
+            child: AppImageView(
+              AppAssets.blackLogo,
               width: 150,
               height: 150,
             ),
@@ -74,12 +73,13 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
             animation: _topAnimation,
             builder: (context, child) {
               return Transform.translate(
-                offset: Offset(0, MediaQuery.of(context).size.height * _topAnimation.value),
+                offset: Offset(0,
+                    MediaQuery.of(context).size.height * _topAnimation.value),
                 child: ClipPath(
                   clipper: CustomCurveClipper(),
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.75,
-                    color:  AppColors.primaryColor,
+                    color: AppColors.primaryColor,
                     child: const Center(
                       child: AppImageView(
                         AppAssets.whiteLogo,
@@ -101,13 +101,16 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
               animation: _bottomAnimation,
               builder: (context, child) {
                 return Transform.translate(
-                  offset: Offset(0, MediaQuery.of(context).size.height * _bottomAnimation.value),
+                  offset: Offset(
+                      0,
+                      MediaQuery.of(context).size.height *
+                          _bottomAnimation.value),
                   child: Center(
-                    child: CustomButton(text: 'التالي',
-                     onPressed: (){
-                      context.go(RouterNames.managerBottomNavigationBarRoot);
-                    })
-                  ),
+                      child: CustomButton(
+                          text: 'التالي',
+                          onPressed: () {
+                            context.go(RouterNames.userTypeView);
+                          })),
                 );
               },
             ),
@@ -118,31 +121,22 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
   }
 }
 
-
 class CustomCurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
     path.lineTo(0, 0);
     path.lineTo(0, size.height - 80);
-    
+
     var firstControlPoint = Offset(size.width / 4, size.height);
     var firstEndPoint = Offset(size.width / 2, size.height - 40);
-    path.quadraticBezierTo(
-      firstControlPoint.dx,
-      firstControlPoint.dy,
-      firstEndPoint.dx,
-      firstEndPoint.dy
-    );
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
 
     var secondControlPoint = Offset(size.width * 3 / 4, size.height - 80);
     var secondEndPoint = Offset(size.width, size.height - 40);
-    path.quadraticBezierTo(
-      secondControlPoint.dx,
-      secondControlPoint.dy,
-      secondEndPoint.dx,
-      secondEndPoint.dy
-    );
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
 
     path.lineTo(size.width, 0);
     return path;
@@ -151,5 +145,3 @@ class CustomCurveClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-
-
