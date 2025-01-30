@@ -2,27 +2,36 @@ import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_fie
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FirestAndLastNameRow extends StatelessWidget {
-  const FirestAndLastNameRow({super.key});
+class FirstAndLastNameRow extends StatelessWidget {
+final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+
+  const FirstAndLastNameRow({
+    super.key,
+    required this.firstNameController,
+    required this.lastNameController,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(
+         Expanded(
           child: AuthTextFieldWidget(
             isPassword: false,
+             controller: firstNameController,
             hintText: "ادخل اسمك ",
-            titelOfField: "الاسم الاول",
+            titleOfField: "الاسم الاول",
             prefixIcon: Icons.edit_note,
           ),
         ),
         SizedBox(width: 5.w),
-        const Expanded(
+         Expanded(
           child: AuthTextFieldWidget(
             isPassword: false,
+              controller: lastNameController,
             hintText: "اسم العائلة",
-            titelOfField: "الاسم الاخير",
+            titleOfField: "الاسم الاخير",
             prefixIcon: Icons.edit_note,
           ),
         ),

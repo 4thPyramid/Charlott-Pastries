@@ -22,6 +22,7 @@ class _LoginFormState extends State<LoginForm>
   late TabController _tabController;
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -50,12 +51,12 @@ class _LoginFormState extends State<LoginForm>
             children: [
               EmailAndPhoneTapBarWidget(tabController: _tabController),
               SizedBox(
-                height: 120.h,
+                height: 145.h,
                 child: TabBarView(
                   controller: _tabController,
                   children: [
                     AuthTextFieldWidget(
-                      titelOfField: "رقم الجوال",
+                      titleOfField: "رقم الجوال",
                       prefixIcon: Icons.phone,
                       controller: _phoneController,
                       validator: Validator.validatePhoneNumber,
@@ -63,7 +64,7 @@ class _LoginFormState extends State<LoginForm>
                       isPassword: false,
                     ),
                     AuthTextFieldWidget(
-                      titelOfField: "البريد الإلكتروني",
+                      titleOfField: "البريد الإلكتروني",
                       prefixIcon: Icons.email,
                       controller: _emailController,
                       validator: Validator.validateEmail,
@@ -74,9 +75,9 @@ class _LoginFormState extends State<LoginForm>
                 ),
               ),
               AuthTextFieldWidget(
-                titelOfField: "كلمة المرور",
+                titleOfField: "كلمة المرور",
                 prefixIcon: Icons.lock_open_outlined,
-                controller: _phoneController,
+                controller: _passwordController,
                 validator: Validator.validatePassword,
                 hintText: 'ادخل كلمة المرور',
                 isPassword: true,
@@ -101,7 +102,9 @@ class _LoginFormState extends State<LoginForm>
                     } else {
                       inputValue = _emailController.text;
                     }
-
+                    context.go(
+                      RouterNames.managerBottomNavigationBarRoot,
+                    );
                     log(inputValue);
                   }
                 },

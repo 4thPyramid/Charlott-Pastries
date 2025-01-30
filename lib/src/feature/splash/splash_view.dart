@@ -106,11 +106,13 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
                       MediaQuery.of(context).size.height *
                           _bottomAnimation.value),
                   child: Center(
-                      child: CustomButton(
-                          text: 'التالي',
-                          onPressed: () {
-                            context.go(RouterNames.userTypeView);
-                          })),
+                    child: CustomButton(text: 'التالي',
+                     onPressed: (){
+                      context.go( RouterNames.userTypeView);
+                    })
+                  ),
+
+                    
                 );
               },
             ),

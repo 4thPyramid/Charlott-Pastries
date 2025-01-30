@@ -14,7 +14,7 @@ class ResetPasswordView extends StatelessWidget {
         body: Column(
       children: [
         SizedBox(height: 100.h),
-        const Center(child: AppImageView(AppAssets.logo)),
+        const Center(child: AppImageView(AppAssets.blackLogo)),
         SizedBox(height: 20.h),
         const CustomAuthAppBar(
           title: "ادخل كلمة المرور الجديده",

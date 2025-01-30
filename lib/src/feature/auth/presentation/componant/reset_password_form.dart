@@ -19,7 +19,7 @@ class ResetPasswordForm extends StatelessWidget {
       child: Column(
         children: [
           AuthTextFieldWidget(
-            titelOfField: "كلمة المرور الجديدة",
+            titleOfField: "كلمة المرور الجديدة",
             prefixIcon: Icons.lock,
             controller: _passwordController,
             validator: Validator.validatePassword,
@@ -27,7 +27,7 @@ class ResetPasswordForm extends StatelessWidget {
             isPassword: true,
           ),
           AuthTextFieldWidget(
-            titelOfField: "تاكيد كلمة المرور الجديدة",
+            titleOfField: "تاكيد كلمة المرور الجديدة",
             prefixIcon: Icons.lock,
             controller: _confirmPasswordController,
             validator: Validator.validatePassword,

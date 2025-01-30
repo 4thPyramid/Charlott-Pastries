@@ -23,7 +23,7 @@ class OtpView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 100),
-            const Center(child: AppImageView(AppAssets.logo)),
+            const Center(child: AppImageView(AppAssets.blackLogo)),
             SizedBox(height: 40.h),
             const CustomAuthAppBar(
               title: 'كود التحقق',

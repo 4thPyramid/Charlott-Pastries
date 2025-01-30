@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AuthTextFieldWidget extends StatefulWidget {
   const AuthTextFieldWidget({
     super.key,
-    this.titelOfField,
+    this.titleOfField,
     this.controller,
     required this.isPassword,
     required this.hintText,
@@ -16,7 +16,7 @@ class AuthTextFieldWidget extends StatefulWidget {
     this.sufixIcon,
     this.onPressedSuffix,
   });
-  final String? titelOfField;
+  final String? titleOfField;
   final TextEditingController? controller;
   final bool isPassword;
   final String hintText;
@@ -46,7 +46,7 @@ class _AuthTextFieldWidgetState extends State<AuthTextFieldWidget> {
         Padding(
           padding: const EdgeInsets.only(right: 15),
           child: Text(
-            widget.titelOfField ?? '',
+            widget.titleOfField ?? '',
             style: AppStyles.s14.copyWith(
               color: AppColors.black,
               fontWeight: FontWeight.w700,

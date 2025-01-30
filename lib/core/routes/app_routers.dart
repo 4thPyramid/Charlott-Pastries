@@ -6,7 +6,7 @@ import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart'
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/sales_register_view.dart';
+import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:charlot/src/feature/location/presentation/views/map_picker_view.dart';
@@ -14,6 +14,7 @@ import 'package:charlot/src/feature/manager/delivery/presentation/views/delivery
 import 'package:charlot/src/feature/manager/orders/presentation/views/complete_orders_details.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_compleated_orders.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
+import 'package:charlot/src/feature/manager/register/presentation/view/manager_register_view.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/view/order_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/client_details_view.dart';
@@ -36,13 +37,15 @@ import '../../src/feature/manager/delivery/presentation/views/select_delivery_vi
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
 import '../../src/feature/manager/manager_bottom_navigation_bar_root.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
-import '../../src/feature/manager/orders/presentation/components/refused_order_list_view.dart';
+import '../../src/feature/manager/orders/presentation/views/manager_being_delivered_orders_view.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_refused_orders.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_returned_and_refused_orders_details.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_returned_orders.dart';
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
 import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
 import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
+import '../../src/feature/manager/register/presentation/logic/manager_register/manager_register_cubit.dart';
+import '../../src/feature/sales/register/presentation/logic/sales_register/sales_register_cubit.dart';
 import '../../src/feature/splash/splash_view.dart';
 
 final GoRouter router = GoRouter(
@@ -60,9 +63,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) => OtpView(),
     ),
     GoRoute(
-      path: RouterNames.loginView,
-      builder: (context, state) => const LoginView(),
-    ),
+        path: RouterNames.loginView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return LoginView(
+            userType: data['userType'] as String,
+          );
+        }),
     GoRoute(
       path: RouterNames.forgetPasswordView,
       builder: (context, state) => const ForgetPasswordView(),
@@ -108,13 +115,19 @@ final GoRouter router = GoRouter(
             orderStatus: data['orderStatus'] as String? ?? '',
           );
         }),
+    GoRoute(
+        path: RouterNames.managerBeingDeliveredOrdersView,
+        builder: (context, state) => const ManagerBeingDeliveredOrdersView()),
 
     //! Sales
 
     //?auth
     GoRoute(
       path: RouterNames.salesRegisterView,
-      builder: (context, state) => const SalesRegisterView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<SalesRegisterCubit>(),
+        child: const SalesRegisterView(),
+      ),
     ),
     GoRoute(
       path: RouterNames.salesHome,
@@ -156,6 +169,13 @@ final GoRouter router = GoRouter(
     ),
 
     //!manager
+    GoRoute(
+      path: RouterNames.managerRegister,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<ManagerRegisterCubit>(),
+        child: const ManagerRegisterView(),
+      ),
+    ),
     GoRoute(
       path: RouterNames.managerBottomNavigationBarRoot,
       builder: (context, state) => const ManagerBottomNavigationBarRoot(),

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../routes/router_names.dart';
+import '../../utils/app_strings.dart';
 
 class SharedOrderItemCard extends StatelessWidget {
   const SharedOrderItemCard(
@@ -57,6 +58,15 @@ class SharedOrderItemCard extends StatelessWidget {
               ),
             ],
           ),
+          if(orderStatus==AppStrings.beingDeliverOrder)
+            CustomButton(
+              width: 150.w,
+              height: 30.h,
+              text: AppStrings.trackOrder,
+              onPressed: () {
+                //navigate to track order
+              },
+            ),
           CustomButton(
               width: 150.w,
               height: 30.h,
