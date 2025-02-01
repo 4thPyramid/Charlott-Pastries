@@ -4,6 +4,7 @@ abstract class AppStrings {
       sales = "سيلز",
       chef = "شيف",
       skip = "تخطي",
+      choiceSpecialization = "اختر التخصص",
       welcomeInOurApp = " في محلنا المخصص لادارة متجر الحلويات سجل دخولك الان",
       createNewAccount = "انشاء حساب جديد !",
       welcome = "مرحبا بك  ",

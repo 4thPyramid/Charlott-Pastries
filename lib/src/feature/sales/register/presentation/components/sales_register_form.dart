@@ -10,8 +10,6 @@ import '../../../../../../core/common/widgets/custom_auth_app_bar.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_circle_to_upload_image.dart';
 import '../../../../../../core/routes/router_names.dart';
-import '../../../../../../core/utils/app_assets.dart';
-import '../../../../../../core/utils/app_image_view.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../auth/presentation/widgets/firest_and_last_name_row.dart';
@@ -80,9 +78,11 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
       state.whenOrNull(
         success: (message) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message)),
+            SnackBar(content: Text(message),backgroundColor: Colors.green),
           );
-          context.push(RouterNames.otpView);
+          context.push(RouterNames.otpView, extra: {
+            'userType': 'sales',
+          });
         },
         failure: (error) {
           ScaffoldMessenger.of(context).showSnackBar(

@@ -1,6 +1,7 @@
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/src/feature/chef/notification/presentation/view/notification_view.dart';
+import 'package:charlot/src/feature/chef/regsiter/presentation/view/chef_register_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
@@ -31,6 +32,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
 import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
 import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
 import '../../src/feature/manager/delivery/presentation/views/select_delivery_view.dart';
@@ -59,9 +61,14 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const UserTypeView(),
     ),
     GoRoute(
-      path: RouterNames.otpView,
-      builder: (context, state) => OtpView(),
-    ),
+        path: RouterNames.otpView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+
+          return OtpView(
+            userType: data['userType'] as String,
+          );
+        }),
     GoRoute(
         path: RouterNames.loginView,
         builder: (context, state) {
@@ -75,9 +82,14 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const ForgetPasswordView(),
     ),
     GoRoute(
-      path: RouterNames.verifyCodeView,
-      builder: (context, state) => VerificationCodePassword(),
-    ),
+        path: RouterNames.verifyCodeView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return VerificationCodePassword(
+            userType: data['userType'] as String,
+          );
+        }),
+
     GoRoute(
       path: RouterNames.resetPasswordView,
       builder: (context, state) => const ResetPasswordView(),
@@ -243,5 +255,13 @@ final GoRouter router = GoRouter(
     // GoRoute(
     //     path: RouterNames.favoriteView,
     //     builder: (context, state) => const FavoriteView()),
+
+    //!chef//
+    GoRoute(
+        path: RouterNames.chefRegister,
+        builder: (context, state) => BlocProvider(
+              create: (context) => getIt<ChefRegisterCubit>(),
+              child: const ChefRegisterView(),
+            )),
   ],
 );

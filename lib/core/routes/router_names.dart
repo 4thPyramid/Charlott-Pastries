@@ -1,5 +1,5 @@
 abstract class RouterNames {
-  static const String splashView = '/bnm,lkj';
+  static const String splashView = '/';
   static const String userTypeView = '/user-type';
   static const String salesRegisterView = '/sales-register';
   static const String otpView = '/otp';
@@ -7,7 +7,7 @@ abstract class RouterNames {
   static const String forgetPasswordView = '/forget-password';
   static const String resetPasswordView = '/reset-password';
   static const String verifyCodeView = '/verify-code';
-  static const String salesHome = '/';
+  static const String salesHome = '/sales-home';
   static const String addOrder = "/ffsdfdsf";
   static const String newOrders = '/new-orders';
   static const String ordersDetails = "/orders-details";
@@ -45,4 +45,7 @@ static const String managerReturnedOrders = '/manager-returned-orders';
   static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/complete-orders-details';
+
+
+  static const String chefRegister = '/chef-register';
 }
