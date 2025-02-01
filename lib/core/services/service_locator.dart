@@ -1,4 +1,13 @@
 import 'package:charlot/core/app_cubit/app_cubit.dart';
+import 'package:charlot/core/common/branches_feature/data/data_source/branches_api_services.dart';
+import 'package:charlot/core/common/branches_feature/data/data_source/branches_data_source.dart';
+import 'package:charlot/core/common/branches_feature/domain/repo/branches_repo.dart';
+import 'package:charlot/core/common/branches_feature/domain/usecases/get_branches_uc.dart';
+import 'package:charlot/core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
+import 'package:charlot/core/common/specialization_feature/data/specialization_api_sevices.dart';
+import 'package:charlot/core/common/specialization_feature/data/specialization_remote_data_source.dart';
+import 'package:charlot/core/common/specialization_feature/domain/usecases/get_specialization_uc.dart';
+import 'package:charlot/core/common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/data/api/dio_consumer.dart';
 import 'package:charlot/core/data/cached/cache_helper.dart';
@@ -52,6 +61,12 @@ void setupLocator() {
   getIt.registerLazySingleton<MapPickerRemoteDataSource>(
     () => MapPickerRemoteDataSourceImpl(),
   );
+  getIt.registerLazySingleton<BranchesApiServices>(
+    () => BranchesApiServicesImp(getIt()),
+  );
+  getIt.registerLazySingleton<SpecializationApiSevices>(
+    () => SpecializationApiSevicesImp(getIt()),
+  );
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -62,8 +77,12 @@ void setupLocator() {
  getIt.registerLazySingleton<SalesRegisterRemoteDs>(
       () => SalesRegisterRemoteDsImpl(getIt()));
 
-
-
+ getIt.registerLazySingleton<BranchRemoteDataSource>(
+  () => BranchesDataSourceImp(getIt()),
+);
+  getIt.registerLazySingleton<SpecializationRemoteDataSource>(
+    () => SpecializationRemoteDataSourceImp(getIt()),
+);
       
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
@@ -73,6 +92,9 @@ void setupLocator() {
       () => ManagerRegisterRepoImpl(getIt()));
  getIt.registerLazySingleton<SalesRegisterRepo>(
       () => SalesRegisterRepoImpl(getIt()));
+  getIt.registerLazySingleton<BranchesRepo>(
+    () => BranchesRepoImp(getIt()),
+  );    
 
   ///! -- UseCases -- ///
 
@@ -92,7 +114,12 @@ void setupLocator() {
   getIt.registerLazySingleton<ManagerRegisterUseCase>(
     () => ManagerRegisterUseCase(getIt())
   );
-
+  getIt.registerLazySingleton<GetBranchesUc>(
+    () => GetBranchesUc(getIt()),
+  );
+  getIt.registerLazySingleton<GetSpecializationUc>(
+   () => GetSpecializationUc(getIt()),
+ );
 
 getIt.registerLazySingleton<SalesRegisterUseCase>(
     () => SalesRegisterUseCase(getIt()),
@@ -116,4 +143,11 @@ getIt.registerLazySingleton<SalesRegisterUseCase>(
 
        getIt.registerFactory<SalesRegisterCubit>(
       () => SalesRegisterCubit(getIt()));
+   getIt.registerFactory<BranchesCubit>(
+      () => BranchesCubit(getIt()),
+   );
+
+   getIt.registerFactory<SpecializationCubit>(
+      () => SpecializationCubit(getIt()),
+   );   
 }
