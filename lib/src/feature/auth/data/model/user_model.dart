@@ -11,7 +11,7 @@ class User {
   final String lastName;
   final String email;
   final String phone;
-  final String image;
+  final String? image;
   final String status;
   @JsonKey(name: 'verification_code')
   
@@ -32,7 +32,7 @@ class User {
     required this.lastName,
     required this.email,
     required this.phone,
-    required this.image,
+     this.image,
     required this.status,
     this.verificationCode,
     required this.verifiedAt,

@@ -16,7 +16,7 @@ abstract class RouterNames {
   static const String compleatedOrders = '/compleated-orders';
   static const String editOrder = '/edit-order';
   static const String notification = "/notification";
-  static const String salesBottomNavigationBarRoot = "/dfdf";
+  static const String salesBottomNavigationBarRoot = "/sales-bottom-navigation-bar-root";
 
   static const String mapPicker = "/map-picker";
   static const String priceDetailsView = '/bvcxzmm';

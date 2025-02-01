@@ -134,12 +134,18 @@ final GoRouter router = GoRouter(
     //! Sales
 
     //?auth
+
+  
     GoRoute(
       path: RouterNames.salesRegisterView,
       builder: (context, state) => BlocProvider(
         create: (context) => getIt<SalesRegisterCubit>(),
         child: const SalesRegisterView(),
       ),
+    ),
+      GoRoute(
+      path : RouterNames.salesBottomNavigationBarRoot,
+      builder: (context, state) => const SalesBottomNavigationBarRoot(),
     ),
     GoRoute(
       path: RouterNames.salesHome,

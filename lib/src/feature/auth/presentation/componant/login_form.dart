@@ -55,9 +55,10 @@ class _LoginFormState extends State<LoginForm>
         listener: (context, state) {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
+
               const SnackBar(content: Text('تم تسجيل الدخول بنجاح'),backgroundColor: Colors.green,),
             );
-            context.go(RouterNames.managerBottomNavigationBarRoot);
+            navigateTo(context,state.response.key);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.errorMessage.message)),
@@ -145,4 +146,15 @@ class _LoginFormState extends State<LoginForm>
       ),
     );
   }
+  
+  void navigateTo(BuildContext context, String key) {
+    if (key == 'manager') {
+      context.go(RouterNames.managerBottomNavigationBarRoot);
+    } else if (key == 'sales') {
+      context.go(RouterNames.salesBottomNavigationBarRoot);
+    } else if (key == 'chef') {
+      print('chef');
+     // context.go(RouterNames.ch);
+  }
 }
+    }

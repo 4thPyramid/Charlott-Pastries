@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../../core/constants/endpoints_strings.dart';
 import '../../../../../core/data/api/api_consumer.dart';
+import '../../../../../core/data/cached/cache_helper.dart';
 import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/errors/exceptions.dart';
 
@@ -67,7 +68,9 @@ class AuthApiServicesImpl extends AuthApiServices {
         'login': identifier,
         'password': password,
       });
-      return Right(response);
+        final userResponse = LoginResponse.fromJson(response);
+      CacheHelper.saveToken(value: userResponse.token);
+      return Right(userResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);
     }
