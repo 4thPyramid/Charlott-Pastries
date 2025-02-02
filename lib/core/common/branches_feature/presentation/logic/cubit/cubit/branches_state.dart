@@ -1,6 +1,6 @@
 
 
-import 'package:charlot/core/common/branches_feature/domain/models/branch_model.dart';
+import 'package:charlot/core/common/branches_feature/data/models/branch_model.dart';
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

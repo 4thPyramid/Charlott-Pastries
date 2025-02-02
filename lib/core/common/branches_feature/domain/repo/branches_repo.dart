@@ -1,5 +1,5 @@
 import 'package:charlot/core/common/branches_feature/data/data_source/branches_data_source.dart';
-import 'package:charlot/core/common/branches_feature/domain/models/branch_model.dart';
+import 'package:charlot/core/common/branches_feature/data/models/branch_model.dart';
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:dartz/dartz.dart';
 

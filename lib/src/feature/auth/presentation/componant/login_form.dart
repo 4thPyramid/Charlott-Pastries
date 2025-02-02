@@ -103,7 +103,8 @@ class _LoginFormState extends State<LoginForm>
                       inputValue = _emailController.text;
                     }
                     context.go(
-                      RouterNames.managerBottomNavigationBarRoot,
+                      //RouterNames.managerBottomNavigationBarRoot,
+                      RouterNames.ChefHomeView,
                     );
                     log(inputValue);
                   }

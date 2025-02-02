@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'specialization_state.dart';
+part of 'neworders_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SpecializationState<T> {
+mixin _$NewordersState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(NewOrderModel newOrders) loaded,
     required TResult Function(ErrorModel error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$SpecializationState<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(NewOrderModel newOrders)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$SpecializationState<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(NewOrderModel newOrders)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) =>
@@ -45,48 +45,47 @@ mixin _$SpecializationState<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Error<T> value) error,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Erorr<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Error<T> value)? error,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Erorr<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Error<T> value)? error,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Erorr<T> value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SpecializationStateCopyWith<T, $Res> {
-  factory $SpecializationStateCopyWith(SpecializationState<T> value,
-          $Res Function(SpecializationState<T>) then) =
-      _$SpecializationStateCopyWithImpl<T, $Res, SpecializationState<T>>;
+abstract class $NewordersStateCopyWith<T, $Res> {
+  factory $NewordersStateCopyWith(
+          NewordersState<T> value, $Res Function(NewordersState<T>) then) =
+      _$NewordersStateCopyWithImpl<T, $Res, NewordersState<T>>;
 }
 
 /// @nodoc
-class _$SpecializationStateCopyWithImpl<T, $Res,
-        $Val extends SpecializationState<T>>
-    implements $SpecializationStateCopyWith<T, $Res> {
-  _$SpecializationStateCopyWithImpl(this._value, this._then);
+class _$NewordersStateCopyWithImpl<T, $Res, $Val extends NewordersState<T>>
+    implements $NewordersStateCopyWith<T, $Res> {
+  _$NewordersStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -99,13 +98,13 @@ abstract class _$$InitialImplCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<T, $Res>
-    extends _$SpecializationStateCopyWithImpl<T, $Res, _$InitialImpl<T>>
+    extends _$NewordersStateCopyWithImpl<T, $Res, _$InitialImpl<T>>
     implements _$$InitialImplCopyWith<T, $Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl<T> _value, $Res Function(_$InitialImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -116,7 +115,7 @@ class _$InitialImpl<T> implements _Initial<T> {
 
   @override
   String toString() {
-    return 'SpecializationState<$T>.initial()';
+    return 'NewordersState<$T>.initial()';
   }
 
   @override
@@ -133,7 +132,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(NewOrderModel newOrders) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
     return initial();
@@ -144,7 +143,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(NewOrderModel newOrders)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
     return initial?.call();
@@ -155,7 +154,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(NewOrderModel newOrders)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -170,8 +169,8 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Error<T> value) error,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Erorr<T> value) error,
   }) {
     return initial(this);
   }
@@ -181,8 +180,8 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Error<T> value)? error,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Erorr<T> value)? error,
   }) {
     return initial?.call(this);
   }
@@ -192,8 +191,8 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Error<T> value)? error,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Erorr<T> value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -203,7 +202,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   }
 }
 
-abstract class _Initial<T> implements SpecializationState<T> {
+abstract class _Initial<T> implements NewordersState<T> {
   const factory _Initial() = _$InitialImpl<T>;
 }
 
@@ -216,13 +215,13 @@ abstract class _$$LoadingImplCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<T, $Res>
-    extends _$SpecializationStateCopyWithImpl<T, $Res, _$LoadingImpl<T>>
+    extends _$NewordersStateCopyWithImpl<T, $Res, _$LoadingImpl<T>>
     implements _$$LoadingImplCopyWith<T, $Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl<T> _value, $Res Function(_$LoadingImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -233,7 +232,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
 
   @override
   String toString() {
-    return 'SpecializationState<$T>.loading()';
+    return 'NewordersState<$T>.loading()';
   }
 
   @override
@@ -250,7 +249,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(NewOrderModel newOrders) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
     return loading();
@@ -261,7 +260,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(NewOrderModel newOrders)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
     return loading?.call();
@@ -272,7 +271,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(NewOrderModel newOrders)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -287,8 +286,8 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Error<T> value) error,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Erorr<T> value) error,
   }) {
     return loading(this);
   }
@@ -298,8 +297,8 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Error<T> value)? error,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Erorr<T> value)? error,
   }) {
     return loading?.call(this);
   }
@@ -309,8 +308,8 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Error<T> value)? error,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Erorr<T> value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -320,7 +319,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   }
 }
 
-abstract class _Loading<T> implements SpecializationState<T> {
+abstract class _Loading<T> implements NewordersState<T> {
   const factory _Loading() = _$LoadingImpl<T>;
 }
 
@@ -330,29 +329,29 @@ abstract class _$$LoadedImplCopyWith<T, $Res> {
           _$LoadedImpl<T> value, $Res Function(_$LoadedImpl<T>) then) =
       __$$LoadedImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({SpecializationModel specializations});
+  $Res call({NewOrderModel newOrders});
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<T, $Res>
-    extends _$SpecializationStateCopyWithImpl<T, $Res, _$LoadedImpl<T>>
+    extends _$NewordersStateCopyWithImpl<T, $Res, _$LoadedImpl<T>>
     implements _$$LoadedImplCopyWith<T, $Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl<T> _value, $Res Function(_$LoadedImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? specializations = null,
+    Object? newOrders = null,
   }) {
     return _then(_$LoadedImpl<T>(
-      null == specializations
-          ? _value.specializations
-          : specializations // ignore: cast_nullable_to_non_nullable
-              as SpecializationModel,
+      null == newOrders
+          ? _value.newOrders
+          : newOrders // ignore: cast_nullable_to_non_nullable
+              as NewOrderModel,
     ));
   }
 }
@@ -360,14 +359,14 @@ class __$$LoadedImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$LoadedImpl<T> implements _Loaded<T> {
-  const _$LoadedImpl(this.specializations);
+  const _$LoadedImpl(this.newOrders);
 
   @override
-  final SpecializationModel specializations;
+  final NewOrderModel newOrders;
 
   @override
   String toString() {
-    return 'SpecializationState<$T>.Loaded(specializations: $specializations)';
+    return 'NewordersState<$T>.loaded(newOrders: $newOrders)';
   }
 
   @override
@@ -375,14 +374,14 @@ class _$LoadedImpl<T> implements _Loaded<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl<T> &&
-            (identical(other.specializations, specializations) ||
-                other.specializations == specializations));
+            (identical(other.newOrders, newOrders) ||
+                other.newOrders == newOrders));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, specializations);
+  int get hashCode => Object.hash(runtimeType, newOrders);
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -395,10 +394,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(NewOrderModel newOrders) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
-    return Loaded(specializations);
+    return loaded(newOrders);
   }
 
   @override
@@ -406,10 +405,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(NewOrderModel newOrders)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
-    return Loaded?.call(specializations);
+    return loaded?.call(newOrders);
   }
 
   @override
@@ -417,12 +416,12 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(NewOrderModel newOrders)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
-    if (Loaded != null) {
-      return Loaded(specializations);
+    if (loaded != null) {
+      return loaded(newOrders);
     }
     return orElse();
   }
@@ -432,10 +431,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Error<T> value) error,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Erorr<T> value) error,
   }) {
-    return Loaded(this);
+    return loaded(this);
   }
 
   @override
@@ -443,10 +442,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Error<T> value)? error,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Erorr<T> value)? error,
   }) {
-    return Loaded?.call(this);
+    return loaded?.call(this);
   }
 
   @override
@@ -454,24 +453,23 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Error<T> value)? error,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Erorr<T> value)? error,
     required TResult orElse(),
   }) {
-    if (Loaded != null) {
-      return Loaded(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded<T> implements SpecializationState<T> {
-  const factory _Loaded(final SpecializationModel specializations) =
-      _$LoadedImpl<T>;
+abstract class _Loaded<T> implements NewordersState<T> {
+  const factory _Loaded(final NewOrderModel newOrders) = _$LoadedImpl<T>;
 
-  SpecializationModel get specializations;
+  NewOrderModel get newOrders;
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<T, _$LoadedImpl<T>> get copyWith =>
@@ -479,30 +477,30 @@ abstract class _Loaded<T> implements SpecializationState<T> {
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<T, $Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl<T> value, $Res Function(_$ErrorImpl<T>) then) =
-      __$$ErrorImplCopyWithImpl<T, $Res>;
+abstract class _$$ErorrImplCopyWith<T, $Res> {
+  factory _$$ErorrImplCopyWith(
+          _$ErorrImpl<T> value, $Res Function(_$ErorrImpl<T>) then) =
+      __$$ErorrImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({ErrorModel error});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<T, $Res>
-    extends _$SpecializationStateCopyWithImpl<T, $Res, _$ErrorImpl<T>>
-    implements _$$ErrorImplCopyWith<T, $Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl<T> _value, $Res Function(_$ErrorImpl<T>) _then)
+class __$$ErorrImplCopyWithImpl<T, $Res>
+    extends _$NewordersStateCopyWithImpl<T, $Res, _$ErorrImpl<T>>
+    implements _$$ErorrImplCopyWith<T, $Res> {
+  __$$ErorrImplCopyWithImpl(
+      _$ErorrImpl<T> _value, $Res Function(_$ErorrImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ErrorImpl<T>(
+    return _then(_$ErorrImpl<T>(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -513,42 +511,42 @@ class __$$ErrorImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$ErrorImpl<T> implements _Error<T> {
-  const _$ErrorImpl(this.error);
+class _$ErorrImpl<T> implements _Erorr<T> {
+  const _$ErorrImpl(this.error);
 
   @override
   final ErrorModel error;
 
   @override
   String toString() {
-    return 'SpecializationState<$T>.error(error: $error)';
+    return 'NewordersState<$T>.error(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl<T> &&
+            other is _$ErorrImpl<T> &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<T, _$ErrorImpl<T>> get copyWith =>
-      __$$ErrorImplCopyWithImpl<T, _$ErrorImpl<T>>(this, _$identity);
+  _$$ErorrImplCopyWith<T, _$ErorrImpl<T>> get copyWith =>
+      __$$ErorrImplCopyWithImpl<T, _$ErorrImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(NewOrderModel newOrders) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
     return error(this.error);
@@ -559,7 +557,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(NewOrderModel newOrders)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
     return error?.call(this.error);
@@ -570,7 +568,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(NewOrderModel newOrders)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -585,8 +583,8 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Error<T> value) error,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Erorr<T> value) error,
   }) {
     return error(this);
   }
@@ -596,8 +594,8 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Error<T> value)? error,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Erorr<T> value)? error,
   }) {
     return error?.call(this);
   }
@@ -607,8 +605,8 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Error<T> value)? error,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Erorr<T> value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -618,14 +616,14 @@ class _$ErrorImpl<T> implements _Error<T> {
   }
 }
 
-abstract class _Error<T> implements SpecializationState<T> {
-  const factory _Error(final ErrorModel error) = _$ErrorImpl<T>;
+abstract class _Erorr<T> implements NewordersState<T> {
+  const factory _Erorr(final ErrorModel error) = _$ErorrImpl<T>;
 
   ErrorModel get error;
 
-  /// Create a copy of SpecializationState
+  /// Create a copy of NewordersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<T, _$ErrorImpl<T>> get copyWith =>
+  _$$ErorrImplCopyWith<T, _$ErorrImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

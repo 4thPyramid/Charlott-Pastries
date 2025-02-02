@@ -1,4 +1,4 @@
-import 'package:charlot/core/common/specialization_feature/domain/models/specialization_model.dart';
+import 'package:charlot/core/common/specialization_feature/data/models/specialization_model.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/core/errors/exceptions.dart';

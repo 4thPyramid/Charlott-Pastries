@@ -1,6 +1,10 @@
+import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
+import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.dart';
 import 'package:charlot/src/feature/chef/notification/presentation/view/notification_view.dart';
+import 'package:charlot/src/feature/chef/orders/presentation/view/cheaf_order_datails_view.dart';
+import 'package:charlot/src/feature/chef/orders/presentation/view/chef_orders_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
@@ -23,13 +27,12 @@ import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart'
 import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated_orderes.dart';
-import 'package:charlot/src/feature/sales/orders/presentation/views/new_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orders.dart';
-import 'package:charlot/src/feature/sales/sales_bottom_navigation_bar_root.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart';
 
 import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
 import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
@@ -243,5 +246,22 @@ final GoRouter router = GoRouter(
     // GoRoute(
     //     path: RouterNames.favoriteView,
     //     builder: (context, state) => const FavoriteView()),
+
+    //! chef
+    GoRoute(
+      path: RouterNames.ChefHomeView,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<BannerCubit>(),  
+        child: const ChefHomeView(),
+      ),
+    ),
+    GoRoute(
+      path: RouterNames.ChefOrdersView,
+      builder: (context, state) => const ChefOrdersView(),
+    ),
+    GoRoute(
+      path: RouterNames.ChefOrdersDetailsView,
+      builder: (context, state) => const ChefOrdersDetailsView(),
+    ),
   ],
 );

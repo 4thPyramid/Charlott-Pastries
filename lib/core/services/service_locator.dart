@@ -1,11 +1,21 @@
 import 'package:charlot/core/app_cubit/app_cubit.dart';
+import 'package:charlot/core/common/banner_feature/data/data_source/banner_api_servcies.dart';
+import 'package:charlot/core/common/banner_feature/data/data_source/banner_remote_ds.dart';
+import 'package:charlot/core/common/banner_feature/domain/repo/banners_repo.dart';
+import 'package:charlot/core/common/banner_feature/domain/use_case/banner_use_case.dart';
+import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
 import 'package:charlot/core/common/branches_feature/data/data_source/branches_api_services.dart';
 import 'package:charlot/core/common/branches_feature/data/data_source/branches_data_source.dart';
 import 'package:charlot/core/common/branches_feature/domain/repo/branches_repo.dart';
 import 'package:charlot/core/common/branches_feature/domain/usecases/get_branches_uc.dart';
 import 'package:charlot/core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
-import 'package:charlot/core/common/specialization_feature/data/specialization_api_sevices.dart';
-import 'package:charlot/core/common/specialization_feature/data/specialization_remote_data_source.dart';
+import 'package:charlot/core/common/new_orders_features/data/data_sorce/new_orders_api_servcies.dart';
+import 'package:charlot/core/common/new_orders_features/data/data_sorce/new_orders_remote_ds.dart';
+import 'package:charlot/core/common/new_orders_features/domain/repo/new_orders_repo.dart';
+import 'package:charlot/core/common/new_orders_features/domain/use_case/new_orders_use_case.dart';
+import 'package:charlot/core/common/new_orders_features/presentation/logic/cubit/neworders_cubit.dart';
+import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_api_sevices.dart';
+import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_remote_data_source.dart';
 import 'package:charlot/core/common/specialization_feature/domain/usecases/get_specialization_uc.dart';
 import 'package:charlot/core/common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
@@ -68,6 +78,13 @@ void setupLocator() {
     () => SpecializationApiSevicesImp(getIt()),
   );
 
+  getIt.registerLazySingleton<BannerApiServices>(
+    () => BannerApiServicesImp(getIt()),
+  );
+  getIt.registerLazySingleton<NewOrdersApiServcies>(
+    () => NewOrdersApiServciesImp(getIt()),
+  );
+
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
       () => ProfileRemoteDSImpl(getIt()));
@@ -83,6 +100,12 @@ void setupLocator() {
   getIt.registerLazySingleton<SpecializationRemoteDataSource>(
     () => SpecializationRemoteDataSourceImp(getIt()),
 );
+getIt.registerLazySingleton<BannerRemoteDs>(
+    () => BannerRemoteDsImp(getIt()), 
+);
+getIt.registerLazySingleton<NewOrdersRemoteDs>(
+    () => NewOrdersRemoteDsImp(getIt()),
+);
       
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
@@ -95,6 +118,12 @@ void setupLocator() {
   getIt.registerLazySingleton<BranchesRepo>(
     () => BranchesRepoImp(getIt()),
   );    
+  getIt.registerLazySingleton<BannersRepo>(
+    () => BannersRepoImp(getIt()),
+  );
+  getIt.registerLazySingleton<NewOrdersRepo>(
+    () => NewOrdersRepoImp(getIt()),
+  );
 
   ///! -- UseCases -- ///
 
@@ -124,6 +153,13 @@ void setupLocator() {
 getIt.registerLazySingleton<SalesRegisterUseCase>(
     () => SalesRegisterUseCase(getIt()),
   );
+getIt.registerLazySingleton<BannerUseCase>(
+  () => BannerUseCase(getIt())
+);
+getIt.registerLazySingleton<NewOrdersUseCase>(
+  () => NewOrdersUseCase(getIt())
+);
+
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
         getIt(),
@@ -150,4 +186,11 @@ getIt.registerLazySingleton<SalesRegisterUseCase>(
    getIt.registerFactory<SpecializationCubit>(
       () => SpecializationCubit(getIt()),
    );   
+
+   getIt.registerFactory<BannerCubit>(
+      () => BannerCubit(getIt()),
+   );
+   getIt.registerFactory<NewordersCubit>(
+      () => NewordersCubit(getIt()),
+   );
 }

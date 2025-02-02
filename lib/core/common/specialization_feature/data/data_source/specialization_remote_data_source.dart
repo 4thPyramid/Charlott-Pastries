@@ -1,5 +1,5 @@
-import 'package:charlot/core/common/specialization_feature/data/specialization_api_sevices.dart';
-import 'package:charlot/core/common/specialization_feature/domain/models/specialization_model.dart';
+import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_api_sevices.dart';
+import 'package:charlot/core/common/specialization_feature/data/models/specialization_model.dart';
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:dartz/dartz.dart';
 
