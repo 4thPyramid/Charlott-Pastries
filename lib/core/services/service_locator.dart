@@ -21,6 +21,7 @@ import 'package:charlot/core/common/specialization_feature/presentation/logic/cu
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/data/api/dio_consumer.dart';
 import 'package:charlot/core/data/cached/cache_helper.dart';
+import 'package:charlot/src/feature/auth/domain/usecase/login_use_case.dart';
 import 'package:charlot/src/feature/location/data/datasource/map_picker_remote_data_source.dart';
 import 'package:charlot/src/feature/location/domain/repo/map_picker_repo.dart';
 import 'package:charlot/src/feature/location/domain/usecase/get_address_uc.dart';
@@ -29,6 +30,17 @@ import 'package:charlot/src/feature/manager/register/domain/usecase/manager_regi
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../src/feature/auth/data/remote/auth_api_services.dart';
+import '../../src/feature/auth/data/remote/auth_remote_ds.dart';
+import '../../src/feature/auth/domain/repository/auth_repo.dart';
+import '../../src/feature/auth/domain/usecase/verify_email_use_case.dart';
+import '../../src/feature/auth/presentation/logic/login/login_cubit.dart';
+import '../../src/feature/auth/presentation/logic/verify_email/verify_email_cubit.dart';
+import '../../src/feature/chef/regsiter/data/remote/chef_register_api_services.dart';
+import '../../src/feature/chef/regsiter/data/remote/chef_register_remote_ds.dart';
+import '../../src/feature/chef/regsiter/domain/repository/chef_register_repo.dart';
+import '../../src/feature/chef/regsiter/domain/usecase/chef_register_usecase.dart';
+import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
 import '../../src/feature/manager/profile/data/datasource/profile_api_service.dart';
 import '../../src/feature/manager/profile/data/datasource/profile_remote_ds.dart';
 import '../../src/feature/manager/profile/domain/repository/profile_repository.dart';
@@ -84,11 +96,18 @@ void setupLocator() {
   getIt.registerLazySingleton<NewOrdersApiServcies>(
     () => NewOrdersApiServciesImp(getIt()),
   );
+getIt.registerLazySingleton<ChefRegisterApiServices>(
+      () => ChefRegisterApiServicesImpl(getIt()));
+
+getIt.registerLazySingleton<AuthApiServices>(
+      () => AuthApiServicesImpl(getIt()));
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
       () => ProfileRemoteDSImpl(getIt()));
-
+  getIt.registerLazySingleton<MapPickerRemoteDataSource>(
+    () => MapPickerRemoteDataSourceImpl(),
+  );
   getIt.registerLazySingleton<ManagerRegisterRemoteDs>(
       () => ManagerRegisterRemoteDsImpl(getIt()));
  getIt.registerLazySingleton<SalesRegisterRemoteDs>(
@@ -106,6 +125,12 @@ getIt.registerLazySingleton<BannerRemoteDs>(
 getIt.registerLazySingleton<NewOrdersRemoteDs>(
     () => NewOrdersRemoteDsImp(getIt()),
 );
+ getIt.registerLazySingleton<ChefRegisterRemoteDs>(
+      () => ChefRegisterRemoteDsImpl(getIt()));
+
+ getIt.registerLazySingleton<AuthRemoteDs>(
+      () => AuthRemoteDsImpl(getIt()));
+
       
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
@@ -124,6 +149,12 @@ getIt.registerLazySingleton<NewOrdersRemoteDs>(
   getIt.registerLazySingleton<NewOrdersRepo>(
     () => NewOrdersRepoImp(getIt()),
   );
+ getIt.registerLazySingleton<ChefRegisterRepo>(
+      () => ChefRegisterRepoImpl(getIt()));
+
+ getIt.registerLazySingleton<AuthRepo>(
+      () => AuthRepoImpl(getIt()));
+
 
   ///! -- UseCases -- ///
 
@@ -143,6 +174,7 @@ getIt.registerLazySingleton<NewOrdersRemoteDs>(
   getIt.registerLazySingleton<ManagerRegisterUseCase>(
     () => ManagerRegisterUseCase(getIt())
   );
+
   getIt.registerLazySingleton<GetBranchesUc>(
     () => GetBranchesUc(getIt()),
   );
@@ -159,6 +191,19 @@ getIt.registerLazySingleton<BannerUseCase>(
 getIt.registerLazySingleton<NewOrdersUseCase>(
   () => NewOrdersUseCase(getIt())
 );
+
+ getIt.registerLazySingleton<VerifyEmailUseCase>(
+    () => VerifyEmailUseCase(getIt())
+  );
+getIt.registerLazySingleton<LoginUseCase>(
+    () => LoginUseCase(getIt()),
+  );
+getIt.registerLazySingleton<SalesRegisterUseCase>(
+    () => SalesRegisterUseCase(getIt()),
+  );
+getIt.registerLazySingleton<ChefRegisterUseCase>(
+    () => ChefRegisterUseCase(getIt()),
+  );
 
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
@@ -193,4 +238,12 @@ getIt.registerLazySingleton<NewOrdersUseCase>(
    getIt.registerFactory<NewordersCubit>(
       () => NewordersCubit(getIt()),
    );
+       getIt.registerFactory<ChefRegisterCubit>(
+      () => ChefRegisterCubit(getIt()));
+
+ getIt.registerFactory<VerifyEmailCubit>(
+      () => VerifyEmailCubit(getIt()));
+
+      getIt.registerFactory<LoginCubit>(
+      () => LoginCubit(getIt()));
 }

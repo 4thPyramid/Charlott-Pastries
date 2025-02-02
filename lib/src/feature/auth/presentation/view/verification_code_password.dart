@@ -10,11 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/app_strings.dart';
 
 class VerificationCodePassword extends StatelessWidget {
-  VerificationCodePassword({super.key});
-  final List<TextEditingController> _controllers =
-      List.generate(4, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  VerificationCodePassword({super.key, required this.userType});
+
+  final String userType;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +31,8 @@ class VerificationCodePassword extends StatelessWidget {
             ),
             SizedBox(height: 40.h),
             OtpForm(
-              formKey: _formKey,
-              controllers: _controllers,
-              focusNodes: _focusNodes,
-              routeName: RouterNames.resetPasswordView,
+           userType : userType,
+             // routeName: RouterNames.resetPasswordView,
             ),
             HaveAnAccountWidget(
                 onTap: () {},

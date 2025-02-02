@@ -1,5 +1,5 @@
 abstract class RouterNames {
-  static const String splashView = '/bnm,lkj';
+  static const String splashView = '/';
   static const String userTypeView = '/user-type';
   static const String salesRegisterView = '/sales-register';
   static const String otpView = '/otp';
@@ -16,7 +16,7 @@ abstract class RouterNames {
   static const String compleatedOrders = '/compleated-orders';
   static const String editOrder = '/edit-order';
   static const String notification = "/notification";
-  static const String salesBottomNavigationBarRoot = "/dfdf";
+  static const String salesBottomNavigationBarRoot = "/sales-bottom-navigation-bar-root";
 
   static const String mapPicker = "/map-picker";
   static const String priceDetailsView = '/bvcxzmm';
@@ -46,8 +46,11 @@ static const String managerReturnedOrders = '/manager-returned-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/complete-orders-details';
 
+
   //chef
   static const String ChefHomeView = '/chef-home';
   static const String ChefOrdersView = '/chef-orders';
   static const String ChefOrdersDetailsView = '/';
+
+  static const String chefRegister = '/chef-register';
 }

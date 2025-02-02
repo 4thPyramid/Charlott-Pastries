@@ -5,6 +5,7 @@ import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.d
 import 'package:charlot/src/feature/chef/notification/presentation/view/notification_view.dart';
 import 'package:charlot/src/feature/chef/orders/presentation/view/cheaf_order_datails_view.dart';
 import 'package:charlot/src/feature/chef/orders/presentation/view/chef_orders_view.dart';
+import 'package:charlot/src/feature/chef/regsiter/presentation/view/chef_register_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
@@ -34,6 +35,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart';
 
+import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
 import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
 import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
 import '../../src/feature/manager/delivery/presentation/views/select_delivery_view.dart';
@@ -62,9 +64,14 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const UserTypeView(),
     ),
     GoRoute(
-      path: RouterNames.otpView,
-      builder: (context, state) => OtpView(),
-    ),
+        path: RouterNames.otpView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+
+          return OtpView(
+            userType: data['userType'] as String,
+          );
+        }),
     GoRoute(
         path: RouterNames.loginView,
         builder: (context, state) {
@@ -78,9 +85,14 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const ForgetPasswordView(),
     ),
     GoRoute(
-      path: RouterNames.verifyCodeView,
-      builder: (context, state) => VerificationCodePassword(),
-    ),
+        path: RouterNames.verifyCodeView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return VerificationCodePassword(
+            userType: data['userType'] as String,
+          );
+        }),
+
     GoRoute(
       path: RouterNames.resetPasswordView,
       builder: (context, state) => const ResetPasswordView(),
@@ -125,12 +137,18 @@ final GoRouter router = GoRouter(
     //! Sales
 
     //?auth
+
+  
     GoRoute(
       path: RouterNames.salesRegisterView,
       builder: (context, state) => BlocProvider(
         create: (context) => getIt<SalesRegisterCubit>(),
         child: const SalesRegisterView(),
       ),
+    ),
+      GoRoute(
+      path : RouterNames.salesBottomNavigationBarRoot,
+      builder: (context, state) => const SalesBottomNavigationBarRoot(),
     ),
     GoRoute(
       path: RouterNames.salesHome,
@@ -247,6 +265,7 @@ final GoRouter router = GoRouter(
     //     path: RouterNames.favoriteView,
     //     builder: (context, state) => const FavoriteView()),
 
+
     //! chef
     GoRoute(
       path: RouterNames.ChefHomeView,
@@ -263,5 +282,13 @@ final GoRouter router = GoRouter(
       path: RouterNames.ChefOrdersDetailsView,
       builder: (context, state) => const ChefOrdersDetailsView(),
     ),
+
+    //!chef//
+    GoRoute(
+        path: RouterNames.chefRegister,
+        builder: (context, state) => BlocProvider(
+              create: (context) => getIt<ChefRegisterCubit>(),
+              child: const ChefRegisterView(),
+            )),
   ],
 );

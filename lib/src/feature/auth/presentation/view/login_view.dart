@@ -32,7 +32,7 @@ final String userType;
                   subTitle:
                     AppStrings.happyToSeeYouAgain),
               SizedBox(height: 40.h),
-              const LoginForm(),
+               LoginForm(userType: userType,),
               HaveAnAccountWidget(
                   onTap: () {
                     print(userType);
@@ -40,8 +40,8 @@ final String userType;
                       context.push(RouterNames.managerRegister);
                     }else if(userType == "sales"){
                       context.push(RouterNames.salesRegisterView);
-                    }else{
-                //  context.push(RouterNames.chefRegisterView);
+                    }else {
+                  context.push(RouterNames.chefRegister);
                     }
                   },
                   title1:AppStrings.haveAnAccount,
