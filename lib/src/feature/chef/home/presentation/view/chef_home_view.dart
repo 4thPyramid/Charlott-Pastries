@@ -1,11 +1,12 @@
-import 'package:charlot/src/feature/manager/home/presentation/components/newest_order_list_view.dart';
+
+import 'package:charlot/src/feature/chef/home/presentation/component/order_list_view_section.dart';
+import 'package:charlot/src/feature/sales/home/presentation/componant/banner_section.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/home_app_bar_widget.dart';
-import 'package:charlot/src/feature/sales/home/presentation/widgets/home_intro_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CheafHomeView extends StatelessWidget {
-  const CheafHomeView({super.key});
+class ChefHomeView extends StatelessWidget {
+  const ChefHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +18,12 @@ class CheafHomeView extends StatelessWidget {
             children: [
               SizedBox(height: 70.h),
               const HomeAppBar(
-                name: '',
+                name: 'محمد عمرو',
               ),
               SizedBox(height: 20.h),
-              const HomeIntroImage(),
+            const BannerSection(),
               SizedBox(height: 20.h),
-              const NewestOrderListView(),
+              const OrderListViewSection(),
             ],
           ),
         ),

@@ -1,8 +1,30 @@
 import 'package:charlot/core/app_cubit/app_cubit.dart';
+import 'package:charlot/core/common/banner_feature/data/data_source/banner_api_servcies.dart';
+import 'package:charlot/core/common/banner_feature/data/data_source/banner_remote_ds.dart';
+import 'package:charlot/core/common/banner_feature/domain/repo/banners_repo.dart';
+import 'package:charlot/core/common/banner_feature/domain/use_case/banner_use_case.dart';
+import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
+import 'package:charlot/core/common/branches_feature/data/data_source/branches_api_services.dart';
+import 'package:charlot/core/common/branches_feature/data/data_source/branches_data_source.dart';
+import 'package:charlot/core/common/branches_feature/domain/repo/branches_repo.dart';
+import 'package:charlot/core/common/branches_feature/domain/usecases/get_branches_uc.dart';
+import 'package:charlot/core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
+import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_api_sevices.dart';
+import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_remote_data_source.dart';
+import 'package:charlot/core/common/specialization_feature/domain/usecases/get_specialization_uc.dart';
+import 'package:charlot/core/common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/data/api/dio_consumer.dart';
 import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/src/feature/auth/domain/usecase/login_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/data/datasource/orders_type_api_sevcies.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/data/datasource/orders_type_remote_data_source.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/repo/orders_type_repo.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/accepted_orders_use_caes.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/completed_orders_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/new_orders_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/pinding_orders_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/presentation/logic/cubit/orders_type_cubit.dart';
 import 'package:charlot/src/feature/location/data/datasource/map_picker_remote_data_source.dart';
 import 'package:charlot/src/feature/location/domain/repo/map_picker_repo.dart';
 import 'package:charlot/src/feature/location/domain/usecase/get_address_uc.dart';
@@ -15,6 +37,13 @@ import 'package:charlot/src/feature/manager/home/data/remote/home_remote_ds.dart
 import 'package:charlot/src/feature/manager/home/domain/repository/home_repository.dart';
 import 'package:charlot/src/feature/manager/home/domain/usecase/get_new_orders_use_case.dart';
 import 'package:charlot/src/feature/manager/register/domain/usecase/manager_register_usecase.dart';
+import 'package:charlot/src/feature/sales/home/data/home_api_service.dart';
+import 'package:charlot/src/feature/sales/home/data/remote_d_s.dart';
+import 'package:charlot/src/feature/sales/home/data/repps_impl/repos_impl.dart';
+import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
+import 'package:charlot/src/feature/sales/home/domain/usecases/get_order_stats_u_c.dart';
+import 'package:charlot/src/feature/sales/home/domain/usecases/get_profile_u_s.dart';
+import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -89,6 +118,7 @@ import '../../src/feature/orderDetails/domain/usecase/accept_order_use_case.dart
 import '../../src/feature/orderDetails/domain/usecase/get_order_details_use_case.dart';
 import '../../src/feature/orderDetails/presentation/logic/accept_order/accept_order_cubit.dart';
 import '../../src/feature/orderDetails/presentation/logic/order_details_cubit.dart';
+import '../../src/feature/sales/home/domain/usecases/get_banner_u_c.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_api_serivces.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_remote_ds.dart';
 import '../../src/feature/sales/register/domain/repository/sales_register_repo.dart';
@@ -116,7 +146,19 @@ void setupLocator() {
   getIt.registerLazySingleton<SalesRegisterApiServices>(
       () => SalesRegisterApiServicesImpl(getIt()));
 
-  getIt.registerLazySingleton<ChefRegisterApiServices>(
+   
+
+  getIt.registerLazySingleton<BranchesApiServices>(
+    () => BranchesApiServicesImp(getIt()),
+  );
+  getIt.registerLazySingleton<SpecializationApiSevices>(
+    () => SpecializationApiSevicesImp(getIt()),
+  );
+
+  getIt.registerLazySingleton<BannerApiServices>(
+    () => BannerApiServicesImp(getIt()),
+  );
+getIt.registerLazySingleton<ChefRegisterApiServices>(
       () => ChefRegisterApiServicesImpl(getIt()));
 
   getIt.registerLazySingleton<AuthApiServices>(
@@ -134,6 +176,14 @@ void setupLocator() {
       () => AllEmployeeApiServicesImpl(getIt()));
 
 
+getIt.registerLazySingleton<OrdersTypeApiSevcies>(
+  () => OrdersTypeApiSevciesImp(getIt())
+);    
+
+getIt.registerLazySingleton<OrdersTypeApiSevcies>(
+  () => OrdersTypeApiSevciesImp(getIt())
+);    
+
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
       () => ProfileRemoteDSImpl(getIt()));
@@ -145,7 +195,17 @@ void setupLocator() {
   getIt.registerLazySingleton<SalesRegisterRemoteDs>(
       () => SalesRegisterRemoteDsImpl(getIt()));
 
-  getIt.registerLazySingleton<ChefRegisterRemoteDs>(
+  getIt.registerLazySingleton<BranchRemoteDataSource>(
+  () => BranchesDataSourceImp(getIt()),
+);
+  getIt.registerLazySingleton<SpecializationRemoteDataSource>(
+    () => SpecializationRemoteDataSourceImp(getIt()),
+);
+getIt.registerLazySingleton<BannerRemoteDs>(
+    () => BannerRemoteDsImp(getIt()), 
+);
+
+ getIt.registerLazySingleton<ChefRegisterRemoteDs>(
       () => ChefRegisterRemoteDsImpl(getIt()));
 
   getIt.registerLazySingleton<AuthRemoteDs>(() => AuthRemoteDsImpl(getIt()));
@@ -154,7 +214,9 @@ void setupLocator() {
       .registerLazySingleton<OrdersRemoteDs>(() => OrdersRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<OrderDetailsRemoteDs>(
       () => OrderDetailsRemoteDsImpl(getIt()));
-  getIt.registerLazySingleton<EmployeeRemoteDs>(
+  getIt.registerLazySingleton<EmployeeRemoteDs>(getIt.registerLazySingleton<OrdersTypeRemoteDataSource>(
+      () => OrdersTypeRemoteDataSourceImp(getIt())
+);
       () => EmployeeRemoteDsImpl(getIt()));
 getIt.registerLazySingleton<AllEmployeeRemoteDs>(
       () =>AllEmployeeRemoteDsImpl (getIt()));
@@ -166,7 +228,14 @@ getIt.registerLazySingleton<AllEmployeeRemoteDs>(
       () => ManagerRegisterRepoImpl(getIt()));
   getIt.registerLazySingleton<SalesRegisterRepo>(
       () => SalesRegisterRepoImpl(getIt()));
-  getIt.registerLazySingleton<ChefRegisterRepo>(
+   getIt.registerLazySingleton<BranchesRepo>(
+    () => BranchesRepoImp(getIt()),
+  );    
+  getIt.registerLazySingleton<BannersRepo>(
+    () => BannersRepoImp(getIt()),
+  );
+ 
+ getIt.registerLazySingleton<ChefRegisterRepo>(
       () => ChefRegisterRepoImpl(getIt()));
 
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -180,7 +249,9 @@ getIt.registerLazySingleton<AllEmployeeRemoteDs>(
   getIt.registerLazySingleton<EmployeeRepository>(
       () => EmployeeRepositoryImpl(getIt()));
  getIt.registerLazySingleton<AllEmployeeRepository>(
-      () => AllEmployeeRepositoryImpl(getIt()));
+      () => AllEmployeeRepositoryImpl(getIt())); getIt.registerLazySingleton<OrdersTypeRepo>(
+  () => OrdersTypeRepoImp(getIt())
+ );
 
   ///! -- UseCases -- ///
 
@@ -199,93 +270,33 @@ getIt.registerLazySingleton<AllEmployeeRemoteDs>(
 
   getIt.registerLazySingleton<ManagerRegisterUseCase>(
       () => ManagerRegisterUseCase(getIt()));
+
+  getIt.registerLazySingleton<GetBranchesUc>(
+    () => GetBranchesUc(getIt()),
+  );
+  getIt.registerLazySingleton<GetSpecializationUc>(
+   () => GetSpecializationUc(getIt()),
+ );
+
+getIt.registerLazySingleton<SalesRegisterUseCase>(
+    () => SalesRegisterUseCase(getIt()),
+  );
+getIt.registerLazySingleton<BannerUseCase>(
+  () => BannerUseCase(getIt())
+);
+
   getIt.registerLazySingleton<VerifyEmailUseCase>(
       () => VerifyEmailUseCase(getIt()));
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(getIt()),
   );
-  getIt.registerLazySingleton<SalesRegisterUseCase>(
+getIt.registerLazySingleton<SalesRegisterUseCase>(
     () => SalesRegisterUseCase(getIt()),
   );
-  getIt.registerLazySingleton<ChefRegisterUseCase>(
+getIt.registerLazySingleton<ChefRegisterUseCase>(
     () => ChefRegisterUseCase(getIt()),
   );
 
-  getIt.registerLazySingleton<GetNewOrdersUseCase>(
-    () => GetNewOrdersUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetStatsUseCase>(
-    () => GetStatsUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetInProgressOrdersUseCase>(
-    () => GetInProgressOrdersUseCase(getIt()),
-  );
-
-  getIt.registerLazySingleton<GetCompletedOrderUseCase>(
-    () => GetCompletedOrderUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetDeliveredOrderUseCase>(
-    () => GetDeliveredOrderUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetOrderWithDeliveryUseCase>(
-    () => GetOrderWithDeliveryUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetReturnedOrderUseCase>(
-    () => GetReturnedOrderUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetRefusedOrderUseCase>(
-    () => GetRefusedOrderUseCase(getIt()),
-  );
-
-  getIt.registerLazySingleton<GetOrderDetailsUseCase>(
-    () => GetOrderDetailsUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<AcceptOrderUseCase>(
-    () => AcceptOrderUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetChefUseCase>(
-    () => GetChefUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetDeliveryUseCase>(
-    () => GetDeliveryUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetDeliveryDetailsUseCase>(
-    () => GetDeliveryDetailsUseCase(getIt()),
-  );
-  getIt.registerLazySingleton<GetChefDetailsUseCase>(
-    () => GetChefDetailsUseCase(getIt()),
-  );
-
-   getIt.registerLazySingleton<SelectChefUseCase>(
-    () => SelectChefUseCase(getIt()),
-  );
-   getIt.registerLazySingleton<SelectDeliveryUseCase>(
-    () => SelectDeliveryUseCase(getIt()),
-  );
-   getIt.registerLazySingleton<GetAllEmployeeUseCase>(
-    () => GetAllEmployeeUseCase(getIt()),
-  );
-    getIt.registerLazySingleton<AcceptChefUseCase>(
-    () => AcceptChefUseCase(getIt()),
-  );
-   getIt.registerLazySingleton<AcceptDeliveryUseCase>(
-    () => AcceptDeliveryUseCase(getIt()),
-  );
-   getIt.registerLazySingleton<RejectDeliveryUseCase>(
-    () => RejectDeliveryUseCase(getIt()),
-  );
-   getIt.registerLazySingleton<RejectChefUseCase>(
-    () => RejectChefUseCase(getIt()),
-  ); 
-
-  getIt.registerLazySingleton<LogoutUseCase>(
-    () => LogoutUseCase(getIt()),
-  );
-
-  getIt.registerLazySingleton<ChangePasswordUc>(
-    () => ChangePasswordUc(getIt()),
-  
-  );
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
         getIt(),
@@ -303,43 +314,14 @@ getIt.registerLazySingleton<AllEmployeeRemoteDs>(
   getIt.registerFactory<ManagerRegisterCubit>(
       () => ManagerRegisterCubit(getIt()));
 
-  getIt.registerFactory<SalesRegisterCubit>(() => SalesRegisterCubit(getIt()));
-  getIt.registerFactory<ChefRegisterCubit>(() => ChefRegisterCubit(getIt()));
+       getIt.registerFactory<SalesRegisterCubit>(
+      () => SalesRegisterCubit(getIt()));
+       getIt.registerFactory<ChefRegisterCubit>(
+      () => ChefRegisterCubit(getIt()));
 
-  getIt.registerFactory<VerifyEmailCubit>(() => VerifyEmailCubit(getIt()));
+ getIt.registerFactory<VerifyEmailCubit>(
+      () => VerifyEmailCubit(getIt()));
 
-  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
-  getIt.registerFactory<NewOrdersCubit>(() => NewOrdersCubit(getIt()));
-
-  getIt.registerFactory<InProgressOrdersCubit>(
-      () => InProgressOrdersCubit(getIt()));
-
-  getIt.registerFactory<StatsCubit>(() => StatsCubit(getIt()));
-
-  getIt.registerFactory<CompletedOrdersCubit>(
-      () => CompletedOrdersCubit(getIt()));
-  getIt.registerFactory<DeliveredOrdersCubit>(
-      () => DeliveredOrdersCubit(getIt()));
-  getIt
-      .registerFactory<ReturnedOrdersCubit>(() => ReturnedOrdersCubit(getIt()));
-
-  getIt.registerFactory<WithDeliveryOrdersCubit>(
-      () => WithDeliveryOrdersCubit(getIt()));
-  getIt.registerFactory<RefusedOrdersCubit>(() => RefusedOrdersCubit(getIt()));
-
-  getIt.registerFactory<OrderDetailsCubit>(() => OrderDetailsCubit(getIt()));
-
-  getIt.registerFactory<AcceptOrderCubit>(() => AcceptOrderCubit(getIt()));
-  getIt.registerFactory<EmployeesCubit>(() => EmployeesCubit(getIt(), getIt()));
-  getIt.registerFactory<ChefDetailsCubit>(() => ChefDetailsCubit(getIt()));
-  getIt.registerFactory<DeliveryDetailsCubit>(() => DeliveryDetailsCubit(getIt()));
-    getIt.registerFactory<SelectChefAndDeliveryCubit>(() => SelectChefAndDeliveryCubit(getIt(), getIt()));
-
-  getIt.registerFactory<AllEmployeeCubit>(() => AllEmployeeCubit(getIt()));
-  
-  getIt.registerFactory<DeleteAccountCubit>(() => DeleteAccountCubit(getIt(), getIt(), getIt()));
-
-  
-    getIt.registerFactory<EmployeeActionCubit>(() => EmployeeActionCubit(getIt(), getIt(),getIt(),getIt()));
-
+      getIt.registerFactory<LoginCubit>(
+      () => LoginCubit(getIt()));
 }

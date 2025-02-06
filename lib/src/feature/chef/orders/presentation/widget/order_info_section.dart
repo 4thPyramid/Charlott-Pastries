@@ -1,5 +1,4 @@
 // lib/features/order_details/presentation/widgets/order_info_section.dart
-import 'package:charlot/core/common/widgets/custom_app_bar.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';

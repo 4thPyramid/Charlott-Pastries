@@ -36,6 +36,9 @@ static const String managerAcceptDelivery = 'manager/accept-delivery/';
   static const String salesRegister = 'sales/register';
   static const String salesVerifyEmail = 'sales/verify';
   static const String salesLogin = 'sales/login';
+  static const String salesProfile = 'sales/profile';
+  static const String salesBanner = 'sales/banners';
+  static const String salesOrdersStatus = 'sales/stats';
 
 
 

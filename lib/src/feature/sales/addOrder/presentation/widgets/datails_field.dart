@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailsField extends StatelessWidget {
-  const DetailsField({super.key});
-
+  const DetailsField({super.key, required this.text});
+final String text;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'تفاصيل الطلب',
+        Text(text
+          ,
           style: AppStyles.s14.copyWith(
             color: AppColors.black,
             fontWeight: FontWeight.w700,
