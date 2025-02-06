@@ -17,7 +17,11 @@ abstract class ProfileRepository {
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
     File? file,
   );
+
     Future<Either<ErrorModel, String>> deleteAccount();
+      Future<Either<ErrorModel, String>> logout();
+
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword);
 
 }
 
@@ -45,5 +49,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Either<ErrorModel, String>> deleteAccount() {
    return _profileRemoteDs.deleteAccount();
+  }
+  
+  @override
+  Future<Either<ErrorModel, String>> logout() async {
+    return _profileRemoteDs.logout();
+  }
+  
+  @override
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword) async {
+    return _profileRemoteDs.changePassword(oldPassword, newPassword, confirmPassword);
   }
 }

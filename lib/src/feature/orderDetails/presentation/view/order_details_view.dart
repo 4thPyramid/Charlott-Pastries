@@ -1,80 +1,73 @@
-import 'package:charlot/core/common/widgets/custom_btn.dart';
-import 'package:charlot/src/feature/orderDetails/presentation/componant/client_data.dart';
-import 'package:charlot/src/feature/orderDetails/presentation/componant/order_data.dart';
-import 'package:charlot/src/feature/orderDetails/presentation/componant/order_details_image_header.dart';
-import 'package:charlot/src/feature/orderDetails/presentation/componant/order_price.dart';
-import 'package:charlot/src/feature/orderDetails/presentation/componant/order_times.dart';
+import 'package:charlot/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../core/theme/app_colors.dart';
-import '../../../manager/accept_employee/presentation/widgets/accept_and_refuse_button.dart';
-import '../componant/team_data.dart';
+import '../components/order_details_actions.dart';
+import '../components/order_details_content.dart';
+import '../components/order_details_header.dart';
+import '../logic/accept_order/accept_order_cubit.dart';
+import '../logic/order_details_cubit.dart';
+import '../logic/order_details_state.dart';
 
 class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView(
-      {super.key,
-      required this.from,
-      required this.title,
-      required this.orderStatus});
+  const OrderDetailsView({
+    super.key,
+    required this.from,
+    required this.title,
+    required this.orderId,
+  });
+
   final String from;
+  final int orderId;
   final String title;
-  final String orderStatus;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.greyForSelectTap,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomAppBar(
-              title: title,
-              iconLeft: Icons.arrow_back_ios,
-              onPressedLeft: () {
-                Navigator.pop(context);
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<OrderDetailsCubit>()..call(orderId),
+        ),
+        BlocProvider(
+          create: (context) => getIt<AcceptOrderCubit>(),
+        )
+      ],
+      child: Scaffold(
+        backgroundColor: AppColors.greyForSelectTap,
+        body: BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () => const Center(child: Text('جاري التحميل...')),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              failure: (error) =>
+                  Center(child: Text('حدث خطأ: ${error.message}')),
+              success: (orderDetailsResponse) {
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      OrderDetailsHeader(
+                        title: title,
+                        onBackPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      OrderDetailsContent(
+                        orderDetailsResponse: orderDetailsResponse,
+                      ),
+                      OrderDetailsActions(
+                        orderStatus: orderDetailsResponse.status,
+                        orderId: orderId,
+                      ),
+                      SizedBox(height: 16.h),
+                    ],
+                  ),
+                );
               },
-            ),
-            const OrderDetailsImageHeader(),
-            OrderTimes(
-              orderStatus: orderStatus,
-            ),
-            SizedBox(height: 16.h),
-            const ClientData(),
-            const TeamData(),
-            const OrderData(),
-            const OrderPrice(),
-            SizedBox(height: 16.h),
-            if (orderStatus == "طلب مكتمل")
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: CustomButton(
-                  text: 'اختر المندوب ',
-                  onPressed: () {},
-                ),
-              )
-            else if (orderStatus == "طلب جديد")
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AcceptAndRefuseButton(
-                    text: 'قبول',
-                    backgroundColor: AppColors.green,
-                    onPressed: () {},
-                  ),
-                  SizedBox(width: 16.w),
-                  AcceptAndRefuseButton(
-                    text: 'رفض',
-                    backgroundColor: AppColors.red,
-                    onPressed: () {},
-                  ),
-                ],
-              )
-            else
-              SizedBox(height: 16.h),
-            SizedBox(height: 16.h),
-          ],
+            );
+          },
         ),
       ),
     );

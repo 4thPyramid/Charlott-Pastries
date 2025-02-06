@@ -44,10 +44,11 @@ acceptOrderPop(
             height: 40.h,
             width: 230.w,
             text: buttonTitle,
-            textStyle: AppStyles.s16.copyWith(
-              color: AppColors.white,
-              fontWeight: FontWeight.w700,
-            ),
+            
+              textStyle: AppStyles.s14.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w700,
+          ),
             onPressed: onPressed,
           )
         ],

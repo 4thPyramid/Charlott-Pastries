@@ -11,7 +11,7 @@ import 'package:charlot/src/feature/sales/register/presentation/view/sales_regis
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:charlot/src/feature/location/presentation/views/map_picker_view.dart';
-import 'package:charlot/src/feature/manager/delivery/presentation/views/delivery_details_view.dart';
+import 'package:charlot/src/feature/manager/empolyee/presentation/delivery/presentation/views/delivery_details_view.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/complete_orders_details.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_compleated_orders.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/views/manager_finish_orders.dart';
@@ -33,9 +33,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
-import '../../src/feature/manager/chef_list/presentation/view/chef_details_view.dart';
-import '../../src/feature/manager/chef_list/presentation/view/select_chefs_view.dart';
-import '../../src/feature/manager/delivery/presentation/views/select_delivery_view.dart';
+import '../../src/feature/manager/empolyee/presentation/chef_list/presentation/view/chef_details_view.dart';
+import '../../src/feature/manager/empolyee/presentation/chef_list/presentation/view/select_chefs_view.dart';
+import '../../src/feature/manager/empolyee/presentation/delivery/presentation/views/select_delivery_view.dart';
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
 import '../../src/feature/manager/manager_bottom_navigation_bar_root.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
@@ -44,6 +44,7 @@ import '../../src/feature/manager/orders/presentation/views/manager_refused_orde
 import '../../src/feature/manager/orders/presentation/views/manager_returned_and_refused_orders_details.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_returned_orders.dart';
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
+import '../../src/feature/manager/profile/presentation/view/change_password_view.dart';
 import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
 import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
 import '../../src/feature/manager/register/presentation/logic/manager_register/manager_register_cubit.dart';
@@ -82,6 +83,10 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const ForgetPasswordView(),
     ),
     GoRoute(
+      path: RouterNames.changePasswordView,
+      builder: (context, state) => const ChangePasswordView(),
+    ),
+    GoRoute(
         path: RouterNames.verifyCodeView,
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
@@ -107,6 +112,7 @@ final GoRouter router = GoRouter(
           from: data['from'] as String? ?? '',
           title: data['title'] as String? ?? '',
           orderStatus: data['orderStatus'] as String? ?? '',
+          orderId: data['orderId'] as int? ?? 0,
         );
       },
     ),
@@ -124,7 +130,7 @@ final GoRouter router = GoRouter(
           return OrderDetailsView(
             from: data['from'] as String? ?? '',
             title: data['title'] as String? ?? '',
-            orderStatus: data['orderStatus'] as String? ?? '',
+            orderId: data['orderId'] as int? ?? 0,
           );
         }),
     GoRoute(
@@ -135,7 +141,6 @@ final GoRouter router = GoRouter(
 
     //?auth
 
-  
     GoRoute(
       path: RouterNames.salesRegisterView,
       builder: (context, state) => BlocProvider(
@@ -143,8 +148,8 @@ final GoRouter router = GoRouter(
         child: const SalesRegisterView(),
       ),
     ),
-      GoRoute(
-      path : RouterNames.salesBottomNavigationBarRoot,
+    GoRoute(
+      path: RouterNames.salesBottomNavigationBarRoot,
       builder: (context, state) => const SalesBottomNavigationBarRoot(),
     ),
     GoRoute(
@@ -222,6 +227,7 @@ final GoRouter router = GoRouter(
           orderTitle: data['orderTitle'] as String? ?? '',
           pageTitle: data['pageTitle'] as String? ?? '',
           orderStatusColor: Color(data['color'] ?? 0xFF00ba69),
+          orderId: data['orderId'] as int? ?? 0,
         );
       },
     ),
@@ -231,23 +237,46 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouterNames.newestOrderDetails,
-      builder: (context, state) => const NewestOrderDetails(),
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+
+        return NewestOrderDetails(orderId: data['orderId'] as int? ?? 0);
+      },
     ),
     GoRoute(
       path: RouterNames.selectChef,
-      builder: (context, state) => const SelectChefsView(),
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+        return SelectChefsView(orderId: data['orderId']as int ? ??0,);
+      }
     ),
     GoRoute(
       path: RouterNames.chefDetails,
-      builder: (context, state) => const ChefDetailsView(),
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+        return ChefDetailsView(
+          chefId: data['chefId'] as int? ?? 0,
+          orderId: data['orderId'] as int? ?? 0,
+          
+          );
+      }
     ),
     GoRoute(
       path: RouterNames.selectDeliveryBoy,
-      builder: (context, state) => const SelectDeliveryView(),
+      builder: (context, state){
+        final data = state.extra as Map<String, dynamic>;
+        return SelectDeliveryView(orderId: data['orderId']as int? ??0,);
+      }
     ),
     GoRoute(
       path: RouterNames.deliveryBoyDetails,
-      builder: (context, state) => const DeliveryDetailsView(),
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+        return DeliveryDetailsView(
+          deliveryId: data['deliveryId'] as int? ?? 0,
+          orderId: data['orderId'] as int? ?? 0,
+          );
+      } 
     ),
     GoRoute(
         path: RouterNames.personalInfoView,

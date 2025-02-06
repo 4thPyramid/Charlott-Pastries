@@ -40,10 +40,10 @@ class _OtpFormState extends State<OtpForm> {
         listener: (context, state) {
           if (state is VerifyEmailSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
+              SnackBar(content: Text(state.message),backgroundColor: Colors.green,),
             );
              ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('يرجي الانتظار حتي يتم الموافقه علي طلبك من قبل الاداره')),
+             const SnackBar(content: Text('يرجي الانتظار حتي يتم الموافقه علي طلبك من قبل الاداره'),backgroundColor: Colors.green,),
             );
             context.go(RouterNames.userTypeView);
           } else if (state is VerifyEmailFailure) {

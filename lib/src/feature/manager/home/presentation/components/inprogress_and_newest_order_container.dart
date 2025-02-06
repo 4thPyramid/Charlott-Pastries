@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
-import '../../../newest_orders/presentation/views/newest_order_list_view.dart';
+import 'newest_order_list_view.dart';
 import '../widgets/custom_title.dart';
 import 'order_in_progress_list.dart';
 

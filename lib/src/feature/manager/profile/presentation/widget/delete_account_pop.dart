@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../core/data/cached/cache_helper.dart';
+import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
@@ -32,9 +33,13 @@ void deleteAccountPop(BuildContext context) {
                   backgroundColor: Colors.green,
                 ),
               );
+              await CacheHelper().clearData();
+
               await Future.delayed(const Duration(milliseconds: 200));
+
               if (Navigator.canPop(context)) {
-               // context.pushReplacement(RouterNames.login);
+                Navigator.pushReplacementNamed(
+                    context, RouterNames.userTypeView);
               }
             },
             error: (error) {
@@ -52,12 +57,12 @@ void deleteAccountPop(BuildContext context) {
               children: [
                 const Icon(
                   Icons.delete_outline,
-                  color: AppColors.errorColor,
+                  color: AppColors.primaryColor,
                   size: 50,
                 ),
                 SizedBox(height: 13.h),
-                Text('حذف الحساب'
-                  ,
+                Text(
+                  'حذف الحساب',
                   style: AppStyles.s20.copyWith(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
@@ -65,7 +70,7 @@ void deleteAccountPop(BuildContext context) {
                 ),
                 SizedBox(height: 39.h),
                 Text(
-                 "هل انت متأكد من حذف الحساب؟",
+                  "هل انت متأكد من حذف الحساب؟",
                   textAlign: TextAlign.center,
                   style: AppStyles.s16.copyWith(
                     fontWeight: FontWeight.w400,
@@ -77,7 +82,7 @@ void deleteAccountPop(BuildContext context) {
                   children: [
                     CustomButton(
                         width: 150.w,
-                        backgroundColor: AppColors.errorColor,
+                        backgroundColor: AppColors.primaryColor,
                         text: "نعم",
                         textStyle: AppStyles.s12.copyWith(
                           color: AppColors.white,

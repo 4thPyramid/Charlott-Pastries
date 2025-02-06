@@ -1,5 +1,4 @@
 import 'package:charlot/core/common/widgets/custom_auth_app_bar.dart';
-import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/src/feature/auth/presentation/componant/otp_form.dart';
@@ -10,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/app_strings.dart';
 
 class VerificationCodePassword extends StatelessWidget {
-  VerificationCodePassword({super.key, required this.userType});
+ const VerificationCodePassword({super.key, required this.userType});
 
   final String userType;
 

@@ -1,26 +1,28 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import 'accept_and_refuse_button.dart';
 
 class AcceptEmployeeCardItem extends StatelessWidget {
-  const AcceptEmployeeCardItem({
-    super.key, required this.title, required this.image, required this.name, required this.phone, required this.email, required this.date,
-  });
-  final String title;
-  final String image;
-  final String name;
-  final String phone;
-  final String email;
-  final String date;
+  final dynamic employee; // Change to dynamic to accept different types
+  final bool isChef; // Add flag to distinguish between chef and delivery
+  final Function(int) onAccept;
+  final Function(int) onReject;
+  const AcceptEmployeeCardItem(
+      {super.key,
+      required this.employee,
+      required this.isChef,
+      required this.onAccept,
+      required this.onReject});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 10.w),
-        margin: EdgeInsets.symmetric(vertical: 10.h, ),
+        padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 8.w),
+        margin: EdgeInsets.symmetric(vertical: 10.h),
         decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(10),
@@ -33,7 +35,7 @@ class AcceptEmployeeCardItem extends StatelessWidget {
             ]),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Text(
-           title,
+            'title', // Use employee.name instead of title
             style: AppStyles.s20.copyWith(
               color: AppColors.primaryColor,
               fontWeight: FontWeight.w700,
@@ -44,38 +46,43 @@ class AcceptEmployeeCardItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  image,
+                child: Image.network(
+                  employee.image?? 'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
                   height: 100.h,
-                  width: 100.w,
+                  width: 85.w,
                   fit: BoxFit.fill,
                 ),
               ),
-              SizedBox(width: 20.w),
+              SizedBox(width: 8.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  buildInfoRow(label: 'الاسم ', value: name),
+                  buildInfoRow(
+                      label: AppStrings.name,
+                      value: '${employee.firstName}${employee.lastName}'),
                   SizedBox(height: 10.h),
-                  buildInfoRow(label: ' رقم الجوال', value:phone),
+                  buildInfoRow(label: AppStrings.phoneNumber, value: employee.phone),
                   SizedBox(height: 10.h),
                   buildInfoRow(
-                      label: 'البريد الالكتروني',
-                      value: email),
+                      label: AppStrings.email, value: employee.email),
                   SizedBox(height: 10.h),
-                  buildInfoRow(label: 'تاريخ تقديم الطلب', value: date),
+                  buildInfoRow(
+                      label: 'تاريخ تقديم الطلب',
+                      value: formatDate(employee.createdAt.toString())),
                 ],
               ),
             ],
           ),
           SizedBox(height: 30.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,  
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AcceptAndRefuseButton(
                 text: 'قبول',
                 backgroundColor: AppColors.green,
                 onPressed: () {
+                  onAccept(employee.id);
                 },
               ),
               SizedBox(width: 16.w),
@@ -83,11 +90,17 @@ class AcceptEmployeeCardItem extends StatelessWidget {
                 text: 'رفض',
                 backgroundColor: AppColors.red,
                 onPressed: () {
+                  onReject(employee.id);
                 },
               ),
             ],
           )
         ]));
+  }
+
+  String formatDate(String dateString) {
+    DateTime parsedDate = DateTime.parse(dateString);
+    return '${parsedDate.year}-${parsedDate.month.toString().padLeft(2, '0')}-${parsedDate.day.toString().padLeft(2, '0')}';
   }
 }
 

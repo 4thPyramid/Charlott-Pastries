@@ -5,7 +5,10 @@ part 'profile_model.g.dart';
 @JsonSerializable()
 class ProfileModel {
   final int id;
-  final String name;
+  @JsonKey(name:"first_name")
+    final String firstName;
+    @JsonKey(name: "last_name")
+  final String lastName;
   final String phone;
   final String email;
   final String? image;
@@ -14,7 +17,8 @@ class ProfileModel {
 
   ProfileModel({
     required this.id,
-    required this.name,
+    required this.firstName,
+    required this.lastName,
     required this.phone,
     required this.email,
     this.image,

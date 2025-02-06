@@ -57,6 +57,7 @@ class _AuthTextFieldWidgetState extends State<AuthTextFieldWidget> {
         CustomTextFormField(
           controller: widget.controller,
           isPassword: widget.isPassword,
+          toggleObscure: _togglePassword,
           hintText: widget.hintText,
           prefixIcon: Icon(widget.prefixIcon, color: AppColors.primaryColor),
           validator: widget.validator,

@@ -41,8 +41,9 @@ class CustomListTile extends StatelessWidget {
             )),
         title: Text(
           title,
-          style: AppStyles.s16.copyWith(
-            fontWeight: FontWeight.w400,
+          style:   AppStyles.s14.copyWith(
+            color: AppColors.black,
+            fontWeight: FontWeight.w600,
           ),
         ),
         trailing: IconButton(

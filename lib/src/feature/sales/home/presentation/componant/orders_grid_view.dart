@@ -50,6 +50,7 @@ class GridViewmodel {
   final String title;
   final IconData icon;
   final String route;
+  final int orderId;
   GridViewmodel(this.route,
-      {required this.number, required this.title, required this.icon});
+      {required this.number, required this.title, required this.icon, this.orderId = 0});
 }

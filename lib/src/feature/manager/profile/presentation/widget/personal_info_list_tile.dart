@@ -50,7 +50,7 @@ class PersonalInfoListTile extends StatelessWidget {
           subtitle,
           style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w400,
-            color: AppColors.grey,
+            color: AppColors.blueBlack,
           ),
         ),
       ),

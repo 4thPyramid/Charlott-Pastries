@@ -21,9 +21,7 @@ final String userType;
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
-           // mainAxisAlignment: MainAxisAlignment.center,
             children: [       
-
               SizedBox(height: 100.h),
               const Center(child: AppImageView(AppAssets.blackLogo)),
               SizedBox(height: 40.h),

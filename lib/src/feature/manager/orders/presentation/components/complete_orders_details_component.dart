@@ -7,17 +7,17 @@ class CompleteOrdersDetailsComponent extends StatelessWidget {
     super.key,
     required this.orderTitle,
     this.statusColor,
-    this.isCompleted = false,
+    required this.orderId,
   });
   final String orderTitle;
   final Color? statusColor;
-  final bool? isCompleted;
+  final int orderId;
   @override
   Widget build(BuildContext context) {
-    return const OrderDetailsView(
+    return  OrderDetailsView(
       from: "completeOrder",
       title: '" تفاصيل الطلب المكتمله "',
-      orderStatus: 'طلب مكتمل',
+      orderId:orderId ,
     );
   }
 }

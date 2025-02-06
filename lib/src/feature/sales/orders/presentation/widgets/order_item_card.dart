@@ -43,6 +43,7 @@ class OrderItemCard extends StatelessWidget {
                   'orderTitle': 'طلب مكتمل',
                   'pageTitle': 'تفاصيل الطلب المكتمل',
                   'orderStatusColor': AppColors.green,
+                  "orderId": 1,
                 },
               );
             },

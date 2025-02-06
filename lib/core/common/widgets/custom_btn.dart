@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final TextStyle? textStyle;
   final BorderRadius? borderRadius;
-
+  final bool? isLoading;
   const CustomButton({
     super.key,
     required this.text,
@@ -21,6 +21,7 @@ class CustomButton extends StatelessWidget {
     this.width,
     this.textStyle,
     this.borderRadius,
+    this.isLoading = false,
   });
 
   @override
@@ -39,12 +40,21 @@ class CustomButton extends StatelessWidget {
                 color: AppColors.primaryColor,
               )),
           child: Center(
-            child: Text(text,
-                style: textStyle ??
-                    AppStyles.s16.copyWith(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w700,
-                    )),
+            child: (isLoading ?? false)
+                ? const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                : Text(text,
+                    style: textStyle ??
+                        AppStyles.s16.copyWith(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w700,
+                        )),
           ),
         ),
       ),

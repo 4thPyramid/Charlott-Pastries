@@ -26,7 +26,8 @@ class ProfileHeader extends StatelessWidget {
             child: Text(
               title,
               style: AppStyles.s16.copyWith(
-                  color: AppColors.textColor, fontWeight: FontWeight.w700),
+                  color: AppColors.black,
+                   fontWeight: FontWeight.w700),
             ),
           ),
         ),

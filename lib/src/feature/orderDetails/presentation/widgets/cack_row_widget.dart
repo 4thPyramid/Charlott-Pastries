@@ -4,17 +4,19 @@ import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CackRowWidget extends StatelessWidget {
-  const CackRowWidget({
+class CakeRowWidget extends StatelessWidget {
+  const CakeRowWidget({
     super.key,
-    required this.size,
+    required this.quantity,
     required this.directions,
-    required this.notes,
+    required this.notes, 
+    required this.orderType,
   });
 
-  final String size;
+  final String quantity;
   final String directions;
   final String notes;
+  final String orderType;
 
   @override
   Widget build(BuildContext context) {
@@ -34,21 +36,17 @@ class CackRowWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "تورتة عيد ميلاد",
+             orderType,
               style: AppStyles.s14.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
             SizedBox(height: 5.h),
             Text(
-              "الحجم : $size ",
+              "الكميه : $quantity ",
               style: AppStyles.s12,
             ),
-            SizedBox(height: 5.h),
-            Text(
-              "المقاس : $directions ",
-              style: AppStyles.s12,
-            ),
+           
             SizedBox(height: 16.h),
             Container(
               width: 253.w,

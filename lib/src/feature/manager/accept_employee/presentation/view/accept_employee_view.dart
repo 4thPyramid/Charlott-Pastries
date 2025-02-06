@@ -11,13 +11,17 @@ class AcceptEmployeeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return  SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal:10.w),
-        child: const Column(
+        child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomAppBar(
+            const CustomAppBar(
               title: " طلبات الاضافه",
             ),
-            AcceptEmployeeComponents(),
+            
+         SizedBox(
+               height: MediaQuery.of(context).size.height * 0.7, // Limit height
+               child: const AcceptEmployeeComponents(),
+             ),
           ],
         ));
   }

@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/app_strings.dart';
+
 class ForgetPasswordForm extends StatefulWidget {
   const ForgetPasswordForm({super.key});
 
@@ -42,7 +44,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
     return Form(
       key: formKey,
       child: Column(children: [
-        EmailAndPhoneTapBarWidget(tabController: _tabController),
+        EmailAndPhoneTapBarWidget(tabController: _tabController, title1: AppStrings.phoneNumber, title2: AppStrings.email,),
         SizedBox(
           height: 120.h,
           child: TabBarView(

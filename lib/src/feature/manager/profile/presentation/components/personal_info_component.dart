@@ -34,7 +34,7 @@ class PersonalInfoComponent extends StatelessWidget {
                 SizedBox(height: 40.h),
                 PersonalInfoListTile(
                   title: AppStrings.allName,
-                  subtitle: profile.name,
+                  subtitle: '${profile.firstName} ${profile.lastName}',
                   icon: Icons.person_outline,
                   iconColor: AppColors.orange,
                 ),

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../core/data/cached/cache_helper.dart';
+import '../../../../../../core/routes/router_names.dart';
+import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/utils/main_function.dart';
+import '../logic/delete_account_cubit.dart';
+import '../logic/delete_account_state.dart';
 
 void logOutPop(BuildContext context) {
   customAlertDialog(
@@ -13,36 +19,45 @@ void logOutPop(BuildContext context) {
     hPadding: 12.w,
     vPadding: 12.h,
     context: context,
-    // content: BlocConsumer<LogoutCubit, LogoutState>(
-    //   listener: (context, state) async {
-    //     if (state is LogoutSuccess) {
-    //       ScaffoldMessenger.of(context).showSnackBar(
-    //         SnackBar(
-    //           content: Text(state.message),
-    //           backgroundColor: Colors.green,
-    //         ),
-    //       );
-    //       await Future.delayed(
-    //           const Duration(milliseconds: 200)); 
-    //       if (Navigator.canPop(context)) {
-    //         context.pushReplacement(RouterNames.login); 
-    //       }
-    //     } else if (state is LogoutError) {
-    //       ScaffoldMessenger.of(context).showSnackBar(
-    //         SnackBar(content: Text(state.errorMessage.message)),
-    //       );
-    //     }
-    //   },
-    //   builder: (context, state) {
-       // return
-        content:  Padding(
+    content: BlocProvider(
+      create: (context) => getIt<DeleteAccountCubit>(),
+      child: BlocConsumer<DeleteAccountCubit, DeleteAccountState>(
+        listener: (context, state) async {
+          state.when(
+            initial: () {},
+            loading: () {},
+            success: (message) async {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(message),
+                  backgroundColor: Colors.green,
+                ),
+              );
+              await CacheHelper().clearData();
+
+              await Future.delayed(const Duration(milliseconds: 200));
+
+              if (Navigator.canPop(context)) {
+                Navigator.pushReplacementNamed(
+                    context, RouterNames.userTypeView);
+              }
+            },
+            error: (error) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("error?.message")),
+              );
+            },
+          );
+        },
+        builder: (context, state) {
+          return Padding(
           padding: EdgeInsets.symmetric(vertical: 50.0.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(
-                Icons.delete_outline,
-                color: AppColors.errorColor,
+                Icons.logout,
+                color: AppColors.primaryColor,
                 size: 50,
               ),
               SizedBox(height: 13.h),
@@ -67,14 +82,17 @@ void logOutPop(BuildContext context) {
                 children: [
                   CustomButton(
                     width: 150.w,
-                    backgroundColor: AppColors.errorColor,
+                    backgroundColor: AppColors.primaryColor,
                     text: "نعم",
                     textStyle: AppStyles.s12.copyWith(
                       color: AppColors.white,
                       fontWeight: FontWeight.w700,
                     ),
                     onPressed: 
-                         () {}
+                         () {
+                                                    context.read<DeleteAccountCubit>().logout();
+
+                         }
                        
                   ),
                   CustomButton(
@@ -84,18 +102,17 @@ void logOutPop(BuildContext context) {
                     textStyle: AppStyles.s12.copyWith(
                       color: AppColors.grey,
                       fontWeight: FontWeight.w700,
+                       ),
+                      onPressed: () => Navigator.pop(context),
                     ),
-                    onPressed:  () {}
-                    // state is LogoutLoading
-                    //     ? () {}
-                    //     : () => Navigator.pop(context),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    ),
   );
 }
 
-    

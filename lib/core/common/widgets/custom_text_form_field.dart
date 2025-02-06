@@ -13,7 +13,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final Color? fillColor;
-  final void Function()? toggeleObscure;
+  final void Function()? toggleObscure;
 
   const CustomTextFormField({
     super.key,
@@ -26,7 +26,7 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.prefixIcon,
     this.isPassword = false,
-    this.toggeleObscure,
+    this.toggleObscure,
   });
 
   @override
@@ -49,7 +49,7 @@ class CustomTextFormField extends StatelessWidget {
             filled: true,
             suffixIcon: isPassword
                 ? IconButton(
-                    onPressed: toggeleObscure,
+                    onPressed: toggleObscure,
                     icon: Visibility(
                         visible: obscureText,
                         replacement: const Icon(

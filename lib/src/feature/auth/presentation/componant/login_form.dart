@@ -12,6 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../intro/data/enum/user_type_enum.dart';
+import '../../../intro/presentation/logic/user_type_cubit.dart';
 import '../logic/login/login_cubit.dart';
 import '../logic/login/login_state.dart';
 
@@ -32,6 +34,7 @@ class _LoginFormState extends State<LoginForm>
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+
   @override
   void initState() {
     super.initState();
@@ -49,6 +52,7 @@ class _LoginFormState extends State<LoginForm>
 
   @override
   Widget build(BuildContext context) {
+  
     return BlocProvider(
       create: (context) =>  getIt<LoginCubit>(),
       child: BlocListener<LoginCubit, LoginState>(
@@ -71,7 +75,7 @@ class _LoginFormState extends State<LoginForm>
               key: formKey,
               child: Column(
                 children: [
-                  EmailAndPhoneTapBarWidget(tabController: _tabController),
+                  EmailAndPhoneTapBarWidget(tabController: _tabController, title1: AppStrings.phoneNumber, title2: AppStrings.email),
                   SizedBox(
                     height: 145.h,
                     child: TabBarView(
@@ -146,15 +150,21 @@ class _LoginFormState extends State<LoginForm>
       ),
     );
   }
-  
-  void navigateTo(BuildContext context, String key) {
-    if (key == 'manager') {
-      context.go(RouterNames.managerBottomNavigationBarRoot);
-    } else if (key == 'sales') {
-      context.go(RouterNames.salesBottomNavigationBarRoot);
-    } else if (key == 'chef') {
-      print('chef');
-     // context.go(RouterNames.ch);
+ void navigateTo(BuildContext context, String key) {
+  final userTypeCubit = context.read<UserTypeCubit>();
+
+  if (key == 'manager') {
+    userTypeCubit.selectUserType(UserTypeEnum.manager); 
+    userTypeCubit.login(); 
+    context.go(RouterNames.managerBottomNavigationBarRoot);
+  } else if (key == 'sales') {
+    userTypeCubit.selectUserType(UserTypeEnum.sales);
+    userTypeCubit.login();
+    context.go(RouterNames.salesBottomNavigationBarRoot);
+  } else if (key == 'chef') {
+    userTypeCubit.selectUserType(UserTypeEnum.chef);
+    userTypeCubit.login();
+   // context.go(RouterNames.chefBottomNavigationBarRoot);
   }
 }
     }

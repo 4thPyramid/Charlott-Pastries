@@ -5,11 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class EmailAndPhoneTapBarWidget extends StatelessWidget {
   const EmailAndPhoneTapBarWidget({
     super.key,
-    required TabController tabController,
+    required TabController tabController, required this.title1, required this.title2,
   }) : _tabController = tabController;
 
   final TabController _tabController;
-
+final String title1;
+final String title2;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -34,14 +35,14 @@ class EmailAndPhoneTapBarWidget extends StatelessWidget {
             color: AppColors.greyForSelectTap,
             borderRadius: BorderRadius.circular(8.r),
           ),
-          tabs: const [
+          tabs:  [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Tab(text: 'رقم الهاتف'),
+              child: Tab(text:title1),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Tab(text: 'البريد الالكتروني'),
+              child: Tab(text: title2),
             ),
           ],
         ),

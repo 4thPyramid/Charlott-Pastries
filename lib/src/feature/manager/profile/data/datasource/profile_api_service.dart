@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../../../core/constants/endpoints_strings.dart';
 import '../../../../../../core/data/api/api_consumer.dart';
 import '../../../../../../core/errors/error_model.dart';
 import '../../../../../../core/errors/exceptions.dart';
@@ -21,6 +22,8 @@ abstract class ProfileApiService {
   );
   //delete account
   Future<Either<ErrorModel, String>> deleteAccount();
+  Future<Either<ErrorModel, String>> logout();
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword);
  
 }
 
@@ -33,8 +36,8 @@ class ProfileApiServiceImpl implements ProfileApiService {
   @override
   Future<Either<ErrorModel, ProfileModel>> getProfile() async {
     try {
-      final response = await _api.get(
-        'profile',
+      final response = await _api.get(EndpointsStrings.managerProfile
+       
       );
       final profile = ProfileModel.fromJson(response);
       return Right(profile);
@@ -50,7 +53,7 @@ class ProfileApiServiceImpl implements ProfileApiService {
     String? email,
   ) async {
     try {
-      final response = await _api.post('update-profile', data: {
+      final response = await _api.put(EndpointsStrings.managerProfile, data: {
         'name': name,
         'phone': phone,
         'email': email,
@@ -76,8 +79,8 @@ class ProfileApiServiceImpl implements ProfileApiService {
         ),
       });
 
-      final response = await _api.post(
-        'update-profile',
+      final response = await _api.put(
+        EndpointsStrings.managerProfile,
         data: formData,
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -96,11 +99,37 @@ class ProfileApiServiceImpl implements ProfileApiService {
   @override
   Future<Either<ErrorModel, String>> deleteAccount() async {
     try {
-      final response = await _api.delete('delete-account');
+      final response = await _api.delete(EndpointsStrings.managerDeleteProfile);
       return Right(response['message']);
     } on ServerException catch (e) {
       return Left(e.errorModel);
     }
   }
+  
+  @override
+  Future<Either<ErrorModel, String>> logout() async {
+  try {
+      final response = await _api.delete(EndpointsStrings.managerLogout);
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
 
+}
+
+  @override
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword)async {
+    try {
+      final response = await _api.post(EndpointsStrings.managerChangePassword,
+       data: {
+        'old_password': oldPassword,
+        'new_password': newPassword,
+        'new_password_confirmation': confirmPassword,
+      });
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+   
+  }
 }

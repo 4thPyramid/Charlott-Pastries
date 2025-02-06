@@ -9,10 +9,11 @@ class CompleteOrdersDetails extends StatelessWidget {
       {super.key,
       required this.orderTitle,
       required this.pageTitle,
-      required this.orderStatusColor});
+      required this.orderStatusColor, required this.orderId});
   final String orderTitle;
   final String pageTitle;
   final Color orderStatusColor;
+  final  int orderId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +29,7 @@ class CompleteOrdersDetails extends StatelessWidget {
             CompleteOrdersDetailsComponent(
               orderTitle: orderTitle,
               statusColor: orderStatusColor,
+              orderId: orderId,
               
             ),
           ],

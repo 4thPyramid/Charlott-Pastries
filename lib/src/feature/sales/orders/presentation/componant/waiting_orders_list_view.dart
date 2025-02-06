@@ -1,8 +1,8 @@
-import 'package:charlot/src/feature/sales/orders/presentation/widgets/order_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/common/widgets/shared_order_item_card.dart';
+import '../../../../manager/orders/data/model/orders_response.dart';
 
 class WaitingOrdersListView extends StatelessWidget {
   const WaitingOrdersListView({super.key});
@@ -15,13 +15,14 @@ class WaitingOrdersListView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           itemCount: 10,
           itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
+            return  Padding(
+              padding:const EdgeInsets.symmetric(vertical: 10),
               child: SharedOrderItemCard(
-                orderStatusColor: Colors.yellow,
-                id: 0,
-                pageTitle: '', 
-                orderStatus: '',
+              orderResponse:  Order(
+                    id: 1,
+                    customerName: "customerName",
+                    orderType: "orderType",
+                    status: "status"), 
               ),
             );
           },

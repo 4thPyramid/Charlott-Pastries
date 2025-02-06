@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
-import '../../../../../../core/common/widgets/shared_order_item_card.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../components/with_delivery_orders_list_view.dart';
 
 class ManagerBeingDeliveredOrdersView extends StatelessWidget {
   const ManagerBeingDeliveredOrdersView({super.key});
@@ -22,38 +21,10 @@ class ManagerBeingDeliveredOrdersView extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-           const ManagerBeingDeliveredListView ()
+           const WithDeliveryOrdersListView ()
           ],
         ));
   }
 }
 
-class ManagerBeingDeliveredListView extends StatelessWidget {
-  const ManagerBeingDeliveredListView({super.key});
-
-
-  
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              child: const SharedOrderItemCard(
-                id: 0,
-                pageTitle:  AppStrings.beingDeliverOrder,
-                orderStatusColor: AppColors.red, 
-                orderStatus: AppStrings.beingDeliverOrder,
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
 

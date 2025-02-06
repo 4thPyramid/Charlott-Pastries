@@ -6,20 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../src/feature/manager/orders/data/model/orders_response.dart';
 import '../../routes/router_names.dart';
 import '../../utils/app_strings.dart';
 
 class SharedOrderItemCard extends StatelessWidget {
-  const SharedOrderItemCard(
-      {super.key,
-      this.orderStatusColor,
-      required this.id,
-      required this.orderStatus,
-      required this.pageTitle});
-  final Color? orderStatusColor;
-  final int id;
-  final String orderStatus;
-  final String pageTitle;
+  const SharedOrderItemCard( {super.key, required this.orderResponse});
+     final Order orderResponse;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,14 +35,14 @@ class SharedOrderItemCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const FirstColumn(
-                order: 'تورته عيد ميلاد',
-                customer: 'اخمد علي ',
+               FirstColumn(
+                order: orderResponse.orderType,
+                customer: orderResponse.customerName,
               ),
               ThirdColumn(
-                orderStatus: orderStatus,
-                orderDate: '',
-                color: orderStatusColor,
+                orderStatus: orderResponse.status,
+                orderDate: orderResponse.deliveryDate ?? '',
+                color: AppColors.green,
               ),
               CircleAvatar(
                 radius: 60.r,
@@ -58,32 +51,41 @@ class SharedOrderItemCard extends StatelessWidget {
               ),
             ],
           ),
-          if(orderStatus==AppStrings.beingDeliverOrder)
+        if(orderResponse.status==AppStrings.beingDeliverOrder)
             CustomButton(
               width: 150.w,
               height: 30.h,
               text: AppStrings.trackOrder,
+                textStyle: AppStyles.s12.copyWith(
+                color: AppColors.white,
+              ),
               onPressed: () {
-                //navigate to track order
+                //!navigate to track order
               },
-            ),
+            )
+            else  
           CustomButton(
               width: 150.w,
               height: 30.h,
               text: "عرض التفاصيل",
+              textStyle: AppStyles.s12.copyWith(
+                color: AppColors.white,
+              ),
               onPressed: () {
-                if(orderStatus=='طلب مرتجع'){
+                if(orderResponse.status=='مرتجع'){
                   context.push(RouterNames.returnAndRefusedOrderDetails, extra: {
-                  'from': pageTitle,
-                  'title': pageTitle,
-                  'orderStatus': orderStatus,
+                  'from': orderResponse.status,
+                  'title': orderResponse.status,
+                  'orderStatus': orderResponse.status,
+                  'orderId': orderResponse.id,
                 });
                 }
                 else{
                 context.push(RouterNames.ordersDetails, extra: {
-                  'from': pageTitle,
-                  'title': pageTitle,
-                  'orderStatus': orderStatus,
+                  'from': orderResponse.status,
+                  'title': orderResponse.status,
+                  'orderStatus': orderResponse.status,
+                  "orderId": orderResponse.id,
                 });
                 }
               }),

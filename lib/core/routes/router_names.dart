@@ -41,7 +41,7 @@ static const String managerReturnedOrders = '/manager-returned-orders';
   static const String favoriteView = '/favoriteView';
   static const String returnAndRefusedOrderDetails = '/refused-order-details';
   static const String managerBeingDeliveredOrdersView = "/manager-being-delivered-orders";
-
+static const String changePasswordView = '/changePasswordView';
   static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/complete-orders-details';

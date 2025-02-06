@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/app_cubit/app_cubit.dart';
 import 'core/services/service_locator.dart';
+import 'src/feature/intro/presentation/logic/user_type_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => getIt<AppCubit>(),
+          ),
+            BlocProvider(
+            create: (context) => UserTypeCubit(),
           ),
         ],
 

@@ -104,6 +104,7 @@ class OrdersListviewForTaps extends StatelessWidget {
                       context.push(RouterNames.ordersDetails, extra: {
                         'from': "allOrders",
                         'title': 'تفاصيل الطلب',
+                        'orderId': 1,
                       });
                     },
                   ),

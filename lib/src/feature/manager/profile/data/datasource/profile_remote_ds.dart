@@ -18,6 +18,9 @@ abstract class ProfileRemoteDs {
     File? file,
   );
     Future<Either<ErrorModel, String>> deleteAccount();
+      Future<Either<ErrorModel, String>> logout();
+
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword);
 
 }
 
@@ -44,6 +47,16 @@ class ProfileRemoteDSImpl implements ProfileRemoteDs {
   @override
   Future<Either<ErrorModel, String>> deleteAccount() {
     return _profileApiService.deleteAccount();
+  }
+  
+  @override
+  Future<Either<ErrorModel, String>> logout() async {
+    return _profileApiService.logout();
+  }
+  
+  @override
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword) async{
+   return _profileApiService.changePassword(oldPassword, newPassword, confirmPassword);
   }
   
 }

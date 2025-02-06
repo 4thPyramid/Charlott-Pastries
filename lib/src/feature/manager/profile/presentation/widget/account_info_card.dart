@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../../core/theme/app_colors.dart';
-import '../../../../../../core/utils/app_assets.dart';
-import '../../../../../../core/utils/app_image_view.dart';
 import '../../../../../../core/utils/app_styles.dart';
 
 
@@ -24,7 +21,7 @@ class AccountInfoCard extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: Image.network(
-            image??"",
+            image??"https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc",
             width: 50,
             height: 50,
             fit: BoxFit.cover,
@@ -38,7 +35,7 @@ class AccountInfoCard extends StatelessWidget {
         title: Text(
           name,
           style: AppStyles.s20.copyWith(
-            color: AppColors.textColor,
+            color: AppColors.black,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -49,15 +46,16 @@ class AccountInfoCard extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        trailing: InkWell(
-          onTap: () {
-            // context.go(RouterNames.personalInfoView);
-          },
-          child: const AppImageView(
-            AppAssets.editIcon,
-            width: 20,
-            height: 20,
-          ),
-        ));
+        // trailing: InkWell(
+        //   onTap: () {
+        //     // context.go(RouterNames.personalInfoView);
+        //   },
+        //   child: const AppImageView(
+        //     AppAssets.editIcon,
+        //     width: 20,
+        //     height: 20,
+        //   ),
+        // )
+        );
   }
 }
