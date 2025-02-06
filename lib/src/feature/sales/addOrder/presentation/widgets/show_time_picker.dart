@@ -54,7 +54,7 @@ class _DeliveryTimePickerState extends State<DeliveryTimePicker> {
                 Text(
                   selectedTime != null
                       ? selectedTime!.format(context)
-                      : "اختر وقت التسليم",
+                      : " وقت التسليم",
                   style: AppStyles.s14.copyWith(color: AppColors.black),
                 ),
                 const Icon(Icons.keyboard_arrow_down, color: AppColors.grey),

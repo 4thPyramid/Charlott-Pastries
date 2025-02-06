@@ -2,8 +2,8 @@ import 'package:charlot/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RequestTypeTaps extends StatelessWidget {
-  const RequestTypeTaps({ 
+class RequestTypeTapsWidget extends StatelessWidget {
+  const RequestTypeTapsWidget({
     super.key,
     required TabController tabController,
   }) : _tabController = tabController;

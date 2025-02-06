@@ -1,6 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
+import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
+import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
+import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
+import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
+import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/chef/chef_bottom_navigation_bar_root.dart';
 import 'package:charlot/src/feature/chef/chef_orfders_status/presentation/logic/cubit/orders_type_cubit.dart';
 import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.dart';
@@ -11,13 +20,6 @@ import 'package:charlot/src/feature/chef/problems/presentation/views/report_pobl
 import 'package:charlot/src/feature/chef/profile/presentation/views/chef_profile_view.dart';
 import 'package:charlot/src/feature/chef/regsiter/presentation/view/chef_register_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
-import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
-import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
-import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:charlot/src/feature/location/presentation/views/map_picker_view.dart';
 import 'package:charlot/src/feature/manager/empolyee/presentation/delivery/presentation/views/delivery_details_view.dart';
@@ -29,15 +31,13 @@ import 'package:charlot/src/feature/orderDetails/presentation/view/order_details
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/client_details_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/view/price_details_view.dart';
+import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/sales_home_cubit.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated_orderes.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orders.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
 
 import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
 import '../../src/feature/manager/empolyee/presentation/chef_list/presentation/view/chef_details_view.dart';
@@ -159,7 +159,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.salesBottomNavigationBarRoot,
       builder: (context, state) => BlocProvider(
-        create: (context) => getIt<HomeCubit>()..getOrderStats(),
+        create: (context) => getIt<SalesHomeCubit>()..getOrderStats(),
         child: const SalesBottomNavigationBarRoot(),
       ),
     ),

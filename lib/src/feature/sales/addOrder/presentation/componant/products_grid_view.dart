@@ -10,6 +10,8 @@ class ReadyProductsForm extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.all(8.0),
         itemCount: 10,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

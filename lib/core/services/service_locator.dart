@@ -25,6 +25,11 @@ import 'package:charlot/src/feature/manager/home/data/remote/home_api_services.d
 import 'package:charlot/src/feature/manager/home/data/remote/home_remote_ds.dart';
 import 'package:charlot/src/feature/manager/home/domain/repository/home_repository.dart';
 import 'package:charlot/src/feature/manager/register/domain/usecase/manager_register_usecase.dart';
+import 'package:charlot/src/feature/sales/home/data/datasource/home_api_service.dart';
+import 'package:charlot/src/feature/sales/home/data/datasource/home_remote_d_s.dart';
+import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
+import 'package:charlot/src/feature/sales/home/domain/usecases/get_order_stats_u_c.dart';
+import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/sales_home_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -90,8 +95,6 @@ void setupLocator() {
   getIt.registerLazySingleton<SalesRegisterApiServices>(
       () => SalesRegisterApiServicesImpl(getIt()));
 
-   
-
   getIt.registerLazySingleton<BranchesApiServices>(
     () => BranchesApiServicesImp(getIt()),
   );
@@ -102,7 +105,7 @@ void setupLocator() {
   getIt.registerLazySingleton<BannerApiServices>(
     () => BannerApiServicesImp(getIt()),
   );
-getIt.registerLazySingleton<ChefRegisterApiServices>(
+  getIt.registerLazySingleton<ChefRegisterApiServices>(
       () => ChefRegisterApiServicesImpl(getIt()));
 
   getIt.registerLazySingleton<AuthApiServices>(
@@ -116,17 +119,18 @@ getIt.registerLazySingleton<ChefRegisterApiServices>(
       () => OrderDetailsApiServiceImpl(getIt()));
   getIt.registerLazySingleton<EmployeeApiServices>(
       () => EmployeeApiServicesImpl(getIt()));
- getIt.registerLazySingleton<AllEmployeeApiServices>(
+  getIt.registerLazySingleton<AllEmployeeApiServices>(
       () => AllEmployeeApiServicesImpl(getIt()));
 
+  getIt.registerLazySingleton<OrdersTypeApiSevcies>(
+      () => OrdersTypeApiSevciesImp(getIt()));
 
-getIt.registerLazySingleton<OrdersTypeApiSevcies>(
-  () => OrdersTypeApiSevciesImp(getIt())
-);    
+  getIt.registerLazySingleton<SalesHomeApiService>(
+      () => SalesHomeApiServiceImpl(getIt()));
 
 // getIt.registerLazySingleton<OrdersTypeApiSevcies>(
 //   () => OrdersTypeApiSevciesImp(getIt())
-// );    
+// );
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -140,16 +144,16 @@ getIt.registerLazySingleton<OrdersTypeApiSevcies>(
       () => SalesRegisterRemoteDsImpl(getIt()));
 
   getIt.registerLazySingleton<BranchRemoteDataSource>(
-  () => BranchesDataSourceImp(getIt()),
-);
+    () => BranchesDataSourceImp(getIt()),
+  );
   getIt.registerLazySingleton<SpecializationRemoteDataSource>(
     () => SpecializationRemoteDataSourceImp(getIt()),
-);
-getIt.registerLazySingleton<BannerRemoteDs>(
-    () => BannerRemoteDsImp(getIt()), 
-);
+  );
+  getIt.registerLazySingleton<BannerRemoteDs>(
+    () => BannerRemoteDsImp(getIt()),
+  );
 
- getIt.registerLazySingleton<ChefRegisterRemoteDs>(
+  getIt.registerLazySingleton<ChefRegisterRemoteDs>(
       () => ChefRegisterRemoteDsImpl(getIt()));
 
   getIt.registerLazySingleton<AuthRemoteDs>(() => AuthRemoteDsImpl(getIt()));
@@ -159,13 +163,19 @@ getIt.registerLazySingleton<BannerRemoteDs>(
   getIt.registerLazySingleton<OrderDetailsRemoteDs>(
       () => OrderDetailsRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<EmployeeRemoteDs>(
-          () => EmployeeRemoteDsImpl(getIt()));
+      () => EmployeeRemoteDsImpl(getIt()));
 
-    getIt.registerLazySingleton<OrdersTypeRemoteDataSource>(
-      () => OrdersTypeRemoteDataSourceImp(getIt())
-);
-getIt.registerLazySingleton<AllEmployeeRemoteDs>(
-      () =>AllEmployeeRemoteDsImpl (getIt()));
+  getIt.registerLazySingleton<OrdersTypeRemoteDataSource>(
+      () => OrdersTypeRemoteDataSourceImp(getIt()));
+  getIt.registerLazySingleton<AllEmployeeRemoteDs>(
+      () => AllEmployeeRemoteDsImpl(getIt()));
+
+  getIt.registerLazySingleton<SalesHomeRemoteDS>(
+      () => SalesHomeRemoteDS(getIt()));
+
+  // getIt.registerLazySingleton<SalesRegisterRemoteDs>(
+  //     () => SalesRegisterRemoteDsImpl(getIt()));
+
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(getIt()));
@@ -174,14 +184,14 @@ getIt.registerLazySingleton<AllEmployeeRemoteDs>(
       () => ManagerRegisterRepoImpl(getIt()));
   getIt.registerLazySingleton<SalesRegisterRepo>(
       () => SalesRegisterRepoImpl(getIt()));
-   getIt.registerLazySingleton<BranchesRepo>(
+  getIt.registerLazySingleton<BranchesRepo>(
     () => BranchesRepoImp(getIt()),
-  );    
+  );
   getIt.registerLazySingleton<BannersRepo>(
     () => BannersRepoImp(getIt()),
   );
- 
- getIt.registerLazySingleton<ChefRegisterRepo>(
+
+  getIt.registerLazySingleton<ChefRegisterRepo>(
       () => ChefRegisterRepoImpl(getIt()));
 
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -194,10 +204,14 @@ getIt.registerLazySingleton<AllEmployeeRemoteDs>(
       () => OrderDetailsRepositoryImpl(getIt()));
   getIt.registerLazySingleton<EmployeeRepository>(
       () => EmployeeRepositoryImpl(getIt()));
- getIt.registerLazySingleton<AllEmployeeRepository>(
-      () => AllEmployeeRepositoryImpl(getIt())); getIt.registerLazySingleton<OrdersTypeRepo>(
-  () => OrdersTypeRepoImp(getIt())
- );
+  getIt.registerLazySingleton<AllEmployeeRepository>(
+      () => AllEmployeeRepositoryImpl(getIt()));
+  getIt.registerLazySingleton<OrdersTypeRepo>(
+    () => OrdersTypeRepoImp(getIt()),
+  );
+  getIt.registerLazySingleton<SalesHomeRepo>(
+    () => SalesHomeRepoImpl(getIt()),
+  );
 
   ///! -- UseCases -- ///
 
@@ -221,15 +235,13 @@ getIt.registerLazySingleton<AllEmployeeRemoteDs>(
     () => GetBranchesUc(getIt()),
   );
   getIt.registerLazySingleton<GetSpecializationUc>(
-   () => GetSpecializationUc(getIt()),
- );
+    () => GetSpecializationUc(getIt()),
+  );
 
-getIt.registerLazySingleton<SalesRegisterUseCase>(
+  getIt.registerLazySingleton<SalesRegisterUseCase>(
     () => SalesRegisterUseCase(getIt()),
   );
-getIt.registerLazySingleton<BannerUseCase>(
-  () => BannerUseCase(getIt())
-);
+  getIt.registerLazySingleton<BannerUseCase>(() => BannerUseCase(getIt()));
 
   getIt.registerLazySingleton<VerifyEmailUseCase>(
       () => VerifyEmailUseCase(getIt()));
@@ -239,8 +251,12 @@ getIt.registerLazySingleton<BannerUseCase>(
 // getIt.registerLazySingleton<SalesRegisterUseCase>(
 //     () => SalesRegisterUseCase(getIt()),
 //   );
-getIt.registerLazySingleton<ChefRegisterUseCase>(
+  getIt.registerLazySingleton<ChefRegisterUseCase>(
     () => ChefRegisterUseCase(getIt()),
+  );
+
+  getIt.registerLazySingleton<GetOrderStatsUC>(
+    () => GetOrderStatsUC(getIt()),
   );
 
   //! Cubits //
@@ -260,14 +276,12 @@ getIt.registerLazySingleton<ChefRegisterUseCase>(
   getIt.registerFactory<ManagerRegisterCubit>(
       () => ManagerRegisterCubit(getIt()));
 
-       getIt.registerFactory<SalesRegisterCubit>(
-      () => SalesRegisterCubit(getIt()));
-       getIt.registerFactory<ChefRegisterCubit>(
-      () => ChefRegisterCubit(getIt()));
+  getIt.registerFactory<SalesRegisterCubit>(() => SalesRegisterCubit(getIt()));
+  getIt.registerFactory<ChefRegisterCubit>(() => ChefRegisterCubit(getIt()));
 
- getIt.registerFactory<VerifyEmailCubit>(
-      () => VerifyEmailCubit(getIt()));
+  getIt.registerFactory<VerifyEmailCubit>(() => VerifyEmailCubit(getIt()));
 
-      getIt.registerFactory<LoginCubit>(
-      () => LoginCubit(getIt()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+
+  getIt.registerFactory<SalesHomeCubit>(() => SalesHomeCubit(getIt()));
 }
