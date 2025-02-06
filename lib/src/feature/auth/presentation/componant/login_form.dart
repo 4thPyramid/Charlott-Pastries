@@ -154,7 +154,7 @@ class _LoginFormState extends State<LoginForm>
       context.go(RouterNames.salesBottomNavigationBarRoot);
     } else if (key == 'chef') {
       print('chef');
-     // context.go(RouterNames.ch);
+      context.go(RouterNames.ChefBottomNavigationBarRoot);
   }
 }
     }

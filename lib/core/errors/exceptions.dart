@@ -34,7 +34,8 @@ void handelDioException(DioException e) {
               errorModel: ErrorModel.fromJson(e.response?.data));
         case 403:
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response?.data));
+              errorModel: ErrorModel.fromJson(e.
+              response?.data));
         case 404:
           throw ServerException(
               errorModel: ErrorModel.fromJson(e.response?.data));

@@ -142,5 +142,6 @@ abstract class AppStrings {
       performanceDetails = "احصائيات الاداء",
       editProfile = "تعديل الملف الشخصى",
       personalInfo = "المعلومات الشخصية",
-      phoneHint = "ادخل رقم الهاتف";
+      phoneHint = "ادخل رقم الهاتف",
+      reportproblem = 'الابلاغ عن مشكله؟';
 }

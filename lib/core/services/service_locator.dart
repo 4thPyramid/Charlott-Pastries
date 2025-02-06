@@ -1,8 +1,30 @@
 import 'package:charlot/core/app_cubit/app_cubit.dart';
+import 'package:charlot/core/common/banner_feature/data/data_source/banner_api_servcies.dart';
+import 'package:charlot/core/common/banner_feature/data/data_source/banner_remote_ds.dart';
+import 'package:charlot/core/common/banner_feature/domain/repo/banners_repo.dart';
+import 'package:charlot/core/common/banner_feature/domain/use_case/banner_use_case.dart';
+import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
+import 'package:charlot/core/common/branches_feature/data/data_source/branches_api_services.dart';
+import 'package:charlot/core/common/branches_feature/data/data_source/branches_data_source.dart';
+import 'package:charlot/core/common/branches_feature/domain/repo/branches_repo.dart';
+import 'package:charlot/core/common/branches_feature/domain/usecases/get_branches_uc.dart';
+import 'package:charlot/core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
+import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_api_sevices.dart';
+import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_remote_data_source.dart';
+import 'package:charlot/core/common/specialization_feature/domain/usecases/get_specialization_uc.dart';
+import 'package:charlot/core/common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/data/api/dio_consumer.dart';
 import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/src/feature/auth/domain/usecase/login_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/data/datasource/orders_type_api_sevcies.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/data/datasource/orders_type_remote_data_source.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/repo/orders_type_repo.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/accepted_orders_use_caes.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/completed_orders_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/new_orders_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/pinding_orders_use_case.dart';
+import 'package:charlot/src/feature/chef/chef_orfders_status/presentation/logic/cubit/orders_type_cubit.dart';
 import 'package:charlot/src/feature/location/data/datasource/map_picker_remote_data_source.dart';
 import 'package:charlot/src/feature/location/domain/repo/map_picker_repo.dart';
 import 'package:charlot/src/feature/location/domain/usecase/get_address_uc.dart';
@@ -69,11 +91,27 @@ void setupLocator() {
  getIt.registerLazySingleton<SalesRegisterApiServices>(
       () => SalesRegisterApiServicesImpl(getIt()));
 
+ 
+
+  getIt.registerLazySingleton<BranchesApiServices>(
+    () => BranchesApiServicesImp(getIt()),
+  );
+  getIt.registerLazySingleton<SpecializationApiSevices>(
+    () => SpecializationApiSevicesImp(getIt()),
+  );
+
+  getIt.registerLazySingleton<BannerApiServices>(
+    () => BannerApiServicesImp(getIt()),
+  );
 getIt.registerLazySingleton<ChefRegisterApiServices>(
       () => ChefRegisterApiServicesImpl(getIt()));
 
 getIt.registerLazySingleton<AuthApiServices>(
       () => AuthApiServicesImpl(getIt()));
+
+getIt.registerLazySingleton<OrdersTypeApiSevcies>(
+  () => OrdersTypeApiSevciesImp(getIt())
+);    
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -86,12 +124,24 @@ getIt.registerLazySingleton<AuthApiServices>(
  getIt.registerLazySingleton<SalesRegisterRemoteDs>(
       () => SalesRegisterRemoteDsImpl(getIt()));
 
+ getIt.registerLazySingleton<BranchRemoteDataSource>(
+  () => BranchesDataSourceImp(getIt()),
+);
+  getIt.registerLazySingleton<SpecializationRemoteDataSource>(
+    () => SpecializationRemoteDataSourceImp(getIt()),
+);
+getIt.registerLazySingleton<BannerRemoteDs>(
+    () => BannerRemoteDsImp(getIt()), 
+);
+
  getIt.registerLazySingleton<ChefRegisterRemoteDs>(
       () => ChefRegisterRemoteDsImpl(getIt()));
 
  getIt.registerLazySingleton<AuthRemoteDs>(
       () => AuthRemoteDsImpl(getIt()));
-
+getIt.registerLazySingleton<OrdersTypeRemoteDataSource>(
+      () => OrdersTypeRemoteDataSourceImp(getIt())
+);
       
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
@@ -101,12 +151,21 @@ getIt.registerLazySingleton<AuthApiServices>(
       () => ManagerRegisterRepoImpl(getIt()));
  getIt.registerLazySingleton<SalesRegisterRepo>(
       () => SalesRegisterRepoImpl(getIt()));
+  getIt.registerLazySingleton<BranchesRepo>(
+    () => BranchesRepoImp(getIt()),
+  );    
+  getIt.registerLazySingleton<BannersRepo>(
+    () => BannersRepoImp(getIt()),
+  );
+ 
  getIt.registerLazySingleton<ChefRegisterRepo>(
       () => ChefRegisterRepoImpl(getIt()));
 
  getIt.registerLazySingleton<AuthRepo>(
       () => AuthRepoImpl(getIt()));
-
+ getIt.registerLazySingleton<OrdersTypeRepo>(
+  () => OrdersTypeRepoImp(getIt())
+ );
 
   ///! -- UseCases -- ///
 
@@ -126,19 +185,45 @@ getIt.registerLazySingleton<AuthApiServices>(
   getIt.registerLazySingleton<ManagerRegisterUseCase>(
     () => ManagerRegisterUseCase(getIt())
   );
+
+  getIt.registerLazySingleton<GetBranchesUc>(
+    () => GetBranchesUc(getIt()),
+  );
+  getIt.registerLazySingleton<GetSpecializationUc>(
+   () => GetSpecializationUc(getIt()),
+ );
+
+getIt.registerLazySingleton<SalesRegisterUseCase>(
+    () => SalesRegisterUseCase(getIt()),
+  );
+getIt.registerLazySingleton<BannerUseCase>(
+  () => BannerUseCase(getIt())
+);
+
  getIt.registerLazySingleton<VerifyEmailUseCase>(
     () => VerifyEmailUseCase(getIt())
   );
 getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(getIt()),
   );
-getIt.registerLazySingleton<SalesRegisterUseCase>(
-    () => SalesRegisterUseCase(getIt()),
-  );
+
 getIt.registerLazySingleton<ChefRegisterUseCase>(
     () => ChefRegisterUseCase(getIt()),
   );
 
+  getIt.registerLazySingleton<CompletedOrdersUseCase>(
+    () => CompletedOrdersUseCase(getIt())
+  );
+   getIt.registerLazySingleton<AcceptedOrdersUseCaes>(
+    () => AcceptedOrdersUseCaes(getIt())
+  );
+   getIt.registerLazySingleton<PendingOrdersUseCase>(
+    () => PendingOrdersUseCase(getIt())
+  );
+ getIt.registerLazySingleton<NewOrdersUseCase>(
+  () => NewOrdersUseCase(getIt())
+ );
+  
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
         getIt(),
@@ -158,14 +243,37 @@ getIt.registerLazySingleton<ChefRegisterUseCase>(
 
        getIt.registerFactory<SalesRegisterCubit>(
       () => SalesRegisterCubit(getIt()));
+   getIt.registerFactory<BranchesCubit>(
+      () => BranchesCubit(getIt()),
+   );
+
+   getIt.registerFactory<SpecializationCubit>(
+      () => SpecializationCubit(getIt()),
+   );   
+
+   getIt.registerFactory<BannerCubit>(
+      () => BannerCubit(getIt()),
+   );
        getIt.registerFactory<ChefRegisterCubit>(
       () => ChefRegisterCubit(getIt()));
 
- getIt.registerFactory<VerifyEmailCubit>(
+     getIt.registerFactory<VerifyEmailCubit>(
       () => VerifyEmailCubit(getIt()));
 
       getIt.registerFactory<LoginCubit>(
       () => LoginCubit(getIt()));
+
+
+      getIt.registerFactory<OrdersTypeCubit>(
+      () => OrdersTypeCubit(
+        
+        getIt<NewOrdersUseCase>(),
+        getIt<CompletedOrdersUseCase>(),
+      getIt<AcceptedOrdersUseCaes>(),
+      getIt<PendingOrdersUseCase>(),
+      ),);
+
+
        getIt.registerLazySingleton<HomeApiService>(
     () => HomeApiServiceImpl(getIt<ApiConsumer>()),
   );
@@ -201,4 +309,5 @@ getIt.registerLazySingleton<ChefRegisterUseCase>(
       getIt<GetOrderStatsUC>(),
     ),
   );
+
 }
