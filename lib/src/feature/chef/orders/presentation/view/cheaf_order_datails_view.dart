@@ -57,7 +57,7 @@ class _ChefOrdersDetailsViewState extends State<ChefOrdersDetailsView> {
                         const OrderDetailsView(
                           from: 'chef',
                           title: 'تفاصيل الطلب الجديد',
-                          orderStatus: 'طلب جديد',
+                           orderId: 0,
                         ),
                         SizedBox(height: 20.h),
                           Container(

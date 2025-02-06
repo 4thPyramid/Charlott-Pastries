@@ -158,12 +158,10 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouterNames.salesBottomNavigationBarRoot,
-      builder: (context, state) => const SalesBottomNavigationBarRoot(),
       builder: (context, state) => BlocProvider(
-        create: (context) =>getIt<HomeCubit>()..getOrderStats(),
+        create: (context) => getIt<HomeCubit>()..getOrderStats(),
         child: const SalesBottomNavigationBarRoot(),
       ),
-
     ),
     GoRoute(
       path: RouterNames.salesHome,
@@ -257,40 +255,39 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: RouterNames.selectChef,
-      builder: (context, state) {
-        final data = state.extra as Map<String, dynamic>;
-        return SelectChefsView(orderId: data['orderId']as int ? ??0,);
-      }
-    ),
-    GoRoute(
-      path: RouterNames.chefDetails,
-      builder: (context, state) {
-        final data = state.extra as Map<String, dynamic>;
-        return ChefDetailsView(
-          chefId: data['chefId'] as int? ?? 0,
-          orderId: data['orderId'] as int? ?? 0,
-          
+        path: RouterNames.selectChef,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return SelectChefsView(
+            orderId: data['orderId'] as int? ?? 0,
           );
-      }
-    ),
+        }),
     GoRoute(
-      path: RouterNames.selectDeliveryBoy,
-      builder: (context, state){
-        final data = state.extra as Map<String, dynamic>;
-        return SelectDeliveryView(orderId: data['orderId']as int? ??0,);
-      }
-    ),
-    GoRoute(
-      path: RouterNames.deliveryBoyDetails,
-      builder: (context, state) {
-        final data = state.extra as Map<String, dynamic>;
-        return DeliveryDetailsView(
-          deliveryId: data['deliveryId'] as int? ?? 0,
-          orderId: data['orderId'] as int? ?? 0,
+        path: RouterNames.chefDetails,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return ChefDetailsView(
+            chefId: data['chefId'] as int? ?? 0,
+            orderId: data['orderId'] as int? ?? 0,
           );
-      } 
-    ),
+        }),
+    GoRoute(
+        path: RouterNames.selectDeliveryBoy,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return SelectDeliveryView(
+            orderId: data['orderId'] as int? ?? 0,
+          );
+        }),
+    GoRoute(
+        path: RouterNames.deliveryBoyDetails,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return DeliveryDetailsView(
+            deliveryId: data['deliveryId'] as int? ?? 0,
+            orderId: data['orderId'] as int? ?? 0,
+          );
+        }),
     GoRoute(
         path: RouterNames.personalInfoView,
         builder: (context, state) => BlocProvider(

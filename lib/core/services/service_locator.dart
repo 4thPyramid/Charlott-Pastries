@@ -3,16 +3,13 @@ import 'package:charlot/core/common/banner_feature/data/data_source/banner_api_s
 import 'package:charlot/core/common/banner_feature/data/data_source/banner_remote_ds.dart';
 import 'package:charlot/core/common/banner_feature/domain/repo/banners_repo.dart';
 import 'package:charlot/core/common/banner_feature/domain/use_case/banner_use_case.dart';
-import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
 import 'package:charlot/core/common/branches_feature/data/data_source/branches_api_services.dart';
 import 'package:charlot/core/common/branches_feature/data/data_source/branches_data_source.dart';
 import 'package:charlot/core/common/branches_feature/domain/repo/branches_repo.dart';
 import 'package:charlot/core/common/branches_feature/domain/usecases/get_branches_uc.dart';
-import 'package:charlot/core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
 import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_api_sevices.dart';
 import 'package:charlot/core/common/specialization_feature/data/data_source/specialization_remote_data_source.dart';
 import 'package:charlot/core/common/specialization_feature/domain/usecases/get_specialization_uc.dart';
-import 'package:charlot/core/common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/data/api/dio_consumer.dart';
 import 'package:charlot/core/data/cached/cache_helper.dart';
@@ -20,30 +17,14 @@ import 'package:charlot/src/feature/auth/domain/usecase/login_use_case.dart';
 import 'package:charlot/src/feature/chef/chef_orfders_status/data/datasource/orders_type_api_sevcies.dart';
 import 'package:charlot/src/feature/chef/chef_orfders_status/data/datasource/orders_type_remote_data_source.dart';
 import 'package:charlot/src/feature/chef/chef_orfders_status/domain/repo/orders_type_repo.dart';
-import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/accepted_orders_use_caes.dart';
-import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/completed_orders_use_case.dart';
-import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/new_orders_use_case.dart';
-import 'package:charlot/src/feature/chef/chef_orfders_status/domain/use_cases/pinding_orders_use_case.dart';
-import 'package:charlot/src/feature/chef/chef_orfders_status/presentation/logic/cubit/orders_type_cubit.dart';
 import 'package:charlot/src/feature/location/data/datasource/map_picker_remote_data_source.dart';
 import 'package:charlot/src/feature/location/domain/repo/map_picker_repo.dart';
 import 'package:charlot/src/feature/location/domain/usecase/get_address_uc.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
-import 'package:charlot/src/feature/manager/empolyee/domain/usecase/get_chef_use_case.dart';
-import 'package:charlot/src/feature/manager/empolyee/presentation/chef_list/logic/chef_details_cubit.dart';
-import 'package:charlot/src/feature/manager/empolyee/presentation/logic/select/select_chef_delivery_cubit.dart';
 import 'package:charlot/src/feature/manager/home/data/remote/home_api_services.dart';
 import 'package:charlot/src/feature/manager/home/data/remote/home_remote_ds.dart';
 import 'package:charlot/src/feature/manager/home/domain/repository/home_repository.dart';
-import 'package:charlot/src/feature/manager/home/domain/usecase/get_new_orders_use_case.dart';
 import 'package:charlot/src/feature/manager/register/domain/usecase/manager_register_usecase.dart';
-import 'package:charlot/src/feature/sales/home/data/home_api_service.dart';
-import 'package:charlot/src/feature/sales/home/data/remote_d_s.dart';
-import 'package:charlot/src/feature/sales/home/data/repps_impl/repos_impl.dart';
-import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
-import 'package:charlot/src/feature/sales/home/domain/usecases/get_order_stats_u_c.dart';
-import 'package:charlot/src/feature/sales/home/domain/usecases/get_profile_u_s.dart';
-import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -61,51 +42,19 @@ import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.d
 import '../../src/feature/manager/accept_employee/data/remote/all_employee_api_services.dart';
 import '../../src/feature/manager/accept_employee/data/remote/all_employee_remote_ds.dart';
 import '../../src/feature/manager/accept_employee/domain/repo/all_employee_repository.dart';
-import '../../src/feature/manager/accept_employee/domain/usecase/accept_chef_use_case.dart';
-import '../../src/feature/manager/accept_employee/domain/usecase/accept_delivery_use_case.dart';
-import '../../src/feature/manager/accept_employee/domain/usecase/get_all_employee_use_case.dart';
-import '../../src/feature/manager/accept_employee/domain/usecase/reject_chef_use_case.dart';
-import '../../src/feature/manager/accept_employee/domain/usecase/reject_delivery_use_case.dart';
-import '../../src/feature/manager/accept_employee/presentation/logic/all_employee/all_employee_cubit.dart';
-import '../../src/feature/manager/accept_employee/presentation/logic/employee_action/employee_action_cubit.dart';
 import '../../src/feature/manager/empolyee/data/remote/employee_remote_ds.dart';
 import '../../src/feature/manager/empolyee/data/remote/get_employee_api_services.dart';
 import '../../src/feature/manager/empolyee/domain/repo/employee_repository.dart';
-import '../../src/feature/manager/empolyee/domain/usecase/get_chef_details_use_case.dart';
-import '../../src/feature/manager/empolyee/domain/usecase/get_delivery_details_use_case.dart';
-import '../../src/feature/manager/empolyee/domain/usecase/get_delivery_use_case.dart';
-import '../../src/feature/manager/empolyee/domain/usecase/select_chef_use_case.dart';
-import '../../src/feature/manager/empolyee/domain/usecase/select_delivery_use_case.dart';
-import '../../src/feature/manager/empolyee/presentation/delivery/logic/delivery_details_cubit.dart';
-import '../../src/feature/manager/empolyee/presentation/logic/employee_cubits.dart';
-import '../../src/feature/manager/home/domain/usecase/get_in_progress_orders_use_case.dart';
-import '../../src/feature/manager/home/domain/usecase/get_stats_use_case.dart';
-import '../../src/feature/manager/home/presentation/logic/in_progress_orders/in_progress_orders_cubit.dart';
-import '../../src/feature/manager/home/presentation/logic/new_orders/new_orders_cubit.dart';
-import '../../src/feature/manager/home/presentation/logic/stats/stats_cubit.dart';
 import '../../src/feature/manager/orders/data/remote/orders_api_services.dart';
 import '../../src/feature/manager/orders/data/remote/orders_remote_ds.dart';
 import '../../src/feature/manager/orders/domain/repo/orders_repo.dart';
-import '../../src/feature/manager/orders/domain/usecase/get_completed_order_use_case.dart';
-import '../../src/feature/manager/orders/domain/usecase/get_delivered_order_use_case.dart';
-import '../../src/feature/manager/orders/domain/usecase/get_order_with_delivery_use_case.dart';
-import '../../src/feature/manager/orders/domain/usecase/get_refused_order_use_case.dart';
-import '../../src/feature/manager/orders/domain/usecase/get_returned_order_use_case.dart';
-import '../../src/feature/manager/orders/presentation/logic/completed/completed_order_cubit.dart';
-import '../../src/feature/manager/orders/presentation/logic/delivered/delivered_order_cubit.dart';
-import '../../src/feature/manager/orders/presentation/logic/refused/refused_order_cubit.dart';
-import '../../src/feature/manager/orders/presentation/logic/returned/returned_order_cubit.dart';
-import '../../src/feature/manager/orders/presentation/logic/with_delivery/with_delivery_order_cubit.dart';
 import '../../src/feature/manager/profile/data/datasource/profile_api_service.dart';
 import '../../src/feature/manager/profile/data/datasource/profile_remote_ds.dart';
 import '../../src/feature/manager/profile/domain/repository/profile_repository.dart';
-import '../../src/feature/manager/profile/domain/usecase/change_password_uc.dart';
 import '../../src/feature/manager/profile/domain/usecase/delete_account_uc.dart';
 import '../../src/feature/manager/profile/domain/usecase/get_profile_photo_uc.dart';
-import '../../src/feature/manager/profile/domain/usecase/logout_use_case.dart';
 import '../../src/feature/manager/profile/domain/usecase/update_profile_photo.dart';
 import '../../src/feature/manager/profile/domain/usecase/update_profile_uc.dart';
-import '../../src/feature/manager/profile/presentation/logic/delete_account_cubit.dart';
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';
 import '../../src/feature/manager/register/data/remote/manager_register_api_serivces.dart';
 import '../../src/feature/manager/register/data/remote/manager_register_remote_ds.dart';
@@ -114,11 +63,6 @@ import '../../src/feature/manager/register/presentation/logic/manager_register/m
 import '../../src/feature/orderDetails/data/remote/order_details_api_service.dart';
 import '../../src/feature/orderDetails/data/remote/order_details_remote_ds.dart';
 import '../../src/feature/orderDetails/domain/repo/order_details_repo.dart';
-import '../../src/feature/orderDetails/domain/usecase/accept_order_use_case.dart';
-import '../../src/feature/orderDetails/domain/usecase/get_order_details_use_case.dart';
-import '../../src/feature/orderDetails/presentation/logic/accept_order/accept_order_cubit.dart';
-import '../../src/feature/orderDetails/presentation/logic/order_details_cubit.dart';
-import '../../src/feature/sales/home/domain/usecases/get_banner_u_c.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_api_serivces.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_remote_ds.dart';
 import '../../src/feature/sales/register/domain/repository/sales_register_repo.dart';
@@ -214,10 +158,12 @@ getIt.registerLazySingleton<BannerRemoteDs>(
       .registerLazySingleton<OrdersRemoteDs>(() => OrdersRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<OrderDetailsRemoteDs>(
       () => OrderDetailsRemoteDsImpl(getIt()));
-  getIt.registerLazySingleton<EmployeeRemoteDs>(getIt.registerLazySingleton<OrdersTypeRemoteDataSource>(
+  getIt.registerLazySingleton<EmployeeRemoteDs>(
+          () => EmployeeRemoteDsImpl(getIt()));
+
+    getIt.registerLazySingleton<OrdersTypeRemoteDataSource>(
       () => OrdersTypeRemoteDataSourceImp(getIt())
 );
-      () => EmployeeRemoteDsImpl(getIt()));
 getIt.registerLazySingleton<AllEmployeeRemoteDs>(
       () =>AllEmployeeRemoteDsImpl (getIt()));
   ///! -- Repositories -- ///
