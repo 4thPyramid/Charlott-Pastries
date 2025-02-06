@@ -7,6 +7,7 @@ import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart'
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
+import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
 import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
@@ -24,7 +25,6 @@ import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart'
 import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated_orderes.dart';
-import 'package:charlot/src/feature/sales/orders/presentation/views/new_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orders.dart';
 import 'package:charlot/src/feature/sales/sales_bottom_navigation_bar_root.dart';
 
@@ -135,7 +135,6 @@ final GoRouter router = GoRouter(
 
     //?auth
 
-  
     GoRoute(
       path: RouterNames.salesRegisterView,
       builder: (context, state) => BlocProvider(
@@ -143,9 +142,12 @@ final GoRouter router = GoRouter(
         child: const SalesRegisterView(),
       ),
     ),
-      GoRoute(
-      path : RouterNames.salesBottomNavigationBarRoot,
-      builder: (context, state) => const SalesBottomNavigationBarRoot(),
+    GoRoute(
+      path: RouterNames.salesBottomNavigationBarRoot,
+      builder: (context, state) => BlocProvider(
+        create: (context) =>getIt<HomeCubit>()..getOrderStats(),
+        child: const SalesBottomNavigationBarRoot(),
+      ),
     ),
     GoRoute(
       path: RouterNames.salesHome,

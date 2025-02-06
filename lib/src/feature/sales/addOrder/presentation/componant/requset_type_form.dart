@@ -1,25 +1,34 @@
-import 'package:charlot/core/app_cubit/app_cubit.dart';
-import 'package:charlot/core/theme/app_colors.dart';
-import 'package:charlot/core/utils/app_assets.dart';
-import 'package:charlot/core/utils/app_styles.dart';
-import 'package:charlot/src/feature/auth/presentation/widgets/email_and_phone_tap_bar.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/componant/products_grid_view.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/componant/requset_form.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/order_type_taps';
+import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/datails_field.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/image_picker_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-class RequsetTypeForm extends StatefulWidget {
-  const RequsetTypeForm({Key? key}) : super(key: key);
+import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../core/routes/router_names.dart';
+import '../../../../../../core/utils/app_styles.dart';
+import '../widgets/date_row_widget.dart';
+import '../widgets/order_type_taps';
+import '../widgets/quantity_selector.dart';
+import '../widgets/request_type_drop_down.dart';
+import '../widgets/show_time_picker.dart';
+import 'flower_selection.dart';
+
+class RequestTypeForm extends StatefulWidget {
+  const RequestTypeForm({Key? key}) : super(key: key);
 
   @override
-  State<RequsetTypeForm> createState() => _RequsetTypeFormState();
+  State<RequestTypeForm> createState() => _RequestTypeFormState();
 }
 
-class _RequsetTypeFormState extends State<RequsetTypeForm>
-    with SingleTickerProviderStateMixin {
+class _RequestTypeFormState extends State<RequestTypeForm> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey();
+  String? selectedType;
+
+  // Define form visibility flags
+  bool showCakeFields = false;
+  bool showFlowerFields = false;
 
   @override
   void initState() {
@@ -33,6 +42,31 @@ class _RequsetTypeFormState extends State<RequsetTypeForm>
     super.dispose();
   }
 
+  void _handleTypeSelection(String? value) {
+    setState(() {
+      selectedType = value;
+      
+      // Update visibility flags based on selection
+      switch (value) {
+        case 'تورته':
+          showCakeFields = true;
+          showFlowerFields = false;
+          break;
+        case 'ورد':
+          showCakeFields = false;
+          showFlowerFields = true;
+          break;
+        case 'تورته مع ورد':
+          showCakeFields = true;
+          showFlowerFields = true;
+          break;
+        default:
+          showCakeFields = false;
+          showFlowerFields = false;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -44,13 +78,81 @@ class _RequsetTypeFormState extends State<RequsetTypeForm>
               RequestTypeTaps(
                 tabController: _tabController,
               ),
-              SizedBox(
-                height: 800.h,
-                child: TabBarView(
-                  controller: _tabController,
-                  children: const [
-                    RequestForm(),
-                    ReadyProductsForm(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Column(
+                  children: [
+                    RequestTypeDropdown(
+                      value: selectedType,
+                      onChanged: _handleTypeSelection,
+                    ),
+                    SizedBox(height: 16.h),
+                    
+                    // Conditional Cake Form Fields
+                    if (showCakeFields) ...[
+                     
+                      const DetailsField(text: 'تفاصيل طلب الكيك',),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                       Row(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+    const QuantitySelector(),
+    const Spacer(),
+    DeliveryTimePicker(),
+  ],
+),
+                      SizedBox(height: 16.h),
+                       const DateRowWidget(),
+                       SizedBox(height: 21.h),
+                    const ImagePickerSection(text: 'اضافه صور الكيك',),
+                    ],
+
+                    // Conditional Flower Form Fields
+                    if (showFlowerFields) ...[
+                        SizedBox(
+                          height: 40.h,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('تفاصيل طلب الورد',style: AppStyles.s14.copyWith(fontWeight: FontWeight.w700,),),
+                            ],
+                          ),
+                        ),
+                      
+                       FlowerSelectionDropdowns(onTypeChanged: (String? value) {  }, onColorChanged: (String? value) {  },),
+                       SizedBox(height: 20.h),
+                        Row(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+    const QuantitySelector(),
+    const Spacer(),
+    DeliveryTimePicker(),
+  ],                 
+),
+                      SizedBox(height: 16.h),
+                      const DateRowWidget(),
+                       SizedBox(height: 20.h),
+
+                    const ImagePickerSection(text: 'اضافه صور الورد',),
+                    ],
+
+                    // Common Fields
+                   
+                    SizedBox(height: 16.h),
+
+                    Center(
+                      child: CustomButton(
+                        text: "التالي",
+                        onPressed: () {
+                          if (formKey.currentState?.validate() ?? false) {
+                            context.go(RouterNames.priceDetailsView);
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 50.h),
                   ],
                 ),
               ),

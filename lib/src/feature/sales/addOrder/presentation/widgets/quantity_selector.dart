@@ -58,7 +58,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
         ),
         const SizedBox(height: 8),
         Container(
-          width: 130.w,
+          width: 134.w,
           height: 50.h,
           decoration: BoxDecoration(
             color: AppColors.white,
@@ -90,7 +90,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
                     )),
               ),
               IconButton(
-                icon: Container(
+                icon: Container(  
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: AppColors.primaryColor,

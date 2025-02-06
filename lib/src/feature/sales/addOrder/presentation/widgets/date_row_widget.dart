@@ -75,7 +75,7 @@ class _DateRowWidgetState extends State<DateRowWidget> {
         Row(
           children: [
             Text(
-              'التاريخ',
+              'الموعد الطلوب',
               style: AppStyles.s14.copyWith(fontWeight: FontWeight.w700),
             ),
             if (widget.isRequired)

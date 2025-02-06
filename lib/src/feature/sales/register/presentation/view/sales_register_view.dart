@@ -21,7 +21,9 @@ class SalesRegisterView extends StatelessWidget {
             SizedBox(height: 70.h),
              SalesRegisterForm(),
             HaveAnAccountWidget(
-              onTap: () {},
+              onTap: () {
+                
+              },
                title1: AppStrings.haveAnAccount,
               title2: AppStrings.signIn,
             ),

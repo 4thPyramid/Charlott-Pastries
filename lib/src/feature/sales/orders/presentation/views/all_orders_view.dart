@@ -79,7 +79,7 @@ class OrdersListviewForTaps extends StatelessWidget {
     return Expanded(
       child: SizedBox(
         child: ListView.builder(
-          itemCount: 10,
+          itemCount: 1,
           itemBuilder: (context, index) {
             return Padding(
                 padding:
