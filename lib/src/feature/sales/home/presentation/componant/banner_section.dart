@@ -1,3 +1,4 @@
+import 'package:charlot/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/core/utils/app_assets.dart';
@@ -10,29 +11,31 @@ class BannerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<BannerCubit>(context).getBanners();
-    return BlocBuilder<BannerCubit, BannerState>(
-      builder: (context, state) {
-        return state.when(
-          initial: () => const Center(child: CircularProgressIndicator()),
-          Loading: () => const Center(child: CircularProgressIndicator()),
-          Loaded: (banners) => SizedBox(
-            height: 194.h,
-            width: 352.w,
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemCount: banners.length,
-              itemBuilder: (BuildContext context, int index) {
-                return HomeIntroImage(
-                  image: banners[index].image ?? AppAssets.home,
-                );
-              },
+    return BlocProvider(
+      create: (context) => getIt<BannerCubit>()..getBanners(),
+      child: BlocBuilder<BannerCubit, BannerState>(
+        builder: (context, state) {
+          return state.when(
+            initial: () => const Center(child: CircularProgressIndicator()),
+            Loading: () => const Center(child: CircularProgressIndicator()),
+            Loaded: (banners) => SizedBox(
+              height: 194.h,
+              width: 352.w,
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: banners.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return HomeIntroImage(
+                    image: banners[index].image ?? AppAssets.home,
+                  );
+                },
+              ),
             ),
-          ),
-          error: (error) => Center(child: Text(error.message)),
-        );
-      },
+            error: (error) => Center(child: Text(error.message)),
+          );
+        },
+      ),
     );
   }
 }

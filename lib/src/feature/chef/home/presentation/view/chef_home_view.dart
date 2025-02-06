@@ -20,7 +20,7 @@ class ChefHomeView extends StatelessWidget {
                 name: 'محمد عمرو',
               ),
               SizedBox(height: 20.h),
-              BannerSection(),
+            const BannerSection(),
               SizedBox(height: 20.h),
               const OrderListViewSection(),
             ],

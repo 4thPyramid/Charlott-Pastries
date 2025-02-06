@@ -11,7 +11,5 @@ class BannerModel {
 
   factory BannerModel.fromJson(Map<String, dynamic> json) => _$BannerModelFromJson(json);
 
-  get length => null;
-
   Map<String, dynamic> toJson() => _$BannerModelToJson(this);
 }

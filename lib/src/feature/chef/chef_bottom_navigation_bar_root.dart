@@ -1,4 +1,6 @@
 import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.dart';
+import 'package:charlot/src/feature/chef/orders/presentation/view/chef_orders_view.dart';
+import 'package:charlot/src/feature/chef/profile/presentation/views/chef_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +17,9 @@ class ChefBottomNavigationBarRoot extends StatelessWidget {
       builder: (context, state) {
         final List<Widget> pages = [
           const ChefHomeView(),
+          const ChefOrdersView(),
           const NotificationView(),
+          const ChefProfileView(),
         ];
         return Scaffold(
           backgroundColor: AppColors.lightGrey,
@@ -48,7 +52,7 @@ class ChefBottomNavigationBarRoot extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.add_circle_outline,
+                    Icons.shopping_cart_outlined,
                   ),
                   label: 'cart',
                 ),

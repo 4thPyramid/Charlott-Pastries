@@ -1,4 +1,3 @@
-import 'package:charlot/core/utils/app_assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +16,7 @@ final String image;
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.all(Radius.circular(10))),
-        child: Image.asset(AppAssets.home),
+      //  child: Image.asset(AppAssets.home),
       );
     
   }

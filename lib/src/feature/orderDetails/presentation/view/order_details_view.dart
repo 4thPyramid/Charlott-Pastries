@@ -17,64 +17,67 @@ class OrderDetailsView extends StatelessWidget {
       {super.key,
       required this.from,
       required this.title,
-      required this.orderStatus});
+      required this.orderStatus
+      });
   final String from;
   final String title;
   final String orderStatus;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.greyForSelectTap,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomAppBar(
-              title: title,
-              iconLeft: Icons.arrow_back_ios,
-              onPressedLeft: () {
-                Navigator.pop(context);
-              },
-            ),
-            const OrderDetailsImageHeader(),
-            OrderTimes(
-              orderStatus: orderStatus,
-            ),
-            SizedBox(height: 16.h),
-            const ClientData(),
-            const TeamData(),
-            const OrderData(),
-            const OrderPrice(),
-            SizedBox(height: 16.h),
-            if (orderStatus == "طلب مكتمل")
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: CustomButton(
-                  text: 'اختر المندوب ',
-                  onPressed: () {},
-                ),
-              )
-            else if (orderStatus == "طلب جديد")
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AcceptAndRefuseButton(
-                    text: 'قبول',
-                    backgroundColor: AppColors.green,
-                    onPressed: () {},
-                  ),
-                  SizedBox(width: 16.w),
-                  AcceptAndRefuseButton(
-                    text: 'رفض',
-                    backgroundColor: AppColors.red,
-                    onPressed: () {},
-                  ),
-                ],
-              )
-            else
+    return Expanded(
+      child: Scaffold(
+        backgroundColor: AppColors.greyForSelectTap,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomAppBar(
+                title: title,
+                iconLeft: Icons.arrow_back_ios,
+                onPressedLeft: () {
+                  Navigator.pop(context);
+                },
+              ),
+              const OrderDetailsImageHeader(),
+              OrderTimes(
+                orderStatus: orderStatus,
+              ),
               SizedBox(height: 16.h),
-            SizedBox(height: 16.h),
-          ],
+              const ClientData(),
+              const TeamData(),
+              const OrderData(),
+              const OrderPrice(),
+              SizedBox(height: 16.h),
+              if (orderStatus == "طلب مكتمل")
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: CustomButton(
+                    text: 'اختر المندوب ',
+                    onPressed: () {},
+                  ),
+                )
+              else if (orderStatus == "طلب جديد")
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AcceptAndRefuseButton(
+                      text: 'قبول',
+                      backgroundColor: AppColors.green,
+                      onPressed: () {},
+                    ),
+                    SizedBox(width: 16.w),
+                    AcceptAndRefuseButton(
+                      text: 'رفض',
+                      backgroundColor: AppColors.red,
+                      onPressed: () {},
+                    ),
+                  ],
+                )
+              else
+                SizedBox(height: 16.h),
+              SizedBox(height: 16.h),
+            ],
+          ),
         ),
       ),
     );

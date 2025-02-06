@@ -1,5 +1,4 @@
 import 'package:charlot/src/feature/manager/profile/presentation/view/profile_view.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/view/add_order_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
 import 'package:flutter/material.dart';
