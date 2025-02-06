@@ -124,9 +124,9 @@ getIt.registerLazySingleton<OrdersTypeApiSevcies>(
   () => OrdersTypeApiSevciesImp(getIt())
 );    
 
-getIt.registerLazySingleton<OrdersTypeApiSevcies>(
-  () => OrdersTypeApiSevciesImp(getIt())
-);    
+// getIt.registerLazySingleton<OrdersTypeApiSevcies>(
+//   () => OrdersTypeApiSevciesImp(getIt())
+// );    
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -236,9 +236,9 @@ getIt.registerLazySingleton<BannerUseCase>(
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(getIt()),
   );
-getIt.registerLazySingleton<SalesRegisterUseCase>(
-    () => SalesRegisterUseCase(getIt()),
-  );
+// getIt.registerLazySingleton<SalesRegisterUseCase>(
+//     () => SalesRegisterUseCase(getIt()),
+//   );
 getIt.registerLazySingleton<ChefRegisterUseCase>(
     () => ChefRegisterUseCase(getIt()),
   );
