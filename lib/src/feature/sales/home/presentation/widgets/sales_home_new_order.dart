@@ -6,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SalesHomeNewOrders extends StatelessWidget {
-  const SalesHomeNewOrders({super.key});
-
+  const SalesHomeNewOrders({super.key, required this.number});
+ final int number;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,7 +32,7 @@ class SalesHomeNewOrders extends StatelessWidget {
               style: AppStyles.s14,
             ),
             SizedBox(height: 10.h),
-            Text("10 من الطلبات الجديدة",
+            Text("$number من الطلبات الجديدة",
                 style: AppStyles.s24.copyWith(fontWeight: FontWeight.w700)),
           ],
         ),

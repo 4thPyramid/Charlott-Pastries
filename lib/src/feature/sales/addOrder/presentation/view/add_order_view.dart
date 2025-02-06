@@ -19,7 +19,7 @@ class AddOrderViewFirst extends StatelessWidget {
               image: AppAssets.addOrder1,
               title: 'بيانات الطلب',
             ),
-            RequsetTypeForm(),
+            RequestTypeForm(),
           ],
         ),
       ),

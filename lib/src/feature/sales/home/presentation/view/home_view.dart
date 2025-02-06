@@ -9,20 +9,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../componant/order_category_row.dart';
+
 class SalesHomeView extends StatelessWidget {
   const SalesHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: 
+      
+      SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               SizedBox(height: 10.h),
               const HomeAppBar(
-                name: 'محمد عمرو',
+                name: '',
               ),
               SizedBox(height: 20.h),
               SizedBox(height: 20.h),
@@ -36,8 +40,7 @@ class SalesHomeView extends StatelessWidget {
                   ),
                 ),
               ),
-              const SalesHomeNewOrders(),
-              SizedBox(height: 20.h),
+             
               const OrdersCategoryRow(),
             ],
           ),
@@ -56,34 +59,3 @@ class SalesHomeView extends StatelessWidget {
   }
 }
 
-class OrdersCategoryRow extends StatelessWidget {
-  const OrdersCategoryRow({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CategoryCardWidget(
-          onTap: () {},
-          title: 'اجمالى الجديد ',
-          subTitle: '50 من الطلبات الجديده',
-          image: AppAssets.category1,
-        ),
-        SizedBox(width: 6.w),
-        CategoryCardWidget(
-          onTap: () {},
-          title: 'اجمالى قيد التنفيذ ',
-          subTitle: '50 من الطلبات قيد التنفيذ',
-          image: AppAssets.category2,
-        ),
-        SizedBox(width: 6.w),
-        CategoryCardWidget(
-          onTap: () {},
-          title: 'اجمالى المكتمل ',
-          subTitle: '50 من الطلبات المكتمله',
-          image: AppAssets.category3,
-        ),
-      ],
-    );
-  }
-}

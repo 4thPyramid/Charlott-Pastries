@@ -30,6 +30,13 @@ import 'package:charlot/src/feature/location/domain/repo/map_picker_repo.dart';
 import 'package:charlot/src/feature/location/domain/usecase/get_address_uc.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:charlot/src/feature/manager/register/domain/usecase/manager_register_usecase.dart';
+import 'package:charlot/src/feature/sales/home/data/home_api_service.dart';
+import 'package:charlot/src/feature/sales/home/data/remote_d_s.dart';
+import 'package:charlot/src/feature/sales/home/data/repps_impl/repos_impl.dart';
+import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
+import 'package:charlot/src/feature/sales/home/domain/usecases/get_order_stats_u_c.dart';
+import 'package:charlot/src/feature/sales/home/domain/usecases/get_profile_u_s.dart';
+import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -56,6 +63,7 @@ import '../../src/feature/manager/register/data/remote/manager_register_api_seri
 import '../../src/feature/manager/register/data/remote/manager_register_remote_ds.dart';
 import '../../src/feature/manager/register/domain/repository/manager_register_repo.dart';
 import '../../src/feature/manager/register/presentation/logic/manager_register/manager_register_cubit.dart';
+import '../../src/feature/sales/home/domain/usecases/get_banner_u_c.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_api_serivces.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_remote_ds.dart';
 import '../../src/feature/sales/register/domain/repository/sales_register_repo.dart';
@@ -255,6 +263,7 @@ getIt.registerLazySingleton<ChefRegisterUseCase>(
       getIt.registerFactory<LoginCubit>(
       () => LoginCubit(getIt()));
 
+
       getIt.registerFactory<OrdersTypeCubit>(
       () => OrdersTypeCubit(
         
@@ -263,5 +272,42 @@ getIt.registerLazySingleton<ChefRegisterUseCase>(
       getIt<AcceptedOrdersUseCaes>(),
       getIt<PendingOrdersUseCase>(),
       ),);
+
+
+       getIt.registerLazySingleton<HomeApiService>(
+    () => HomeApiServiceImpl(getIt<ApiConsumer>()),
+  );
+
+  ///! Data Sources ///
+  getIt.registerLazySingleton<RemoteDS>(
+    () => RemoteDS(getIt<HomeApiService>()),
+  );
+
+  ///! Repositories ///
+  getIt.registerLazySingleton<HomeRepos>(
+    () => ReposImpl(getIt<RemoteDS>()),
+  );
+
+  ///! Use Cases ///
+  getIt.registerLazySingleton<GetProfileUS>(
+    () => GetProfileUS(getIt<HomeRepos>()),
+  );
+
+  getIt.registerLazySingleton<GetBannerUC>(
+    () => GetBannerUC(getIt<RemoteDS>()),
+  );
+
+  getIt.registerLazySingleton<GetOrderStatsUC>(
+    () => GetOrderStatsUC(getIt<RemoteDS>()),
+  );
+
+  ///! Cubit ///
+  getIt.registerFactory<HomeCubit>(
+    () => HomeCubit(
+      getIt<GetBannerUC>(),
+      getIt<GetProfileUS>(),
+      getIt<GetOrderStatsUC>(),
+    ),
+  );
 
 }

@@ -15,6 +15,7 @@ import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart'
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
+import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
 import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
@@ -152,6 +153,11 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.salesBottomNavigationBarRoot,
       builder: (context, state) => const SalesBottomNavigationBarRoot(),
+      builder: (context, state) => BlocProvider(
+        create: (context) =>getIt<HomeCubit>()..getOrderStats(),
+        child: const SalesBottomNavigationBarRoot(),
+      ),
+
     ),
     GoRoute(
       path: RouterNames.salesHome,
