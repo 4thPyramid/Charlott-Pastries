@@ -4,6 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/theme/app_colors.dart';
 
 class DeliveryTimePicker extends StatefulWidget {
+  final ValueChanged<TimeOfDay>? onTimeChanged;
+  final TimeOfDay? initialTime;
+
+  const DeliveryTimePicker({
+    Key? key,
+    this.onTimeChanged,
+    this.initialTime,
+  }) : super(key: key);
+
   @override
   _DeliveryTimePickerState createState() => _DeliveryTimePickerState();
 }
@@ -11,16 +20,30 @@ class DeliveryTimePicker extends StatefulWidget {
 class _DeliveryTimePickerState extends State<DeliveryTimePicker> {
   TimeOfDay? selectedTime;
 
+  @override
+  void initState() {
+    super.initState();
+    selectedTime = widget.initialTime ?? TimeOfDay.now();
+
+    // **إرسال القيمة الافتراضية فور تشغيل الواجهة**
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.onTimeChanged != null) {
+        widget.onTimeChanged!(selectedTime!);
+      }
+    });
+  }
+
   void _selectTime(BuildContext context) async {
-    TimeOfDay? picked = await showTimePicker(
+    final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: selectedTime ?? TimeOfDay.now(),
+      initialTime: selectedTime!,
     );
 
     if (picked != null) {
       setState(() {
         selectedTime = picked;
       });
+      widget.onTimeChanged?.call(picked);
     }
   }
 
@@ -36,13 +59,13 @@ class _DeliveryTimePickerState extends State<DeliveryTimePicker> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         GestureDetector(
           onTap: () => _selectTime(context),
           child: Container(
             height: 50.h,
             width: 134.w,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: AppColors.grey),
@@ -54,7 +77,7 @@ class _DeliveryTimePickerState extends State<DeliveryTimePicker> {
                 Text(
                   selectedTime != null
                       ? selectedTime!.format(context)
-                      : " وقت التسليم",
+                      : "وقت التسليم",
                   style: AppStyles.s14.copyWith(color: AppColors.black),
                 ),
                 const Icon(Icons.keyboard_arrow_down, color: AppColors.grey),

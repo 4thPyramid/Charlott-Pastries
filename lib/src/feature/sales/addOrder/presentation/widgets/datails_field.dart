@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailsField extends StatelessWidget {
-  const DetailsField({super.key, required this.text});
-final String text;
+  const DetailsField(
+      {super.key, required this.text, required this.textEditingController});
+  final TextEditingController textEditingController;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(text
-          ,
+        Text(
+          text,
           style: AppStyles.s14.copyWith(
             color: AppColors.black,
             fontWeight: FontWeight.w700,
@@ -22,6 +24,7 @@ final String text;
         Container(
           color: AppColors.white,
           child: TextFormField(
+            controller: textEditingController,
             decoration: InputDecoration(
               fillColor: AppColors.white,
               prefixIcon: const Padding(

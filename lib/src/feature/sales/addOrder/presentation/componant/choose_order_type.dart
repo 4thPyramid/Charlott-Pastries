@@ -1,7 +1,8 @@
-import 'package:charlot/src/feature/sales/addOrder/presentation/componant/products_grid_view.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/products_grid_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/componant/requset_type_form.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/order_type_taps.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChooseOrderType extends StatefulWidget {
   const ChooseOrderType({super.key});
@@ -29,7 +30,7 @@ class _ChooseOrderTypeState extends State<ChooseOrderType>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 760,
+      height: 1363.h,
       child: Column(
         children: [
           RequestTypeTapsWidget(tabController: _tabController),

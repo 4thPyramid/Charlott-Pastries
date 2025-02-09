@@ -5,20 +5,26 @@ import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/add_orde
 import 'package:flutter/material.dart';
 
 class PriceDetailsView extends StatelessWidget {
-  const PriceDetailsView({super.key});
+  const PriceDetailsView({super.key, required this.orderId});
+  final int orderId;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(title: "اضافة طلب جديد"),
-          const AddOrderHeader(
-            image: AppAssets.addOrder2,
-            title: 'تفاصيل السعر',
-          ),
-          PriceForm(),
-        ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const CustomAppBar(title: "اضافة طلب جديد"),
+            const AddOrderHeader(
+              image: AppAssets.addOrder2,
+              title: 'تفاصيل السعر',
+            ),
+            PriceForm(
+              orderId: orderId,
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }

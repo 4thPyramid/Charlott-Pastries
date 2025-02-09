@@ -1,3 +1,4 @@
+import 'package:charlot/src/feature/sales/addOrder/presentation/cubit/add_order_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -170,11 +171,17 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: RouterNames.mapPicker,
-      builder: (context, state) => BlocProvider(
-        create: (context) => getIt<MapPickerCubit>(),
-        child: const MapPickerView(),
-      ),
+      path: "${RouterNames.mapPicker}/:orderId",
+      builder: (context, state) {
+        final orderId =
+            int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+        return BlocProvider(
+          create: (context) => getIt<MapPickerCubit>(),
+          child: MapPickerView(
+            orderId: orderId,
+          ),
+        );
+      },
     ),
     GoRoute(
         path: RouterNames.ordersDetails,
@@ -215,16 +222,45 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: RouterNames.addOrder,
-      builder: (context, state) => const AddOrderViewFirst(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<AddOrderCubit>(),
+        child: const AddOrderViewFirst(),
+      ),
     ),
 
     GoRoute(
-      path: RouterNames.priceDetailsView,
-      builder: (context, state) => const PriceDetailsView(),
+      path: "${RouterNames.priceDetailsView}/:orderId",
+      builder: (context, state) {
+        final orderId =
+            int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+        return BlocProvider(
+          create: (context) => getIt<AddOrderCubit>(),
+          child: PriceDetailsView(
+            orderId: orderId,
+          ),
+        );
+      },
     ),
     GoRoute(
-      path: RouterNames.addClientDetailsView,
-      builder: (context, state) => const ClientDetailsView(),
+      path: "${RouterNames.addClientDetailsView}/:long/:lat/:address/:orderId",
+      builder: (context, state) {
+        final long = state.pathParameters['long'] ?? '';
+        final lat = state.pathParameters['lat'] ?? '';
+
+        final address =
+            Uri.decodeComponent(state.pathParameters['address'] ?? '');
+        final orderId =
+            int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+        return BlocProvider(
+          create: (context) => getIt<AddOrderCubit>(),
+          child: ClientDetailsView(
+            long: double.parse(long),
+            lat: double.parse(lat),
+            address: address,
+            orderId: orderId,
+          ),
+        );
+      },
     ),
     GoRoute(
       path: RouterNames.allOrdersView,
@@ -241,10 +277,6 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.incompleatedOrders,
       builder: (context, state) => const IncompleatedOrderes(),
-    ),
-    GoRoute(
-      path: RouterNames.addClientDetailsView,
-      builder: (context, state) => const ClientDetailsView(),
     ),
 
     //!manager

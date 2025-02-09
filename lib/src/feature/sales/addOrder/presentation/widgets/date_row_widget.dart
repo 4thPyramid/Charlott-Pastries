@@ -7,15 +7,17 @@ import 'package:intl/intl.dart';
 
 class DateRowWidget extends StatefulWidget {
   final DateTime? initialDate;
-  final ValueChanged<DateTime?>? onDateChanged;
+
+  final ValueChanged<DateTime> onDateChanged;
+
   final bool isRequired;
 
   const DateRowWidget({
-    super.key,
+    Key? key,
     this.initialDate,
-    this.onDateChanged,
+    required this.onDateChanged,
     this.isRequired = false,
-  });
+  }) : super(key: key);
 
   @override
   State<DateRowWidget> createState() => _DateRowWidgetState();
@@ -31,20 +33,24 @@ class _DateRowWidgetState extends State<DateRowWidget> {
     super.initState();
     if (widget.initialDate != null) {
       _setInitialDate();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        widget.onDateChanged.call(widget.initialDate!);
+      });
     }
   }
 
   void _setInitialDate() {
-    _dayController.text = DateFormat('dd').format(widget.initialDate!);
-    _monthController.text = DateFormat('MM').format(widget.initialDate!);
-    _yearController.text = DateFormat('yyyy').format(widget.initialDate!);
+    final initial = widget.initialDate!;
+    _dayController.text = DateFormat('dd').format(initial);
+    _monthController.text = DateFormat('MM').format(initial);
+    _yearController.text = DateFormat('yyyy').format(initial);
   }
 
-  void _validateAndSendDate() {
+  void _updateDate() {
     if (_dayController.text.isEmpty ||
         _monthController.text.isEmpty ||
         _yearController.text.isEmpty) {
-      widget.onDateChanged?.call(null);
+      widget.onDateChanged.call(DateTime.now());
       return;
     }
 
@@ -53,53 +59,17 @@ class _DateRowWidgetState extends State<DateRowWidget> {
     final year = int.tryParse(_yearController.text);
 
     if (day == null || month == null || year == null) {
-      widget.onDateChanged?.call(null);
+      widget.onDateChanged.call(DateTime.now());
       return;
     }
 
     final date = DateTime(year, month, day);
     if (date.year != year || date.month != month || date.day != day) {
-      widget.onDateChanged?.call(null);
+      widget.onDateChanged.call(DateTime.now());
       return;
     }
 
-    widget.onDateChanged?.call(date);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 8),
-        Row(
-          children: [
-            Text(
-              'الموعد الطلوب',
-              style: AppStyles.s14.copyWith(fontWeight: FontWeight.w700),
-            ),
-            if (widget.isRequired)
-              Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: Text(
-                  '*',
-                  style: AppStyles.s14.copyWith(color: Colors.red),
-                ),
-              ),
-          ],
-        ),
-        SizedBox(height: 8.h),
-        Row(
-          children: [
-            _buildDateField(_dayController, 'يوم', 2, 1, 31),
-            const SizedBox(width: 30),
-            _buildDateField(_monthController, 'شهر', 2, 1, 12),
-            const SizedBox(width: 30),
-            _buildDateField(_yearController, 'سنة', 4, 1900, 2100),
-          ],
-        ),
-      ],
-    );
+    widget.onDateChanged.call(date);
   }
 
   Widget _buildDateField(
@@ -133,16 +103,17 @@ class _DateRowWidgetState extends State<DateRowWidget> {
               borderRadius: BorderRadius.circular(8),
               borderSide: const BorderSide(color: AppColors.primaryColor),
             ),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 14,
+            ),
           ),
           style: AppStyles.s14.copyWith(color: AppColors.black),
-          onChanged: (value) => _validateAndSendDate(),
+          onChanged: (value) => _updateDate(),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return widget.isRequired ? 'مطلوب' : null;
             }
-
             final numValue = int.tryParse(value);
             if (numValue == null ||
                 numValue < minValue ||
@@ -153,6 +124,42 @@ class _DateRowWidgetState extends State<DateRowWidget> {
           },
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Text(
+              'الموعد المطلوب',
+              style: AppStyles.s14.copyWith(fontWeight: FontWeight.w700),
+            ),
+            if (widget.isRequired)
+              Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: Text(
+                  '*',
+                  style: AppStyles.s14.copyWith(color: Colors.red),
+                ),
+              ),
+          ],
+        ),
+        SizedBox(height: 8.h),
+        Row(
+          children: [
+            _buildDateField(_dayController, 'يوم', 2, 1, 31),
+            const SizedBox(width: 30),
+            _buildDateField(_monthController, 'شهر', 2, 1, 12),
+            const SizedBox(width: 30),
+            _buildDateField(_yearController, 'سنة', 4, 1900, 2100),
+          ],
+        ),
+      ],
     );
   }
 

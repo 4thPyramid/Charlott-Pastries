@@ -1,19 +1,17 @@
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/datails_field.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/image_picker_section.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/order_type_taps';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/order_type_taps.dart';
+import 'dart:io';
+import 'package:charlot/core/common/widgets/shared_order_item_card.dart';
+import 'package:charlot/core/routes/router_names.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:charlot/src/feature/sales/addOrder/data/models/add_order_request_model.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/componant/cake_section_componant.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/componant/flowers_section_componant.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/cubit/add_order_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/date_row_widget.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/quantity_selector.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/show_time_picker.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../../../core/common/widgets/custom_btn.dart';
-import '../../../../../../core/routes/router_names.dart';
-import '../../../../../../core/utils/app_styles.dart';
-import '../widgets/date_row_widget.dart';
-import '../widgets/quantity_selector.dart';
-import '../widgets/request_type_drop_down.dart';
-import '../widgets/show_time_picker.dart';
-import 'flower_selection.dart';
 
 class RequestTypeForm extends StatefulWidget {
   const RequestTypeForm({Key? key}) : super(key: key);
@@ -22,148 +20,148 @@ class RequestTypeForm extends StatefulWidget {
   State<RequestTypeForm> createState() => _RequestTypeFormState();
 }
 
-class _RequestTypeFormState extends State<RequestTypeForm>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  final GlobalKey<FormState> formKey = GlobalKey();
-  String? selectedType;
+class _RequestTypeFormState extends State<RequestTypeForm> {
+  String selectedType = "كيك و ورد";
+  TextEditingController cakeDetailsController = TextEditingController();
+  String? flowerType;
+  String? flowerColor;
+  TimeOfDay? deliveryTime;
+  DateTime? selectedDate;
+  int quantity = 1;
+  List<File> cakeImages = [];
+  List<File> flowerImages = [];
+  bool isDeliveryTimeValid = true;
 
-  // Define form visibility flags
-  bool showCakeFields = false;
-  bool showFlowerFields = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  void _handleTypeSelection(String? value) {
+  void _handleFlowerTypeChanged(String? value) =>
+      setState(() => flowerType = value);
+  void _handleFlowerColorChanged(String? value) =>
+      setState(() => flowerColor = value);
+  void _handleDeliveryTimeChanged(TimeOfDay time) {
     setState(() {
-      selectedType = value;
-
-      // Update visibility flags based on selection
-      switch (value) {
-        case 'تورته':
-          showCakeFields = true;
-          showFlowerFields = false;
-          break;
-        case 'ورد':
-          showCakeFields = false;
-          showFlowerFields = true;
-          break;
-        case 'تورته مع ورد':
-          showCakeFields = true;
-          showFlowerFields = true;
-          break;
-        default:
-          showCakeFields = false;
-          showFlowerFields = false;
-      }
+      deliveryTime = time;
+      isDeliveryTimeValid = true;
     });
   }
+
+  void _handleDateChanged(DateTime date) => setState(() => selectedDate = date);
+  void _handleQuantityChanged(int qty) => setState(() => quantity = qty);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200.h,
-      child: Form(
-        key: formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Column(
-                children: [
-                  RequestTypeDropdown(
-                    value: selectedType,
-                    onChanged: _handleTypeSelection,
-                  ),
-                  SizedBox(height: 16.h),
-
-                  if (showCakeFields) ...[
-                    const DetailsField(
-                      text: 'تفاصيل طلب الكيك',
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const QuantitySelector(),
-                        const Spacer(),
-                        DeliveryTimePicker(),
-                      ],
-                    ),
-                    SizedBox(height: 16.h),
-                    const DateRowWidget(),
-                    SizedBox(height: 21.h),
-                    const ImagePickerSection(
-                      text: 'اضافه صور الكيك',
-                    ),
-                  ],
-
-                  // Conditional Flower Form Fields
-                  if (showFlowerFields) ...[
-                    SizedBox(
-                      height: 40.h,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'تفاصيل طلب الورد',
-                            style: AppStyles.s14.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    FlowerSelectionDropdowns(
-                      onTypeChanged: (String? value) {},
-                      onColorChanged: (String? value) {},
-                    ),
-                    SizedBox(height: 20.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const QuantitySelector(),
-                        const Spacer(),
-                        DeliveryTimePicker(),
-                      ],
-                    ),
-                    SizedBox(height: 16.h),
-                    const DateRowWidget(),
-                    SizedBox(height: 20.h),
-                    const ImagePickerSection(
-                      text: 'اضافه صور الورد',
-                    ),
-                  ],
-
-                  // Common Fields
-
-                  SizedBox(height: 16.h),
-
-                  Center(
-                    child: CustomButton(
-                      text: "التالي",
-                      onPressed: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                          context.go(RouterNames.priceDetailsView);
-                        }
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 50.h),
-                ],
+            const SizedBox(height: 16.0),
+            DropdownButtonFormField<String>(
+              value: selectedType,
+              decoration: InputDecoration(
+                labelText: "نوع الطلب",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(color: Colors.grey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(color: Colors.grey),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16.0, vertical: 12.0),
               ),
+              items: ["كيك", "ورد", "كيك و ورد"].map((type) {
+                return DropdownMenuItem(value: type, child: Text(type));
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedType = value!;
+                });
+              },
+            ),
+            if (selectedType == 'كيك' || selectedType == 'كيك و ورد')
+              CakeSectionComponant(
+                controller: cakeDetailsController,
+                onImagesChanged: (images) => setState(
+                  () => cakeImages = images,
+                ),
+                onDateChanged: _handleDateChanged,
+              ),
+            if (selectedType == 'ورد' || selectedType == 'كيك و ورد')
+              FlowersSectionComponant(
+                onTypeChanged: _handleFlowerTypeChanged,
+                onColorChanged: _handleFlowerColorChanged,
+                onImagesChanged: (images) =>
+                    setState(() => flowerImages = images),
+                onDateChanged: _handleDateChanged,
+              ),
+            const SizedBox(height: 16.0),
+            Row(
+              children: [
+                QuantitySelector(onChanged: _handleQuantityChanged),
+                const Spacer(),
+                DeliveryTimePicker(
+                  initialTime: deliveryTime,
+                  onTimeChanged: _handleDeliveryTimeChanged,
+                ),
+              ],
+            ),
+            if (!isDeliveryTimeValid)
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: Text(
+                  "الرجاء اختيار وقت التوصيل!",
+                  style: TextStyle(color: Colors.red, fontSize: 14),
+                ),
+              ),
+            DateRowWidget(onDateChanged: _handleDateChanged),
+            BlocConsumer<AddOrderCubit, AddOrderState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  success: (requestModel) {
+                    context.go(
+                        "${RouterNames.priceDetailsView}/${requestModel.order.id}");
+                  },
+                  failure: (error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(error.message),
+                      ),
+                    );
+                  },
+                );
+              },
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loading: () => const CircularProgressIndicator(),
+                  orElse: () => CustomButton(
+                    text: "التالي",
+                    onPressed: () {
+                      if (deliveryTime == null) {
+                        setState(() {
+                          isDeliveryTimeValid = false;
+                        });
+                        return;
+                      }
+
+                      final requestModel = AddOrderRequestModel(
+                        files: cakeImages + flowerImages,
+                        orderType: selectedType,
+                        orderDetails: cakeDetailsController.text,
+                        quantity: quantity,
+                        deliveryDate: selectedDate?.toIso8601String() ?? '',
+                        deliveryTime:
+                            '${deliveryTime!.hour.toString().padLeft(2, '0')}:${deliveryTime!.minute.toString().padLeft(2, '0')}',
+                        flowerId: flowerType ?? '',
+                        flowerQuantity: quantity,
+                      );
+
+                      context
+                          .read<AddOrderCubit>()
+                          .addOrderDetails(requestModel);
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),

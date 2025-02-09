@@ -54,19 +54,26 @@ class DioConsumer extends ApiConsumer {
   }) async {
     try {
       final token = CacheHelper.getToken();
+
+      // التأكد من أن data يمكن تحويلها إلى FormData قبل التحويل
+      final requestData = isFormData
+          ? (data is Map<String, dynamic> ? FormData.fromMap(data) : data)
+          : data;
+
       final response = await dio.post(
         path,
-        data:
-            isFormData ? FormData.fromMap(data as Map<String, dynamic>) : data,
+        data: requestData,
         queryParameters: queryParameters,
         options: Options(
           headers: {
             'Accept': 'application/vnd.api+json',
             'Content-Type': 'application/vnd.api+json',
             'Authorization': 'Bearer $token',
+            if (headers != null) ...headers,
           },
         ),
       );
+
       return response.data;
     } on DioException catch (e) {
       handelDioException(e);

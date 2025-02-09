@@ -21,7 +21,7 @@ abstract class RouterNames {
       "/sales-bottom-navigation-bar-root";
 
   static const String mapPicker = "/map-picker";
-  static const String priceDetailsView = '/price-details';
+  static const String priceDetailsView = '/price-details-view';
   static const String addClientDetailsView = '/add-client-details';
   static const String allOrdersView = '/all-orders';
 

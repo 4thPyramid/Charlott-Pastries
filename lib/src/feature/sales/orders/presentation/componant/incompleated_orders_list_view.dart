@@ -7,20 +7,18 @@ class IncompleatedOrdersListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: OrderItemCard(
-                color: Colors.red,
-              ),
-            );
-          },
-        ),
+    return SizedBox(
+      child: ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: OrderItemCard(
+              color: Colors.red,
+            ),
+          );
+        },
       ),
     );
   }

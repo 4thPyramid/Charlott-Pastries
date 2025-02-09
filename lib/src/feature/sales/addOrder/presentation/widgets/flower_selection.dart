@@ -48,17 +48,15 @@ class FlowerSelectionDropdowns extends StatelessWidget {
                   ),
                 ),
                 items: const [
-                  DropdownMenuItem(value: 'جوري', child: Text('جوري')),
-                  DropdownMenuItem(value: 'تيوليب', child: Text('تيوليب')),
-                  DropdownMenuItem(value: 'ياسمين', child: Text('ياسمين')),
+                  DropdownMenuItem(value: '1', child: Text('جوري')),
+                  DropdownMenuItem(value: '2', child: Text('تيوليب')),
+                  DropdownMenuItem(value: '3', child: Text('ياسمين')),
                 ],
               ),
             ],
           ),
         ),
-        
         SizedBox(width: 64.w),
-        
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

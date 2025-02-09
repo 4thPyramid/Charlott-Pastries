@@ -1,29 +1,53 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ImagePickerSection extends StatefulWidget {
-  const ImagePickerSection({super.key, required this.text});
-  final String text;
+class ImagePickerWidget extends StatefulWidget {
+  final String title;
+
+  final List<File> initialImages;
+
+  final ValueChanged<List<File>>? onChanged;
+
+  const ImagePickerWidget({
+    Key? key,
+    required this.title,
+    this.initialImages = const [],
+    this.onChanged,
+  }) : super(key: key);
 
   @override
-  State<ImagePickerSection> createState() => _ImagePickerSectionState();
+  State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
 }
 
-class _ImagePickerSectionState extends State<ImagePickerSection> {
-  final List<File> _selectedImages = []; 
+class _ImagePickerWidgetState extends State<ImagePickerWidget> {
+  late List<File> _selectedImages;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedImages = List.from(widget.initialImages);
+  }
 
   Future<void> _pickImages() async {
-    final pickedFiles = await ImagePicker().pickMultiImage(); 
+    final pickedFiles = await ImagePicker().pickMultiImage();
 
     if (pickedFiles.isNotEmpty) {
       setState(() {
         _selectedImages.addAll(pickedFiles.map((e) => File(e.path)));
       });
+      widget.onChanged?.call(_selectedImages);
     }
+  }
+
+  void _removeImage(int index) {
+    setState(() {
+      _selectedImages.removeAt(index);
+    });
+    widget.onChanged?.call(_selectedImages);
   }
 
   @override
@@ -32,14 +56,13 @@ class _ImagePickerSectionState extends State<ImagePickerSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.text,
+          widget.title,
           style: AppStyles.s14.copyWith(
             color: AppColors.black,
             fontWeight: FontWeight.w700,
           ),
         ),
         SizedBox(height: 10.h),
-
         GestureDetector(
           onTap: _pickImages,
           child: Container(
@@ -51,7 +74,7 @@ class _ImagePickerSectionState extends State<ImagePickerSection> {
               border: Border.all(color: AppColors.grey),
             ),
             child: _selectedImages.isEmpty
-                ?const  Center(
+                ? const Center(
                     child: Icon(
                       Icons.add_photo_alternate_outlined,
                       size: 30,
@@ -59,8 +82,9 @@ class _ImagePickerSectionState extends State<ImagePickerSection> {
                     ),
                   )
                 : GridView.builder(
-                    padding: EdgeInsets.all(8),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    padding: const EdgeInsets.all(8),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5,
@@ -82,11 +106,7 @@ class _ImagePickerSectionState extends State<ImagePickerSection> {
                             top: 2,
                             right: 2,
                             child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _selectedImages.removeAt(index);
-                                });
-                              },
+                              onTap: () => _removeImage(index),
                               child: Container(
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,

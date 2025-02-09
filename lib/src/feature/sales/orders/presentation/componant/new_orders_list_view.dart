@@ -7,18 +7,16 @@ class WaitingOrdersListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: OrderItemCard(),
-            );
-          },
-        ),
+    return SizedBox(
+      child: ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: OrderItemCard(),
+          );
+        },
       ),
     );
   }

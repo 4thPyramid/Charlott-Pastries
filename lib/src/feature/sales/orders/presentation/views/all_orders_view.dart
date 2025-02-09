@@ -31,7 +31,7 @@ class AllOrdersView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: TabBar(
-                    labelPadding: EdgeInsets.all(8),
+                    labelPadding: const EdgeInsets.all(8),
                     indicatorPadding:
                         const EdgeInsets.symmetric(horizontal: -20),
                     dividerColor: AppColors.primaryColor,
@@ -76,41 +76,38 @@ class OrdersListviewForTaps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: ListView.builder(
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ListTile(
-                  title: Text(
-                    'طلب #1234',
-                    style: AppStyles.s16,
-                  ),
-                  subtitle: Text('2:35 PM · عناصر 3',
-                      style: AppStyles.s14.copyWith(
-                        color: AppColors.whiteGreyForText,
-                      )),
-                  trailing: CustomButton(
-                    height: 30.h,
-                    width: 120.w,
-                    text: "عرض التفاصيل",
-                    textStyle:
-                        AppStyles.s16.copyWith(color: AppColors.primaryColor),
-                    backgroundColor: AppColors.scaffoldColor,
-                    onPressed: () {
-                      context.push(RouterNames.ordersDetails, extra: {
-                        'from': "allOrders",
-                        'title': 'تفاصيل الطلب',
-                        'orderId': 1,
-                      });
-                    },
-                  ),
-                ));
-          },
-        ),
+    return SizedBox(
+      child: ListView.builder(
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: ListTile(
+                title: Text(
+                  'طلب #1234',
+                  style: AppStyles.s16,
+                ),
+                subtitle: Text('2:35 PM · عناصر 3',
+                    style: AppStyles.s14.copyWith(
+                      color: AppColors.whiteGreyForText,
+                    )),
+                trailing: CustomButton(
+                  height: 30.h,
+                  width: 120.w,
+                  text: "عرض التفاصيل",
+                  textStyle:
+                      AppStyles.s16.copyWith(color: AppColors.primaryColor),
+                  backgroundColor: AppColors.scaffoldColor,
+                  onPressed: () {
+                    context.push(RouterNames.ordersDetails, extra: {
+                      'from': "allOrders",
+                      'title': 'تفاصيل الطلب',
+                      'orderId': 1,
+                    });
+                  },
+                ),
+              ));
+        },
       ),
     );
   }

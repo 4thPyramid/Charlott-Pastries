@@ -1,32 +1,47 @@
 // ملف: map_picker_view.dart
+import 'package:charlot/core/common/widgets/custom_btn.dart';
+import 'package:charlot/core/common/widgets/custom_text_form_field.dart';
+import 'package:charlot/core/routes/router_names.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/componant/requset_type_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_state.dart';
 import 'package:charlot/src/feature/location/presentation/widgets/map_widget.dart';
 import 'package:charlot/src/feature/location/presentation/widgets/search_field.dart';
+import 'package:go_router/go_router.dart';
 
 class MapPickerView extends StatelessWidget {
-  const MapPickerView({super.key});
+  MapPickerView({super.key, required this.orderId});
+  final int orderId;
+  final TextEditingController _addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('اختر الموقع')),
       body: BlocBuilder<MapPickerCubit, MapPickerState>(
         builder: (context, state) {
-          return Column(
+          return Stack(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: SearchField(),
-              ),
-              Expanded(
+              SizedBox(
+                width: double.infinity,
+                height: double.infinity,
                 child: MapWidget(
                   onMapCreated: context.read<MapPickerCubit>().setMapController,
                 ),
               ),
-              _buildBottomPanel(state, context),
+              const Positioned(
+                top: 50,
+                left: 16,
+                right: 16,
+                child: SearchField(),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: _buildBottomPanel(state, context),
+              ),
             ],
           );
         },
@@ -48,6 +63,7 @@ class MapPickerView extends StatelessWidget {
           _buildStateContent(state),
           const SizedBox(height: 8),
           _buildConfirmationButton(state, context),
+          const SizedBox(height: 8),
         ],
       ),
     );
@@ -75,19 +91,18 @@ class MapPickerView extends StatelessWidget {
   }
 
   Widget _buildConfirmationButton(MapPickerState state, BuildContext context) {
-    return ElevatedButton(
+    return CustomButton(
+      text: "تاكيد الموقع",
       onPressed: state is MapPickerLoaded
           ? () => _confirmLocation(state, context)
-          : null,
-      child: const Text('تأكيد الموقع'),
+          : () {},
     );
   }
 
   void _confirmLocation(MapPickerLoaded state, BuildContext context) {
-    Navigator.pop(context, {
-      'address': state.address,
-      'latitude': state.latitude,
-      'longitude': state.longitude,
-    });
+    final encodedAddress = Uri.encodeComponent(state.address);
+    context.go(
+      "${RouterNames.addClientDetailsView}/${state.longitude}/${state.latitude}/$encodedAddress/$orderId",
+    );
   }
 }
