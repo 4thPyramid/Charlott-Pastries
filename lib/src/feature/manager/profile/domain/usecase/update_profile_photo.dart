@@ -10,7 +10,7 @@ class UpdateProfilePhoto {
   final ProfileRepository _profileRepository;
   const UpdateProfilePhoto(this._profileRepository);
 
-  Future<Either<ErrorModel, ProfileModel>> call(File? file) {
-    return _profileRepository.updateProfileImage(file);
+  Future<Either<ErrorModel, ProfileModel>> call(File? file,String userType) {
+    return _profileRepository.updateProfileImage(file, userType);
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chef_register_request.g.dart';
@@ -41,4 +42,19 @@ class ChefRegisterRequest {
 
   // Convert to JSON
   Map<String, dynamic> toJson() => _$ChefRegisterRequestToJson(this);
+
+  
+ Future<Map<String, dynamic>> toFormData() async {
+    final map = _$ChefRegisterRequestToJson(this);
+    
+    if (image != null) {
+      String fileName = image!.path.split('/').last;
+      map['image'] = await MultipartFile.fromFile(
+        image!.path,
+        filename: fileName,
+      );
+    }
+    
+    return map;
+  }
 }

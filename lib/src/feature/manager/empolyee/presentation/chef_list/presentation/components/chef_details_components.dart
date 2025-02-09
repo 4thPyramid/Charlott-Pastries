@@ -123,7 +123,7 @@ class _BuildOrdersList extends StatelessWidget {
         return NewestOrdersCardItem(
           orderType: order.orderType,
           orderName: order.orderDetails?? 'لا يوجد تفاصيل', 
-          date: order.deliveryDate,
+          date: order.deliveryDate??'',
         );
       },
     );

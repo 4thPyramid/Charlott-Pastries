@@ -6,5 +6,6 @@ import 'package:dartz/dartz.dart';
 class BannerUseCase {
   final BannersRepo bannersRepo;
   BannerUseCase(this.bannersRepo);
-  Future<Either<ErrorModel, List<BannerModel>>> call() => bannersRepo.getBanners();
+  Future<Either<ErrorModel, List<BannerModel>>> call() =>
+      bannersRepo.getBanners();
 }

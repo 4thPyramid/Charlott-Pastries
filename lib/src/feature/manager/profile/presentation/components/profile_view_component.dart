@@ -16,7 +16,7 @@ class ProfileComponents extends StatelessWidget {
   const ProfileComponents({super.key});
   @override
   Widget build(BuildContext context) {
-    context.read<ProfileCubit>().getProfile();
+    context.read<ProfileCubit>().getProfile(userTyp: 'manager');
     return Column(
       children: [
         BlocBuilder<ProfileCubit, ProfileState>(
@@ -69,7 +69,7 @@ class ProfileComponents extends StatelessWidget {
         ),
         SizedBox(height: 30.h),
         CustomListTile(
-          onPressed: () => logOutPop(context),
+          onPressed: () => logOutPop(context,'manager'),
           title: AppStrings.signout,
           icon: Icons.logout,
           iconColor: AppColors.errorColor,

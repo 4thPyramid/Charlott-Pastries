@@ -1,5 +1,5 @@
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/src/feature/chef/chef_orfders_status/presentation/logic/cubit/orders_type_cubit.dart';
+import 'package:charlot/src/feature/chef/chef_orders_status/presentation/logic/new_order/new_orders_cubit.dart';
 import 'package:charlot/src/feature/chef/home/presentation/widget/ordres_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,34 +11,39 @@ class OrderListViewSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OrdersTypeCubit, OrdersTypeState>(
+    return BlocBuilder<NewOrdersCubit, NewOrderState>(
       builder: (context, state) {
         return state.when(
             initial: () => const CircularProgressIndicator(),
             loading: () => const CircularProgressIndicator(),
-            loaded: (order) => ListView.separated(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.zero,
-                  itemCount: order.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        context.push(
-                          RouterNames.ChefOrdersDetailsView,
-                        );
-                      },
-                      
-                      child:  OrdersCardItem(
-                        orderName: order[index].orders?[index].orderDetails??' تورتة عيد ميلاد موسي',
-                        orderType: order[index].orders?[index].orderType ?? "حلويات غربيه",
-                        date: order[index].orders?[index].deliveryDate ?? "12/12/2021",
-                      ),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 10.h);
-                  },
-                ),
+            loaded: (order) => order.orders.isEmpty
+                ? Center(
+                    child: Text("لا يوجد طلبات جديدة"),
+                  )
+                : ListView.separated(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
+                    itemCount: order.orders.length,
+                    itemBuilder: (context, index) {
+                      final orders = order.orders[index];
+                      return InkWell(
+                        onTap: () {
+                          context.push(
+                            RouterNames.chefOrdersDetailsView,
+                            extra: {'orderId': orders.id, 'title': 'تفاصيل الطلب الجديد'},
+                          );
+                        },
+                        child: OrdersCardItem(
+                          orderName: orders.orderType,
+                          orderType: orders.orderType,
+                          date: orders.deliveryDate ?? "لا يوجد تاريخ",
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(height: 10.h);
+                    },
+                  ),
             error: (error) => Center(child: Text(error.message)));
       },
     );

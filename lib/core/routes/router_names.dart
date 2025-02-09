@@ -1,8 +1,9 @@
 abstract class RouterNames {
-  static const String splashView = '/splash';
-  static const String userTypeView = '/';
+  static const String splashView = '/';
+  static const String userTypeView = '/user-type-view';
   static const String salesRegisterView = '/sales-register';
-  static const String otpView = '/otp';
+  static const String otpViewForEmail = '/otp-email';
+  static const String otpViewForPassword = '/otp-password';
   static const String loginView = '/login';
   static const String forgetPasswordView = '/forget-password';
   static const String resetPasswordView = '/reset-password';
@@ -10,7 +11,7 @@ abstract class RouterNames {
   static const String salesHome = '/sales-home';
   static const String addOrder = "/add-order";
   static const String newOrders = '/new-orders';
-  static const String ordersDetails = "/ order_details ";
+  static const String ordersDetails = "/order_details";
   static const String incompleatedOrders = '/incompleated-orders';
   static const String waitingOrders = '/waiting-orders';
   static const String compleatedOrders = '/compleated-orders';
@@ -47,12 +48,15 @@ static const String changePasswordView = '/changePasswordView';
   static const String completeOrdersDetails = '/complete-orders-details';
 
 
-  //chef
-  static const String ChefHomeView = '/chef-home';
-  static const String ChefOrdersView = '/chef-orders';
-  static const String ChefOrdersDetailsView = '/ chef_details_view';
+  //!chef
+  static const String chefChangePassword = '/chef-change-password';
+  static const String chefHomeView = '/chef-home';
+  static const String chefOrdersView = '/chef-orders';
+  static const String chefOrdersDetailsView = '/chef_details_view';
   static const String chefRegister = '/chef-register';
-  static const String ChefBottomNavigationBarRoot = '/chef-bottom-navigation-bar-root';
-  static const String ReportProblemScreen = '/reportproblemscreen';
-  static const String ChefProfileView = '/chef_profile_view';
+  static const String chefBottomNavigationBarRoot = '/chef-bottom-navigation-bar-root';
+  static const String reportProblemScreen = '/report-problem-screen';
+  static const String chefProfileView = '/chef_profile_view';
+  static const String chefProfileInfo = '/chef-profile-info';
+  static const String chefSettingView = '/chef-setting-view';
 }

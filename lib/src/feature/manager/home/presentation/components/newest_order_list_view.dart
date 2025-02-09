@@ -15,8 +15,8 @@ class NewestOrderListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
 
-      create: (context) => getIt<NewOrdersCubit>()..newOrders(),
-      child: BlocBuilder<NewOrdersCubit, NewOrdersState>(
+      create: (context) => getIt<ManagerNewOrdersCubit>()..newOrders(),
+      child: BlocBuilder<ManagerNewOrdersCubit, NewOrdersState>(
         builder: (context, state) {
           return state.when(
             initial: () => const Center(child: Text('بدء التحميل...')),

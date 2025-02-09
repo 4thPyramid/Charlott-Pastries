@@ -15,7 +15,7 @@ class PersonalInfoComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<ProfileCubit>().getProfile();
+    context.read<ProfileCubit>().getProfile(userTyp: 'manager');
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return state.when(
@@ -30,7 +30,7 @@ class PersonalInfoComponent extends StatelessWidget {
               children: [
                 SizedBox(height: 40.h),
                 
-                PersonalCircleImage(profileImage: profile.image),
+                PersonalCircleImage(profileImage: profile.image,userType: 'manager',),
                 SizedBox(height: 40.h),
                 PersonalInfoListTile(
                   title: AppStrings.allName,

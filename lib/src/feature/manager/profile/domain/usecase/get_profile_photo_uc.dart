@@ -9,7 +9,7 @@ class GetProfileDataUC {
 
   GetProfileDataUC(this._profileRepository);
 
-  Future<Either<ErrorModel, ProfileModel>> call() {
-    return _profileRepository.getProfile();
+  Future<Either<ErrorModel, ProfileModel>> call(String userType) {
+    return _profileRepository.getProfile(userType);
   }
 }

@@ -20,7 +20,7 @@ class OrdersResponse {
 class Order {
   final int id;
   @JsonKey(name: 'customer_name')
-  final String customerName;
+  final String? customerName;
 
   @JsonKey(name: 'order_type')
   final String orderType;
@@ -31,7 +31,7 @@ class Order {
 
   Order({
     required this.id,
-    required this.customerName,
+     this.customerName,
     required this.orderType,
     required this.status,
     this.deliveryDate,

@@ -111,7 +111,9 @@ class _LoginFormState extends State<LoginForm>
                   CustomTextButton(
                     title: AppStrings.forgetPassword,
                     onTap: () {
-                      context.go(RouterNames.forgetPasswordView);
+                      context.go(RouterNames.forgetPasswordView,extra: {
+                        'userType': widget.userType,
+                      });
                     },
                   ),
                   BlocBuilder<LoginCubit, LoginState>(
@@ -164,7 +166,7 @@ class _LoginFormState extends State<LoginForm>
   } else if (key == 'chef') {
     userTypeCubit.selectUserType(UserTypeEnum.chef);
     userTypeCubit.login();
-   // context.go(RouterNames.chefBottomNavigationBarRoot);
+   context.go(RouterNames.chefBottomNavigationBarRoot);
   }
 }
     }

@@ -45,7 +45,7 @@ class SettingsComponent extends StatelessWidget {
         SizedBox(height: 20.h),
 
            CustomListTile(
-            onPressed: ()=>deleteAccountPop(context),
+            onPressed: ()=>deleteAccountPop(context,'manager'),
           title: AppStrings.deleteAccount,
           icon: Icons.delete,
           iconColor: AppColors.primaryColor,

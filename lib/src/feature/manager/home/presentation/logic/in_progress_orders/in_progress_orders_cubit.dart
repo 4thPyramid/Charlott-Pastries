@@ -10,7 +10,7 @@ class InProgressOrdersCubit extends Cubit<InProgressOrdersState<dynamic>> {
 
   InProgressOrdersCubit(this._inProgressOrdersUseCase) : super(InProgressOrdersState.initial());
 
-  Future<void> call() async {  // تم تغيير الاسم هنا
+  Future<void> call() async { 
     emit(InProgressOrdersState.loading());
     final result = await _inProgressOrdersUseCase.call();
 

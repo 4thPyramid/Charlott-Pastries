@@ -23,9 +23,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     this._updateProfilePhotoUc,
   ) : super(const ProfileState.initial());
 
-  Future<void> getProfile() async {
+  Future<void> getProfile({required String userTyp}) async {
     emit(const ProfileState.loading());
-    final result = await _getProfileDataUseCase.call();
+    final result = await _getProfileDataUseCase.call(userTyp);
     result.fold(
       (l) => emit(ProfileState.error(l)),
       (r) => emit(ProfileState.success(r)),
@@ -36,12 +36,15 @@ class ProfileCubit extends Cubit<ProfileState> {
     String? name,
     String? phone,
     String? email,
+    required String userTyp
+    
   }) async {
     emit(const ProfileState.loading());
     final result = await _updateProfileUc.call(
       name ?? '',
       phone ?? '',
       email ?? '',
+      userTyp,
     );
 
     result.fold(
@@ -50,10 +53,11 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  Future<void> updateProfilePhoto(File? file) async {
+  Future<void> updateProfilePhoto(File? file,{required String userTyp}) async {
     emit(const ProfileState.loading());
     final result = await _updateProfilePhotoUc.call(
-      file,
+      file,userTyp
+    
     );
 
     result.fold(

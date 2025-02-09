@@ -27,7 +27,7 @@ class BannerSection extends StatelessWidget {
                 itemCount: banners.length,
                 itemBuilder: (BuildContext context, int index) {
                   return HomeIntroImage(
-                    image: banners[index].image ?? AppAssets.home,
+                     banners: banners ,
                   );
                 },
               ),

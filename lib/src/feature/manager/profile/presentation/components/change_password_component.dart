@@ -93,6 +93,7 @@ class _ChangePasswordComponentState extends State<ChangePasswordComponent> {
                                   _oldPasswordController.text,
                                   _newPasswordController.text,
                                   _confirmNewPasswordController.text,
+                                  userType: 'manager'
                                 );
                           }
                         },

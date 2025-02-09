@@ -8,10 +8,16 @@ import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/errors/exceptions.dart';
 
 abstract class AuthApiServices {
-   Future<Either<ErrorModel, LoginResponse>> login(String userType,String identifier, String password);
+  Future<Either<ErrorModel, LoginResponse>> login(
+      String userType, String identifier, String password);
 
-  ///Future<Either<ErrorModel, String>> register(String email, String password);
+  Future<Either<ErrorModel, String>> forgetPassword(
+      String userType, String identifier);
 
+  Future<Either<ErrorModel, String>> verifyResetCode(
+      String userType, String otp, String identifier);
+  Future<Either<ErrorModel, String>> resetPassword(
+      String userType, String otp, String password, String identifier);
   Future<Either<ErrorModel, String>> verifyEmail(String userType, String otp);
 }
 
@@ -45,10 +51,11 @@ class AuthApiServicesImpl extends AuthApiServices {
       return Left(e.errorModel);
     }
   }
-  
+
   @override
-  Future<Either<ErrorModel, LoginResponse>> login(String userType, String identifier, String password) async{
-     String endpoint;
+  Future<Either<ErrorModel, LoginResponse>> login(
+      String userType, String identifier, String password) async {
+    String endpoint;
 
     switch (userType) {
       case 'manager':
@@ -63,17 +70,99 @@ class AuthApiServicesImpl extends AuthApiServices {
       default:
         return Left(ErrorModel(message: 'Invalid user type'));
     }
-     try {
+    try {
       final response = await api.post(endpoint, data: {
         'login': identifier,
         'password': password,
       });
-        final userResponse = LoginResponse.fromJson(response);
+      final userResponse = LoginResponse.fromJson(response);
       CacheHelper.saveToken(value: userResponse.token);
+      CacheHelper.saveData(
+          key: 'name',
+          value:
+              '${userResponse.user.firstName}  ${userResponse.user.lastName}');
+      CacheHelper.saveData(key: 'image', value: userResponse.user.image);
       return Right(userResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);
     }
+  }
 
+  @override
+  Future<Either<ErrorModel, String>> forgetPassword(
+      String userType, String identifier) async {
+    String endpoint;
+    switch (userType) {
+      case 'manager':
+        endpoint = EndpointsStrings.managerForgotPassword;
+        break;
+      case 'sales':
+        endpoint = EndpointsStrings.salesForgotPassword;
+        break;
+      case 'chef':
+        endpoint = EndpointsStrings.chefForgotPassword;
+        break;
+      default:
+        return Left(ErrorModel(message: 'Invalid user type'));
+    }
+    try {
+      final response =
+          await api.post(endpoint, data: {'identifier': identifier});
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+  }
+
+  @override
+  Future<Either<ErrorModel, String>> verifyResetCode(
+      String userType, String otp, String identifier) async {
+    String endpoint;
+    switch (userType) {
+      case 'manager':
+        endpoint = EndpointsStrings.managerVerifyResetCode;
+        break;
+      case 'sales':
+        endpoint = EndpointsStrings.salesVerifyResetCode;
+        break;
+      case 'chef':
+        endpoint = EndpointsStrings.chefVerifyResetCode;
+        break;
+      default:
+        return Left(ErrorModel(message: 'Invalid user type'));
+    }
+    try {
+      final response = await api
+          .post(endpoint, data: {'code': otp, 'identifier': identifier});
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+  }
+
+  @override
+  Future<Either<ErrorModel, String>> resetPassword(
+      String userType, String otp, String password, String identifier) async {
+    String endpoint;
+    switch (userType) {
+      case 'manager':
+        endpoint = EndpointsStrings.managerResetPassword;
+        break;
+      case 'sales':
+        endpoint = EndpointsStrings.salesResetPassword;
+        break;
+      case 'chef':
+        endpoint = EndpointsStrings.chefResetPassword;
+        break;
+      default:
+        return Left(ErrorModel(message: 'Invalid user type'));
+    }
+    try {
+      final response = await api.post(endpoint,
+          data: {'code': otp, 'password': password, 'identifier': identifier});
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
   }
 }

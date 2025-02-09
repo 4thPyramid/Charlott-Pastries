@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/usecase/get_new_orders_use_case.dart';
 import 'new_orders_state.dart';
 
-class NewOrdersCubit extends Cubit<NewOrdersState<dynamic>> {
+class ManagerNewOrdersCubit extends Cubit<NewOrdersState<dynamic>> {
   final GetNewOrdersUseCase _newOrdersUseCase;
 
-  NewOrdersCubit(this._newOrdersUseCase) : super(NewOrdersState.initial());
+  ManagerNewOrdersCubit(this._newOrdersUseCase) : super(NewOrdersState.initial());
 
   Future<void> newOrders() async {
     emit(NewOrdersState.loading());

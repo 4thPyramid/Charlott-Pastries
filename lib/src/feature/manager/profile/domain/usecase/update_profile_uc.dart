@@ -12,8 +12,8 @@ class UpdateProfileUc {
   Future<Either<ErrorModel, ProfileModel>> call(
     String name,
     String phone,
-    String email,
+    String email,String userType
   ) {
-    return _profileRepository.updateProfile(name, phone, email);
+    return _profileRepository.updateProfile(name, phone, email, userType);
   }
 }

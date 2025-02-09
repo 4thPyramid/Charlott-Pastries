@@ -22,7 +22,7 @@ class InProgressOrderResponse {
 class InProgressOrder {
   final int id;
   @JsonKey(name: 'customer_name')
-  final String customerName;
+  final String? customerName;
   @JsonKey(name: 'order_details')
   final String? orderDetails;
   @JsonKey(name: 'order_type')
@@ -30,7 +30,7 @@ class InProgressOrder {
 
   InProgressOrder({
     required this.id,
-    required this.customerName,
+     this.customerName,
      this.orderDetails,
     required this.orderType,
   });

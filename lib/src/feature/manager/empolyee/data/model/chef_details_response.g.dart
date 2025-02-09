@@ -48,7 +48,7 @@ Map<String, dynamic> _$ChefToJson(Chef instance) => <String, dynamic>{
 ChefOrder _$ChefOrderFromJson(Map<String, dynamic> json) => ChefOrder(
       orderType: json['order_type'] as String,
       orderDetails: json['order_details'] as String?,
-      deliveryDate: json['delivery_date'] as String,
+      deliveryDate: json['delivery_date'] as String?,
       deliveryId: (json['delivery_id'] as num?)?.toInt(),
     );
 

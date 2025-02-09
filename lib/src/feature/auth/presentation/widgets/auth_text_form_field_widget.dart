@@ -14,7 +14,8 @@ class AuthTextFieldWidget extends StatefulWidget {
     this.prefixIcon,
     this.validator,
     this.sufixIcon,
-    this.onPressedSuffix,
+    this.onPressedSuffix, 
+    this.maxLines,
   });
   final String? titleOfField;
   final TextEditingController? controller;
@@ -23,7 +24,7 @@ class AuthTextFieldWidget extends StatefulWidget {
   final IconData? prefixIcon;
   final IconData? sufixIcon;
   final void Function()? onPressedSuffix;
-
+final int? maxLines;
   final FormFieldValidator<String>? validator;
 
   @override
@@ -57,6 +58,7 @@ class _AuthTextFieldWidgetState extends State<AuthTextFieldWidget> {
         CustomTextFormField(
           controller: widget.controller,
           isPassword: widget.isPassword,
+          maxLines:widget.maxLines??1 ,
           toggleObscure: _togglePassword,
           hintText: widget.hintText,
           prefixIcon: Icon(widget.prefixIcon, color: AppColors.primaryColor),

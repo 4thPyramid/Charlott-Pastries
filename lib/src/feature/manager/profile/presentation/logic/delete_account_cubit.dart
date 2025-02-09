@@ -11,18 +11,18 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
   final ChangePasswordUc _changePasswordUC;
   DeleteAccountCubit(this._deleteAccountUC, this._logoutUseCase, this._changePasswordUC) : super(const DeleteAccountState.initial());
 
-  Future<void> deleteAccount() async {
+  Future<void> deleteAccount({required String userType}) async {
     emit(const DeleteAccountState.loading());
-    final result = await _deleteAccountUC.call();
+    final result = await _deleteAccountUC.call(userType);
     result.fold(
       (l) => emit(DeleteAccountState.error(l)),
       (r) => emit(DeleteAccountState.success(r)),
     );
   }
 
-  Future<void> logout() async {
+  Future<void> logout({required String userType}) async {
     emit(const DeleteAccountState.loading());
-    final result = await _logoutUseCase.call();
+    final result = await _logoutUseCase.call(userType);
     result.fold(
       (l) => emit(DeleteAccountState.error(l)),
       (r) => emit(DeleteAccountState.success(r)),
@@ -31,9 +31,9 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
 
    Future<void> changePassword(String? oldPassword,
   String? newPassword,
-  String? confirmPassword,) async {
+  String? confirmPassword,{required String userType}) async {
     emit(const DeleteAccountState.loading());
-    final result = await _changePasswordUC.changePassword( oldPassword, newPassword, confirmPassword);
+    final result = await _changePasswordUC.changePassword( oldPassword, newPassword, confirmPassword ,userType);
     result.fold(
       (l) => emit(DeleteAccountState.error(l)),
       (r) => emit(DeleteAccountState.success(r)),

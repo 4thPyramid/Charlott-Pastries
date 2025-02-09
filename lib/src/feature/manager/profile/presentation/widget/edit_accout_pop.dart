@@ -10,7 +10,7 @@ import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/utils/main_function.dart';
 import '../logic/profile_cubit.dart';
 
-editAccountPop(BuildContext context) {
+editAccountPop(BuildContext context ,String userType) {
   var nameTextController = TextEditingController();
   var emailTextController = TextEditingController();
   var phoneTextController = TextEditingController();
@@ -54,6 +54,7 @@ editAccountPop(BuildContext context) {
                     name: nameTextController.text,
                     email: emailTextController.text,
                     phone: phoneTextController.text,
+                    userTyp: userType
                   );
               context.pop();
             },

@@ -1,12 +1,9 @@
-import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/common/functions/validator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/app_styles.dart';
-import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../components/change_password_component.dart';
 
 class ChangePasswordView extends StatelessWidget {

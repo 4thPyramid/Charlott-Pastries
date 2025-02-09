@@ -496,10 +496,10 @@ class __$$StatsLoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? stats = freezed,
+    Object? stats = null,
   }) {
     return _then(_$StatsLoadedImpl(
-      freezed == stats
+      null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as OrderStatusModel,
@@ -525,12 +525,11 @@ class _$StatsLoadedImpl implements _StatsLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StatsLoadedImpl &&
-            const DeepCollectionEquality().equals(other.stats, stats));
+            (identical(other.stats, stats) || other.stats == stats));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(stats));
+  int get hashCode => Object.hash(runtimeType, stats);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

@@ -12,10 +12,10 @@ import '../../../../../../core/utils/app_image_view.dart';
 import '../logic/profile_cubit.dart';
 
 class PersonalCircleImage extends StatefulWidget {
-  const PersonalCircleImage({super.key, this.profileImage});
+  const PersonalCircleImage({super.key, this.profileImage, required this.userType});
 
   final String? profileImage;
-
+  final String userType;
   @override
   State<PersonalCircleImage> createState() => _PersonalCircleImageState();
 }
@@ -83,7 +83,7 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
         profileImage = imageFile!.path;
       });
 
-      context.read<ProfileCubit>().updateProfilePhoto(imageFile);
+      context.read<ProfileCubit>().updateProfilePhoto(imageFile, userTyp:widget.userType);
     }
   }
 

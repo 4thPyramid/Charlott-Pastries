@@ -91,7 +91,7 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(message),backgroundColor: Colors.green),
             );
-            context.push(RouterNames.otpView,extra: { 'userType': 'manager',});
+            context.push(RouterNames.otpViewForEmail,extra: { 'userType': 'manager',});
           },
           failure: (error) {
             ScaffoldMessenger.of(context).showSnackBar(

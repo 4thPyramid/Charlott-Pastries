@@ -102,7 +102,10 @@ class _BuildOrdersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return orders.isEmpty
+        ? const Center(child: Text('لا يوجد طلبات حاليه'))
+        :
+    ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: orders.length,

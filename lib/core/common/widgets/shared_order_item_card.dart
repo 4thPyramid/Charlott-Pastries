@@ -37,7 +37,7 @@ class SharedOrderItemCard extends StatelessWidget {
             children: [
                FirstColumn(
                 order: orderResponse.orderType,
-                customer: orderResponse.customerName,
+                customer: orderResponse.customerName??'لا يوجد',
               ),
               ThirdColumn(
                 orderStatus: orderResponse.status,

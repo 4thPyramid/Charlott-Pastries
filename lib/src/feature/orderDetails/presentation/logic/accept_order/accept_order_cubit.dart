@@ -5,7 +5,7 @@ import '../../../domain/usecase/accept_order_use_case.dart';
 import 'accept_order_state.dart';
 
 class AcceptOrderCubit extends Cubit<AcceptOrderState<dynamic>> {
-  final AcceptOrderUseCase _acceptOrderUseCase;
+  final ManagerAcceptOrderUseCase _acceptOrderUseCase;
 
   AcceptOrderCubit(this._acceptOrderUseCase) : super(AcceptOrderState.initial());
 

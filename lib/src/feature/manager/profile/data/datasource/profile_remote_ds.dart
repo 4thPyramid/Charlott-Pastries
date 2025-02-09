@@ -7,21 +7,17 @@ import '../model/profile_model.dart';
 import 'profile_api_service.dart';
 
 abstract class ProfileRemoteDs {
-  Future<Either<ErrorModel, ProfileModel>> getProfile();
+  Future<Either<ErrorModel, ProfileModel>> getProfile(String userType);
 
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-    String? name,
-    String? phone,
-    String? email,
-  );
+      String? name, String? phone, String? email, String userType);
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
-    File? file,
-  );
-    Future<Either<ErrorModel, String>> deleteAccount();
-      Future<Either<ErrorModel, String>> logout();
+      File? file, String userType);
+  Future<Either<ErrorModel, String>> deleteAccount(String userType);
+  Future<Either<ErrorModel, String>> logout(String userType);
 
-  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword);
-
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword,
+      String? newPassword, String? confirmPassword, String userType);
 }
 
 class ProfileRemoteDSImpl implements ProfileRemoteDs {
@@ -29,34 +25,36 @@ class ProfileRemoteDSImpl implements ProfileRemoteDs {
   ProfileRemoteDSImpl(this._profileApiService);
 
   @override
-  Future<Either<ErrorModel, ProfileModel>> getProfile() {
-    return _profileApiService.getProfile();
+  Future<Either<ErrorModel, ProfileModel>> getProfile(String userType) {
+    return _profileApiService.getProfile(userType);
   }
 
   @override
-  Future<Either<ErrorModel, ProfileModel>> updateProfileImage(File? file) {
-    return _profileApiService.updateProfileImage(file);
+  Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
+      File? file, String userType) {
+    return _profileApiService.updateProfileImage(file, userType);
   }
 
   @override
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email) {
-    return _profileApiService.updateProfile(name, phone, email);
+      String? name, String? phone, String? email, String userType) {
+    return _profileApiService.updateProfile(name, phone, email, userType);
   }
-  
+
   @override
-  Future<Either<ErrorModel, String>> deleteAccount() {
-    return _profileApiService.deleteAccount();
+  Future<Either<ErrorModel, String>> deleteAccount(String userType) {
+    return _profileApiService.deleteAccount(userType);
   }
-  
+
   @override
-  Future<Either<ErrorModel, String>> logout() async {
-    return _profileApiService.logout();
+  Future<Either<ErrorModel, String>> logout(String userType) async {
+    return _profileApiService.logout(userType);
   }
-  
+
   @override
-  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword) async{
-   return _profileApiService.changePassword(oldPassword, newPassword, confirmPassword);
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword,
+      String? newPassword, String? confirmPassword, String userType) async {
+    return _profileApiService.changePassword(
+        oldPassword, newPassword, confirmPassword, userType);
   }
-  
 }

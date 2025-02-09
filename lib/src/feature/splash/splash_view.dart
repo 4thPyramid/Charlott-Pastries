@@ -60,9 +60,9 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
         case UserTypeEnum.sales:
           context.go(RouterNames.salesBottomNavigationBarRoot);
           break;
-        // case UserTypeEnum.chef:
-        //   context.go(RouterNames.chefBottomNavigationBarRoot);
-        //  break;
+        case UserTypeEnum.chef:
+          context.go(RouterNames.chefBottomNavigationBarRoot);
+         break;
         default:
           context.go(RouterNames.userTypeView);
       }

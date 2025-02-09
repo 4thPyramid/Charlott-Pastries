@@ -1,10 +1,7 @@
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
-import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_styles.dart';
-import 'package:charlot/src/feature/sales/home/presentation/widgets/category_card_widget.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/home_app_bar_widget.dart';
-import 'package:charlot/src/feature/sales/home/presentation/widgets/sales_home_new_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +23,6 @@ class SalesHomeView extends StatelessWidget {
             children: [
               SizedBox(height: 10.h),
               const HomeAppBar(
-                name: '',
               ),
               SizedBox(height: 20.h),
               SizedBox(height: 20.h),

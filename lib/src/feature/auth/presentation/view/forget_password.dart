@@ -5,27 +5,31 @@ import 'package:charlot/src/feature/auth/presentation/componant/forget_password_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ForgetPasswordView extends StatelessWidget {
-  const ForgetPasswordView({super.key});
+import '../../../../../core/utils/app_strings.dart';
 
+class ForgetPasswordView extends StatelessWidget {
+  const ForgetPasswordView({super.key, required this.userType});
+final String userType;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            SizedBox(height: 100.h),
-            const Center(child: AppImageView(AppAssets.logo)),
-            SizedBox(height: 40.h),
-            const CustomAuthAppBar(
-              title: "نسيت كلمة المرور",
-              subTitle:
-                  "ادخل رقم الجوال او البريد الالكتروني المسجل لدينا لتعين كلمة المرور الجديدة",
-            ),
-            SizedBox(height: 40.h),
-            const ForgetPasswordForm(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 100.h),
+              const Center(child: AppImageView(AppAssets.blackLogo)),
+              SizedBox(height: 40.h),
+              const CustomAuthAppBar(
+                  title: AppStrings.forgetPassword,
+                  subTitle: AppStrings.enterPhoneOrEmailToResetPassword),
+              SizedBox(height: 60.h),
+               ForgetPasswordForm(
+                userType: userType,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -101,7 +101,7 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(message),backgroundColor: Colors.green),
             );
-            context.push(RouterNames.otpView, extra: {
+            context.push(RouterNames.otpViewForEmail, extra: {
               'userType': 'chef',
             });
           },
@@ -182,6 +182,14 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
                   hintText: AppStrings.confirmPassword,
                   titleOfField: AppStrings.confirmPassword,
                   prefixIcon: Icons.lock_outline,
+                ),
+                  AuthTextFieldWidget(
+                  isPassword: false,
+                  controller: bioController,
+                  hintText: AppStrings.aboutYou,
+                  titleOfField: AppStrings.bio,
+                  prefixIcon: Icons.edit_note_sharp,
+                  maxLines: 2,
                 ),
                 SizedBox(height: 20.h),
                 if (state is ChefRegisterLoading)

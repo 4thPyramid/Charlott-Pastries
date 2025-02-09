@@ -7,57 +7,54 @@ import '../../data/datasource/profile_remote_ds.dart';
 import '../../data/model/profile_model.dart';
 
 abstract class ProfileRepository {
-   Future<Either<ErrorModel, ProfileModel>> getProfile();
+  Future<Either<ErrorModel, ProfileModel>> getProfile(String userType);
 
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-    String? name,
-    String? phone,
-    String? email,
-  );
+      String? name, String? phone, String? email, String userType);
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
-    File? file,
-  );
+      File? file, String userType);
 
-    Future<Either<ErrorModel, String>> deleteAccount();
-      Future<Either<ErrorModel, String>> logout();
+  Future<Either<ErrorModel, String>> deleteAccount(String userType);
+  Future<Either<ErrorModel, String>> logout(String userType);
 
-  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword);
-
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword,
+      String? newPassword, String? confirmPassword, String userType);
 }
-
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileRemoteDs _profileRemoteDs;
   ProfileRepositoryImpl(this._profileRemoteDs);
 
   @override
-  Future<Either<ErrorModel, ProfileModel>> getProfile() {
-    return _profileRemoteDs.getProfile();
+  Future<Either<ErrorModel, ProfileModel>> getProfile(String userType) {
+    return _profileRemoteDs.getProfile(userType);
   }
 
   @override
-  Future<Either<ErrorModel, ProfileModel>> updateProfileImage(File? file) {
-    return _profileRemoteDs.updateProfileImage(file);
+  Future<Either<ErrorModel, ProfileModel>> updateProfileImage(File? file,String userType) {
+    return _profileRemoteDs.updateProfileImage(file, userType);
   }
 
   @override
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email) {
-    return _profileRemoteDs.updateProfile(name, phone, email);
+      String? name, String? phone, String? email,String userType) {
+    return _profileRemoteDs.updateProfile(name, phone, email, userType);
   }
-  
+
   @override
-  Future<Either<ErrorModel, String>> deleteAccount() {
-   return _profileRemoteDs.deleteAccount();
+  Future<Either<ErrorModel, String>> deleteAccount(String userType) {
+    return _profileRemoteDs.deleteAccount( userType);
   }
-  
+
   @override
-  Future<Either<ErrorModel, String>> logout() async {
-    return _profileRemoteDs.logout();
+  Future<Either<ErrorModel, String>> logout(String userType) async {
+    return _profileRemoteDs.logout( userType);
   }
-  
+
   @override
-  Future<Either<ErrorModel, String>> changePassword(String? oldPassword, String? newPassword, String? confirmPassword) async {
-    return _profileRemoteDs.changePassword(oldPassword, newPassword, confirmPassword);
+  Future<Either<ErrorModel, String>> changePassword(
+      String? oldPassword, String? newPassword, String? confirmPassword,String userType) async {
+    return _profileRemoteDs.changePassword(
+        oldPassword, newPassword, confirmPassword,userType);
   }
 }

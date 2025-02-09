@@ -41,7 +41,7 @@ class OrderDetailsActions extends StatelessWidget {
           },
         ),
       );
-    } else if (orderStatus == "جاري الاستلام") {
+    } else if (orderStatus == "جاري الاستلام" || orderStatus ==  "وافق المدير") {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

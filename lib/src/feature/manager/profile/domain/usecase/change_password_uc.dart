@@ -9,8 +9,8 @@ class ChangePasswordUc {
   ChangePasswordUc(this._profileRepository);
 
   Future<Either<ErrorModel, String>> changePassword(
-      String? oldPassword, String? newPassword, String? confirmPassword) async {
+      String? oldPassword, String? newPassword, String? confirmPassword,String userType) async {
     return await _profileRepository.changePassword(
-        oldPassword, newPassword, confirmPassword);
+        oldPassword, newPassword, confirmPassword, userType);
   }
 }

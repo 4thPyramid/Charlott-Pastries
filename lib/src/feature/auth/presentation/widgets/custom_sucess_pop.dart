@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/routes/router_names.dart';
+
 showSuccessPop(
   BuildContext context,
-  String routeName,
+  String userType,
 ) {
   customAlertDialog(
     marginHPadding: 20.h,
@@ -24,7 +26,7 @@ showSuccessPop(
         children: [
           const Center(
             child: AppImageView(
-              AppAssets.logo,
+              AppAssets.blackLogo,
               // width: 50.w,
               //  height: 50.h,
             ),
@@ -55,8 +57,8 @@ showSuccessPop(
               fontWeight: FontWeight.w700,
             ),
             onPressed: () {
-              Navigator.pop(context);
-              context.go(routeName);
+              //Navigator.pop(context);
+              context.go(RouterNames.loginView, extra: {'userType':userType });
             },
           )
         ],

@@ -16,7 +16,7 @@ class PersonalInfoView extends StatelessWidget {
         title: ProfileHeader(
           title: AppStrings.personalInfoData,
           onPressed: () {
-            editAccountPop(context);
+            editAccountPop(context,'manager');
           },
         ),
       ),

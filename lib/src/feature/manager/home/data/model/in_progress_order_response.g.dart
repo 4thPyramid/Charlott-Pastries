@@ -25,7 +25,7 @@ Map<String, dynamic> _$InProgressOrderResponseToJson(
 InProgressOrder _$InProgressOrderFromJson(Map<String, dynamic> json) =>
     InProgressOrder(
       id: (json['id'] as num).toInt(),
-      customerName: json['customer_name'] as String,
+      customerName: json['customer_name'] as String?,
       orderDetails: json['order_details'] as String?,
       orderType: json['order_type'] as String,
     );

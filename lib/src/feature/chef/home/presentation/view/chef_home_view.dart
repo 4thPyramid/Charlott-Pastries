@@ -5,6 +5,8 @@ import 'package:charlot/src/feature/sales/home/presentation/widgets/home_app_bar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/utils/app_styles.dart';
+
 class ChefHomeView extends StatelessWidget {
   const ChefHomeView({super.key});
 
@@ -16,13 +18,23 @@ class ChefHomeView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             children: [
-              SizedBox(height: 70.h),
+              SizedBox(height: 30.h),
               const HomeAppBar(
-                name: 'محمد عمرو',
+
               ),
               SizedBox(height: 20.h),
             const BannerSection(),
               SizedBox(height: 20.h),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'طلبات جديده',
+                  style: AppStyles.s20.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
               const OrderListViewSection(),
             ],
           ),

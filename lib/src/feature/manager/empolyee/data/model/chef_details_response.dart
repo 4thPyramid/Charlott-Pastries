@@ -62,14 +62,14 @@ class ChefOrder {
   @JsonKey(name: 'order_details')
   final String? orderDetails;
   @JsonKey(name: 'delivery_date')
-  final String deliveryDate;
+  final String? deliveryDate;
   @JsonKey(name: 'delivery_id')
   final int? deliveryId;
 
   ChefOrder({
     required this.orderType,
     this.orderDetails,
-    required this.deliveryDate,
+     this.deliveryDate,
     this.deliveryId,
   });
 

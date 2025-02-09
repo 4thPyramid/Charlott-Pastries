@@ -5,9 +5,12 @@ abstract class EndpointsStrings {
   static const String managerRegister = 'manager/register';
   static const String managerLogin = 'manager/login';
   static const String managerLogout = 'manager/logout';
+  static const String managerForgotPassword = 'manager/forgot-password';
   static const String managerChangePassword = 'manager/change-password';
   static const String managerVerifyEmail = 'manager/verify';
+  static const String managerVerifyResetCode= 'manager/verify-reset-code';
   static const String managerProfile = 'manager/profile';
+  static const String managerResetPassword = 'manager/reset-password';
   
   static const String managerDeleteProfile = 'manager/delete-account';
   static const String managerNewOrders = 'manager/new-orders';
@@ -36,16 +39,42 @@ static const String managerAcceptDelivery = 'manager/accept-delivery/';
   static const String salesRegister = 'sales/register';
   static const String salesVerifyEmail = 'sales/verify';
   static const String salesLogin = 'sales/login';
+  static const String salesVerifyResetCode= 'sales/verify-reset-code';
+  static const String salesResetPassword = 'sales/reset-password';
+  static const String salesLogout = 'sales/logout';
+  static const String salesForgotPassword = 'sales/forgot-password';
   static const String salesProfile = 'sales/profile';
+  static const String salesDeleteProfile = 'sales/delete-account';
   static const String salesBanner = 'sales/banners';
   static const String salesOrdersStatus = 'sales/stats';
+  static const String salesChangePassword = 'sales/change-password';
+
 
 
 
   //!chef//
   static const String chefRegister = 'chef/register';
   static const String chefVerifyEmail = 'chef/verify';
+  
   static const String chefLogin = 'chef/login';
+  static const String chefVerifyResetCode= 'chef/verify-reset-code';
+  static const String chefResetPassword = 'chef/reset-password';
+  static const String chefLogout = 'chef/logout';
+  static const String chefForgotPassword = 'chef/forgot-password';
+  static const String chefProfile = 'chef/profile';
+  static const String chefNotifications = 'chef/notifications';
+  static const String chefDeleteProfile = 'chef/delete-account';
+  static const String chefNewsOrder= 'chef/new-orders';
+  static const String chefPendingOrder = 'chef/pending-orders';
+  static const String chefCompletedOrder = 'chef/completed-orders';
+  static const String chefAcceptedOrder = 'chef/accepted-orders';
+  static const String chefOrderDetails = 'chef/orders/';
+  static const String chefAcceptOrder = 'chef/accept-order/';
+  static const String chefDeclineOrder = 'chef/decline-order/';
+  static const String chefStartOrder = 'chef/order-in-progress/';
+  static const String chefDoneOrder = 'chef/order-done/';
+  static const String chefChangePassword = 'chef/change-password';
+  
 
 
 }

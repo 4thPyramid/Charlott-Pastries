@@ -74,7 +74,7 @@ class _ChoiceSpecializationState extends State<ChoiceSpecialization> {
                     return Row(
                       children: [
                         const Icon(
-                          Icons.apartment,
+                          Icons.auto_awesome,
                           color: AppColors.primaryColor,
                         ),
                         SizedBox(width: 8.w),

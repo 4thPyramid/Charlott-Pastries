@@ -9,7 +9,7 @@ class LogoutUseCase {
 
   LogoutUseCase(this._profileRepository);
 
-  Future<Either<ErrorModel, String>> call() {
-    return _profileRepository.logout();
+  Future<Either<ErrorModel, String>> call(String userType) {
+    return _profileRepository.logout( userType);
   }
 }

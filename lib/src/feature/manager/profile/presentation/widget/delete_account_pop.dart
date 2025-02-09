@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/data/cached/cache_helper.dart';
@@ -12,7 +13,7 @@ import '../../../../../../core/utils/main_function.dart';
 import '../logic/delete_account_cubit.dart';
 import '../logic/delete_account_state.dart';
 
-void deleteAccountPop(BuildContext context) {
+void deleteAccountPop(BuildContext context, String userType) {
   customAlertDialog(
     marginHPadding: 20.h,
     marginVPadding: 20.h,
@@ -36,11 +37,7 @@ void deleteAccountPop(BuildContext context) {
               await CacheHelper().clearData();
 
               await Future.delayed(const Duration(milliseconds: 200));
-
-              if (Navigator.canPop(context)) {
-                Navigator.pushReplacementNamed(
-                    context, RouterNames.userTypeView);
-              }
+              context.pushReplacement(RouterNames.userTypeView);
             },
             error: (error) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -89,7 +86,9 @@ void deleteAccountPop(BuildContext context) {
                           fontWeight: FontWeight.w700,
                         ),
                         onPressed: () {
-                          context.read<DeleteAccountCubit>().deleteAccount();
+                          context
+                              .read<DeleteAccountCubit>()
+                              .deleteAccount(userType: userType);
                         }),
                     CustomButton(
                       width: 150.w,

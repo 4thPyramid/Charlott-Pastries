@@ -8,7 +8,7 @@ class DeleteAccountUC {
 
   DeleteAccountUC(this._profileRepository);
 
-  Future<Either<ErrorModel, String>> call() {
-    return _profileRepository.deleteAccount();
+  Future<Either<ErrorModel, String>> call(String userType) {
+    return _profileRepository.deleteAccount( userType);
   }
 }

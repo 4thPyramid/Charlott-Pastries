@@ -2,7 +2,7 @@ import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/bann
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/src/feature/chef/chef_bottom_navigation_bar_root.dart';
-import 'package:charlot/src/feature/chef/chef_orfders_status/presentation/logic/cubit/orders_type_cubit.dart';
+import 'package:charlot/src/feature/chef/chef_orders_status/presentation/logic/new_order/new_orders_cubit.dart';
 import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.dart';
 import 'package:charlot/src/feature/chef/notification/presentation/view/notification_view.dart';
 import 'package:charlot/src/feature/chef/orders/presentation/view/cheaf_order_datails_view.dart';
@@ -13,7 +13,7 @@ import 'package:charlot/src/feature/chef/regsiter/presentation/view/chef_registe
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
+import 'package:charlot/src/feature/auth/presentation/view/otp_view_email.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
 import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
@@ -39,6 +39,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../src/feature/auth/presentation/logic/reset_password/reset_password_cubit.dart';
+import '../../src/feature/auth/presentation/view/otp_view_for_password.dart';
+import '../../src/feature/chef/profile/presentation/views/chef_change_password.dart';
+import '../../src/feature/chef/profile/presentation/views/chef_profile_info.dart';
+import '../../src/feature/chef/profile/presentation/views/chef_setting_view.dart';
 import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
 import '../../src/feature/manager/empolyee/presentation/chef_list/presentation/view/chef_details_view.dart';
 import '../../src/feature/manager/empolyee/presentation/chef_list/presentation/view/select_chefs_view.dart';
@@ -70,13 +75,25 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const UserTypeView(),
     ),
     GoRoute(
-        path: RouterNames.otpView,
+        path: RouterNames.otpViewForEmail,
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
 
-          return OtpView(
-            userType: data['userType'] as String,
-          );
+          return BlocProvider(
+              create: (context) => getIt<ResetPasswordCubit>(),
+              child: OtpViewForEmail(
+                userType: data['userType'] as String,
+              ));
+        }),
+    GoRoute(
+        path: RouterNames.otpViewForPassword,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+              create: (context) => getIt<ResetPasswordCubit>(),
+              child: OtpViewForPassword(
+                userType: data['userType'] as String,
+              ));
         }),
     GoRoute(
         path: RouterNames.loginView,
@@ -87,9 +104,17 @@ final GoRouter router = GoRouter(
           );
         }),
     GoRoute(
-      path: RouterNames.forgetPasswordView,
-      builder: (context, state) => const ForgetPasswordView(),
-    ),
+        path: RouterNames.forgetPasswordView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+
+          return BlocProvider(
+            create: (context) => getIt<ResetPasswordCubit>(),
+            child: ForgetPasswordView(
+              userType: data['userType'] as String,
+            ),
+          );
+        }),
     GoRoute(
       path: RouterNames.changePasswordView,
       builder: (context, state) => const ChangePasswordView(),
@@ -98,15 +123,27 @@ final GoRouter router = GoRouter(
         path: RouterNames.verifyCodeView,
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
-          return VerificationCodePassword(
-            userType: data['userType'] as String,
-          );
+          return BlocProvider(
+              create: (context) => getIt<ResetPasswordCubit>(),
+              child: VerificationCodePassword(
+                userType: data['userType'] as String,
+                identifier: data['identifier'] as String,
+              ));
         }),
 
     GoRoute(
-      path: RouterNames.resetPasswordView,
-      builder: (context, state) => const ResetPasswordView(),
-    ),
+        path: RouterNames.resetPasswordView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt<ResetPasswordCubit>(),
+            child: ResetPasswordView(
+              userType: data['userType'] as String,
+              otp: data['otp'] as String,
+              identifier: data['identifier'] as String,
+            ),
+          );
+        }),
     GoRoute(
       path: RouterNames.notification,
       builder: (context, state) => const NotificationView(),
@@ -303,29 +340,30 @@ final GoRouter router = GoRouter(
 
     //! chef
     GoRoute(
-      path: RouterNames.ChefHomeView,
+      path: RouterNames.chefHomeView,
       builder: (context, state) => MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) => getIt<BannerCubit>(),
-          ),
-          BlocProvider(
-            create: (context) => getIt<OrdersTypeCubit>()..getNewOrders(),
           ),
         ],
         child: const ChefHomeView(),
       ),
     ),
     GoRoute(
-      path: RouterNames.ChefOrdersView,
+      path: RouterNames.chefOrdersView,
       builder: (context, state) => const ChefOrdersView(),
     ),
     GoRoute(
-      path: RouterNames.ChefOrdersDetailsView,
-      builder: (context, state) => const ChefOrdersDetailsView(),
-    ),
+        path: RouterNames.chefOrdersDetailsView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return ChefOrdersDetailsView(
+            orderId: data['orderId'] as int? ?? 0,
+            title: data['title'] as String? ?? '',
+          );
+        }),
 
-    //!chef//
     GoRoute(
         path: RouterNames.chefRegister,
         builder: (context, state) => BlocProvider(
@@ -333,23 +371,33 @@ final GoRouter router = GoRouter(
               child: const ChefRegisterView(),
             )),
     GoRoute(
-      path: RouterNames.ChefBottomNavigationBarRoot,
+      path: RouterNames.chefBottomNavigationBarRoot,
       builder: (context, state) => BlocProvider(
-        create: (context) => getIt<OrdersTypeCubit>()..getNewOrders(),
+        create: (context) => getIt<NewOrdersCubit>()..getNewOrders(),
         child: const ChefBottomNavigationBarRoot(),
       ),
     ),
     GoRoute(
-      path: RouterNames.ChefOrdersDetailsView,
-      builder: (context, state) => const ChefOrdersDetailsView(),
+      path: RouterNames.chefChangePassword,
+      builder: (context, state) => const ChefChangePassword(),
     ),
     GoRoute(
-      path: RouterNames.ReportProblemScreen,
+      path: RouterNames.reportProblemScreen,
       builder: (context, state) => const ReportProblemScreen(),
     ),
     GoRoute(
-      path: RouterNames.ChefProfileView,
+      path: RouterNames.chefProfileView,
       builder: (context, state) => const ChefProfileView(),
-    )
+    ),
+    GoRoute(
+      path: RouterNames.chefProfileInfo,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<ProfileCubit>(),
+        child: const ChefProfileInfo(),
+      ),
+    ),
+    GoRoute(
+        path: RouterNames.chefSettingView,
+        builder: (context, state) => const ChefSettingView()),
   ],
 );

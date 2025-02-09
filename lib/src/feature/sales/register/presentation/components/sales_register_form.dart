@@ -80,7 +80,7 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(message),backgroundColor: Colors.green),
           );
-          context.push(RouterNames.otpView, extra: {
+          context.push(RouterNames.otpViewForEmail, extra: {
             'userType': 'sales',
           });
         },
