@@ -29,6 +29,11 @@ import 'package:charlot/src/feature/manager/home/data/remote/home_api_services.d
 import 'package:charlot/src/feature/manager/home/data/remote/home_remote_ds.dart';
 import 'package:charlot/src/feature/manager/home/domain/repository/home_repository.dart';
 import 'package:charlot/src/feature/manager/register/domain/usecase/manager_register_usecase.dart';
+import 'package:charlot/src/feature/sales/home/data/datasource/home_api_service.dart';
+import 'package:charlot/src/feature/sales/home/data/datasource/home_remote_d_s.dart';
+import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
+import 'package:charlot/src/feature/sales/home/domain/usecases/get_order_stats_u_c.dart';
+import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/sales_home_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -183,6 +188,7 @@ void setupLocator() {
   getIt.registerLazySingleton<AllEmployeeApiServices>(
       () => AllEmployeeApiServicesImpl(getIt()));
 
+
   getIt.registerLazySingleton<OrdersTypeApiService>(
       () => OrdersTypeApiServiceImpl(getIt()));
 
@@ -190,6 +196,14 @@ void setupLocator() {
       () => OrderStatusApiServiceImpl(getIt()));
   getIt.registerLazySingleton<ChefNotificationApiServices>(
       () => ChefNotificationApiServicesImpl(getIt()));
+
+  getIt.registerLazySingleton<OrdersTypeApiSevcies>(
+      () => OrdersTypeApiSevciesImp(getIt()));
+
+  getIt.registerLazySingleton<SalesHomeApiService>(
+      () => SalesHomeApiServiceImpl(getIt()));
+
+
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -228,10 +242,18 @@ void setupLocator() {
       () => OrdersTypeRemoteDataSourceImp(getIt()));
   getIt.registerLazySingleton<AllEmployeeRemoteDs>(
       () => AllEmployeeRemoteDsImpl(getIt()));
+
   getIt.registerLazySingleton<OrderStatusRemoteDs>(
       () => OrderStatusRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<ChefNotificationRemoteDs>(
       () => ChefNotificationRemoteDsImpl(getIt()));
+
+
+  getIt.registerLazySingleton<SalesHomeRemoteDS>(
+      () => SalesHomeRemoteDS(getIt()));
+
+  // getIt.registerLazySingleton<SalesRegisterRemoteDs>(
+  //     () => SalesRegisterRemoteDsImpl(getIt()));
 
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
@@ -269,6 +291,14 @@ void setupLocator() {
   getIt.registerLazySingleton<ChefNotificationRepo>(
       () => ChefNotificationRepoImpl(getIt()));
 
+  // getIt.registerLazySingleton<OrdersTypeRepo>(
+  //   () => OrdersTypeRepoImp(getIt()),
+  // );
+  getIt.registerLazySingleton<SalesHomeRepo>(
+    () => SalesHomeRepoImpl(getIt()),
+  );
+
+
   ///! -- UseCases -- ///
 
   getIt.registerLazySingleton<GetProfileDataUC>(
@@ -304,6 +334,7 @@ void setupLocator() {
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(getIt()),
   );
+
   getIt.registerLazySingleton<NewOrdersUseCase>(
     () => NewOrdersUseCase(getIt()),
   );
@@ -409,6 +440,18 @@ getIt.registerLazySingleton<GetAllEmployeeUseCase>(
     () => GetChefDetailsUseCase(getIt()),
   );
  
+
+// getIt.registerLazySingleton<SalesRegisterUseCase>(
+//     () => SalesRegisterUseCase(getIt()),
+//   );
+  // getIt.registerLazySingleton<ChefRegisterUseCase>(
+  //   () => ChefRegisterUseCase(getIt()),
+  // );
+
+  getIt.registerLazySingleton<GetOrderStatsUC>(
+    () => GetOrderStatsUC(getIt()),
+  );
+
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
         getIt(),
@@ -439,6 +482,7 @@ getIt.registerLazySingleton<GetAllEmployeeUseCase>(
  getIt.registerFactory<ChefRegisterCubit>(() => ChefRegisterCubit(getIt()));
 
   getIt.registerFactory<SalesRegisterCubit>(() => SalesRegisterCubit(getIt()));
+
  
   getIt.registerFactory<VerifyEmailCubit>(() => VerifyEmailCubit(getIt()));
 
@@ -477,4 +521,11 @@ getIt.registerLazySingleton<GetAllEmployeeUseCase>(
       () => ChefNotificationCubit(getIt()));
   getIt.registerFactory<ResetPasswordCubit>(
       () => ResetPasswordCubit(getIt(), getIt(), getIt()));
+  getIt.registerFactory<ChefRegisterCubit>(() => ChefRegisterCubit(getIt()));
+
+  getIt.registerFactory<VerifyEmailCubit>(() => VerifyEmailCubit(getIt()));
+
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+
+  getIt.registerFactory<SalesHomeCubit>(() => SalesHomeCubit(getIt()));
 }

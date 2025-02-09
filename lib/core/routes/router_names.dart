@@ -17,7 +17,8 @@ abstract class RouterNames {
   static const String compleatedOrders = '/compleated-orders';
   static const String editOrder = '/edit-order';
   static const String notification = "/notification";
-  static const String salesBottomNavigationBarRoot = "/sales-bottom-navigation-bar-root";
+  static const String salesBottomNavigationBarRoot =
+      "/sales-bottom-navigation-bar-root";
 
   static const String mapPicker = "/map-picker";
   static const String priceDetailsView = '/price-details';
@@ -30,19 +31,20 @@ abstract class RouterNames {
       '/manager-bottom-navigation-bar-root';
 
   static const String managerHomView = '/manager-home';
-static const String managerRefusedOrders = '/manager-refused-orders';
+  static const String managerRefusedOrders = '/manager-refused-orders';
   static const String chefDetails = '/chefDetails';
   static const String newestOrderDetails = '/newestOrderDetails';
   static const String selectChef = '/select-chef';
   static const String selectDeliveryBoy = '/select-delivery';
   static const String deliveryBoyDetails = '/delivery-details';
-static const String managerReturnedOrders = '/manager-returned-orders';
+  static const String managerReturnedOrders = '/manager-returned-orders';
   static const String settingView = '/settingView';
   static const String personalInfoView = '/personalInfoView';
   static const String favoriteView = '/favoriteView';
   static const String returnAndRefusedOrderDetails = '/refused-order-details';
-  static const String managerBeingDeliveredOrdersView = "/manager-being-delivered-orders";
-static const String changePasswordView = '/changePasswordView';
+  static const String managerBeingDeliveredOrdersView =
+      "/manager-being-delivered-orders";
+  static const String changePasswordView = '/changePasswordView';
   static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/complete-orders-details';
@@ -59,4 +61,6 @@ static const String changePasswordView = '/changePasswordView';
   static const String chefProfileView = '/chef_profile_view';
   static const String chefProfileInfo = '/chef-profile-info';
   static const String chefSettingView = '/chef-setting-view';
+
+ 
 }
