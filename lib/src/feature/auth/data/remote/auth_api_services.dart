@@ -81,7 +81,8 @@ class AuthApiServicesImpl extends AuthApiServices {
           key: 'name',
           value:
               '${userResponse.user.firstName}  ${userResponse.user.lastName}');
-      CacheHelper.saveData(key: 'image', value: userResponse.user.image);
+      CacheHelper.saveData(
+          key: 'image', value: userResponse.user.image.toString());
       return Right(userResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);

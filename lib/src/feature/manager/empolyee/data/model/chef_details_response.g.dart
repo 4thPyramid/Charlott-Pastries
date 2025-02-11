@@ -23,7 +23,7 @@ Chef _$ChefFromJson(Map<String, dynamic> json) => Chef(
       image: json['image'] as String?,
       email: json['email'] as String,
       specialization: json['specialization'] as String,
-      bio: json['bio'] as String,
+      bio: json['bio'] as String? ?? '',
       completedOrdersCount: (json['completed_orders_count'] as num).toInt(),
       canTakeOrder: json['canTakeOrder'] as String,
       orders: (json['orders'] as List<dynamic>)

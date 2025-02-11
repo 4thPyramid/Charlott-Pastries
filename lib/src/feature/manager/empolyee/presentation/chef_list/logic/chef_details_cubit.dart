@@ -6,9 +6,11 @@ import 'chef_details_state.dart';
 class ChefDetailsCubit extends Cubit<ChefDetailsState<dynamic>> {
   final GetChefDetailsUseCase _chefsUseCase;
 
-  ChefDetailsCubit(this._chefsUseCase, ) : super(ChefDetailsState.initial());
+  ChefDetailsCubit(
+    this._chefsUseCase,
+  ) : super(ChefDetailsState.initial());
 
-  Future<void> getChefDetails(int id) async {  
+  Future<void> getChefDetails(int id) async {
     emit(ChefDetailsState.loading());
     final result = await _chefsUseCase.execute(id);
 

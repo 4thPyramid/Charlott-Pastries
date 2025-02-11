@@ -43,6 +43,7 @@ dependencies:
   flutter_localization: ^0.2.1
   flutter_localizations:
     sdk: flutter
+  flutter_polyline_points: ^2.1.0
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.16
