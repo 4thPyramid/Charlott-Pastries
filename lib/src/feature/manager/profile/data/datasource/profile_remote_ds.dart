@@ -10,7 +10,7 @@ abstract class ProfileRemoteDs {
   Future<Either<ErrorModel, ProfileModel>> getProfile(String userType);
 
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email, String userType);
+      ProfileModel profile, String userType);
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
       File? file, String userType);
   Future<Either<ErrorModel, String>> deleteAccount(String userType);
@@ -37,8 +37,8 @@ class ProfileRemoteDSImpl implements ProfileRemoteDs {
 
   @override
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email, String userType) {
-    return _profileApiService.updateProfile(name, phone, email, userType);
+      ProfileModel profile, String userType) {
+    return _profileApiService.updateProfile( profile, userType);
   }
 
   @override

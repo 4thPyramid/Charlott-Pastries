@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../manager/profile/presentation/logic/profile_cubit.dart';
 import '../../../../manager/profile/presentation/widget/edit_accout_pop.dart';
 import '../../../../manager/profile/presentation/widget/profile_header.dart';
 import '../component/chef_profile_info_component.dart';
@@ -13,6 +15,9 @@ class ChefProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ProfileCubit>().getProfile(userTyp: 'chef');
+    });
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -21,9 +26,9 @@ class ChefProfileInfo extends StatelessWidget {
           onPressed: () {
             context.push(RouterNames.chefBottomNavigationBarRoot);
           },
-          //  onPressedEdit: (){
-          //   editAccountPop(context, 'chef');
-          // },
+           onPressedEdit: (){
+            editAccountPop(context, 'chef');
+          },
         ),
       ),
       body: const ChefProfileInfoComponent(),

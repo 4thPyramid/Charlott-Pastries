@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../../core/constants/endpoints_strings.dart';
 import '../../../../../../core/data/api/api_consumer.dart';
+import '../../../../../../core/data/cached/cache_helper.dart';
 import '../../../../../../core/errors/error_model.dart';
 import '../../../../../../core/errors/exceptions.dart';
 import '../model/profile_model.dart';
@@ -13,7 +14,7 @@ abstract class ProfileApiService {
   Future<Either<ErrorModel, ProfileModel>> getProfile(String userType);
 
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email, String userType);
+      ProfileModel profile, String userType);
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
       File? file, String userType);
   //delete account
@@ -56,10 +57,10 @@ class ProfileApiServiceImpl implements ProfileApiService {
 
   @override
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email, String userType) async {
+      ProfileModel profile, String userType) async {
     String endpoint;
 
-    switch (userType) {
+    switch (userType.toLowerCase()) {
       case 'manager':
         endpoint = EndpointsStrings.managerProfile;
         break;
@@ -72,14 +73,18 @@ class ProfileApiServiceImpl implements ProfileApiService {
       default:
         return Left(ErrorModel(message: 'Invalid user type'));
     }
+
     try {
-      final response = await _api.post(endpoint, data: {
-        'first_name': name,
-        'phone': phone,
-        'email': email,
-      });
-      final profile = ProfileModel.fromJson(response);
-      return Right(profile);
+      final response = await _api.post(
+        endpoint,
+        data: profile.toJson(),
+      );
+
+      final updatedProfile = ProfileModel.fromJson(response);
+      CacheHelper.saveData(
+          key: 'name',
+          value: '${updatedProfile.firstName}  ${updatedProfile.lastName}');
+      return Right(updatedProfile);
     } on ServerException catch (e) {
       return Left(e.errorModel);
     }
@@ -124,6 +129,7 @@ class ProfileApiServiceImpl implements ProfileApiService {
       );
 
       final profile = ProfileModel.fromJson(response);
+      CacheHelper.saveData(key: 'image', value: profile.image.toString());
       return Right(profile);
     } on ServerException catch (e) {
       return Left(e.errorModel);

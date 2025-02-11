@@ -61,7 +61,7 @@ class AcceptEmployeeCardItem extends StatelessWidget {
                 children: [
                   buildInfoRow(
                       label: AppStrings.name,
-                      value: '${employee.firstName}${employee.lastName}'),
+                      value: '${employee.firstName} ${employee.lastName}'),
                   SizedBox(height: 10.h),
                   buildInfoRow(
                       label: AppStrings.phoneNumber, value: employee.phone),
@@ -119,7 +119,7 @@ Widget buildInfoRow({required String label, required String value}) {
       Text(
         value,
         style: AppStyles.s12.copyWith(
-          color: AppColors.grey,
+          color: AppColors.greyForText,
           fontWeight: FontWeight.w500,
         ),
       ),

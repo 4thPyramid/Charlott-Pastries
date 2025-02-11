@@ -14,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final Color? fillColor;
   final void Function()? toggleObscure;
+ final TextInputType? keyboardType;
 
   const CustomTextFormField({
     super.key,
@@ -27,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.isPassword = false,
     this.toggleObscure,
+    this.keyboardType,
   });
 
   @override
@@ -36,6 +38,8 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
+        keyboardType: keyboardType,
+        textInputAction: TextInputAction.next,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
               vertical: 18.0.w,

@@ -1,8 +1,6 @@
-import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/src/feature/chef/notification/presentation/widgets/notification_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/services/service_locator.dart';
 import '../logic/chef_notification_cubit.dart';
@@ -39,7 +37,7 @@ class NotificationListView extends StatelessWidget {
                   }
 
                   return ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     itemCount: notifications.notifications.length,
                     itemBuilder: (context, index) {

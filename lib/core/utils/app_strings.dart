@@ -10,7 +10,8 @@ abstract class AppStrings {
       createNewAccount = "انشاء حساب جديد !",
       welcome = "مرحبا بك  ",
       ignore = "تجاهل",
-
+      save = "حفظ",
+      editPersonalInf = "تعديل البيانات الشخصية",
       addEmployees  = "طلبات الاضافه",
       welcomeBack = "مرحبا بعودتك !",
       goToHome = "الذهاب الى الصفحه الرئيسية",

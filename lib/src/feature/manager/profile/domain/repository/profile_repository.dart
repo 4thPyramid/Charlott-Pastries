@@ -10,7 +10,7 @@ abstract class ProfileRepository {
   Future<Either<ErrorModel, ProfileModel>> getProfile(String userType);
 
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email, String userType);
+      ProfileModel profile, String userType);
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
       File? file, String userType);
 
@@ -37,8 +37,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-      String? name, String? phone, String? email,String userType) {
-    return _profileRemoteDs.updateProfile(name, phone, email, userType);
+      ProfileModel profile,String userType) {
+    return _profileRemoteDs.updateProfile( profile, userType);
   }
 
   @override

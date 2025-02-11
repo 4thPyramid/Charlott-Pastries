@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:charlot/core/common/banner_feature/data/model/banner_model.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
@@ -18,7 +17,6 @@ class BannerApiServicesImp implements BannerApiServices {
     try {
       final response = await api.get('chef/banners');
 
-      // تحويل الـ Response إلى قائمة من الـ Banners
       final List<BannerModel> banners = (response as List)
           .map((bannerJson) => BannerModel.fromJson(bannerJson))
           .toList();

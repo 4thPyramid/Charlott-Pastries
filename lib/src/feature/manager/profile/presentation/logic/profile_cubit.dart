@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 
 import '../../../../../../core/errors/error_model.dart';
+import '../../data/model/profile_model.dart';
 import '../../domain/usecase/get_profile_photo_uc.dart';
 import '../../domain/usecase/update_profile_photo_uc.dart';
 import '../../domain/usecase/update_profile_uc.dart';
@@ -33,7 +34,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> updateProfile({
-    String? name,
+    String? fName,
+    String? lName,
     String? phone,
     String? email,
     required String userTyp
@@ -41,9 +43,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   }) async {
     emit(const ProfileState.loading());
     final result = await _updateProfileUc.call(
-      name ?? '',
-      phone ?? '',
-      email ?? '',
+      ProfileModel(
+        firstName: fName,
+        lastName: lName,
+        phone: phone,
+        email: email,
+      ) ,
       userTyp,
     );
 
