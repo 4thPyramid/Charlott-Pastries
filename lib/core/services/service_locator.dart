@@ -36,8 +36,12 @@ import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_client_dat
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_order_details_uc.dart';
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_order_price_uc.dart';
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/get_all_ready_products.dart';
+import 'package:charlot/src/feature/sales/addOrder/domain/usecase/get_ready_order_details.dart';
+import 'package:charlot/src/feature/sales/addOrder/domain/usecase/store_ready_orders.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/AllReadyOrders/get_ready_orders_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/SingelReadyOrder/ready_order_details_cubit.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/storeReadyOrder/ready_ordre_cubit.dart';
 import 'package:charlot/src/feature/sales/home/data/datasource/home_api_service.dart';
 import 'package:charlot/src/feature/sales/home/data/datasource/home_remote_d_s.dart';
 import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
@@ -475,6 +479,9 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   getIt.registerLazySingleton<GetDeliveredOrderUseCase>(
     () => GetDeliveredOrderUseCase(getIt()),
   );
+  getIt.registerLazySingleton<GetReadyOrderDetailsUC>(
+    () => GetReadyOrderDetailsUC(getIt()),
+  );
 
   getIt.registerLazySingleton<GetReturnedOrderUseCase>(
     () => GetReturnedOrderUseCase(getIt()),
@@ -561,6 +568,10 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   );
   getIt.registerLazySingleton<GetSalesNotificationUseCase>(
     () => GetSalesNotificationUseCase(getIt()),
+  );
+
+  getIt.registerLazySingleton<StoreReadyOrdersUseCase>(
+    () => StoreReadyOrdersUseCase(getIt()),
   );
 
   //! Cubits //
@@ -666,6 +677,12 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
     () => GetReadyOrdersCubit(getIt()),
   );
    getIt.registerFactory<SalesNotificationCubit>(
-    () => SalesNotificationCubit(getIt()),
+    () => SalesNotificationCubit(getIt()));
+
+  getIt.registerFactory<ReadyOrderDetailsCubit>(
+    () => ReadyOrderDetailsCubit(getIt()),
+  );
+  getIt.registerFactory<StoreReadyOrdreCubit>(
+    () => StoreReadyOrdreCubit(getIt()),
   );
 }

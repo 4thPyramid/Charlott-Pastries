@@ -1,12 +1,11 @@
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/datasourc/add_order_api_service.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_customer_request_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_order_client_data_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_order_price_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_request_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_response_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_price_request_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/all_ready_product_model.dart';
+import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/single_product_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/store_ready_orders_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -22,6 +21,8 @@ abstract class AddOrderRemoteDataSource {
   Future<Either<ErrorModel, StoreReadyOrdersModel>> storeReadyOrders(
       int quantity, int orderId);
   Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts();
+  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
+      int orderId);
 }
 
 class AddOrderRemoteDataSourceImpl implements AddOrderRemoteDataSource {
@@ -49,5 +50,11 @@ class AddOrderRemoteDataSourceImpl implements AddOrderRemoteDataSource {
   @override
   Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts() {
     return apiService.getAllReadyProducts();
+  }
+
+  @override
+  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
+      int orderId) {
+    return apiService.getReadyOrderDetails(orderId);
   }
 }

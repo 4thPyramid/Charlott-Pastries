@@ -1,9 +1,6 @@
 import 'dart:io';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/datails_field.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/date_row_widget.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/image_picker_section.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/quantity_selector.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/show_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

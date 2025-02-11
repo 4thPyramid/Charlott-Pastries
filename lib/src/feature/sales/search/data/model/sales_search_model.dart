@@ -9,7 +9,7 @@ class SalesSearchModel {
   final String orderType;
   final String status;
   @JsonKey(name: 'delivery_date')
-  final String deliveryDate;
+  final String? deliveryDate;
   @JsonKey(name: 'customer_name')
   final String customerName;
 
@@ -17,7 +17,7 @@ class SalesSearchModel {
     required this.id,
     required this.orderType,
     required this.status,
-    required this.deliveryDate,
+    this.deliveryDate,
     required this.customerName,
   });
 

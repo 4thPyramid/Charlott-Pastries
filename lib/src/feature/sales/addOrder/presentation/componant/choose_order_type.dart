@@ -1,4 +1,4 @@
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/products_grid_view.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/componant/products_grid_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/componant/requset_type_form.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/order_type_taps.dart';
 import 'package:flutter/material.dart';

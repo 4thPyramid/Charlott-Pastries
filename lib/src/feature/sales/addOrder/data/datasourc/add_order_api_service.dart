@@ -8,8 +8,10 @@ import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_o
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_response_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_price_request_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/all_ready_product_model.dart';
+import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/single_product_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/store_ready_orders_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 abstract class AddOrderApiService {
   Future<Either<ErrorModel, AddOrderResponseModel>> addOrderDetails(
@@ -25,6 +27,8 @@ abstract class AddOrderApiService {
       int quantity, int orderId);
 
   Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts();
+  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
+      int orderId);
 }
 
 class AddOrderApiServiceImpl implements AddOrderApiService {
@@ -91,15 +95,23 @@ class AddOrderApiServiceImpl implements AddOrderApiService {
 
   @override
   Future<Either<ErrorModel, StoreReadyOrdersModel>> storeReadyOrders(
-      int quantity, int orderId) async {
+      int quantity, int productId) async {
     try {
-      final response = await apiConsumer.put(
+      final response = await apiConsumer.post(
         "sales/product-order",
+        isFormData: true,
         data: {
-          "order_id": orderId,
+          "product_id": productId,
           "quantity": quantity,
         },
       );
+
+      print("Full Response: $response");
+
+      if (response is Map<String, dynamic> &&
+          response.containsKey('statusCode')) {
+        print("Response Status: ${response['statusCode']}");
+      }
 
       final model = StoreReadyOrdersModel.fromJson(response);
       return Right(model);
@@ -112,7 +124,27 @@ class AddOrderApiServiceImpl implements AddOrderApiService {
   Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts() async {
     try {
       final response = await apiConsumer.get("sales/products");
-      final result = AllReadyProductModel.fromJson(response);
+
+      final productsList = response['products'] as List<dynamic>;
+
+      final result = AllReadyProductModel(
+        products: productsList
+            .map((e) => Product.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      );
+
+      return Right(result);
+    } on ServerException catch (error) {
+      return Left(ErrorModel(message: error.errorModel.message));
+    }
+  }
+
+  @override
+  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
+      int orderId) async {
+    try {
+      final response = await apiConsumer.get("sales/product/$orderId");
+      final result = SingleProductModel.fromJson(response['product']);
       return Right(result);
     } on ServerException catch (error) {
       return Left(ErrorModel(message: error.errorModel.message));

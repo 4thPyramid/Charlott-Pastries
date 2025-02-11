@@ -11,7 +11,7 @@ SalesSearchModel _$SalesSearchModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       orderType: json['order_type'] as String,
       status: json['status'] as String,
-      deliveryDate: json['delivery_date'] as String,
+      deliveryDate: json['delivery_date'] as String?,
       customerName: json['customer_name'] as String,
     );
 

@@ -7,9 +7,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'ready_ordre_state.dart';
 part 'ready_ordre_cubit.freezed.dart';
 
-class ReadyOrdreCubit extends Cubit<ReadyOrdreState> {
+class StoreReadyOrdreCubit extends Cubit<ReadyOrdreState> {
   final StoreReadyOrdersUseCase _storeReadyOrdersUseCase;
-  ReadyOrdreCubit(this._storeReadyOrdersUseCase)
+  StoreReadyOrdreCubit(this._storeReadyOrdersUseCase)
       : super(const ReadyOrdreState.initial());
 
   Future<void> storeReadyOrders(int quantity, int orderId) async {

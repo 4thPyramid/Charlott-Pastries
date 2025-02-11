@@ -1,5 +1,8 @@
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/AllReadyOrders/get_ready_orders_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/SingelReadyOrder/ready_order_details_cubit.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/storeReadyOrder/ready_ordre_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/view/ready_order_details_view.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/cubit/sales_order_details_cubit.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/view/sales_order_details_view.dart';
 import 'package:charlot/src/feature/sales/profile/presentation/views/sales_profile_info.dart';
@@ -251,6 +254,26 @@ final GoRouter router = GoRouter(
       path: RouterNames.salesHome,
       builder: (context, state) => const SalesHomeView(),
     ),
+    GoRoute(
+        path: "${RouterNames.readyOrderDetailsView}/:orderId",
+        builder: (context, state) {
+          final orderId =
+              int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<ReadyOrderDetailsCubit>()
+                  ..getReadyOrderDetails(orderId),
+              ),
+              BlocProvider(
+                create: (context) => getIt<StoreReadyOrdreCubit>(),
+              ),
+            ],
+            child: ReadyOrderDetailsView(
+              orderId: orderId,
+            ),
+          );
+        }),
 
     GoRoute(
       path: RouterNames.addOrder,

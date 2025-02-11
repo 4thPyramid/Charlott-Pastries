@@ -29,6 +29,7 @@ abstract class RouterNames {
   static const String salesProfileView = '/sales-profile-view';
   static const String salesProfileInfo = '/sales-profile-info';
   static const String salesSettingView = '/sales-setting-view';
+  static const String readyOrderDetailsView = '/ready-order-details';
 
   //!manager
   static const String managerRegister = '/manager-register';

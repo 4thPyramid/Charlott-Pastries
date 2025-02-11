@@ -10,7 +10,7 @@ class AddOrderRequestModel {
   final List<File> files;
 
   @JsonKey(name: 'order_type')
-  final String orderType;
+  final String? orderType;
 
   @JsonKey(name: 'order_details')
   final String orderDetails;
@@ -31,7 +31,7 @@ class AddOrderRequestModel {
 
   AddOrderRequestModel({
     required this.files,
-    required this.orderType,
+    this.orderType,
     required this.orderDetails,
     required this.quantity,
     required this.deliveryDate,
@@ -50,7 +50,7 @@ class AddOrderRequestModel {
       "files": await Future.wait(
         files.map((file) async => await MultipartFile.fromFile(file.path)),
       ),
-      "order_type": orderType,
+      "order_type": orderType ?? '',
       "order_details": orderDetails,
       "quantity": quantity.toString(),
       "delivery_date": deliveryDate,
