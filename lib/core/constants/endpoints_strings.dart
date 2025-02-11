@@ -74,3 +74,7 @@ abstract class EndpointsStrings {
   static const String chefDoneOrder = 'chef/order-done/';
   static const String chefChangePassword = 'chef/change-password';
 }
+
+class AppConstants {
+  static const mapDurationApiKey = "AIzaSyAG_-zCk6oBioWgVoGG-GfHpRt7rG5QP4s";
+}

@@ -11,6 +11,7 @@ abstract class AppAssets {
   static const String cake1 = "assets/images/cake1.png";
   static const String cake2 = "assets/images/cake2.png";
   static const String cake3 = "assets/images/cake3.png";
+  static const String delviry = "assets/images/delivery.png";
 
   // icons
   static const String successIcon = "assets/svg/successIcon.svg";

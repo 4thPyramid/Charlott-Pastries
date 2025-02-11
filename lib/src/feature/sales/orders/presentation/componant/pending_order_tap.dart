@@ -26,6 +26,7 @@ class PendingOrderTap extends StatelessWidget {
               loaded: (orders) {
                 return SizedBox(
                   child: ListView.builder(
+                    reverse: true,
                     itemCount: orders.orders.length,
                     itemBuilder: (context, index) {
                       return Padding(
