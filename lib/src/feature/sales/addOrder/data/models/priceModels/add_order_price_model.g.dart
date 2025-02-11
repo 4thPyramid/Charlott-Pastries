@@ -8,7 +8,7 @@ part of 'add_order_price_model.dart';
 
 AddOrderPriceModel _$AddOrderPriceModelFromJson(Map<String, dynamic> json) =>
     AddOrderPriceModel(
-      message: json['message'] as String? ?? '',
+      message: json['message'] as String?,
       updatedData: json['updated_data'] == null
           ? null
           : UpdatedData.fromJson(json['updated_data'] as Map<String, dynamic>),

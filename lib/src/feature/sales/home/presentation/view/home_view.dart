@@ -14,17 +14,13 @@ class SalesHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      
-      SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              SizedBox(height: 10.h),
-              const HomeAppBar(
-              ),
               SizedBox(height: 20.h),
+              const HomeAppBar(),
               SizedBox(height: 20.h),
               Align(
                 alignment: Alignment.centerRight,
@@ -36,7 +32,6 @@ class SalesHomeView extends StatelessWidget {
                   ),
                 ),
               ),
-             
               const OrdersCategoryRow(),
             ],
           ),
@@ -54,4 +49,3 @@ class SalesHomeView extends StatelessWidget {
     );
   }
 }
-

@@ -13,20 +13,14 @@ abstract class ProfileApiService {
   Future<Either<ErrorModel, ProfileModel>> getProfile(String userType);
 
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-    String? name,
-    String? phone,
-    String? email,
-    String userType
-  );
+      String? name, String? phone, String? email, String userType);
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
-    File? file,
-    String userType
-  );
+      File? file, String userType);
   //delete account
   Future<Either<ErrorModel, String>> deleteAccount(String userType);
   Future<Either<ErrorModel, String>> logout(String userType);
-  Future<Either<ErrorModel, String>> changePassword(
-      String? oldPassword, String? newPassword, String? confirmPassword ,String userType);
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword,
+      String? newPassword, String? confirmPassword, String userType);
 }
 
 class ProfileApiServiceImpl implements ProfileApiService {
@@ -62,12 +56,8 @@ class ProfileApiServiceImpl implements ProfileApiService {
 
   @override
   Future<Either<ErrorModel, ProfileModel>> updateProfile(
-    String? name,
-    String? phone,
-    String? email,
-    String userType
-  ) async {
-     String endpoint;
+      String? name, String? phone, String? email, String userType) async {
+    String endpoint;
 
     switch (userType) {
       case 'manager':
@@ -97,9 +87,8 @@ class ProfileApiServiceImpl implements ProfileApiService {
 
   @override
   Future<Either<ErrorModel, ProfileModel>> updateProfileImage(
-      File? file,String userType
-      ) async {
-         String endpoint;
+      File? file, String userType) async {
+    String endpoint;
 
     switch (userType) {
       case 'manager':
@@ -145,7 +134,7 @@ class ProfileApiServiceImpl implements ProfileApiService {
 
   @override
   Future<Either<ErrorModel, String>> deleteAccount(String userType) async {
-     String endpoint;
+    String endpoint;
 
     switch (userType) {
       case 'manager':
@@ -170,7 +159,7 @@ class ProfileApiServiceImpl implements ProfileApiService {
 
   @override
   Future<Either<ErrorModel, String>> logout(String userType) async {
-     String endpoint;
+    String endpoint;
 
     switch (userType) {
       case 'manager':
@@ -194,9 +183,9 @@ class ProfileApiServiceImpl implements ProfileApiService {
   }
 
   @override
-  Future<Either<ErrorModel, String>> changePassword(
-      String? oldPassword, String? newPassword, String? confirmPassword,String userType) async {
-         String endpoint;
+  Future<Either<ErrorModel, String>> changePassword(String? oldPassword,
+      String? newPassword, String? confirmPassword, String userType) async {
+    String endpoint;
 
     switch (userType) {
       case 'manager':
@@ -212,8 +201,7 @@ class ProfileApiServiceImpl implements ProfileApiService {
         return Left(ErrorModel(message: 'Invalid user type'));
     }
     try {
-      final response =
-          await _api.post(endpoint, data: {
+      final response = await _api.post(endpoint, data: {
         'old_password': oldPassword,
         'new_password': newPassword,
         'new_password_confirmation': confirmPassword,

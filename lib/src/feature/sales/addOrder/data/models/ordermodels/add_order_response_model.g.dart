@@ -10,11 +10,13 @@ AddOrderResponseModel _$AddOrderResponseModelFromJson(
         Map<String, dynamic> json) =>
     AddOrderResponseModel(
       message: json['message'] as String,
-      order: OrderAdded.fromJson(json['order'] as Map<String, dynamic>? ?? {}),
-      orderPrice: AddOrderPriceModel.fromJson(
-          json['orderPrice'] as Map<String, dynamic>? ?? {}),
+      order: OrderAdded.fromJson(json['order'] as Map<String, dynamic>),
+      orderPrice: json['orderPrice'] == null
+          ? null
+          : AddOrderPriceModel.fromJson(
+              json['orderPrice'] as Map<String, dynamic>),
       clientData: AddOrderClientDataModel.fromJson(
-          json['clientData'] as Map<String, dynamic>? ?? {}),
+          json['clientData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AddOrderResponseModelToJson(
@@ -27,17 +29,17 @@ Map<String, dynamic> _$AddOrderResponseModelToJson(
     };
 
 OrderAdded _$OrderAddedFromJson(Map<String, dynamic> json) => OrderAdded(
-      orderType: json['order_type'] as String? ?? '',
+      orderType: json['order_type'] as String,
       orderDetails: json['order_details'] as String?,
       flowerId: json['flower_id'] as String?,
       flowerQuantity: json['flower_quantity'] as String?,
       quantity: json['quantity'] as String?,
-      deliveryTime: json['delivery_time'] as String? ?? '',
-      deliveryDate: json['delivery_date'] as String? ?? '',
-      saleId: (json['sale_id'] as num? ?? 0).toInt(),
-      updatedAt: json['updated_at'] as String? ?? '',
-      createdAt: json['created_at'] as String? ?? '',
-      id: (json['id'] as num? ?? 0).toInt(),
+      deliveryTime: json['delivery_time'] as String,
+      deliveryDate: json['delivery_date'] as String,
+      saleId: (json['sale_id'] as num).toInt(),
+      updatedAt: json['updated_at'] as String,
+      createdAt: json['created_at'] as String,
+      id: (json['id'] as num).toInt(),
       images: (json['images'] as List<dynamic>?)
           ?.map((e) => OrderImage.fromJson(e as Map<String, dynamic>))
           .toList(),

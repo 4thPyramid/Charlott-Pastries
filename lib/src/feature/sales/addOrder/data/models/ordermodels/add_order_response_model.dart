@@ -1,6 +1,6 @@
 import 'package:charlot/src/feature/orderDetails/presentation/components/order_price.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/add_order_client_data_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/add_order_price_model.dart';
+import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_order_client_data_model.dart';
+import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_order_price_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'add_order_response_model.g.dart';
@@ -10,7 +10,7 @@ class AddOrderResponseModel {
   final String message;
   final OrderAdded order;
   final AddOrderClientDataModel clientData;
-  final AddOrderPriceModel orderPrice;
+  final AddOrderPriceModel? orderPrice;
 
   AddOrderResponseModel({
     required this.message,

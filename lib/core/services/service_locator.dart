@@ -35,12 +35,31 @@ import 'package:charlot/src/feature/sales/addOrder/domain/repo/add_order_repo.da
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_client_data_uc.dart';
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_order_details_uc.dart';
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_order_price_uc.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/cubit/add_order_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/domain/usecase/get_all_ready_products.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/AllReadyOrders/get_ready_orders_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
 import 'package:charlot/src/feature/sales/home/data/datasource/home_api_service.dart';
 import 'package:charlot/src/feature/sales/home/data/datasource/home_remote_d_s.dart';
 import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
 import 'package:charlot/src/feature/sales/home/domain/usecases/get_order_stats_u_c.dart';
 import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/sales_home_cubit.dart';
+import 'package:charlot/src/feature/sales/orderDetails/data/datasource/sales_details_order_remote_data_source.dart';
+import 'package:charlot/src/feature/sales/orderDetails/data/datasource/sales_ordere_details_api_service.dart';
+import 'package:charlot/src/feature/sales/orderDetails/domain/repo/sales_order_details_rep.dart';
+import 'package:charlot/src/feature/sales/orderDetails/domain/usecase/sales_get_order_details.dart';
+import 'package:charlot/src/feature/sales/orderDetails/presentation/cubit/sales_order_details_cubit.dart';
+import 'package:charlot/src/feature/sales/orders/data/datasource/sales_order_statues_api_service.dart';
+import 'package:charlot/src/feature/sales/orders/data/datasource/sales_order_statues_remote_data_source.dart';
+import 'package:charlot/src/feature/sales/orders/domain/repo/order_statues_repo.dart';
+import 'package:charlot/src/feature/sales/orders/domain/usecase/get_compleated_orders_uc.dart';
+import 'package:charlot/src/feature/sales/orders/domain/usecase/get_new_orders_uc.dart';
+import 'package:charlot/src/feature/sales/orders/domain/usecase/get_pending_orders_uc.dart';
+import 'package:charlot/src/feature/sales/orders/presentation/cubit/sales_order_statues_cubit.dart';
+import 'package:charlot/src/feature/sales/search/data/datasource/sales_search_api_service.dart';
+import 'package:charlot/src/feature/sales/search/data/datasource/sales_search_remote_data.dart';
+import 'package:charlot/src/feature/sales/search/domain/repo/sales_search_repo.dart';
+import 'package:charlot/src/feature/sales/search/domain/usecase/get_sales_search_uc.dart';
+import 'package:charlot/src/feature/sales/search/presentation/cubit/sales_search_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -203,11 +222,23 @@ void setupLocator() {
   getIt.registerLazySingleton<ChefNotificationApiServices>(
       () => ChefNotificationApiServicesImpl(getIt()));
 
-  getIt.registerLazySingleton<OrdersTypeApiSevcies>(
-      () => OrdersTypeApiSevciesImp(getIt()));
+  // getIt.registerLazySingleton<OrdersTypeApiSevcies>(
+  //     () => OrdersTypeApiSevciesImp(getIt()));
 
   getIt.registerLazySingleton<SalesHomeApiService>(
       () => SalesHomeApiServiceImpl(getIt()));
+
+  getIt.registerLazySingleton<AddOrderApiService>(
+      () => AddOrderApiServiceImpl(getIt()));
+
+  getIt.registerLazySingleton<SalesOrderStatusApiService>(
+      () => SalesOrderStatusApiServiceImpl(getIt()));
+
+  getIt.registerLazySingleton<SalesOrderDetailsApiService>(
+      () => SalesOrderDetailsApiServiceImpl(getIt()));
+
+  getIt.registerLazySingleton<SalesSearchApiService>(
+      () => SalesSearchApiServiceImpl(getIt()));
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -258,6 +289,14 @@ void setupLocator() {
   getIt.registerLazySingleton<AddOrderRemoteDataSource>(
       () => AddOrderRemoteDataSourceImpl(getIt()));
 
+  getIt.registerLazySingleton<SalesOrderStatusRemoteDataSource>(
+      () => SalesOrderStatusRemoteDataSourceImpl(getIt()));
+  getIt.registerLazySingleton<SalesOrderDetailsRemoteDataSource>(
+      () => SalesOrderDetailsRemoteDataSourceImpl(getIt()));
+
+  getIt.registerLazySingleton<SalesSearchRemoteData>(
+      () => SalesSearchRemoteDataImpl(getIt()));
+
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(getIt()));
@@ -300,6 +339,17 @@ void setupLocator() {
   getIt.registerLazySingleton<SalesHomeRepo>(
     () => SalesHomeRepoImpl(getIt()),
   );
+  getIt.registerLazySingleton<AddOrderRepo>(
+    () => AddOrderRepoImpl(getIt()),
+  );
+
+  getIt.registerLazySingleton<SalesOrderStatusRepo>(
+      () => SalesOrderStatusRepoImpl(getIt()));
+  getIt.registerLazySingleton<SalesOrderDetailsRepo>(
+      () => SalesOrderDetailsRepoImpl(getIt()));
+
+  getIt.registerLazySingleton<SalesSearchRepo>(
+      () => SalesSearchRepoImpl(getIt()));
 
   ///! -- UseCases -- ///
 
@@ -454,9 +504,9 @@ void setupLocator() {
 // getIt.registerLazySingleton<SalesRegisterUseCase>(
 //     () => SalesRegisterUseCase(getIt()),
 //   );
-  // getIt.registerLazySingleton<ChefRegisterUseCase>(
-  //   () => ChefRegisterUseCase(getIt()),
-  // );
+//   getIt.registerLazySingleton<ChefRegisterUseCase>(
+//     () => ChefRegisterUseCase(getIt()),
+//   );
 
   getIt.registerLazySingleton<GetOrderStatsUC>(
     () => GetOrderStatsUC(getIt()),
@@ -469,6 +519,27 @@ void setupLocator() {
   );
   getIt.registerLazySingleton<AddOrderPriceUC>(
     () => AddOrderPriceUC(getIt()),
+  );
+
+  getIt.registerLazySingleton<GetNewOrdersUC>(
+    () => GetNewOrdersUC(getIt()),
+  );
+  getIt.registerLazySingleton<GetCompleatedOrdersUc>(
+    () => GetCompleatedOrdersUc(getIt()),
+  );
+  getIt.registerLazySingleton<GetPendingOrdersUc>(
+    () => GetPendingOrdersUc(getIt()),
+  );
+
+  getIt.registerLazySingleton<SalesGetOrderDetailsUC>(
+    () => SalesGetOrderDetailsUC(getIt()),
+  );
+
+  getIt.registerLazySingleton<GetSalesSearchUC>(
+    () => GetSalesSearchUC(getIt()),
+  );
+  getIt.registerLazySingleton<GetAllReadyProductsUC>(
+    () => GetAllReadyProductsUC(getIt()),
   );
 
   //! Cubits //
@@ -503,13 +574,7 @@ void setupLocator() {
   getIt.registerFactory<EmployeeActionCubit>(
       () => EmployeeActionCubit(getIt(), getIt(), getIt(), getIt()));
 
-  getIt.registerFactory<ChefRegisterCubit>(() => ChefRegisterCubit(getIt()));
-
   getIt.registerFactory<SalesRegisterCubit>(() => SalesRegisterCubit(getIt()));
-
-  getIt.registerFactory<VerifyEmailCubit>(() => VerifyEmailCubit(getIt()));
-
-  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
   getIt.registerFactory<BannerCubit>(() => BannerCubit(getIt()));
 
@@ -558,4 +623,21 @@ void setupLocator() {
         getIt(),
         getIt(),
       ));
+
+  getIt.registerFactory<SalesOrderStatuesCubit>(() => SalesOrderStatuesCubit(
+        getIt(),
+        getIt(),
+        getIt(),
+      ));
+
+  getIt.registerFactory<SalesOrderDetailsCubit>(
+      () => SalesOrderDetailsCubit(getIt()));
+
+  getIt.registerFactory<SalesSearchCubit>(
+    () => SalesSearchCubit(getIt()),
+  );
+
+  getIt.registerFactory<GetReadyOrdersCubit>(
+    () => GetReadyOrdersCubit(getIt()),
+  );
 }

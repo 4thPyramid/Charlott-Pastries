@@ -10,7 +10,7 @@ class WaitingOrdersListView extends StatelessWidget {
     return SizedBox(
       child: ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
-        itemCount: 1,
+        itemCount: 2,
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.symmetric(vertical: 10),

@@ -1,4 +1,12 @@
-import 'package:charlot/src/feature/sales/addOrder/presentation/cubit/add_order_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/AllReadyOrders/get_ready_orders_cubit.dart';
+import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
+import 'package:charlot/src/feature/sales/orderDetails/presentation/cubit/sales_order_details_cubit.dart';
+import 'package:charlot/src/feature/sales/orderDetails/presentation/view/sales_order_details_view.dart';
+import 'package:charlot/src/feature/sales/profile/presentation/views/sales_profile_info.dart';
+import 'package:charlot/src/feature/sales/profile/presentation/views/sales_profile_view.dart';
+import 'package:charlot/src/feature/sales/profile/presentation/views/sales_setting_view.dart';
+import 'package:charlot/src/feature/sales/search/presentation/cubit/sales_search_cubit.dart';
+import 'package:charlot/src/feature/sales/search/presentation/view/sales_search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +16,6 @@ import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/otp_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/chef/chef_bottom_navigation_bar_root.dart';
@@ -26,7 +33,6 @@ import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart'
 import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/otp_view_email.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
-import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/home_cubit.dart';
 import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
@@ -184,6 +190,26 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
+        path: RouterNames.salesSearchView,
+        builder: (context, state) => BlocProvider(
+              create: (context) => getIt<SalesSearchCubit>(),
+              child: const SalesSearchView(),
+            )),
+    GoRoute(
+      path: "${RouterNames.salesOrderDetails}/:orderId",
+      builder: (context, state) {
+        final orderId =
+            int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+        return BlocProvider(
+          create: (context) => getIt<SalesOrderDetailsCubit>()
+            ..getOrderDetails(orderId.toString()),
+          child: SalesOrderDetailsView(
+            orderId: orderId,
+          ),
+        );
+      },
+    ),
+    GoRoute(
         path: RouterNames.ordersDetails,
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
@@ -210,8 +236,15 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouterNames.salesBottomNavigationBarRoot,
-      builder: (context, state) => BlocProvider(
-        create: (context) => getIt<SalesHomeCubit>()..getOrderStats(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<SalesHomeCubit>()..getOrderStats(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<ProfileCubit>(),
+          ),
+        ],
         child: const SalesBottomNavigationBarRoot(),
       ),
     ),
@@ -222,8 +255,15 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: RouterNames.addOrder,
-      builder: (context, state) => BlocProvider(
-        create: (context) => getIt<AddOrderCubit>(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<AddOrderCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<GetReadyOrdersCubit>()..getReadyOrders(),
+          ),
+        ],
         child: const AddOrderViewFirst(),
       ),
     ),
@@ -241,6 +281,7 @@ final GoRouter router = GoRouter(
         );
       },
     ),
+
     GoRoute(
       path: "${RouterNames.addClientDetailsView}/:long/:lat/:address/:orderId",
       builder: (context, state) {
@@ -278,6 +319,20 @@ final GoRouter router = GoRouter(
       path: RouterNames.incompleatedOrders,
       builder: (context, state) => const IncompleatedOrderes(),
     ),
+    GoRoute(
+      path: RouterNames.salesProfileView,
+      builder: (context, state) => const SalesProfileView(),
+    ),
+    GoRoute(
+      path: RouterNames.salesProfileInfo,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<ProfileCubit>(),
+        child: const SalesProfileInfo(),
+      ),
+    ),
+    GoRoute(
+        path: RouterNames.salesSettingView,
+        builder: (context, state) => const SalesSettingView()),
 
     //!manager
     GoRoute(

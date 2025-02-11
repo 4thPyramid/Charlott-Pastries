@@ -24,6 +24,11 @@ abstract class RouterNames {
   static const String priceDetailsView = '/price-details-view';
   static const String addClientDetailsView = '/add-client-details';
   static const String allOrdersView = '/all-orders';
+  static const String salesOrderDetails = '/order-details';
+  static const String salesSearchView = "/sales-search";
+  static const String salesProfileView = '/sales-profile-view';
+  static const String salesProfileInfo = '/sales-profile-info';
+  static const String salesSettingView = '/sales-setting-view';
 
   //!manager
   static const String managerRegister = '/manager-register';
@@ -49,18 +54,16 @@ abstract class RouterNames {
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/complete-orders-details';
 
-
   //!chef
   static const String chefChangePassword = '/chef-change-password';
   static const String chefHomeView = '/chef-home';
   static const String chefOrdersView = '/chef-orders';
   static const String chefOrdersDetailsView = '/chef_details_view';
   static const String chefRegister = '/chef-register';
-  static const String chefBottomNavigationBarRoot = '/chef-bottom-navigation-bar-root';
+  static const String chefBottomNavigationBarRoot =
+      '/chef-bottom-navigation-bar-root';
   static const String reportProblemScreen = '/report-problem-screen';
   static const String chefProfileView = '/chef_profile_view';
   static const String chefProfileInfo = '/chef-profile-info';
   static const String chefSettingView = '/chef-setting-view';
-
- 
 }

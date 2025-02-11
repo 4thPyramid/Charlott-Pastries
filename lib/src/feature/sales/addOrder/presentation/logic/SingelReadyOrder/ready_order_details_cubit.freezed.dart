@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'add_order_cubit.dart';
+part of 'ready_order_details_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,29 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AddOrderState {
+mixin _$ReadyOrderDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(SingleProductModel model) ready,
+    required TResult Function(ErrorModel error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(SingleProductModel model)? ready,
+    TResult? Function(ErrorModel error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(SingleProductModel model)? ready,
+    TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,47 +45,48 @@ mixin _$AddOrderState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Ready value) ready,
+    required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Ready value)? ready,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddOrderStateCopyWith<$Res> {
-  factory $AddOrderStateCopyWith(
-          AddOrderState value, $Res Function(AddOrderState) then) =
-      _$AddOrderStateCopyWithImpl<$Res, AddOrderState>;
+abstract class $ReadyOrderDetailsStateCopyWith<$Res> {
+  factory $ReadyOrderDetailsStateCopyWith(ReadyOrderDetailsState value,
+          $Res Function(ReadyOrderDetailsState) then) =
+      _$ReadyOrderDetailsStateCopyWithImpl<$Res, ReadyOrderDetailsState>;
 }
 
 /// @nodoc
-class _$AddOrderStateCopyWithImpl<$Res, $Val extends AddOrderState>
-    implements $AddOrderStateCopyWith<$Res> {
-  _$AddOrderStateCopyWithImpl(this._value, this._then);
+class _$ReadyOrderDetailsStateCopyWithImpl<$Res,
+        $Val extends ReadyOrderDetailsState>
+    implements $ReadyOrderDetailsStateCopyWith<$Res> {
+  _$ReadyOrderDetailsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AddOrderState
+  /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -98,13 +99,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AddOrderStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ReadyOrderDetailsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddOrderState
+  /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -115,7 +116,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AddOrderState.initial()';
+    return 'ReadyOrderDetailsState.initial()';
   }
 
   @override
@@ -132,8 +133,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(SingleProductModel model) ready,
+    required TResult Function(ErrorModel error) error,
   }) {
     return initial();
   }
@@ -143,8 +144,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(SingleProductModel model)? ready,
+    TResult? Function(ErrorModel error)? error,
   }) {
     return initial?.call();
   }
@@ -154,8 +155,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(SingleProductModel model)? ready,
+    TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -169,8 +170,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Ready value) ready,
+    required TResult Function(_Error value) error,
   }) {
     return initial(this);
   }
@@ -180,8 +181,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -191,8 +192,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Ready value)? ready,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -202,7 +203,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AddOrderState {
+abstract class _Initial implements ReadyOrderDetailsState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -215,13 +216,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AddOrderStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$ReadyOrderDetailsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddOrderState
+  /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -232,7 +233,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'AddOrderState.loading()';
+    return 'ReadyOrderDetailsState.loading()';
   }
 
   @override
@@ -249,8 +250,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(SingleProductModel model) ready,
+    required TResult Function(ErrorModel error) error,
   }) {
     return loading();
   }
@@ -260,8 +261,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(SingleProductModel model)? ready,
+    TResult? Function(ErrorModel error)? error,
   }) {
     return loading?.call();
   }
@@ -271,8 +272,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(SingleProductModel model)? ready,
+    TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -286,8 +287,8 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Ready value) ready,
+    required TResult Function(_Error value) error,
   }) {
     return loading(this);
   }
@@ -297,8 +298,8 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -308,8 +309,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Ready value)? ready,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,36 +320,189 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AddOrderState {
+abstract class _Loading implements ReadyOrderDetailsState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+abstract class _$$ReadyImplCopyWith<$Res> {
+  factory _$$ReadyImplCopyWith(
+          _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
+      __$$ReadyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SingleProductModel model});
+}
+
+/// @nodoc
+class __$$ReadyImplCopyWithImpl<$Res>
+    extends _$ReadyOrderDetailsStateCopyWithImpl<$Res, _$ReadyImpl>
+    implements _$$ReadyImplCopyWith<$Res> {
+  __$$ReadyImplCopyWithImpl(
+      _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ReadyOrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? model = freezed,
+  }) {
+    return _then(_$ReadyImpl(
+      freezed == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as SingleProductModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReadyImpl implements _Ready {
+  const _$ReadyImpl(this.model);
+
+  @override
+  final SingleProductModel model;
+
+  @override
+  String toString() {
+    return 'ReadyOrderDetailsState.ready(model: $model)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReadyImpl &&
+            const DeepCollectionEquality().equals(other.model, model));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(model));
+
+  /// Create a copy of ReadyOrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
+      __$$ReadyImplCopyWithImpl<_$ReadyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(SingleProductModel model) ready,
+    required TResult Function(ErrorModel error) error,
+  }) {
+    return ready(model);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(SingleProductModel model)? ready,
+    TResult? Function(ErrorModel error)? error,
+  }) {
+    return ready?.call(model);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(SingleProductModel model)? ready,
+    TResult Function(ErrorModel error)? error,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(model);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Ready value) ready,
+    required TResult Function(_Error value) error,
+  }) {
+    return ready(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Error value)? error,
+  }) {
+    return ready?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Ready value)? ready,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Ready implements ReadyOrderDetailsState {
+  const factory _Ready(final SingleProductModel model) = _$ReadyImpl;
+
+  SingleProductModel get model;
+
+  /// Create a copy of ReadyOrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ErrorImplCopyWith<$Res> {
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
+      __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ErrorModel error});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$AddOrderStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$ReadyOrderDetailsStateCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddOrderState
+  /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
   }) {
-    return _then(_$FailureImpl(
-      null == error
+    return _then(_$ErrorImpl(
+      freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorModel,
@@ -358,45 +512,46 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.error);
+class _$ErrorImpl implements _Error {
+  const _$ErrorImpl(this.error);
 
   @override
   final ErrorModel error;
 
   @override
   String toString() {
-    return 'AddOrderState.failure(error: $error)';
+    return 'ReadyOrderDetailsState.error(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
-            (identical(other.error, error) || other.error == error));
+            other is _$ErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
-  /// Create a copy of AddOrderState
+  /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(SingleProductModel model) ready,
+    required TResult Function(ErrorModel error) error,
   }) {
-    return failure(error);
+    return error(this.error);
   }
 
   @override
@@ -404,10 +559,10 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(SingleProductModel model)? ready,
+    TResult? Function(ErrorModel error)? error,
   }) {
-    return failure?.call(error);
+    return error?.call(this.error);
   }
 
   @override
@@ -415,12 +570,12 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(SingleProductModel model)? ready,
+    TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure(error);
+    if (error != null) {
+      return error(this.error);
     }
     return orElse();
   }
@@ -430,10 +585,10 @@ class _$FailureImpl implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Ready value) ready,
+    required TResult Function(_Error value) error,
   }) {
-    return failure(this);
+    return error(this);
   }
 
   @override
@@ -441,10 +596,10 @@ class _$FailureImpl implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Error value)? error,
   }) {
-    return failure?.call(this);
+    return error?.call(this);
   }
 
   @override
@@ -452,177 +607,25 @@ class _$FailureImpl implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Ready value)? ready,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure(this);
+    if (error != null) {
+      return error(this);
     }
     return orElse();
   }
 }
 
-abstract class _Failure implements AddOrderState {
-  const factory _Failure(final ErrorModel error) = _$FailureImpl;
+abstract class _Error implements ReadyOrderDetailsState {
+  const factory _Error(final ErrorModel error) = _$ErrorImpl;
 
   ErrorModel get error;
 
-  /// Create a copy of AddOrderState
+  /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({AddOrderResponseModel message});
-}
-
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$AddOrderStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AddOrderState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$SuccessImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as AddOrderResponseModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.message);
-
-  @override
-  final AddOrderResponseModel message;
-
-  @override
-  String toString() {
-    return 'AddOrderState.success(message: $message)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  /// Create a copy of AddOrderState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
-  }) {
-    return success(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
-  }) {
-    return success?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Success implements AddOrderState {
-  const factory _Success(final AddOrderResponseModel message) = _$SuccessImpl;
-
-  AddOrderResponseModel get message;
-
-  /// Create a copy of AddOrderState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
