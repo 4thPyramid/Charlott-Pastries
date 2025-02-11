@@ -147,7 +147,7 @@ import '../../src/feature/manager/profile/domain/usecase/change_password_uc.dart
 import '../../src/feature/manager/profile/domain/usecase/delete_account_uc.dart';
 import '../../src/feature/manager/profile/domain/usecase/get_profile_photo_uc.dart';
 import '../../src/feature/manager/profile/domain/usecase/logout_use_case.dart';
-import '../../src/feature/manager/profile/domain/usecase/update_profile_photo.dart';
+import '../../src/feature/manager/profile/domain/usecase/update_profile_photo_uc.dart';
 import '../../src/feature/manager/profile/domain/usecase/update_profile_uc.dart';
 import '../../src/feature/manager/profile/presentation/logic/delete_account_cubit.dart';
 import '../../src/feature/manager/profile/presentation/logic/profile_cubit.dart';

@@ -32,12 +32,8 @@ import 'package:charlot/src/feature/chef/profile/presentation/views/chef_profile
 import 'package:charlot/src/feature/chef/regsiter/presentation/view/chef_register_view.dart';
 import 'package:charlot/src/feature/intro/presentation/views/user_type_view.dart';
 
-import 'package:charlot/src/feature/auth/presentation/view/forget_password.dart';
-import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/otp_view_email.dart';
-import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
 import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
-import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
 import 'package:charlot/src/feature/location/presentation/views/map_picker_view.dart';
 import 'package:charlot/src/feature/manager/empolyee/presentation/delivery/presentation/views/delivery_details_view.dart';
@@ -305,20 +301,18 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: "${RouterNames.addClientDetailsView}/:long/:lat/:address/:orderId",
+      path: RouterNames.addClientDetailsView,
       builder: (context, state) {
-        final long = state.pathParameters['long'] ?? '';
-        final lat = state.pathParameters['lat'] ?? '';
-
-        final address =
-            Uri.decodeComponent(state.pathParameters['address'] ?? '');
-        final orderId =
-            int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+        final data = state.extra as Map<String, dynamic>;
+        final long = data["longitude"] as double? ?? 0.0;
+        final lat = data["latitude"] as double? ?? 0.0;
+        final address = Uri.decodeComponent(data['address'] ?? '');
+        final orderId = data['orderId'] ?? 0;
         return BlocProvider(
           create: (context) => getIt<AddOrderCubit>(),
           child: ClientDetailsView(
-            long: double.parse(long),
-            lat: double.parse(lat),
+            long: long,
+            lat: lat,
             address: address,
             orderId: orderId,
           ),

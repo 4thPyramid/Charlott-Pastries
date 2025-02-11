@@ -41,8 +41,8 @@ class NewestOrderListView extends StatelessWidget {
                       });
                     },
                     child: NewestOrdersCardItem(
+                      orderId: order.id,
                       orderName: order.orderType,
-                      orderType: order.orderDetails ?? 'لا يوجد تفاصيل',
                       date: order.deliveryDate ?? 'لا يوجد تاريخ',
                     ),
                   );

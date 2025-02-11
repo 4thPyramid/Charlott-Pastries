@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../manager/profile/presentation/widget/edit_accout_pop.dart';
 import '../../../../manager/profile/presentation/widget/profile_header.dart';
 import '../component/sales_profile_info_component.dart';
 
@@ -21,8 +22,11 @@ class SalesProfileInfo extends StatelessWidget {
           
               context.push(RouterNames.salesBottomNavigationBarRoot);
           
-           // editAccountPop(context, 'sales');
+          
           },
+          //  onPressedEdit: (){
+          //   editAccountPop(context, 'sales');
+          // },
         ),
       ),
       body: const SalesProfileInfoComponent(),

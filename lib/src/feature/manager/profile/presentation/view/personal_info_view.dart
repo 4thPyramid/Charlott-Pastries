@@ -17,10 +17,11 @@ class PersonalInfoView extends StatelessWidget {
         title: ProfileHeader(
           title: AppStrings.personalInfoData,
           onPressed: () {
-          
               context.push(RouterNames.managerBottomNavigationBarRoot);
-          
           },
+          // onPressedEdit: (){
+          //   editAccountPop(context, 'manager');
+          // },
         ),
       ),
       body: const PersonalInfoComponent(),

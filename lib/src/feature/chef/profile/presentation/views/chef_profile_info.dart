@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../manager/profile/presentation/widget/edit_accout_pop.dart';
 import '../../../../manager/profile/presentation/widget/profile_header.dart';
 import '../component/chef_profile_info_component.dart';
 
@@ -18,8 +19,11 @@ class ChefProfileInfo extends StatelessWidget {
         title: ProfileHeader(
           title: AppStrings.personalInfoData,
           onPressed: () {
-            context.push(RouterNames.managerBottomNavigationBarRoot);
+            context.push(RouterNames.chefBottomNavigationBarRoot);
           },
+          //  onPressedEdit: (){
+          //   editAccountPop(context, 'chef');
+          // },
         ),
       ),
       body: const ChefProfileInfoComponent(),

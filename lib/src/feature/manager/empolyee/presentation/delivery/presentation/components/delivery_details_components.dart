@@ -113,7 +113,7 @@ class _BuildOrdersList extends StatelessWidget {
       itemBuilder: (context, index) {
         final order = orders[index];
         return NewestOrdersCardItem(
-          orderType: order.orderType,
+          orderId: order.deliveryId,
           orderName: order.orderDetails ?? '',
           date: order.deliveryDate,
         );

@@ -7,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../../core/errors/error_model.dart';
 import '../../domain/usecase/get_profile_photo_uc.dart';
-import '../../domain/usecase/update_profile_photo.dart';
+import '../../domain/usecase/update_profile_photo_uc.dart';
 import '../../domain/usecase/update_profile_uc.dart';
 
 part 'profile_cubit.freezed.dart';

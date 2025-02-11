@@ -73,8 +73,8 @@ class ProfileApiServiceImpl implements ProfileApiService {
         return Left(ErrorModel(message: 'Invalid user type'));
     }
     try {
-      final response = await _api.put(endpoint, data: {
-        'name': name,
+      final response = await _api.post(endpoint, data: {
+        'first_name': name,
         'phone': phone,
         'email': email,
       });
@@ -115,7 +115,7 @@ class ProfileApiServiceImpl implements ProfileApiService {
         ),
       });
 
-      final response = await _api.put(
+      final response = await _api.post(
         endpoint,
         data: formData,
         headers: {

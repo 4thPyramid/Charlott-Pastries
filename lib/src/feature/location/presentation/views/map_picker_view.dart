@@ -102,7 +102,11 @@ class MapPickerView extends StatelessWidget {
   void _confirmLocation(MapPickerLoaded state, BuildContext context) {
     final encodedAddress = Uri.encodeComponent(state.address);
     context.go(
-      "${RouterNames.addClientDetailsView}/${state.longitude}/${state.latitude}/$encodedAddress/$orderId",
+      RouterNames.addClientDetailsView, extra: {
+        'longitude': state.longitude, 
+        'latitude': state.latitude,
+         'address': encodedAddress, 
+         'orderId': orderId},
     );
   }
 }

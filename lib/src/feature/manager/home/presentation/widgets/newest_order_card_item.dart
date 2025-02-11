@@ -7,9 +7,9 @@ import '../../../../../../core/utils/app_styles.dart';
 
 class NewestOrdersCardItem extends StatelessWidget {
   const NewestOrdersCardItem(
-      {super.key, required this.orderName, required this.orderType, required this.date});
+      {super.key, required this.orderName, required this.orderId, required this.date});
   final String orderName;
-  final String orderType;
+  final int orderId;
 final String date;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ final String date;
             AppAssets.newestIcon,
           ),
           title: Text(
-            orderType,
+              orderId.toString(),
+          
             style: AppStyles.s16.copyWith(
               fontWeight: FontWeight.w600,
             ),
