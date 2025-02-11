@@ -52,7 +52,6 @@ import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_v
 import 'package:charlot/src/feature/sales/orders/presentation/views/compleated_orders.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/incompleated_orderes.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/waiting_orders.dart';
-import 'package:charlot/src/feature/sales/register/presentation/view/sales_register_view.dart';
 
 import '../../src/feature/auth/presentation/logic/reset_password/reset_password_cubit.dart';
 import '../../src/feature/auth/presentation/view/otp_view_for_password.dart';

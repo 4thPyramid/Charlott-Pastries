@@ -1,15 +1,12 @@
-import 'package:charlot/src/feature/manager/profile/presentation/view/profile_view.dart';
 import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart';
 import 'package:charlot/src/feature/sales/notification/presentation/view/notification_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
-import 'package:charlot/src/feature/sales/profile/presentation/views/sales_profile_info.dart';
 import 'package:charlot/src/feature/sales/profile/presentation/views/sales_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
-import '../chef/notification/presentation/view/notification_view.dart';
 
 class SalesBottomNavigationBarRoot extends StatelessWidget {
   const SalesBottomNavigationBarRoot({super.key});

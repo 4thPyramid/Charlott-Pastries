@@ -5,13 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/common/branches_feature/data/models/branch_model.dart';
+import '../../../../../../core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
 import '../../../../../../core/common/functions/validator.dart';
-import '../../../../../../core/common/models/branches_model.dart';
-import '../../../../../../core/common/models/specialization_model.dart';
+import '../../../../../../core/common/specialization_feature/data/models/specialization_model.dart';
 import '../../../../../../core/common/widgets/custom_auth_app_bar.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_circle_to_upload_image.dart';
 import '../../../../../../core/routes/router_names.dart';
+import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../auth/presentation/widgets/firest_and_last_name_row.dart';
@@ -40,8 +42,8 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Branch? selectedBranch;
-  Specialization? selectedSpecialization;
+  BranchModel? selectedBranch;
+  SpecializationModel? selectedSpecialization;
   File? selectedImage;
 
   bool _passwordsMatch() {
@@ -138,12 +140,13 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
                   lastNameController: lNameController,
                 ),
                 ChoiceBranch(
-                  onBranchSelected: (branch) {
-                    setState(() {
-                      selectedBranch = branch;
-                    });
-                  },
-                ),
+                                  onBranchSelected: (branch) {
+                                    setState(() {
+                                      selectedBranch = branch;
+                                    });
+                                  },
+                                ),
+                
                  ChoiceSpecialization(
                   onSpecializationSelected: (specialization) {
                     setState(() {

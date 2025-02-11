@@ -1,4 +1,3 @@
-import 'package:charlot/src/feature/chef/profile/presentation/component/chef_profile_view_component.dart';
 import 'package:charlot/src/feature/sales/profile/presentation/component/sales_profile_view_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

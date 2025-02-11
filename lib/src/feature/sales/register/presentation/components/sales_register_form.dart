@@ -94,6 +94,7 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
       return Form(
         key: formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CustomAuthAppBar(
               title: AppStrings.welcome,

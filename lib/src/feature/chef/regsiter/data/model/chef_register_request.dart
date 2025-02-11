@@ -36,11 +36,9 @@ class ChefRegisterRequest {
     this.image,
   });
 
-  // Factory constructor for JSON serialization
   factory ChefRegisterRequest.fromJson(Map<String, dynamic> json) =>
       _$ChefRegisterRequestFromJson(json);
 
-  // Convert to JSON
   Map<String, dynamic> toJson() => _$ChefRegisterRequestToJson(this);
 
   

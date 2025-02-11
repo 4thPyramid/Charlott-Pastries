@@ -7,6 +7,6 @@ part 'specialization_state.freezed.dart';
 class SpecializationState <T> with _$SpecializationState {
   const factory SpecializationState.initial() = _Initial;
   const factory SpecializationState.loading() = _Loading;
-  const factory SpecializationState.Loaded(SpecializationModel specializations) = _Loaded;
+  const factory SpecializationState.loaded(SpecializationResponse specializations) = _Loaded;
   const factory SpecializationState.error(ErrorModel error) = _Error;
 }

@@ -52,7 +52,7 @@ class ChefBottomNavigationBarRoot extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.shopping_cart_outlined,
+                    Icons.shopping_bag_outlined,
                   ),
                   label: 'cart',
                 ),

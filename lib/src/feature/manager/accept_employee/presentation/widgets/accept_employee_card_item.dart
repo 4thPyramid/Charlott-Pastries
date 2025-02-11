@@ -35,7 +35,7 @@ class AcceptEmployeeCardItem extends StatelessWidget {
             ]),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Text(
-            'title', // Use employee.name instead of title
+            isChef ? employee.specialization.name : employee.key,
             style: AppStyles.s20.copyWith(
               color: AppColors.primaryColor,
               fontWeight: FontWeight.w700,
@@ -47,7 +47,8 @@ class AcceptEmployeeCardItem extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  employee.image?? 'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
+                  employee.image ??
+                      'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
                   height: 100.h,
                   width: 85.w,
                   fit: BoxFit.fill,
@@ -62,10 +63,10 @@ class AcceptEmployeeCardItem extends StatelessWidget {
                       label: AppStrings.name,
                       value: '${employee.firstName}${employee.lastName}'),
                   SizedBox(height: 10.h),
-                  buildInfoRow(label: AppStrings.phoneNumber, value: employee.phone),
-                  SizedBox(height: 10.h),
                   buildInfoRow(
-                      label: AppStrings.email, value: employee.email),
+                      label: AppStrings.phoneNumber, value: employee.phone),
+                  SizedBox(height: 10.h),
+                  buildInfoRow(label: AppStrings.email, value: employee.email),
                   SizedBox(height: 10.h),
                   buildInfoRow(
                       label: 'تاريخ تقديم الطلب',

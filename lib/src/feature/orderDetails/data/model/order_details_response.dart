@@ -10,7 +10,7 @@ class OrderDetailsResponse {
   @JsonKey(name: 'created_at')
   final String createdAt;
   @JsonKey(name: 'order_details')
-  final String orderDetails;
+  final String? orderDetails;
   @JsonKey(name: 'order_type')
   final String orderType;
   @JsonKey(name: 'chef_name')
@@ -37,7 +37,7 @@ class OrderDetailsResponse {
     required this.success,
     this.deliveryDate,
     required this.createdAt,
-    required this.orderDetails,
+     this.orderDetails,
     required this.orderType,
     required this.chefName,
     required this.deliveryName,

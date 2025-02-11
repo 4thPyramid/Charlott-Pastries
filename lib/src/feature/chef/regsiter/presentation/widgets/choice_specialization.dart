@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/common/models/specialization_model.dart';
+import '../../../../../../core/common/specialization_feature/data/models/specialization_model.dart';
+import '../../../../../../core/common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
+import '../../../../../../core/common/specialization_feature/presentation/logic/cubit/specialization_state.dart';
+import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/app_styles.dart';
-
 class ChoiceSpecialization extends StatefulWidget {
-  final void Function(Specialization) onSpecializationSelected;
-  final Specialization? initialSpecialization;
+  final void Function(SpecializationModel) onSpecializationSelected;
+  final SpecializationModel? initialSpecialization;
 
   const ChoiceSpecialization({
     super.key,
@@ -21,7 +24,7 @@ class ChoiceSpecialization extends StatefulWidget {
 }
 
 class _ChoiceSpecializationState extends State<ChoiceSpecialization> {
-  Specialization? selectedSpecialization;
+  SpecializationModel? selectedSpecialization;
 
   @override
   void initState() {
@@ -31,7 +34,9 @@ class _ChoiceSpecializationState extends State<ChoiceSpecialization> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return  BlocProvider(
+              create: (context) => getIt<SpecializationCubit>()..getSpecialization(),
+              child :Padding(
       padding: EdgeInsets.only(top: 12.h, right: 8.w, left: 8.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,73 +56,94 @@ class _ChoiceSpecializationState extends State<ChoiceSpecialization> {
               border: Border.all(color: AppColors.grey),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<Specialization>(
-                value: selectedSpecialization,
-                hint: const Row(
-                  children: [
-                    Icon(
-                      Icons.auto_awesome ,
-                      color: AppColors.primaryColor,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      AppStrings.choiceSpecialization,
-                      style: TextStyle(
-                        color: AppColors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-                selectedItemBuilder: (BuildContext context) {
-                  return SpecializationsData.specializations.map<Widget>((Specialization specialization) {
-                    return Row(
-                      children: [
-                        const Icon(
-                          Icons.auto_awesome,
-                          color: AppColors.primaryColor,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          specialization.name,
-                          style: const TextStyle(
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ],
-                    );
-                  }).toList();
-                },
-                isExpanded: true,
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: AppColors.primaryColor,
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 12.h),
-                borderRadius: BorderRadius.circular(10),
-                items: SpecializationsData.specializations.map((Specialization specialization) {
-                  return DropdownMenuItem<Specialization>(
-                    value: specialization,
-                    child: Text(
-                      specialization.name,
-                      style: const TextStyle(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (Specialization? newSpecialization) {
-                  if (newSpecialization != null) {
-                    setState(() {
-                      selectedSpecialization = newSpecialization;
-                    });
-                    widget.onSpecializationSelected(newSpecialization);
-                  }
-                },
-              ),
+            child: BlocBuilder<SpecializationCubit, SpecializationState>(
+              builder: (context, state) {
+                return state.when(
+                  initial: () => const SizedBox(),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  loaded: (specializationResponse) => 
+                    _buildDropdown(specializationResponse.specializations),
+                  error: (error) => Center(
+                    child: Text(error.message),
+                  ),
+                );
+              },
             ),
           ),
         ],
+      ),
+              )
+    );
+  }
+
+  Widget _buildDropdown(List<SpecializationModel> specializations) {
+    return DropdownButtonHideUnderline(
+      child: DropdownButton<SpecializationModel>(
+        value: selectedSpecialization,
+        hint: const Row(
+          children: [
+            Icon(
+              Icons.auto_awesome,
+              color: AppColors.primaryColor,
+            ),
+            SizedBox(width: 8),
+            Text(
+              AppStrings.choiceSpecialization,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: AppColors.grey,
+              ),
+            ),
+          ],
+        ),
+        selectedItemBuilder: (BuildContext context) {
+          return specializations.map<Widget>((SpecializationModel specialization) {
+            return Row(
+              children: [
+                const Icon(
+                  Icons.auto_awesome,
+                  color: AppColors.primaryColor,
+                ),
+                SizedBox(width: 8.w),
+                Text(
+                  specialization.name,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ],
+            );
+          }).toList();
+        },
+        isExpanded: true,
+        icon: const Icon(
+          Icons.arrow_drop_down,
+          color: AppColors.primaryColor,
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 12.h),
+        borderRadius: BorderRadius.circular(10),
+        items: specializations.map((SpecializationModel specialization) {
+          return DropdownMenuItem<SpecializationModel>(
+            value: specialization,
+            child: Text(
+              specialization.name,
+              style: const TextStyle(
+                color: AppColors.primaryColor,
+              ),
+            ),
+          );
+        }).toList(),
+        onChanged: (SpecializationModel? newSpecialization) {
+          if (newSpecialization != null) {
+            setState(() {
+              selectedSpecialization = newSpecialization;
+            });
+            widget.onSpecializationSelected(newSpecialization);
+          }
+        },
       ),
     );
   }

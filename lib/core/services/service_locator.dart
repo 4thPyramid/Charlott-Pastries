@@ -87,7 +87,6 @@ import '../../src/feature/chef/notification/domain/repo/chef_notification_repo.d
 import '../../src/feature/chef/notification/domain/usecase/get_notification_use_case.dart';
 import '../../src/feature/chef/notification/presentation/logic/chef_notification_cubit.dart';
 import '../../src/feature/chef/orders/domain/usecase/accept_order_use_case.dart';
-import '../../src/feature/chef/orders/domain/usecase/decline_order_use_case.dart';
 import '../../src/feature/chef/orders/domain/usecase/done_order_use_case.dart';
 import '../../src/feature/chef/orders/domain/usecase/start_order_use_case.dart';
 import '../../src/feature/chef/regsiter/data/remote/chef_register_api_services.dart';
@@ -159,12 +158,20 @@ import '../../src/feature/orderDetails/domain/usecase/accept_order_use_case.dart
 import '../../src/feature/orderDetails/domain/usecase/get_order_details_use_case.dart';
 import '../../src/feature/orderDetails/presentation/logic/accept_order/accept_order_cubit.dart';
 import '../../src/feature/orderDetails/presentation/logic/order_details_cubit.dart';
+import '../../src/feature/sales/notification/data/remote/sales_notification_api_services.dart';
+import '../../src/feature/sales/notification/data/remote/sales_notification_remote_ds.dart';
+import '../../src/feature/sales/notification/domain/repo/sales_notification_repo.dart';
+import '../../src/feature/sales/notification/domain/usecase/get_notification_use_case.dart';
+import '../../src/feature/sales/notification/presentation/logic/sales_notification_cubit.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_api_serivces.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_remote_ds.dart';
 import '../../src/feature/sales/register/domain/repository/sales_register_repo.dart';
 import '../../src/feature/sales/register/domain/usecase/sales_register_usecase.dart';
 import '../../src/feature/sales/register/presentation/logic/sales_register/sales_register_cubit.dart';
 import '../common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
+import '../common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
+import '../common/specialization_feature/domain/repo/specialization_repo.dart';
+import '../common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -190,8 +197,8 @@ void setupLocator() {
   getIt.registerLazySingleton<BranchesApiServices>(
     () => BranchesApiServicesImp(getIt()),
   );
-  getIt.registerLazySingleton<SpecializationApiSevices>(
-    () => SpecializationApiSevicesImp(getIt()),
+  getIt.registerLazySingleton<SpecializationApiServices>(
+    () => SpecializationApiServicesImp(getIt()),
   );
 
   getIt.registerLazySingleton<BannerApiServices>(
@@ -239,6 +246,8 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SalesSearchApiService>(
       () => SalesSearchApiServiceImpl(getIt()));
+getIt.registerLazySingleton<SalesNotificationApiServices>(
+      () => SalesNotificationApiServicesImpl(getIt()));
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -296,6 +305,8 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SalesSearchRemoteData>(
       () => SalesSearchRemoteDataImpl(getIt()));
+  getIt.registerLazySingleton<SalesNotificationRemoteDs>(
+      () => SalesNotificationRemoteDsImpl(getIt()));
 
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
@@ -350,6 +361,13 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SalesSearchRepo>(
       () => SalesSearchRepoImpl(getIt()));
+  getIt.registerLazySingleton<SalesNotificationRepo>(
+      () => SalesNotificationRepoImpl(getIt()));
+
+  getIt.registerLazySingleton<SpecializationRepo>(
+      () => SpecializationRepoImp(getIt()));
+
+
 
   ///! -- UseCases -- ///
 
@@ -541,6 +559,9 @@ void setupLocator() {
   getIt.registerLazySingleton<GetAllReadyProductsUC>(
     () => GetAllReadyProductsUC(getIt()),
   );
+  getIt.registerLazySingleton<GetSalesNotificationUseCase>(
+    () => GetSalesNotificationUseCase(getIt()),
+  );
 
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
@@ -577,6 +598,7 @@ void setupLocator() {
   getIt.registerFactory<SalesRegisterCubit>(() => SalesRegisterCubit(getIt()));
 
   getIt.registerFactory<BannerCubit>(() => BannerCubit(getIt()));
+  getIt.registerFactory<SpecializationCubit>(() => SpecializationCubit(getIt()));
 
   getIt.registerFactory<NewOrdersCubit>(() => NewOrdersCubit(getIt()));
   getIt.registerFactory<ManagerNewOrdersCubit>(
@@ -608,6 +630,9 @@ void setupLocator() {
       ));
   getIt.registerFactory<ChefNotificationCubit>(
       () => ChefNotificationCubit(getIt()));
+
+        getIt.registerFactory<BranchesCubit>(
+      () => BranchesCubit(getIt()));
   getIt.registerFactory<ResetPasswordCubit>(
       () => ResetPasswordCubit(getIt(), getIt(), getIt()));
   getIt.registerFactory<ChefRegisterCubit>(() => ChefRegisterCubit(getIt()));
@@ -639,5 +664,8 @@ void setupLocator() {
 
   getIt.registerFactory<GetReadyOrdersCubit>(
     () => GetReadyOrdersCubit(getIt()),
+  );
+   getIt.registerFactory<SalesNotificationCubit>(
+    () => SalesNotificationCubit(getIt()),
   );
 }

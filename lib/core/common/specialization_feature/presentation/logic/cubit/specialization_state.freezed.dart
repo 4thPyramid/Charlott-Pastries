@@ -20,7 +20,7 @@ mixin _$SpecializationState<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(SpecializationResponse specializations) loaded,
     required TResult Function(ErrorModel error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$SpecializationState<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(SpecializationResponse specializations)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$SpecializationState<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(SpecializationResponse specializations)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) =>
@@ -45,7 +45,7 @@ mixin _$SpecializationState<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
+    required TResult Function(_Loaded<T> value) loaded,
     required TResult Function(_Error<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ mixin _$SpecializationState<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
+    TResult? Function(_Loaded<T> value)? loaded,
     TResult? Function(_Error<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$SpecializationState<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
+    TResult Function(_Loaded<T> value)? loaded,
     TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) =>
@@ -133,7 +133,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(SpecializationResponse specializations) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
     return initial();
@@ -144,7 +144,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(SpecializationResponse specializations)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
     return initial?.call();
@@ -155,7 +155,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(SpecializationResponse specializations)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -170,7 +170,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
+    required TResult Function(_Loaded<T> value) loaded,
     required TResult Function(_Error<T> value) error,
   }) {
     return initial(this);
@@ -181,7 +181,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
+    TResult? Function(_Loaded<T> value)? loaded,
     TResult? Function(_Error<T> value)? error,
   }) {
     return initial?.call(this);
@@ -192,7 +192,7 @@ class _$InitialImpl<T> implements _Initial<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
+    TResult Function(_Loaded<T> value)? loaded,
     TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
@@ -250,7 +250,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(SpecializationResponse specializations) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
     return loading();
@@ -261,7 +261,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(SpecializationResponse specializations)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
     return loading?.call();
@@ -272,7 +272,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(SpecializationResponse specializations)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -287,7 +287,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
+    required TResult Function(_Loaded<T> value) loaded,
     required TResult Function(_Error<T> value) error,
   }) {
     return loading(this);
@@ -298,7 +298,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
+    TResult? Function(_Loaded<T> value)? loaded,
     TResult? Function(_Error<T> value)? error,
   }) {
     return loading?.call(this);
@@ -309,7 +309,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
+    TResult Function(_Loaded<T> value)? loaded,
     TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
@@ -330,7 +330,7 @@ abstract class _$$LoadedImplCopyWith<T, $Res> {
           _$LoadedImpl<T> value, $Res Function(_$LoadedImpl<T>) then) =
       __$$LoadedImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({SpecializationModel specializations});
+  $Res call({SpecializationResponse specializations});
 }
 
 /// @nodoc
@@ -352,7 +352,7 @@ class __$$LoadedImplCopyWithImpl<T, $Res>
       null == specializations
           ? _value.specializations
           : specializations // ignore: cast_nullable_to_non_nullable
-              as SpecializationModel,
+              as SpecializationResponse,
     ));
   }
 }
@@ -363,11 +363,11 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   const _$LoadedImpl(this.specializations);
 
   @override
-  final SpecializationModel specializations;
+  final SpecializationResponse specializations;
 
   @override
   String toString() {
-    return 'SpecializationState<$T>.Loaded(specializations: $specializations)';
+    return 'SpecializationState<$T>.loaded(specializations: $specializations)';
   }
 
   @override
@@ -395,10 +395,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(SpecializationResponse specializations) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
-    return Loaded(specializations);
+    return loaded(specializations);
   }
 
   @override
@@ -406,10 +406,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(SpecializationResponse specializations)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
-    return Loaded?.call(specializations);
+    return loaded?.call(specializations);
   }
 
   @override
@@ -417,12 +417,12 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(SpecializationResponse specializations)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
-    if (Loaded != null) {
-      return Loaded(specializations);
+    if (loaded != null) {
+      return loaded(specializations);
     }
     return orElse();
   }
@@ -432,10 +432,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
+    required TResult Function(_Loaded<T> value) loaded,
     required TResult Function(_Error<T> value) error,
   }) {
-    return Loaded(this);
+    return loaded(this);
   }
 
   @override
@@ -443,10 +443,10 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
+    TResult? Function(_Loaded<T> value)? loaded,
     TResult? Function(_Error<T> value)? error,
   }) {
-    return Loaded?.call(this);
+    return loaded?.call(this);
   }
 
   @override
@@ -454,22 +454,22 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
+    TResult Function(_Loaded<T> value)? loaded,
     TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
-    if (Loaded != null) {
-      return Loaded(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
 abstract class _Loaded<T> implements SpecializationState<T> {
-  const factory _Loaded(final SpecializationModel specializations) =
+  const factory _Loaded(final SpecializationResponse specializations) =
       _$LoadedImpl<T>;
 
-  SpecializationModel get specializations;
+  SpecializationResponse get specializations;
 
   /// Create a copy of SpecializationState
   /// with the given fields replaced by the non-null parameter values.
@@ -548,7 +548,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SpecializationModel specializations) Loaded,
+    required TResult Function(SpecializationResponse specializations) loaded,
     required TResult Function(ErrorModel error) error,
   }) {
     return error(this.error);
@@ -559,7 +559,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SpecializationModel specializations)? Loaded,
+    TResult? Function(SpecializationResponse specializations)? loaded,
     TResult? Function(ErrorModel error)? error,
   }) {
     return error?.call(this.error);
@@ -570,7 +570,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SpecializationModel specializations)? Loaded,
+    TResult Function(SpecializationResponse specializations)? loaded,
     TResult Function(ErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -585,7 +585,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
-    required TResult Function(_Loaded<T> value) Loaded,
+    required TResult Function(_Loaded<T> value) loaded,
     required TResult Function(_Error<T> value) error,
   }) {
     return error(this);
@@ -596,7 +596,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
+    TResult? Function(_Loaded<T> value)? loaded,
     TResult? Function(_Error<T> value)? error,
   }) {
     return error?.call(this);
@@ -607,7 +607,7 @@ class _$ErrorImpl<T> implements _Error<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
-    TResult Function(_Loaded<T> value)? Loaded,
+    TResult Function(_Loaded<T> value)? loaded,
     TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {

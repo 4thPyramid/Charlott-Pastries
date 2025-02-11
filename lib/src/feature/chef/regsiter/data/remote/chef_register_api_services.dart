@@ -18,6 +18,7 @@ class ChefRegisterApiServicesImpl extends ChefRegisterApiServices {
   @override
   Future<Either<ErrorModel, String>> chefRegister(
       ChefRegisterRequest request) async {
+        
     final data = await request.toFormData();
     final formData = FormData.fromMap(data);
     try {

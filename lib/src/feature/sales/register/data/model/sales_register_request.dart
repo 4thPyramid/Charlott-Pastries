@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'sales_register_request.g.dart';
@@ -30,10 +31,24 @@ class SalesRegisterRequest {
     this.image,
   });
 
-  // Factory constructor for JSON serialization
   factory SalesRegisterRequest.fromJson(Map<String, dynamic> json) =>
       _$SalesRegisterRequestFromJson(json);
 
-  // Convert to JSON
   Map<String, dynamic> toJson() => _$SalesRegisterRequestToJson(this);
+
+
+ Future<Map<String, dynamic>> toFormData() async {
+    final map = _$SalesRegisterRequestToJson(this);
+    
+    if (image != null) {
+      String fileName = image!.path.split('/').last;
+      map['image'] = await MultipartFile.fromFile(
+        image!.path,
+        filename: fileName,
+      );
+    }
+    
+    return map;
+  }
+
 }

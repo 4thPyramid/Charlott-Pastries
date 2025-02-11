@@ -1,11 +1,11 @@
 
 import 'package:charlot/src/feature/chef/home/presentation/component/order_list_view_section.dart';
 import 'package:charlot/src/feature/sales/home/presentation/componant/banner_section.dart';
-import 'package:charlot/src/feature/sales/home/presentation/widgets/home_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/utils/app_styles.dart';
+import '../widget/chef_home_app_bar.dart';
 
 class ChefHomeView extends StatelessWidget {
   const ChefHomeView({super.key});
@@ -19,9 +19,7 @@ class ChefHomeView extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 30.h),
-              const HomeAppBar(
-
-              ),
+              const ChefHomeAppBar(),
               SizedBox(height: 20.h),
             const BannerSection(),
               SizedBox(height: 20.h),

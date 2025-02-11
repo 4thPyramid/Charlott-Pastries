@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 
 
 abstract class SpecializationRepo {
-  Future<Either<ErrorModel, SpecializationModel>> getSpecialization();
+  Future<Either<ErrorModel, SpecializationResponse>> getSpecialization();
 }
 
 class SpecializationRepoImp implements SpecializationRepo {
@@ -15,7 +15,7 @@ class SpecializationRepoImp implements SpecializationRepo {
   SpecializationRepoImp(this.specializationRemoteDataSource);
 
   @override
-  Future<Either<ErrorModel, SpecializationModel>> getSpecialization() {
+  Future<Either<ErrorModel, SpecializationResponse>> getSpecialization() {
     return specializationRemoteDataSource.getSpecialization();
   }
   

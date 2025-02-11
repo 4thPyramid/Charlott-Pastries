@@ -1,13 +1,17 @@
 import 'package:charlot/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/common/models/branches_model.dart';
+import '../../../../../../core/common/branches_feature/data/models/branch_model.dart';
+import '../../../../../../core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
+import '../../../../../../core/common/branches_feature/presentation/logic/cubit/cubit/branches_state.dart';
+import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
 class ChoiceBranch extends StatefulWidget {
-  final void Function(Branch) onBranchSelected;
-  final Branch? initialBranch;
+  final void Function(BranchModel) onBranchSelected;
+  final BranchModel? initialBranch;
 
   const ChoiceBranch({
     super.key,
@@ -20,7 +24,7 @@ class ChoiceBranch extends StatefulWidget {
 }
 
 class _ChoiceBranchState extends State<ChoiceBranch> {
-  Branch? selectedBranch;
+  BranchModel? selectedBranch;
 
   @override
   void initState() {
@@ -30,7 +34,9 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return  BlocProvider(
+              create: (context) => getIt<BranchesCubit>()..getBranches(),
+              child: Padding(
       padding: EdgeInsets.only(top: 12.h, right: 8.w, left: 8.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,73 +56,94 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
               border: Border.all(color: AppColors.grey),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<Branch>(
-                value: selectedBranch,
-                hint: const Row(
-                  children: [
-                    Icon(
-                      Icons.apartment,
-                      color: AppColors.primaryColor,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      AppStrings.choiceBranch,
-                      style: TextStyle(
-                        color: AppColors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-                selectedItemBuilder: (BuildContext context) {
-                  return BranchesData.branches.map<Widget>((Branch branch) {
-                    return Row(
-                      children: [
-                        const Icon(
-                          Icons.apartment,
-                          color: AppColors.primaryColor,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          branch.name,
-                          style: const TextStyle(
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ],
-                    );
-                  }).toList();
-                },
-                isExpanded: true,
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: AppColors.primaryColor,
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 12.h),
-                borderRadius: BorderRadius.circular(10),
-                items: BranchesData.branches.map((Branch branch) {
-                  return DropdownMenuItem<Branch>(
-                    value: branch,
-                    child: Text(
-                      branch.name,
-                      style: const TextStyle(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (Branch? newBranch) {
-                  if (newBranch != null) {
-                    setState(() {
-                      selectedBranch = newBranch;
-                    });
-                    widget.onBranchSelected(newBranch);
-                  }
-                },
-              ),
+            child: BlocBuilder<BranchesCubit, BranchesState>(
+              builder: (context, state) {
+                return state.when(
+                  initial: () => const SizedBox(),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  loaded: (branchResponse) => _buildDropdown(branchResponse.branches),
+                  error: (error) => Center(
+                    child: Text(error.message),
+                  ),
+                );
+              },
             ),
           ),
         ],
+      ),
+      )
+    );
+  }
+
+  Widget _buildDropdown(List<BranchModel> branches) {
+    return DropdownButtonHideUnderline(
+      child: DropdownButton<BranchModel>(
+        value: selectedBranch,
+        hint: const Row(
+          children: [
+            Icon(
+              Icons.apartment,
+              color: AppColors.primaryColor,
+            ),
+            SizedBox(width: 8),
+            Text(
+              AppStrings.choiceBranch,
+                            overflow: TextOverflow.ellipsis,
+
+              style: TextStyle(
+                color: AppColors.grey,
+              ),
+            ),
+          ],
+        ),
+        selectedItemBuilder: (BuildContext context) {
+          return branches.map<Widget>((BranchModel branch) {
+            return Row(
+              children: [
+                const Icon(
+                  Icons.apartment,
+                  color: AppColors.primaryColor,
+                ),
+                SizedBox(width: 8.w),
+                Text(
+                  branch.name,
+                  style: const TextStyle(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ],
+            );
+          }).toList();
+        },
+        isExpanded: true,
+        icon: const Icon(
+          Icons.arrow_drop_down,
+          color: AppColors.primaryColor,
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 12.h),
+        borderRadius: BorderRadius.circular(10),
+        items: branches.map((BranchModel branch) {
+          return DropdownMenuItem<BranchModel>(
+            value: branch,
+            child: Text(
+              branch.name,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: AppColors.primaryColor,
+              ),
+            ),
+          );
+        }).toList(),
+        onChanged: (BranchModel? newBranch) {
+          if (newBranch != null) {
+            setState(() {
+              selectedBranch = newBranch;
+            });
+            widget.onBranchSelected(newBranch);
+          }
+        },
       ),
     );
   }

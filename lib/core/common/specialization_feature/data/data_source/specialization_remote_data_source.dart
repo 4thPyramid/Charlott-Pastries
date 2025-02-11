@@ -4,15 +4,15 @@ import 'package:charlot/core/errors/error_model.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class SpecializationRemoteDataSource {
-  Future<Either<ErrorModel, SpecializationModel>> getSpecialization();
+  Future<Either<ErrorModel, SpecializationResponse>> getSpecialization();
 }
 
 class SpecializationRemoteDataSourceImp implements SpecializationRemoteDataSource {
-  final SpecializationApiSevices specializationApiSevices;
-  SpecializationRemoteDataSourceImp(this.specializationApiSevices);
+  final SpecializationApiServices specializationApiServices;
+  SpecializationRemoteDataSourceImp(this.specializationApiServices);
 
   @override
-  Future<Either<ErrorModel, SpecializationModel>> getSpecialization() {
-    return specializationApiSevices.getSecializations();
+  Future<Either<ErrorModel, SpecializationResponse>> getSpecialization() {
+    return specializationApiServices.getSpecialization();
   }
 }

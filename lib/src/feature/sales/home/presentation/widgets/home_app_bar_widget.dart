@@ -1,7 +1,7 @@
 import 'package:charlot/core/data/cached/cache_helper.dart';
-import 'package:charlot/core/routes/app_routers.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,32 +16,7 @@ class HomeAppBar extends StatelessWidget {
 
     return Row(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("اهلا بك",
-                style: AppStyles.s12.copyWith(
-                  color: AppColors.darkTextGrey,
-                  fontWeight: FontWeight.w700,
-                )),
-            Text(name ?? 'ابدا الان',
-                style: AppStyles.s14.copyWith(
-                  fontWeight: FontWeight.w600,
-                )),
-          ],
-        ),
-        const SizedBox(width: 10),
-        IconButton(
-            onPressed: () {
-              context.push(RouterNames.salesSearchView);
-            },
-            icon: const Icon(
-              Icons.search,
-              size: 30,
-              color: AppColors.primaryColor,
-            )),
-        const SizedBox(width: 10),
-        const Spacer(),
+        
         ClipRRect(
           borderRadius: BorderRadius.circular(70),
           child: Image.network(
@@ -52,6 +27,31 @@ class HomeAppBar extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+        const SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(AppStrings.welcome,
+                style: AppStyles.s12.copyWith(
+                  color: AppColors.darkTextGrey,
+                  fontWeight: FontWeight.w700,
+                )),
+            Text(name ?? 'ابدا الان',
+                style: AppStyles.s14.copyWith(
+                  fontWeight: FontWeight.w600,
+                )),
+          ],
+        ),
+        const Spacer(),
+        IconButton(
+            onPressed: () {
+              context.push(RouterNames.salesSearchView);
+            },
+            icon: const Icon(
+              Icons.search,
+              size: 30,
+              color: AppColors.primaryColor,
+            )),
       ],
     );
   }

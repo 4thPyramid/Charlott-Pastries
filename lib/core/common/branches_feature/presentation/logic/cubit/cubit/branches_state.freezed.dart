@@ -19,24 +19,24 @@ mixin _$BranchesState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() Loading,
-    required TResult Function(BranchModel branches) Loaded,
+    required TResult Function() loading,
+    required TResult Function(BranchResponse branches) loaded,
     required TResult Function(ErrorModel message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? Loading,
-    TResult? Function(BranchModel branches)? Loaded,
+    TResult? Function()? loading,
+    TResult? Function(BranchResponse branches)? loaded,
     TResult? Function(ErrorModel message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? Loading,
-    TResult Function(BranchModel branches)? Loaded,
+    TResult Function()? loading,
+    TResult Function(BranchResponse branches)? loaded,
     TResult Function(ErrorModel message)? error,
     required TResult orElse(),
   }) =>
@@ -44,25 +44,25 @@ mixin _$BranchesState<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
-    required TResult Function(_Loading<T> value) Loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Erorr<T> value) error,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Error<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
-    TResult? Function(_Loading<T> value)? Loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Erorr<T> value)? error,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Error<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
-    TResult Function(_Loading<T> value)? Loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Erorr<T> value)? error,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,8 +131,8 @@ class _$InitialImpl<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() Loading,
-    required TResult Function(BranchModel branches) Loaded,
+    required TResult Function() loading,
+    required TResult Function(BranchResponse branches) loaded,
     required TResult Function(ErrorModel message) error,
   }) {
     return initial();
@@ -142,8 +142,8 @@ class _$InitialImpl<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? Loading,
-    TResult? Function(BranchModel branches)? Loaded,
+    TResult? Function()? loading,
+    TResult? Function(BranchResponse branches)? loaded,
     TResult? Function(ErrorModel message)? error,
   }) {
     return initial?.call();
@@ -153,8 +153,8 @@ class _$InitialImpl<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? Loading,
-    TResult Function(BranchModel branches)? Loaded,
+    TResult Function()? loading,
+    TResult Function(BranchResponse branches)? loaded,
     TResult Function(ErrorModel message)? error,
     required TResult orElse(),
   }) {
@@ -168,9 +168,9 @@ class _$InitialImpl<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
-    required TResult Function(_Loading<T> value) Loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Erorr<T> value) error,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Error<T> value) error,
   }) {
     return initial(this);
   }
@@ -179,9 +179,9 @@ class _$InitialImpl<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
-    TResult? Function(_Loading<T> value)? Loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Erorr<T> value)? error,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Error<T> value)? error,
   }) {
     return initial?.call(this);
   }
@@ -190,9 +190,9 @@ class _$InitialImpl<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
-    TResult Function(_Loading<T> value)? Loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Erorr<T> value)? error,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -232,7 +232,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
 
   @override
   String toString() {
-    return 'BranchesState<$T>.Loading()';
+    return 'BranchesState<$T>.loading()';
   }
 
   @override
@@ -248,35 +248,35 @@ class _$LoadingImpl<T> implements _Loading<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() Loading,
-    required TResult Function(BranchModel branches) Loaded,
+    required TResult Function() loading,
+    required TResult Function(BranchResponse branches) loaded,
     required TResult Function(ErrorModel message) error,
   }) {
-    return Loading();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? Loading,
-    TResult? Function(BranchModel branches)? Loaded,
+    TResult? Function()? loading,
+    TResult? Function(BranchResponse branches)? loaded,
     TResult? Function(ErrorModel message)? error,
   }) {
-    return Loading?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? Loading,
-    TResult Function(BranchModel branches)? Loaded,
+    TResult Function()? loading,
+    TResult Function(BranchResponse branches)? loaded,
     TResult Function(ErrorModel message)? error,
     required TResult orElse(),
   }) {
-    if (Loading != null) {
-      return Loading();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -285,35 +285,35 @@ class _$LoadingImpl<T> implements _Loading<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
-    required TResult Function(_Loading<T> value) Loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Erorr<T> value) error,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Error<T> value) error,
   }) {
-    return Loading(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
-    TResult? Function(_Loading<T> value)? Loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Erorr<T> value)? error,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Error<T> value)? error,
   }) {
-    return Loading?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
-    TResult Function(_Loading<T> value)? Loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Erorr<T> value)? error,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
-    if (Loading != null) {
-      return Loading(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
@@ -329,7 +329,7 @@ abstract class _$$LoadedImplCopyWith<T, $Res> {
           _$LoadedImpl<T> value, $Res Function(_$LoadedImpl<T>) then) =
       __$$LoadedImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({BranchModel branches});
+  $Res call({BranchResponse branches});
 }
 
 /// @nodoc
@@ -351,7 +351,7 @@ class __$$LoadedImplCopyWithImpl<T, $Res>
       null == branches
           ? _value.branches
           : branches // ignore: cast_nullable_to_non_nullable
-              as BranchModel,
+              as BranchResponse,
     ));
   }
 }
@@ -362,11 +362,11 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   const _$LoadedImpl(this.branches);
 
   @override
-  final BranchModel branches;
+  final BranchResponse branches;
 
   @override
   String toString() {
-    return 'BranchesState<$T>.Loaded(branches: $branches)';
+    return 'BranchesState<$T>.loaded(branches: $branches)';
   }
 
   @override
@@ -393,35 +393,35 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() Loading,
-    required TResult Function(BranchModel branches) Loaded,
+    required TResult Function() loading,
+    required TResult Function(BranchResponse branches) loaded,
     required TResult Function(ErrorModel message) error,
   }) {
-    return Loaded(branches);
+    return loaded(branches);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? Loading,
-    TResult? Function(BranchModel branches)? Loaded,
+    TResult? Function()? loading,
+    TResult? Function(BranchResponse branches)? loaded,
     TResult? Function(ErrorModel message)? error,
   }) {
-    return Loaded?.call(branches);
+    return loaded?.call(branches);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? Loading,
-    TResult Function(BranchModel branches)? Loaded,
+    TResult Function()? loading,
+    TResult Function(BranchResponse branches)? loaded,
     TResult Function(ErrorModel message)? error,
     required TResult orElse(),
   }) {
-    if (Loaded != null) {
-      return Loaded(branches);
+    if (loaded != null) {
+      return loaded(branches);
     }
     return orElse();
   }
@@ -430,44 +430,44 @@ class _$LoadedImpl<T> implements _Loaded<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
-    required TResult Function(_Loading<T> value) Loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Erorr<T> value) error,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Error<T> value) error,
   }) {
-    return Loaded(this);
+    return loaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
-    TResult? Function(_Loading<T> value)? Loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Erorr<T> value)? error,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Error<T> value)? error,
   }) {
-    return Loaded?.call(this);
+    return loaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
-    TResult Function(_Loading<T> value)? Loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Erorr<T> value)? error,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
-    if (Loaded != null) {
-      return Loaded(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
 abstract class _Loaded<T> implements BranchesState<T> {
-  const factory _Loaded(final BranchModel branches) = _$LoadedImpl<T>;
+  const factory _Loaded(final BranchResponse branches) = _$LoadedImpl<T>;
 
-  BranchModel get branches;
+  BranchResponse get branches;
 
   /// Create a copy of BranchesState
   /// with the given fields replaced by the non-null parameter values.
@@ -477,20 +477,20 @@ abstract class _Loaded<T> implements BranchesState<T> {
 }
 
 /// @nodoc
-abstract class _$$ErorrImplCopyWith<T, $Res> {
-  factory _$$ErorrImplCopyWith(
-          _$ErorrImpl<T> value, $Res Function(_$ErorrImpl<T>) then) =
-      __$$ErorrImplCopyWithImpl<T, $Res>;
+abstract class _$$ErrorImplCopyWith<T, $Res> {
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl<T> value, $Res Function(_$ErrorImpl<T>) then) =
+      __$$ErrorImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({ErrorModel message});
 }
 
 /// @nodoc
-class __$$ErorrImplCopyWithImpl<T, $Res>
-    extends _$BranchesStateCopyWithImpl<T, $Res, _$ErorrImpl<T>>
-    implements _$$ErorrImplCopyWith<T, $Res> {
-  __$$ErorrImplCopyWithImpl(
-      _$ErorrImpl<T> _value, $Res Function(_$ErorrImpl<T>) _then)
+class __$$ErrorImplCopyWithImpl<T, $Res>
+    extends _$BranchesStateCopyWithImpl<T, $Res, _$ErrorImpl<T>>
+    implements _$$ErrorImplCopyWith<T, $Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl<T> _value, $Res Function(_$ErrorImpl<T>) _then)
       : super(_value, _then);
 
   /// Create a copy of BranchesState
@@ -500,7 +500,7 @@ class __$$ErorrImplCopyWithImpl<T, $Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$ErorrImpl<T>(
+    return _then(_$ErrorImpl<T>(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -511,8 +511,8 @@ class __$$ErorrImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$ErorrImpl<T> implements _Erorr<T> {
-  const _$ErorrImpl(this.message);
+class _$ErrorImpl<T> implements _Error<T> {
+  const _$ErrorImpl(this.message);
 
   @override
   final ErrorModel message;
@@ -526,7 +526,7 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErorrImpl<T> &&
+            other is _$ErrorImpl<T> &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -538,15 +538,15 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErorrImplCopyWith<T, _$ErorrImpl<T>> get copyWith =>
-      __$$ErorrImplCopyWithImpl<T, _$ErorrImpl<T>>(this, _$identity);
+  _$$ErrorImplCopyWith<T, _$ErrorImpl<T>> get copyWith =>
+      __$$ErrorImplCopyWithImpl<T, _$ErrorImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() Loading,
-    required TResult Function(BranchModel branches) Loaded,
+    required TResult Function() loading,
+    required TResult Function(BranchResponse branches) loaded,
     required TResult Function(ErrorModel message) error,
   }) {
     return error(message);
@@ -556,8 +556,8 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? Loading,
-    TResult? Function(BranchModel branches)? Loaded,
+    TResult? Function()? loading,
+    TResult? Function(BranchResponse branches)? loaded,
     TResult? Function(ErrorModel message)? error,
   }) {
     return error?.call(message);
@@ -567,8 +567,8 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? Loading,
-    TResult Function(BranchModel branches)? Loaded,
+    TResult Function()? loading,
+    TResult Function(BranchResponse branches)? loaded,
     TResult Function(ErrorModel message)? error,
     required TResult orElse(),
   }) {
@@ -582,9 +582,9 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial<T> value) initial,
-    required TResult Function(_Loading<T> value) Loading,
-    required TResult Function(_Loaded<T> value) Loaded,
-    required TResult Function(_Erorr<T> value) error,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Loaded<T> value) loaded,
+    required TResult Function(_Error<T> value) error,
   }) {
     return error(this);
   }
@@ -593,9 +593,9 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial<T> value)? initial,
-    TResult? Function(_Loading<T> value)? Loading,
-    TResult? Function(_Loaded<T> value)? Loaded,
-    TResult? Function(_Erorr<T> value)? error,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Loaded<T> value)? loaded,
+    TResult? Function(_Error<T> value)? error,
   }) {
     return error?.call(this);
   }
@@ -604,9 +604,9 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial<T> value)? initial,
-    TResult Function(_Loading<T> value)? Loading,
-    TResult Function(_Loaded<T> value)? Loaded,
-    TResult Function(_Erorr<T> value)? error,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -616,14 +616,14 @@ class _$ErorrImpl<T> implements _Erorr<T> {
   }
 }
 
-abstract class _Erorr<T> implements BranchesState<T> {
-  const factory _Erorr(final ErrorModel message) = _$ErorrImpl<T>;
+abstract class _Error<T> implements BranchesState<T> {
+  const factory _Error(final ErrorModel message) = _$ErrorImpl<T>;
 
   ErrorModel get message;
 
   /// Create a copy of BranchesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErorrImplCopyWith<T, _$ErorrImpl<T>> get copyWith =>
+  _$$ErrorImplCopyWith<T, _$ErrorImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

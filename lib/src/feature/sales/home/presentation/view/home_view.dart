@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/utils/app_strings.dart';
 import '../componant/order_category_row.dart';
 
 class SalesHomeView extends StatelessWidget {
@@ -19,19 +20,20 @@ class SalesHomeView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              SizedBox(height: 20.h),
+              SizedBox(height: 30.h),
               const HomeAppBar(),
-              SizedBox(height: 20.h),
+              SizedBox(height: 40.h),
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  "طلب جاهز للتوصيل",
+                  AppStrings.readyForDelivery,
                   style: AppStyles.s20.copyWith(
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
               ),
+              SizedBox(height: 30.h),
               const OrdersCategoryRow(),
             ],
           ),

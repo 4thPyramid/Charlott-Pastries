@@ -32,8 +32,8 @@ class SalesOrderDetailsContent extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   ClientData(
-                    customerName: orderDetailsResponse.order.customerName,
-                    customerPhone: orderDetailsResponse.order.customerPhone,
+                    customerName: orderDetailsResponse.order.customerName?? 'لم يتم اضافه اسم',
+                    customerPhone: orderDetailsResponse.order.customerPhone?? 'لم يتم اضافه رقم',
                     customerAddress:
                         orderDetailsResponse.order.additionalData ??
                             'لم يتم اضافه عنوان',
@@ -48,7 +48,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
                     quantity: orderDetailsResponse.order.quantity,
                   ),
                   OrderPrice(
-                    price: orderDetailsResponse.order.price,
+                    price: orderDetailsResponse.order.price?? 0.0,
                     deposit: orderDetailsResponse.order.deposit ?? 0.0,
                     remaining: orderDetailsResponse.order.remaining ?? 0.0,
                   ),

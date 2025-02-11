@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../../core/common/models/branches_model.dart';
+import '../../../../../../core/common/branches_feature/data/models/branch_model.dart';
 import '../../../../../../core/common/widgets/custom_auth_app_bar.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_circle_to_upload_image.dart';
@@ -34,7 +34,7 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
       TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Branch? selectedBranch;
+  BranchModel? selectedBranch;
   File? selectedImage;
 
   bool _passwordsMatch() {
@@ -58,12 +58,7 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
       return false;
     }
 
-    // if (selectedImage == null) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(content: Text('برجاء اختيار صورة')),
-    //   );
-    //   return false;
-    // }
+   
 
     return true;
   }

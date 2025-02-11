@@ -4,7 +4,7 @@ import 'package:charlot/core/errors/error_model.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class BranchesRepo {
-  Future<Either<ErrorModel, BranchModel>> getBranches();
+  Future<Either<ErrorModel, BranchResponse>> getBranches();
 }
 
 class BranchesRepoImp extends BranchesRepo {
@@ -13,7 +13,7 @@ class BranchesRepoImp extends BranchesRepo {
   BranchesRepoImp(this.branchRemoteDataSource);
   
   @override
-  Future<Either<ErrorModel, BranchModel>> getBranches() {
+  Future<Either<ErrorModel, BranchResponse>> getBranches() {
     return branchRemoteDataSource.getBranches();
   }
 }

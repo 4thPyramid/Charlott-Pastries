@@ -1,5 +1,7 @@
 abstract class EndpointsStrings {
   static const String baseUrl = 'https://management.mlmcosmo.com/';
+  static const String branches = 'api/all-branches';
+  static const String specialization = 'api/all-specializations';
 
   //!manager//
   static const String managerRegister = 'manager/register';

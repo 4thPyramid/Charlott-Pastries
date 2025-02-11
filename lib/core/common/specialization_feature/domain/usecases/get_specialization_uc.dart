@@ -7,7 +7,7 @@ class GetSpecializationUc {
   final SpecializationRepo specializationRepo;
   GetSpecializationUc(this.specializationRepo);
 
-  Future <Either<ErrorModel, SpecializationModel>> call()async{
+  Future <Either<ErrorModel, SpecializationResponse>> call()async{
     return await specializationRepo.getSpecialization();
   }
 }

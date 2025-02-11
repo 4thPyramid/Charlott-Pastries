@@ -7,7 +7,7 @@ class GetBranchesUc {
   final BranchesRepo branchesRepo;
 
   GetBranchesUc(this.branchesRepo);
-  Future<Either<ErrorModel,BranchModel>> call()async{
+  Future<Either<ErrorModel,BranchResponse>> call()async{
     return await branchesRepo.getBranches();
   }
 }

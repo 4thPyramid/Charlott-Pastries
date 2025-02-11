@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../auth/presentation/widgets/have_an_account_widget.dart';
@@ -17,9 +18,12 @@ class ChefRegisterView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 70.h),
-          const   ChefRegisterForm(),
+           const ChefRegisterForm(),
+            
             HaveAnAccountWidget(
-              onTap: () {},
+              onTap: () {
+                context.pop();
+              },
               title1: AppStrings.haveAnAccount,
               title2: AppStrings.signIn,
             ),

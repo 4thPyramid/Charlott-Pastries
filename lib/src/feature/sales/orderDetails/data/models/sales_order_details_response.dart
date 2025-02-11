@@ -31,23 +31,23 @@ class Order {
   final String deliveryTime;
   @JsonKey(name: 'delivery_date')
   final String deliveryDate;
-  final double price;
+  final double? price;
   @JsonKey(name: 'flower_price')
-  final double flowerPrice;
+  final double? flowerPrice;
   @JsonKey(name: 'delivery_price')
-  final double deliveryPrice;
+  final double? deliveryPrice;
   @JsonKey(name: 'total_price')
-  final double totalPrice;
+  final double? totalPrice;
   final double deposit;
-  final double remaining;
+  final double? remaining;
   @JsonKey(name: 'customer_name')
-  final String customerName;
+  final String? customerName;
   @JsonKey(name: 'customer_phone')
-  final String customerPhone;
-  final String longitude;
-  final String latitude;
+  final String? customerPhone;
+  final String? longitude;
+  final String? latitude;
   @JsonKey(name: 'map_desc')
-  final String mapDesc;
+  final String? mapDesc;
   @JsonKey(name: 'additional_data')
   final String? additionalData;
   @JsonKey(name: 'product_id')
@@ -61,11 +61,11 @@ class Order {
   @JsonKey(name: 'sale_id')
   final int saleId;
   @JsonKey(name: 'manager_id')
-  final int managerId;
+  final int? managerId;
   @JsonKey(name: 'chef_id')
-  final int chefId;
+  final int? chefId;
   @JsonKey(name: 'delivery_id')
-  final int deliveryId;
+  final int? deliveryId;
   @JsonKey(name: 'created_at')
   final String createdAt;
   @JsonKey(name: 'updated_at')
@@ -86,16 +86,16 @@ class Order {
     required this.deliveryTime,
     required this.deliveryDate,
     required this.price,
-    required this.flowerPrice,
-    required this.deliveryPrice,
-    required this.totalPrice,
+     this.flowerPrice,
+     this.deliveryPrice,
+     this.totalPrice,
     required this.deposit,
-    required this.remaining,
-    required this.customerName,
-    required this.customerPhone,
-    required this.longitude,
-    required this.latitude,
-    required this.mapDesc,
+     this.remaining,
+     this.customerName,
+     this.customerPhone,
+     this.longitude,
+     this.latitude,
+     this.mapDesc,
     this.additionalData,
     this.productId,
     required this.isReturned,
@@ -103,9 +103,9 @@ class Order {
     required this.status,
     required this.paymentMethod,
     required this.saleId,
-    required this.managerId,
-    required this.chefId,
-    required this.deliveryId,
+     this.managerId,
+     this.chefId,
+     this.deliveryId,
     required this.createdAt,
     required this.updatedAt,
     this.rejectionCause,

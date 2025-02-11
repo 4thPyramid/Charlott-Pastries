@@ -1,22 +1,22 @@
-import 'package:charlot/src/feature/orderDetails/presentation/components/order_price.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_order_client_data_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_order_price_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../clientModels/add_order_client_data_model.dart';
+import '../priceModels/add_order_price_model.dart';
 
 part 'add_order_response_model.g.dart';
 
 @JsonSerializable()
 class AddOrderResponseModel {
-  final String message;
-  final OrderAdded order;
-  final AddOrderClientDataModel clientData;
+  final String? message;
+  final OrderAdded? order;
+  final AddOrderClientDataModel? clientData;
   final AddOrderPriceModel? orderPrice;
 
   AddOrderResponseModel({
-    required this.message,
-    required this.order,
-    required this.orderPrice,
-    required this.clientData,
+    this.message,
+    this.order,
+    this.orderPrice,
+    this.clientData,
   });
 
   factory AddOrderResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -28,7 +28,7 @@ class AddOrderResponseModel {
 @JsonSerializable()
 class OrderAdded {
   @JsonKey(name: 'order_type')
-  final String orderType;
+  final String? orderType;
 
   @JsonKey(name: 'order_details')
   String? orderDetails;
@@ -42,35 +42,35 @@ class OrderAdded {
   String? quantity;
 
   @JsonKey(name: 'delivery_time')
-  final String deliveryTime;
+  final String? deliveryTime;
 
   @JsonKey(name: 'delivery_date')
-  final String deliveryDate;
+  final String? deliveryDate;
 
   @JsonKey(name: 'sale_id')
-  final int saleId;
+  final int? saleId;
 
   @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final String? updatedAt;
 
   @JsonKey(name: 'created_at')
-  final String createdAt;
+  final String? createdAt;
 
   final int id;
 
   final List<OrderImage>? images;
 
   OrderAdded({
-    required this.orderType,
-    required this.orderDetails,
-    required this.flowerId,
-    required this.flowerQuantity,
-    required this.quantity,
-    required this.deliveryTime,
-    required this.deliveryDate,
-    required this.saleId,
-    required this.updatedAt,
-    required this.createdAt,
+    this.orderType,
+    this.orderDetails,
+    this.flowerId,
+    this.flowerQuantity,
+    this.quantity,
+    this.deliveryTime,
+    this.deliveryDate,
+    this.saleId,
+    this.updatedAt,
+    this.createdAt,
     required this.id,
     this.images,
   });
@@ -84,24 +84,24 @@ class OrderAdded {
 @JsonSerializable()
 class OrderImage {
   final int id;
-
+  
   @JsonKey(name: 'order_id')
-  final int orderId;
+  final int? orderId;
 
-  final String image;
+  final String? image;
 
   @JsonKey(name: 'created_at')
-  final String createdAt;
+  final String? createdAt;
 
   @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final String? updatedAt;
 
   OrderImage({
     required this.id,
-    required this.orderId,
-    required this.image,
-    required this.createdAt,
-    required this.updatedAt,
+    this.orderId,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory OrderImage.fromJson(Map<String, dynamic> json) =>

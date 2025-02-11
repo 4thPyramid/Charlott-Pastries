@@ -9,7 +9,7 @@ part 'banner_cubit.freezed.dart';
 
 class BannerCubit extends Cubit<BannerState> {
   final BannerUseCase bannerUseCase;
-  BannerCubit(this.bannerUseCase) : super(BannerState.initial());
+  BannerCubit(this.bannerUseCase) : super(const BannerState.initial());
 
   Future<void> getBanners() async {
     emit(const BannerState.Loading());

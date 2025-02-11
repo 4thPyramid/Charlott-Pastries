@@ -4,13 +4,13 @@ import 'package:charlot/core/common/branches_feature/domain/usecases/get_branche
 
 class BranchesCubit extends Cubit<BranchesState> {
   final GetBranchesUc getBranchesUc;
-  BranchesCubit(this.getBranchesUc) : super(BranchesState.initial());
+  BranchesCubit(this.getBranchesUc) : super(const BranchesState.initial());
 
   Future<void> getBranches() async {
-    emit(const BranchesState.Loading());
+    emit(const BranchesState.loading());
     final result = await getBranchesUc();
     result.fold(
       (l) => emit(BranchesState.error(l)),
-      (r) => emit(BranchesState.Loaded(r)));
+      (r) => emit(BranchesState.loaded(r)));
   }
 }

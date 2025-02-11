@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:charlot/core/common/widgets/shared_order_item_card.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +13,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 
 class RequestTypeForm extends StatefulWidget {
-  const RequestTypeForm({Key? key}) : super(key: key);
+  const RequestTypeForm({super.key});
 
   @override
   State<RequestTypeForm> createState() => _RequestTypeFormState();
@@ -119,7 +118,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 state.whenOrNull(
                   success: (requestModel) {
                     context.go(
-                        "${RouterNames.priceDetailsView}/${requestModel.order.id}");
+                        "${RouterNames.priceDetailsView}/${requestModel.order?.id}");
                   },
                   failure: (error) {
                     ScaffoldMessenger.of(context).showSnackBar(

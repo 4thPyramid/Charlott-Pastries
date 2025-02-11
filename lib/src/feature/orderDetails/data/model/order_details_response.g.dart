@@ -12,7 +12,7 @@ OrderDetailsResponse _$OrderDetailsResponseFromJson(
       success: json['success'] as bool,
       deliveryDate: json['delivery_date'] as String?,
       createdAt: json['created_at'] as String,
-      orderDetails: json['order_details'] as String,
+      orderDetails: json['order_details'] as String?,
       orderType: json['order_type'] as String,
       chefName: json['chef_name'] as String,
       deliveryName: json['delivery_name'] as String,

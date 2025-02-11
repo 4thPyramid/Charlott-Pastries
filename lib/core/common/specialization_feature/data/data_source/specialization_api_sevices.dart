@@ -1,23 +1,24 @@
 import 'package:charlot/core/common/specialization_feature/data/models/specialization_model.dart';
+import 'package:charlot/core/constants/endpoints_strings.dart';
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/core/errors/exceptions.dart';
 import 'package:dartz/dartz.dart';
 
-abstract class SpecializationApiSevices {
-  Future <Either<ErrorModel,SpecializationModel>> getSecializations();
+abstract class SpecializationApiServices {
+  Future <Either<ErrorModel,SpecializationResponse>> getSpecialization();
 }
 
-class SpecializationApiSevicesImp extends SpecializationApiSevices{
+class SpecializationApiServicesImp extends SpecializationApiServices{
   final ApiConsumer api;
 
-  SpecializationApiSevicesImp(this.api);
+  SpecializationApiServicesImp(this.api);
   
   @override
-  Future<Either<ErrorModel, SpecializationModel>> getSecializations()async {
+  Future<Either<ErrorModel, SpecializationResponse>> getSpecialization()async {
     try {
-      final response = await api.get('all-specializations');
-      final specializations = SpecializationModel.fromJson((response));
+      final response = await api.get(EndpointsStrings.specialization);
+      final specializations = SpecializationResponse.fromJson((response));
       return Right(specializations);
     } on ServerException catch (e) {
       return Left(e.errorModel);

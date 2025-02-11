@@ -27,7 +27,7 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
         OrderTimes(
           orderStatus: orderStatus,
           startAt:orderDetailsResponse.createdAt,
-          endAt: orderDetailsResponse.deliveryDate ?? '',
+          endAt: orderDetailsResponse.deliveryDate ?? '2024-12-12',
         ),
         SizedBox(height: 16.h),
          ClientData(
@@ -41,7 +41,7 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
         ),
          OrderData(
           orderType: orderDetailsResponse.orderType,
-          orderDetails:orderDetailsResponse.orderDetails,
+          orderDetails:orderDetailsResponse.orderDetails??'لم يتم اضافه تفاصيل',
           quantity: orderDetailsResponse.quantity,
         ),
         ReasonForRejection(

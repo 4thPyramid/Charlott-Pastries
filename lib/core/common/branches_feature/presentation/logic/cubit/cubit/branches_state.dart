@@ -8,7 +8,7 @@ part 'branches_state.freezed.dart';
 @freezed
 class BranchesState<T> with _$BranchesState {
   const factory BranchesState.initial() = _Initial;
-  const factory BranchesState.Loading() = _Loading;
-  const factory BranchesState.Loaded(BranchModel branches) = _Loaded;
-  const factory BranchesState.error(ErrorModel message) = _Erorr; 
+  const factory BranchesState.loading() = _Loading;
+  const factory BranchesState.loaded(BranchResponse branches) = _Loaded;
+  const factory BranchesState.error(ErrorModel message) = _Error; 
 }

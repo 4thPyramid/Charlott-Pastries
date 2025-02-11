@@ -497,10 +497,10 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_$SuccessImpl(
-      freezed == message
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as AddOrderResponseModel,
@@ -526,12 +526,11 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.

@@ -12,6 +12,6 @@ class SpecializationCubit extends Cubit<SpecializationState> {
     final result = await getSpecializationUseCase();
     result.fold(
        (l) => emit(SpecializationState.error(l)),
-       (r) => emit(SpecializationState.Loaded(r)));
+       (r) => emit(SpecializationState.loaded(r)));
   }
 }

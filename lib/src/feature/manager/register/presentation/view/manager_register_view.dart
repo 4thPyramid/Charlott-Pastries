@@ -1,6 +1,7 @@
 import 'package:charlot/src/feature/auth/presentation/widgets/have_an_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/utils/app_strings.dart';
 import '../components/manager_register_form.dart';
@@ -19,7 +20,9 @@ class ManagerRegisterView extends StatelessWidget {
             SizedBox(height: 70.h),
           const   ManagerRegisterForm(),
             HaveAnAccountWidget(
-              onTap: () {},
+              onTap: () {
+                context.pop();
+              },
               title1: AppStrings.haveAnAccount,
               title2: AppStrings.signIn,
             ),
