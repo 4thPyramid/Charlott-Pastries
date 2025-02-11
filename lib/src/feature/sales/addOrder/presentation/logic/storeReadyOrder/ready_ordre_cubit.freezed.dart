@@ -345,10 +345,10 @@ class __$$ReadyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? model = freezed,
+    Object? model = null,
   }) {
     return _then(_$ReadyImpl(
-      freezed == model
+      null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as StoreReadyOrdersModel,
@@ -374,12 +374,11 @@ class _$ReadyImpl implements _Ready {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyImpl &&
-            const DeepCollectionEquality().equals(other.model, model));
+            (identical(other.model, model) || other.model == model));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(model));
+  int get hashCode => Object.hash(runtimeType, model);
 
   /// Create a copy of ReadyOrdreState
   /// with the given fields replaced by the non-null parameter values.

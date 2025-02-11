@@ -8,12 +8,12 @@ part of 'single_product_model.dart';
 
 SingleProductModel _$SingleProductModelFromJson(Map<String, dynamic> json) =>
     SingleProductModel(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      image: json['image'] as String,
+      id: (json['id'] as num? ?? 0).toInt(),
+      name: json['name'] as String? ?? '',
+      image: json['image'] as String? ?? '',
       description: json['description'] as String?,
-      branchId: (json['branch_id'] as num).toInt(),
-      branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
+      branchId: (json['branch_id'] as num? ?? 0).toInt(),
+      branch: Branch.fromJson(json['branch'] as Map<String, dynamic>? ?? {}),
     );
 
 Map<String, dynamic> _$SingleProductModelToJson(SingleProductModel instance) =>
@@ -27,9 +27,9 @@ Map<String, dynamic> _$SingleProductModelToJson(SingleProductModel instance) =>
     };
 
 Branch _$BranchFromJson(Map<String, dynamic> json) => Branch(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      address: json['address'] as String,
+      id: (json['id'] as num? ?? 0).toInt(),
+      name: json['name'] as String? ?? 'fdsf',
+      address: json['address'] as String? ?? 'fdsdf',
     );
 
 Map<String, dynamic> _$BranchToJson(Branch instance) => <String, dynamic>{

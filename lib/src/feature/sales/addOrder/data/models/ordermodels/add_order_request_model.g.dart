@@ -10,7 +10,7 @@ AddOrderRequestModel _$AddOrderRequestModelFromJson(
         Map<String, dynamic> json) =>
     AddOrderRequestModel(
       files: AddOrderRequestModel._filesFromJson(json['files'] as List),
-      orderType: json['order_type'] as String,
+      orderType: json['order_type'] as String?,
       orderDetails: json['order_details'] as String,
       quantity: (json['quantity'] as num).toInt(),
       deliveryDate: json['delivery_date'] as String,

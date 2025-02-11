@@ -23,13 +23,13 @@ class Product {
   @JsonKey(defaultValue: '')
   final String name;
 
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: null) // ✅ السماح بـ null
   final String? image;
 
   Product({
     required this.id,
     required this.name,
-    required this.image,
+    this.image, // ✅ لا حاجة لقيمة افتراضية هنا
   });
 
   factory Product.fromJson(Map<String, dynamic> json) =>

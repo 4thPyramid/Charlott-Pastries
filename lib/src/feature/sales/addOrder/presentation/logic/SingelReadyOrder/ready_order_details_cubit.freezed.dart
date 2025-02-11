@@ -346,10 +346,10 @@ class __$$ReadyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? model = freezed,
+    Object? model = null,
   }) {
     return _then(_$ReadyImpl(
-      freezed == model
+      null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as SingleProductModel,
@@ -375,12 +375,11 @@ class _$ReadyImpl implements _Ready {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyImpl &&
-            const DeepCollectionEquality().equals(other.model, model));
+            (identical(other.model, model) || other.model == model));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(model));
+  int get hashCode => Object.hash(runtimeType, model);
 
   /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -499,10 +498,10 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$ErrorImpl(
-      freezed == error
+      null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorModel,
@@ -528,12 +527,11 @@ class _$ErrorImpl implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   /// Create a copy of ReadyOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.

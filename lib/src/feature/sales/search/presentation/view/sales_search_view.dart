@@ -91,7 +91,7 @@ class _SalesSearchViewState extends State<SalesSearchView> {
               title: Text(order.customerName, style: AppStyles.s18),
               subtitle:
                   Text("النوع: ${order.orderType} | الحالة: ${order.status}"),
-              trailing: Text(order.deliveryDate),
+              trailing: Text(order.deliveryDate ?? 'N/A'),
               onTap: () {
                 context.push("${RouterNames.salesOrderDetails}/${order.id}");
               },
