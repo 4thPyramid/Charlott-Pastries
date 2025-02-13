@@ -2,6 +2,7 @@ import 'package:charlot/core/common/functions/validator.dart';
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/custom_sucess_pop.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,11 +39,11 @@ final String identifier;
         child: Column(
           children: [
             AuthTextFieldWidget(
-              titleOfField: "كلمة المرور الجديدة",
+              titleOfField:AppStrings.newPassword.tr(),
               prefixIcon: Icons.lock,
               controller: _passwordController,
               validator: Validator.validatePassword,
-              hintText: "ادخل كلمة المرور الجديدة",
+              hintText: AppStrings.newPassword.tr(),
               isPassword: true,
             ),
             AuthTextFieldWidget(
@@ -61,7 +62,7 @@ final String identifier;
             BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
               builder: (context, state) {
                 return CustomButton(
-                  text: "تحديث كلمة المرور",
+                  text:AppStrings.changePassword.tr(),
                  // isLoading: state is NewPasswordLoading,
                   onPressed: () {
                     if (formKey.currentState!.validate()) {

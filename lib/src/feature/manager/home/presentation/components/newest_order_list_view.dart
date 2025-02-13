@@ -1,5 +1,7 @@
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +27,7 @@ class NewestOrderListView extends StatelessWidget {
             success: (ordersResponse) {
               final orders = ordersResponse.orders; 
               if (orders.isEmpty) {
-                return const Center(child: Text('لا توجد طلبات جديدة'));
+                return  Center(child: Text(AppStrings.noCurrentOrders.tr()));
               }
               return ListView.separated(
                 shrinkWrap: true,

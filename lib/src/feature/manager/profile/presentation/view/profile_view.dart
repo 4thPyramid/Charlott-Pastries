@@ -1,5 +1,6 @@
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/src/feature/manager/profile/presentation/logic/profile_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,8 +18,8 @@ class ManagerProfileView extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
           children: [
-            const CustomAppBar(
-              title: AppStrings.profile,
+             CustomAppBar(
+              title: AppStrings.personalData.tr(),
             ),
             SizedBox(height: 10.h),
             BlocProvider(

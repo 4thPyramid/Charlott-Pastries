@@ -1,5 +1,6 @@
 import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,7 @@ class OrdersStatisticsRow extends StatelessWidget {
             initial: () => const Center(child: Text('بدء التحميل...')),
             loading: () => const Center(child: CircularProgressIndicator()),
             failure: (error) =>
-                Center(child: Text('حدث خطأ: ${error.message}')),
+                Center(child: Text('wrong ${error.message}')),
             success: (statsResponse) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,14 +50,14 @@ class OrdersStatisticsRow extends StatelessWidget {
                       ),
                       CustomCardStatistics(
                         number: statsResponse.delivered,
-                        name: AppStrings.orderEnded,
+                        name: AppStrings.orderEnded.tr(),
                         onPressed: () {
                           context.push(RouterNames.managerFinishOrders);
                         },
                       ),
                       CustomCardStatistics(
                         number: statsResponse.returned,
-                        name: AppStrings.returnOrder,
+                        name: AppStrings.returnOrder.tr(),
                         onPressed: () {
                           context.push(RouterNames.managerReturnedOrders);
                         },
@@ -68,14 +69,14 @@ class OrdersStatisticsRow extends StatelessWidget {
                     children: [
                       CustomCardStatistics(
                         number: statsResponse.rejected,
-                        name: AppStrings.refusedOrder,
+                        name: AppStrings.refusedOrder.tr(),
                         onPressed: () {
                           context.push(RouterNames.managerRefusedOrders);
                         },
                       ),
                       CustomCardStatistics(
                         number: statsResponse.recive,
-                        name: AppStrings.orderBeingDeliver,
+                        name: AppStrings.orderBeingDeliver.tr(),
                         onPressed: () {
                           context.push(
                             RouterNames.managerBeingDeliveredOrdersView,

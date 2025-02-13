@@ -3,6 +3,7 @@ import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/src/feature/auth/presentation/componant/login_form.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/have_an_account_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -25,10 +26,10 @@ final String userType;
               SizedBox(height: 100.h),
               const Center(child: AppImageView(AppAssets.blackLogo)),
               SizedBox(height: 40.h),
-              const CustomAuthAppBar(
-                  title: AppStrings.welcome,
+               CustomAuthAppBar(
+                  title: AppStrings.welcome.tr(),
                   subTitle:
-                    AppStrings.happyToSeeYouAgain),
+                    AppStrings.happyToSeeYouAgain.tr()),
               SizedBox(height: 40.h),
                LoginForm(userType: userType,),
               HaveAnAccountWidget(
@@ -42,8 +43,8 @@ final String userType;
                   context.push(RouterNames.chefRegister);
                     }
                   },
-                  title1:AppStrings.haveAnAccount,
-                  title2: AppStrings.createNewAccount,
+                  title1:AppStrings.haveAnAccount.tr(),
+                  title2: AppStrings.createNewAccount.tr(),
                   ),
             ],
           ),

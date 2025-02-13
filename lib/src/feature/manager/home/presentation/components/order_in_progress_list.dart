@@ -1,4 +1,5 @@
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,26 +12,26 @@ import '../logic/in_progress_orders/in_progress_orders_cubit.dart';
 import '../logic/in_progress_orders/in_progress_orders_state.dart';
 import '../widgets/order_in_progress_card.dart';
 
-
-
 class OrdersInProgressList extends StatelessWidget {
   const OrdersInProgressList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-  create: (context) => getIt<InProgressOrdersCubit>()..call(),
+      create: (context) => getIt<InProgressOrdersCubit>()..call(),
       child: BlocBuilder<InProgressOrdersCubit, InProgressOrdersState>(
         builder: (context, state) {
           return state.when(
             initial: () => const Center(child: Text('بدء التحميل...')),
             loading: () => const Center(child: CircularProgressIndicator()),
-            failure: (error) => Center(child: Text('حدث خطأ: ${error.message}')),
+            failure: (error) =>
+                Center(child: Text('حدث خطأ: ${error.message}')),
             success: (ordersResponse) {
               final orders = ordersResponse.orders;
 
               if (orders.isEmpty) {
-                return const Center(child: Text('لا توجد طلبات قيد التنفيذ'));
+                              return Center(child: Text(AppStrings.noCurrentOrders.tr()));
+
               }
 
               return SizedBox(
@@ -53,9 +54,9 @@ class OrdersInProgressList extends StatelessWidget {
                       },
                       color: AppColors.lightBlue,
                       progressColor: AppColors.blue,
-                      orderName: order.orderDetails??'',
+                      orderName: order.orderDetails ?? '',
                       orderType: order.orderType,
-                      progress: ordersResponse.rate / 100, 
+                      progress: ordersResponse.rate / 100,
                     );
                   },
                 ),
@@ -67,5 +68,3 @@ class OrdersInProgressList extends StatelessWidget {
     );
   }
 }
-
- 

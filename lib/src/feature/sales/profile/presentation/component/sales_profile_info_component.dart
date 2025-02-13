@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,18 +35,18 @@ class SalesProfileInfoComponent extends StatelessWidget {
                 ),
                 SizedBox(height: 40.h),
                 PersonalInfoListTile(
-                  title: AppStrings.allName,
+                  title: AppStrings.name.tr(),
                   subtitle: '${profile.firstName} ${profile.lastName}',
                   icon: Icons.person_outline,
                   iconColor: AppColors.orange,
                 ),
                 PersonalInfoListTile(
-                  title: AppStrings.email,
+                  title: AppStrings.email.tr(),
                   subtitle: profile.email,
                   icon: Icons.email_outlined,
                 ),
                 PersonalInfoListTile(
-                  title: AppStrings.phoneHint,
+                  title: AppStrings.phoneNumber.tr(),
                   subtitle: profile.phone,
                   icon: Icons.phone,
                 ),

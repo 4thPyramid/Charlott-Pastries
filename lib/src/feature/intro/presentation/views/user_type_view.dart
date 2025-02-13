@@ -4,6 +4,7 @@ import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/src/feature/intro/data/enum/user_type_enum.dart';
 import 'package:charlot/src/feature/intro/presentation/widgets/choose_your_type_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,32 +24,32 @@ class UserTypeView extends StatelessWidget {
         children: [
           const Center(child: AppImageView(AppAssets.blackLogo)),
           SizedBox(height: 20.h),
-          Text(AppStrings.welcome, style: AppStyles.s24),
+          Text(AppStrings.welcome.tr(), style: AppStyles.s24),
           SizedBox(height: 20.h),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
             child: Text(
-              AppStrings.welcomeInOurApp,
+              AppStrings.welcomeInOurApp.tr(),
               style: AppStyles.s16,
               textAlign: TextAlign.center,
             ),
           ),
           ChooseUserTypeButton(
-            text: AppStrings.manager,
+            text: AppStrings.manager.tr(),
             onTap: () {
-              context.read<UserTypeCubit>().selectUserType(UserTypeEnum.manager); // حفظ نوع المستخدم
-              context.push(RouterNames.loginView, extra: {'userType': "manager"});
+              context.read<UserTypeCubit>().selectUserType(UserTypeEnum.manager); 
+                            context.push(RouterNames.loginView, extra: {'userType': "manager"});
             },
           ),
           ChooseUserTypeButton(
-            text: AppStrings.sales,
+            text: AppStrings.sales.tr(),
             onTap: () {
               context.read<UserTypeCubit>().selectUserType(UserTypeEnum.sales);
               context.push(RouterNames.loginView, extra: {'userType': "sales"});
             },
           ),
           ChooseUserTypeButton(
-            text: AppStrings.chef,
+            text: AppStrings.chef.tr(),
             onTap: () {
               context.read<UserTypeCubit>().selectUserType(UserTypeEnum.chef);
               context.push(RouterNames.loginView, extra: {'userType': "chef"});

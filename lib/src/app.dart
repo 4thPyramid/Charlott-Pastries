@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,21 +32,23 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             routerConfig: router,
-            supportedLocales: const [Locale('ar')],
-            locale: const Locale('ar', ''),
+            supportedLocales: const [
+              Locale('en'),
+              Locale('ar'),
+            ],
+            locale: context.locale,
+            
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
             localeListResolutionCallback: (locales, supportedLocales) {
-              return const Locale('ar');
+              return const Locale('en');
             },
             builder: (context, child) {
-              return Directionality(
-                textDirection: TextDirection.rtl,
-                child: child!,
-              );
+              return  child!;
+            
             },
           ),
         );

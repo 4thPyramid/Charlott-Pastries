@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -142,7 +143,7 @@ class _OtpFormState extends State<OtpFormForPassword> {
               builder: (context, state) {
                 //final isLoading = state is VerifyResetCodeLoading;
                 return CustomButton(
-                  text: AppStrings.confirm,
+                  text: AppStrings.send.tr(),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       context.read<ResetPasswordCubit>().verifyResetCode(

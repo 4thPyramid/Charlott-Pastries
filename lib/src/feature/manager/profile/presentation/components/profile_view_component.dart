@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,7 +44,7 @@ class ProfileComponents extends StatelessWidget {
           onPressed: () {
             context.go(RouterNames.personalInfoView);
           },
-          title: AppStrings.personalInfo,
+          title: AppStrings.personalInfoData.tr(),
           icon: Icons.person_outline,
           iconColor: AppColors.orange,
         ),
@@ -70,7 +71,7 @@ class ProfileComponents extends StatelessWidget {
         SizedBox(height: 30.h),
         CustomListTile(
           onPressed: () => logOutPop(context,'manager'),
-          title: AppStrings.signout,
+          title: AppStrings.logout.tr(),
           icon: Icons.logout,
           iconColor: AppColors.errorColor,
         ),

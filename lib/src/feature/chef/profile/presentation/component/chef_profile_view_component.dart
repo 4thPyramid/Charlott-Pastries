@@ -1,5 +1,6 @@
 import 'package:charlot/src/feature/manager/profile/presentation/widget/custom_list_tile.dart';
 import 'package:charlot/src/feature/manager/profile/presentation/widget/logout_pop.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,7 @@ class ChefProfileViewComponent extends StatelessWidget {
           onPressed: () {
             context.go(RouterNames.chefProfileInfo);
           },
-          title: AppStrings.personalInfo,
+          title: AppStrings.personalInfoData.tr(),
           icon: Icons.person_outline,
           iconColor: AppColors.orange,
         ),
@@ -62,7 +63,7 @@ class ChefProfileViewComponent extends StatelessWidget {
         SizedBox(height: 30.h),
         CustomListTile(
           onPressed: () => logOutPop(context,'chef'),
-          title: AppStrings.signout,
+          title: AppStrings.logout.tr(),
           icon: Icons.logout,
           iconColor: AppColors.errorColor,
         ),

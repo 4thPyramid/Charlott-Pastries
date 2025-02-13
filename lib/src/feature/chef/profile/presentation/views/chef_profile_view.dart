@@ -1,4 +1,5 @@
 import 'package:charlot/src/feature/chef/profile/presentation/component/chef_profile_view_component.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,8 +18,8 @@ class ChefProfileView extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
           children: [
-            const CustomAppBar(
-              title: AppStrings.profile,
+             CustomAppBar(
+              title: AppStrings.personalData.tr(),
             ),
             SizedBox(height: 10.h),
             BlocProvider(

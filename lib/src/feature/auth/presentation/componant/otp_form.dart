@@ -1,6 +1,7 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,7 +44,7 @@ class _OtpFormState extends State<OtpForm> {
               SnackBar(content: Text(state.message),backgroundColor: Colors.green,),
             );
              ScaffoldMessenger.of(context).showSnackBar(
-             const SnackBar(content: Text('يرجي الانتظار حتي يتم الموافقه علي طلبك من قبل الاداره'),backgroundColor: Colors.green,),
+              SnackBar(content: Text(AppStrings.pleaseWaitUntil.tr()),backgroundColor: Colors.green,),
             );
             context.go(RouterNames.userTypeView);
           } else if (state is VerifyEmailFailure) {
@@ -126,7 +127,7 @@ class _OtpFormState extends State<OtpForm> {
                     return const CircularProgressIndicator(); 
                   }
                   return CustomButton(
-                    text: AppStrings.confirm,
+                    text: AppStrings.send.tr(),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         final otp = _controllers.map((controller) => controller.text).join();

@@ -7,6 +7,7 @@ import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/email_and_phone_tap_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,7 +61,7 @@ class _LoginFormState extends State<LoginForm>
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
 
-              const SnackBar(content: Text('تم تسجيل الدخول بنجاح'),backgroundColor: Colors.green,),
+             const  SnackBar(content: Text("login Successfully"),backgroundColor: Colors.green,),
             );
             navigateTo(context,state.response.key);
           } else if (state is LoginFailure) {
@@ -75,18 +76,18 @@ class _LoginFormState extends State<LoginForm>
               key: formKey,
               child: Column(
                 children: [
-                  EmailAndPhoneTapBarWidget(tabController: _tabController, title1: AppStrings.phoneNumber, title2: AppStrings.email),
+                  EmailAndPhoneTapBarWidget(tabController: _tabController, title1: AppStrings.phoneNumber.tr(), title2: AppStrings.email),
                   SizedBox(
                     height: 145.h,
                     child: TabBarView(
                       controller: _tabController,
                       children: [
                         AuthTextFieldWidget(
-                          titleOfField:AppStrings.phoneNumber,
+                          titleOfField:AppStrings.phoneNumber.tr(),
                           prefixIcon: Icons.phone,
                           controller: _phoneController,
                           validator: Validator.validatePhoneNumber,
-                          hintText:AppStrings.enterYourPhoneNumber,
+                          hintText:AppStrings.enterYourPhoneNumber.tr(),
                           isPassword: false,
                         ),
                         AuthTextFieldWidget(
@@ -94,22 +95,22 @@ class _LoginFormState extends State<LoginForm>
                           prefixIcon: Icons.email,
                           controller: _emailController,
                           validator: Validator.validateEmail,
-                          hintText: AppStrings.enterYourEmail,
+                          hintText: AppStrings.enterYourEmail.tr(),
                           isPassword: false,
                         ),
                       ],
                     ),
                   ),
                   AuthTextFieldWidget(
-                    titleOfField:AppStrings.password,
+                    titleOfField:AppStrings.enterPasswordHint.tr(),
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _passwordController,
                     validator: Validator.validatePassword,
-                    hintText: AppStrings.enterPasswordHint,
+                    hintText: AppStrings.enterPasswordHint.tr(),
                     isPassword: true,
                   ),
                   CustomTextButton(
-                    title: AppStrings.forgetPassword,
+                    title: AppStrings.forgetPassword.tr(),
                     onTap: () {
                       context.go(RouterNames.forgetPasswordView,extra: {
                         'userType': widget.userType,

@@ -2,6 +2,7 @@ import 'package:charlot/core/common/widgets/custom_auth_app_bar.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/src/feature/auth/presentation/componant/forget_password_form.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,9 +22,9 @@ final String userType;
               SizedBox(height: 100.h),
               const Center(child: AppImageView(AppAssets.blackLogo)),
               SizedBox(height: 40.h),
-              const CustomAuthAppBar(
+               CustomAuthAppBar(
                   title: AppStrings.forgetPassword,
-                  subTitle: AppStrings.enterPhoneOrEmailToResetPassword),
+                  subTitle: AppStrings.enterYourEmail.tr()),
               SizedBox(height: 60.h),
                ForgetPasswordForm(
                 userType: userType,

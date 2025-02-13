@@ -1,9 +1,11 @@
 
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/utils/app_strings.dart';
 import 'newest_order_list_view.dart';
 import '../widgets/custom_title.dart';
 import 'order_in_progress_list.dart';
@@ -28,13 +30,13 @@ class InProgressAndNewestOrderContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20.h),
-          const CustomTitle(
-            title: "طلبات قيد التنفيذ",
+           CustomTitle(
+            title:AppStrings.ordersInProgress.tr(),
           ),
           SizedBox(height: 20.h),
           const OrdersInProgressList(),
           SizedBox(height: 20.h),
-          const CustomTitle(title: "طلبات جديده"),
+           CustomTitle(title:AppStrings.newestOrders.tr()),
           SizedBox(height: 20.h),
           const NewestOrderListView()
         ],

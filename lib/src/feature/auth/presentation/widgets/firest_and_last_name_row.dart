@@ -1,6 +1,9 @@
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/utils/app_strings.dart';
 
 class FirstAndLastNameRow extends StatelessWidget {
 final TextEditingController firstNameController;
@@ -20,8 +23,8 @@ final TextEditingController firstNameController;
           child: AuthTextFieldWidget(
             isPassword: false,
              controller: firstNameController,
-            hintText: "ادخل اسمك ",
-            titleOfField: "الاسم الاول",
+            hintText: AppStrings.firstName.tr(),
+            titleOfField:  AppStrings.firstName.tr(),
             prefixIcon: Icons.edit_note,
           ),
         ),
@@ -30,8 +33,8 @@ final TextEditingController firstNameController;
           child: AuthTextFieldWidget(
             isPassword: false,
               controller: lastNameController,
-            hintText: "اسم العائلة",
-            titleOfField: "الاسم الاخير",
+            hintText:  AppStrings.lastName.tr(),
+            titleOfField:  AppStrings.lastName.tr(),
             prefixIcon: Icons.edit_note,
           ),
         ),

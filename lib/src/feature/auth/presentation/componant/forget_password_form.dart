@@ -3,6 +3,7 @@ import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/email_and_phone_tap_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,7 +65,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
           children: [
             EmailAndPhoneTapBarWidget(
               tabController: _tabController,
-              title1: AppStrings.phoneNumber,
+              title1: AppStrings.phoneNumber.tr(),
               title2: AppStrings.email,
             ),
             SizedBox(
@@ -77,7 +78,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
                     prefixIcon: Icons.phone,
                     controller: _phoneController,
                     validator: Validator.validatePhoneNumber,
-                    hintText: AppStrings.phoneHint,
+                    hintText: AppStrings.enterYourPhoneNumber.tr(),
                     isPassword: false,
                   ),
                   AuthTextFieldWidget(
@@ -85,7 +86,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
                     prefixIcon: Icons.email,
                     controller: _emailController,
                     validator: Validator.validateEmail,
-                    hintText: AppStrings.enterYourEmail,
+                    hintText: AppStrings.enterYourEmail.tr(),
                     isPassword: false,
                   ),
                 ],
@@ -94,7 +95,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
             BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
               builder: (context, state) {
                 return CustomButton(
-                  text: AppStrings.resetPassword,
+                  text: AppStrings.hintChangePassword.tr(),
                  // isLoading: state is ForgetPasswordLoading,
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
