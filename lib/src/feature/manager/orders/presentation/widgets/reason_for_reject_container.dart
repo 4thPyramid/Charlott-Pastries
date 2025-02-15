@@ -1,3 +1,5 @@
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,8 +16,8 @@ class ReasonForRejection extends StatelessWidget {
           padding: EdgeInsets.only(
             right: 16.w,
           ),
-          child: const OrderDetailsSectionsTitleWidget(
-            title: 'سبب الرفض ',
+          child:  OrderDetailsSectionsTitleWidget(
+            title: AppStrings.reasonForRejection.tr(),
           ),
         ),
         SizedBox(height: 16.h),

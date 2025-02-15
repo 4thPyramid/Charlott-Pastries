@@ -51,7 +51,7 @@ class ProfileComponents extends StatelessWidget {
         SizedBox(height: 30.h),
         CustomListTile(
           onPressed: () =>  UrlLauncherMethods.launchInBrowser('https://charlottesweets.com/about-us/'),
-          title: AppStrings.about,
+          title: AppStrings.about.tr(),
           icon: Icons.help_outline,
           iconColor: AppColors.errorColor,
         ),
@@ -65,7 +65,7 @@ class ProfileComponents extends StatelessWidget {
           onPressed: () {
             context.go(RouterNames.settingView);
           },
-          title: AppStrings.settings,
+          title: AppStrings.settings.tr(),
           icon: Icons.settings_outlined,
         ),
         SizedBox(height: 30.h),

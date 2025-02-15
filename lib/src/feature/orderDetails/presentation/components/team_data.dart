@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,9 +14,9 @@ class TeamData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(right: 16),
-          child: OrderDetailsSectionsTitleWidget(title: AppStrings.workTeam),
+         Padding(
+          padding:const EdgeInsets.only(right: 16),
+          child: OrderDetailsSectionsTitleWidget(title: AppStrings.workTeam.tr()),
         ),
         SizedBox(height: 16.h),
          TeamDataCard(

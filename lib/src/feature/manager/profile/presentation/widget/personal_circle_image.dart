@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +44,7 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
             children: [
               ListTile(
                 leading: const Icon(Icons.camera),
-                title: const Text('Take a photo'),
+                title:  Text(AppStrings.takePhoto.tr()),
                 onTap: () async {
                   final XFile? image =
                       await picker.pickImage(source: ImageSource.camera);
@@ -57,7 +59,7 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
               ),
               ListTile(
                 leading: const Icon(Icons.photo),
-                title: const Text('Choose from gallery'),
+                title:  Text(AppStrings.chooseFromGallery.tr()),
                 onTap: () async {
                   final XFile? image =
                       await picker.pickImage(source: ImageSource.gallery);

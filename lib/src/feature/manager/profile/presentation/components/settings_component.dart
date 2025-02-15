@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -22,14 +23,14 @@ class SettingsComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
          CustomListTile(
-          title: AppStrings.changePassword,
+          title: AppStrings.changePassword.tr(),
           icon: Icons.key,
           iconColor: AppColors.primaryColor,
           onPressed: () => context.push(RouterNames.changePasswordView),
         ),
         SizedBox(height: 20.h),
-          const CustomListTile(
-          title: AppStrings.language,
+           CustomListTile(
+          title: AppStrings.language.tr(),
           icon: Icons.language,
           iconColor: AppColors.primaryColor,
         ),
@@ -38,7 +39,7 @@ class SettingsComponent extends StatelessWidget {
           CustomListTile(
                     onPressed: () =>  UrlLauncherMethods.launchInBrowser('https://charlottesweets.com/privacy-policy/'),
 
-          title: AppStrings.privacy,
+          title: AppStrings.privacy.tr(),
           icon: Icons.verified_user_outlined,
           iconColor: AppColors.primaryColor,
         ),
@@ -46,7 +47,7 @@ class SettingsComponent extends StatelessWidget {
 
            CustomListTile(
             onPressed: ()=>deleteAccountPop(context,'manager'),
-          title: AppStrings.deleteAccount,
+          title: AppStrings.deleteAccount.tr(),
           icon: Icons.delete,
           iconColor: AppColors.primaryColor,
         ),

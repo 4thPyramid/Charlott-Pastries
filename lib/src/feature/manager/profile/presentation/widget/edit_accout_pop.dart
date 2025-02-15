@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,7 +55,7 @@ void editAccountPop(BuildContext context, String userType) {
                       Padding(
                         padding: EdgeInsets.only(bottom: 20.h),
                         child: Text(
-                          AppStrings.editPersonalInf,
+                          AppStrings.editPersonalInf.tr(),
                           style: AppStyles.s16.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -68,26 +69,26 @@ void editAccountPop(BuildContext context, String userType) {
                             children: [
                               CustomTextFormField(
                                 controller: fNameTextController,
-                                hintText: AppStrings.firstName,
+                                hintText: AppStrings.firstName.tr(),
                                 prefixIcon: const Icon(Icons.person_outline),
                               ),
                               SizedBox(height: 20.h),
                               CustomTextFormField(
                                 controller: lNameTextController,
-                                hintText: AppStrings.lastName,
+                                hintText: AppStrings.lastName.tr(),
                                 prefixIcon: const Icon(Icons.person_outline),
                               ),
                               SizedBox(height: 20.h),
                               CustomTextFormField(
                                 controller: emailTextController,
-                                hintText: AppStrings.email,
+                                hintText: AppStrings.email.tr(),
                                 prefixIcon: const Icon(Icons.email_outlined),
                                 keyboardType: TextInputType.emailAddress,
                               ),
                               SizedBox(height: 20.h),
                               CustomTextFormField(
                                 controller: phoneTextController,
-                                hintText: AppStrings.phoneNumber,
+                                hintText: AppStrings.phoneNumber.tr(),
                                 prefixIcon: const Icon(Icons.phone),
                                 keyboardType: TextInputType.phone,
                               ),
@@ -99,7 +100,7 @@ void editAccountPop(BuildContext context, String userType) {
                                 const CircularProgressIndicator()
                               else
                                 CustomButton(
-                                  text: AppStrings.save,
+                                  text: AppStrings.save.tr(),
                                   textStyle: AppStyles.s12.copyWith(
                                     color: AppColors.white,
                                     fontWeight: FontWeight.w700,
@@ -133,8 +134,8 @@ void editAccountPop(BuildContext context, String userType) {
                                       Navigator.pop(dialogContext);
                                     } else {
                                       ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(
-                                          content: Text('لم يتم إجراء أي تغييرات'),
+                                         SnackBar(
+                                          content: Text(AppStrings.noChangesWereMade.tr()),
                                         ),
                                       );
                                       Navigator.pop(dialogContext);

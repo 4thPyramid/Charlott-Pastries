@@ -191,9 +191,5 @@
     "home": "Home",
     "cart": "Cart",
     "profile": "Profile",
-    "pleasewait": "Please wait",
-    "chefList" : "Chef List",
-    "totalPrice": "Total Price",
-    "remaining": "Remaining",
-    "flowerPrice": "Flower Price"
+    "pleasewait": "Please wait"
 }

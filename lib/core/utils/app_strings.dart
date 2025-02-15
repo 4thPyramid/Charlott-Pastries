@@ -195,6 +195,4 @@ class AppStrings {
   static const cart = 'cart';
   static const profile = 'profile';
   static const pleasewait = 'pleasewait';
-  static const chefList = 'chefList';
-  static const flowerPrice = 'flowerPrice';
 }

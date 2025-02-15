@@ -1,4 +1,5 @@
 import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
@@ -36,7 +37,7 @@ class ProfileHeader extends StatelessWidget {
             onPressed: onPressedEdit,
             
             child: Text(
-              AppStrings.edit,
+              AppStrings.edit.tr(),
               style: AppStyles.s14.copyWith(
                   decoration: TextDecoration.underline,
                   

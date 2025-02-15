@@ -1,4 +1,5 @@
 import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,7 @@ class OrderDetailsActions extends StatelessWidget {
       return Align(
         alignment: Alignment.bottomCenter,
         child: CustomButton(
-          text: AppStrings.selectDelivery,
+          text: AppStrings.selectDelivery.tr(),
           textStyle: AppStyles.s14.copyWith(
             color: AppColors.white,
             fontWeight: FontWeight.w700,
@@ -45,7 +46,7 @@ class OrderDetailsActions extends StatelessWidget {
       return Align(
         alignment: Alignment.bottomCenter,
         child: CustomButton(
-          text: AppStrings.selectChef,
+          text: AppStrings.selectChef.tr(),
           textStyle: AppStyles.s14.copyWith(
             color: AppColors.white,
             fontWeight: FontWeight.w700,
@@ -83,7 +84,7 @@ class OrderDetailsActions extends StatelessWidget {
             },
             builder: (context, state) {
               return AcceptAndRefuseButton(
-                text: AppStrings.accept,
+                text: AppStrings.accept.tr(),
                 backgroundColor: AppColors.green,
                 onPressed: () {
                   context.read<AcceptOrderCubit>().call(orderId);
@@ -93,7 +94,7 @@ class OrderDetailsActions extends StatelessWidget {
           ),
           SizedBox(width: 16.w),
           AcceptAndRefuseButton(
-            text: AppStrings.ignore,
+            text: AppStrings.ignore.tr(),
             backgroundColor: AppColors.red,
             onPressed: () {
               context.pop();

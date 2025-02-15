@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -27,14 +28,14 @@ final String deliveryName;
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ClientItemDataRowWidget(
-                  title: AppStrings.chefName,
+                  title: AppStrings.chefName.tr(),
                   name: chefName,
                   icon: Icons.person,
                   iconColor: Colors.blue,
                 ),
                        const Divider(),
                 ClientItemDataRowWidget(
-                  title: AppStrings.delegateName,
+                  title: AppStrings.delegateName.tr(),
                   name: deliveryName,
                   icon: Icons.person,
                   iconColor: Colors.blue,
