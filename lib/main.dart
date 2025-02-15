@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'generated/codegen_loader.g.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,7 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translate', 
+      assetLoader: const CodegenLoader(),
       fallbackLocale: const Locale('en'),
       child: const MyApp(),
     ),

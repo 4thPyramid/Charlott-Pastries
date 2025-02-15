@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../generated/app_strings.g.dart';
 import '../../../src/feature/manager/orders/data/model/orders_response.dart';
 import '../../routes/router_names.dart';
 import '../../utils/app_strings.dart';

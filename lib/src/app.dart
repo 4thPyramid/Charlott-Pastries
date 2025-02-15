@@ -32,12 +32,11 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             routerConfig: router,
+            locale: context.locale,
             supportedLocales: const [
               Locale('en'),
               Locale('ar'),
             ],
-            locale: context.locale,
-            
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
@@ -47,8 +46,7 @@ class MyApp extends StatelessWidget {
               return const Locale('en');
             },
             builder: (context, child) {
-              return  child!;
-            
+              return child!;
             },
           ),
         );
