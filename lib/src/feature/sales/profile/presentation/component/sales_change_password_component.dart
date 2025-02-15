@@ -1,3 +1,4 @@
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/manager/profile/presentation/logic/delete_account_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

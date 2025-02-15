@@ -4,7 +4,7 @@ import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/common/widgets/custom_text_field_button.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
-import 'package:charlot/core/utils/app_strings.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/email_and_phone_tap_bar.dart';
 import 'package:easy_localization/easy_localization.dart';

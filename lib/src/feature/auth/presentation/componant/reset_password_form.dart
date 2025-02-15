@@ -1,12 +1,12 @@
 import 'package:charlot/core/common/functions/validator.dart';
 import 'package:charlot/core/common/widgets/custom_btn.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/custom_sucess_pop.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/utils/app_strings.dart';
 import '../logic/reset_password/reset_password_cubit.dart';
 import '../logic/reset_password/reset_password_state.dart';
 class ResetPasswordForm extends StatelessWidget {

@@ -1,9 +1,9 @@
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/auth/presentation/widgets/auth_text_form_field_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/utils/app_strings.dart';
 
 class FirstAndLastNameRow extends StatelessWidget {
 final TextEditingController firstNameController;

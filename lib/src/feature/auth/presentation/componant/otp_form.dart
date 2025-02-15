@@ -1,6 +1,7 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routes/router_names.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../logic/verify_email/verify_email_cubit.dart';
 import '../logic/verify_email/verify_email_state.dart';
 

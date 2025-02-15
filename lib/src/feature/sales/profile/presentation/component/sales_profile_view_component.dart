@@ -1,3 +1,4 @@
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/manager/profile/presentation/widget/custom_list_tile.dart';
 import 'package:charlot/src/feature/manager/profile/presentation/widget/logout_pop.dart';
 import 'package:easy_localization/easy_localization.dart';

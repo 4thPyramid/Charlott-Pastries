@@ -3,6 +3,7 @@ import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
