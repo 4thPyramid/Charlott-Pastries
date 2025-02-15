@@ -19,6 +19,7 @@ abstract class EndpointsStrings {
   static const String managerInProgressOrder = 'manager/inprogress-orders';
   static const String managerStats = 'manager/stats';
   static const String completedOrders = 'manager/completed-orders';
+  static const String notAssignedOrders = 'manager/not-assigned-orders';
   static const String deliveredOrders = 'manager/delivered-orders';
   static const String returnedOrders = 'manager/returned-orders';
   static const String withDeliveryOrders = 'manager/orders-with-delivery';
@@ -31,7 +32,7 @@ abstract class EndpointsStrings {
   static const String managerDeliveryDetails = 'manager/show-delivery/';
   static const String managerSelectChef = 'manager/assign-to-Chef';
   static const String managerSelectDelivery = 'manager/assign-order-delivery';
-  static const String managerAllEmployee = 'manager/addition';
+  static const String managerAllEmployee = 'manager/all-requests';
   static const String managerAcceptChef = 'manager/accept-chef/';
   static const String managerRejectChef = 'manager/reject-chef/';
   static const String managerAcceptDelivery = 'manager/accept-delivery/';

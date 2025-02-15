@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../orderDetails/data/model/order_details_response.dart';
+
 part 'sales_order_details_response.g.dart';
 
 @JsonSerializable()
@@ -72,7 +74,7 @@ class Order {
   final String updatedAt;
   @JsonKey(name: 'rejection_cause')
   final String? rejectionCause;
-  final List<dynamic> images;
+  final List<OrderImageDetails> images;
   final Flower? flowers;
 
   Order({

@@ -47,7 +47,7 @@ class ReturnedAndRefusedOrderDetails extends StatelessWidget {
                         title: title,
                         onBackPressed: () {
                           Navigator.pop(context);
-                        },
+                        }, images: orderDetailsResponse.images,
                       ),
                       ReturnedOrderDetailsContent(
                         orderStatus: orderStatus,

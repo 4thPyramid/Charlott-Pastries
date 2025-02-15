@@ -41,7 +41,7 @@ class ChefOrderDetailsActions extends StatelessWidget {
 
   Widget _buildActionsByStatus(BuildContext context) {
     switch (orderStatus) {
-      case "قيد التنفيذ":
+      case "inprogress":
         return Align(
           alignment: Alignment.bottomCenter,
           child: Column(
@@ -58,7 +58,7 @@ class ChefOrderDetailsActions extends StatelessWidget {
           ),
         );
 
-      case "وافق المدير":
+      case "chef waiting":
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -79,7 +79,7 @@ class ChefOrderDetailsActions extends StatelessWidget {
           ],
         );
 
-      case "تم القبول":
+      case "chef approved":
         return Align(
           alignment: Alignment.center,
           child: CustomButton(

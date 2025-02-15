@@ -132,11 +132,13 @@ import '../../src/feature/manager/orders/data/remote/orders_remote_ds.dart';
 import '../../src/feature/manager/orders/domain/repo/orders_repo.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_completed_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_delivered_order_use_case.dart';
+import '../../src/feature/manager/orders/domain/usecase/get_not_assign_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_order_with_delivery_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_refused_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_returned_order_use_case.dart';
 import '../../src/feature/manager/orders/presentation/logic/completed/completed_order_cubit.dart';
 import '../../src/feature/manager/orders/presentation/logic/delivered/delivered_order_cubit.dart';
+import '../../src/feature/manager/orders/presentation/logic/not_assign/not_assign_order_cubit.dart';
 import '../../src/feature/manager/orders/presentation/logic/refused/refused_order_cubit.dart';
 import '../../src/feature/manager/orders/presentation/logic/returned/returned_order_cubit.dart';
 import '../../src/feature/manager/orders/presentation/logic/with_delivery/with_delivery_order_cubit.dart';
@@ -573,6 +575,9 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   getIt.registerLazySingleton<StoreReadyOrdersUseCase>(
     () => StoreReadyOrdersUseCase(getIt()),
   );
+  getIt.registerLazySingleton<GetNotAssignOrderUseCase>(
+    () => GetNotAssignOrderUseCase(getIt()),
+  );
 
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
@@ -684,5 +689,8 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   );
   getIt.registerFactory<StoreReadyOrdreCubit>(
     () => StoreReadyOrdreCubit(getIt()),
+  );
+    getIt.registerFactory<NotAssignOrdersCubit>(
+    () => NotAssignOrdersCubit(getIt()),
   );
 }

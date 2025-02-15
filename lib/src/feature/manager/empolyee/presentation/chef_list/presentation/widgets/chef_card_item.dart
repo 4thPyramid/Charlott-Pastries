@@ -68,7 +68,7 @@ class ChefAndDeliveryCard extends StatelessWidget {
                 vertical: 10.h,
               ),
               decoration: BoxDecoration(
-                color: employee.canTakeOrder == 'متاح'
+                color: employee.canTakeOrder == 'Available'
                     ? AppColors.green
                     : AppColors.red,
                 borderRadius: BorderRadius.circular(10),

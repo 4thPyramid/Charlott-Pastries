@@ -5,11 +5,11 @@ part 'in_progress_order_response.g.dart';
 @JsonSerializable()
 class InProgressOrderResponse {
   final List<InProgressOrder> orders;
-  final int rate;
+ // final int rate;
 
   InProgressOrderResponse({
     required this.orders,
-    required this.rate,
+   // required this.rate,
   });
 
   factory InProgressOrderResponse.fromJson(Map<String, dynamic> json) =>

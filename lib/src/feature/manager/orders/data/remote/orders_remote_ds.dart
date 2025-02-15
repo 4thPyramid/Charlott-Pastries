@@ -11,6 +11,8 @@ abstract class OrdersRemoteDs {
   Future<Either<ErrorModel, OrdersResponse>> deliveredOrder();
   Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder();
     Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders();
+      Future<Either<ErrorModel, OrdersResponse>> notAssignOrder();
+
 
 }
 
@@ -42,5 +44,10 @@ class OrdersRemoteDsImpl extends OrdersRemoteDs {
       Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders() async {
         return api.refusedOrders();
       }
+      
+        @override
+        Future<Either<ErrorModel, OrdersResponse>> notAssignOrder() async {
+          return api.notAssignOrder();
+        }
    
 }

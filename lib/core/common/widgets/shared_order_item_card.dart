@@ -2,6 +2,7 @@ import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -11,8 +12,8 @@ import '../../routes/router_names.dart';
 import '../../utils/app_strings.dart';
 
 class SharedOrderItemCard extends StatelessWidget {
-  const SharedOrderItemCard( {super.key, required this.orderResponse});
-     final Order orderResponse;
+  const SharedOrderItemCard({super.key, required this.orderResponse});
+  final Order orderResponse;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,9 +36,9 @@ class SharedOrderItemCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-               FirstColumn(
+              FirstColumn(
                 order: orderResponse.orderType,
-                customer: orderResponse.customerName??'لا يوجد',
+                customer: orderResponse.customerName ?? 'لا يوجد',
               ),
               ThirdColumn(
                 orderStatus: orderResponse.status,
@@ -46,49 +47,51 @@ class SharedOrderItemCard extends StatelessWidget {
               ),
               CircleAvatar(
                 radius: 60.r,
-                backgroundImage: const AssetImage(AppAssets.home,),
-              
+                backgroundImage: NetworkImage(
+                  orderResponse.images.isNotEmpty ? orderResponse.images[0].image
+                      :'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_104615256_stock-vector-no-image-available-icon-flat-vector.html&psig=AOvVaw3Q6Q6Q9',
+                ),
               ),
             ],
           ),
-        if(orderResponse.status==AppStrings.beingDeliverOrder)
+          if (orderResponse.status == AppStrings.beingDeliverOrder)
             CustomButton(
               width: 150.w,
               height: 30.h,
-              text: AppStrings.trackOrder,
-                textStyle: AppStyles.s12.copyWith(
+              text: AppStrings.trackOrder.tr(),
+              textStyle: AppStyles.s12.copyWith(
                 color: AppColors.white,
               ),
               onPressed: () {
                 //!navigate to track order
               },
             )
-            else  
-          CustomButton(
-              width: 150.w,
-              height: 30.h,
-              text: "عرض التفاصيل",
-              textStyle: AppStyles.s12.copyWith(
-                color: AppColors.white,
-              ),
-              onPressed: () {
-                if(orderResponse.status=='مرتجع'){
-                  context.push(RouterNames.returnAndRefusedOrderDetails, extra: {
-                  'from': orderResponse.status,
-                  'title': orderResponse.status,
-                  'orderStatus': orderResponse.status,
-                  'orderId': orderResponse.id,
-                });
-                }
-                else{
-                context.push(RouterNames.ordersDetails, extra: {
-                  'from': orderResponse.status,
-                  'title': orderResponse.status,
-                  'orderStatus': orderResponse.status,
-                  "orderId": orderResponse.id,
-                });
-                }
-              }),
+          else
+            CustomButton(
+                width: 150.w,
+                height: 30.h,
+                text: AppStrings.orderDetails.tr(),
+                textStyle: AppStyles.s12.copyWith(
+                  color: AppColors.white,
+                ),
+                onPressed: () {
+                  if (orderResponse.status == 'مرتجع') {
+                    context
+                        .push(RouterNames.returnAndRefusedOrderDetails, extra: {
+                      'from': orderResponse.status,
+                      'title': orderResponse.status,
+                      'orderStatus': orderResponse.status,
+                      'orderId': orderResponse.id,
+                    });
+                  } else {
+                    context.push(RouterNames.ordersDetails, extra: {
+                      'from': orderResponse.status,
+                      'title': orderResponse.status,
+                      'orderStatus': orderResponse.status,
+                      "orderId": orderResponse.id,
+                    });
+                  }
+                }),
         ],
       ),
     );
@@ -170,7 +173,7 @@ class FirstColumn extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-         order,
+          order,
           style: AppStyles.s12.copyWith(
             fontWeight: FontWeight.w400,
             color: AppColors.darkTextGrey.withOpacity(0.7),
@@ -185,7 +188,7 @@ class FirstColumn extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-         customer,
+          customer,
           style: AppStyles.s12.copyWith(
             fontWeight: FontWeight.w400,
             color: AppColors.darkTextGrey.withOpacity(0.7),

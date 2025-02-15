@@ -29,15 +29,14 @@ class OrderDetailsResponse {
   final String? problem;
   @JsonKey(name: 'rejection_cause')
   final String? rejectionCause;
-  final List<OrderImage> images;
+  final List<OrderImageDetails> images;
   final String status;
-  final int quantity;
 
   OrderDetailsResponse({
     required this.success,
     this.deliveryDate,
     required this.createdAt,
-     this.orderDetails,
+    this.orderDetails,
     required this.orderType,
     required this.chefName,
     required this.deliveryName,
@@ -49,19 +48,18 @@ class OrderDetailsResponse {
     this.additionalData,
     required this.images,
     required this.status,
-    required this.quantity,
     this.problem,
     this.rejectionCause,
   });
 
   factory OrderDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$OrderDetailsResponseFromJson(json);
-  
+
   Map<String, dynamic> toJson() => _$OrderDetailsResponseToJson(this);
 }
 
 @JsonSerializable()
-class OrderImage {
+class OrderImageDetails {
   final int id;
   @JsonKey(name: 'order_id')
   final int orderId;
@@ -71,7 +69,7 @@ class OrderImage {
   @JsonKey(name: 'updated_at')
   final String updatedAt;
 
-  OrderImage({
+  OrderImageDetails({
     required this.id,
     required this.orderId,
     required this.image,
@@ -79,8 +77,8 @@ class OrderImage {
     required this.updatedAt,
   });
 
-  factory OrderImage.fromJson(Map<String, dynamic> json) =>
-      _$OrderImageFromJson(json);
-  
-  Map<String, dynamic> toJson() => _$OrderImageToJson(this);
+  factory OrderImageDetails.fromJson(Map<String, dynamic> json) =>
+      _$OrderImageDetailsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderImageDetailsToJson(this);
 }

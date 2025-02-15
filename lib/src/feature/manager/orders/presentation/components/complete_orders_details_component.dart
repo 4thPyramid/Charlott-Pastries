@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/utils/app_strings.dart';
 import '../../../../orderDetails/presentation/view/order_details_view.dart';
 
 class CompleteOrdersDetailsComponent extends StatelessWidget {
@@ -16,7 +18,7 @@ class CompleteOrdersDetailsComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return  OrderDetailsView(
       from: "completeOrder",
-      title: '" تفاصيل الطلب المكتمله "',
+      title:AppStrings.orderDetails.tr(),
       orderId:orderId ,
     );
   }

@@ -5,16 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OrderDetailsCardWidget extends StatelessWidget {
   const OrderDetailsCardWidget({
     super.key,
-    required this.quantity  ,
-    required this.directions,
+ 
     required this.notes,
-    required this.orderType,
+    required this.orderType, required this.image,
   
   });
   final String orderType;
-  final String directions;
   final String notes;
-  final String quantity;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +27,8 @@ class OrderDetailsCardWidget extends StatelessWidget {
         child: Column(
           children: [
             CakeRowWidget(
-              quantity: quantity,
               orderType: orderType  ,
-              directions: directions,
-              notes: notes,
+              notes: notes, image: image,
             ),
           
             SizedBox(height: 16.h),

@@ -21,8 +21,8 @@ class RefusedOrder {
   @JsonKey(name: 'order_type')
   final String orderType;
   final String status;
-  @JsonKey(name: 'updated_at')
-  final String updatedAt;
+//  @JsonKey(name: 'updated_at')
+  //final String updatedAt;
   @JsonKey(name: 'time_difference')
   final String timeDifference;
 
@@ -30,7 +30,7 @@ class RefusedOrder {
     required this.id,
     required this.status,
     required this.orderType,
-    required this.updatedAt,
+   // required this.updatedAt,
     required this.timeDifference,
   });
 

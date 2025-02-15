@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../orderDetails/presentation/components/order_details_header.dart';
+
 class SalesOrderDetailsContent extends StatelessWidget {
   const SalesOrderDetailsContent({
     super.key,
@@ -25,6 +27,12 @@ class SalesOrderDetailsContent extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                    OrderDetailsHeader(
+                    title: "Order Details",
+                    onBackPressed: () => Navigator.pop(context),
+                    images: orderDetailsResponse.order.images,
+                  ),
+                  SizedBox(height: 16.h),
                   OrderTimes(
                     orderStatus: orderDetailsResponse.order.status,
                     startAt: orderDetailsResponse.order.createdAt,
@@ -45,7 +53,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
                   OrderData(
                     orderDetails: orderDetailsResponse.order.orderDetails,
                     orderType: orderDetailsResponse.order.orderType,
-                    quantity: orderDetailsResponse.order.quantity,
+                    image: orderDetailsResponse.order.images[0].image,
                   ),
                   OrderPrice(
                     price: orderDetailsResponse.order.price?? 0.0,

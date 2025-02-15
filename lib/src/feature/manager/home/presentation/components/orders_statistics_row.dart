@@ -42,8 +42,16 @@ class OrdersStatisticsRow extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CustomCardStatistics(
+                        number: statsResponse.notAssigned,
+                        name: AppStrings.notAssignedOrders.tr(),
+                        onPressed: () {
+                          context.push(RouterNames.managerNotAssignedOrders);
+                        },
+                       
+                      ),
+                      CustomCardStatistics(
                         number: statsResponse.prepared,
-                        name: AppStrings.orderCompleted,
+                        name: AppStrings.orderCompleted.tr(),
                         onPressed: () {
                           context.push(RouterNames.managerCompletedOrders);
                         },
@@ -55,6 +63,11 @@ class OrdersStatisticsRow extends StatelessWidget {
                           context.push(RouterNames.managerFinishOrders);
                         },
                       ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
                       CustomCardStatistics(
                         number: statsResponse.returned,
                         name: AppStrings.returnOrder.tr(),
@@ -62,12 +75,7 @@ class OrdersStatisticsRow extends StatelessWidget {
                           context.push(RouterNames.managerReturnedOrders);
                         },
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomCardStatistics(
+                       CustomCardStatistics(
                         number: statsResponse.rejected,
                         name: AppStrings.refusedOrder.tr(),
                         onPressed: () {

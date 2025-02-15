@@ -25,7 +25,7 @@ class OrderDetailsActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (orderStatus == "تم التجهيز") {
+    if (orderStatus == "completed") {
       return Align(
         alignment: Alignment.bottomCenter,
         child: CustomButton(
@@ -41,7 +41,24 @@ class OrderDetailsActions extends StatelessWidget {
           },
         ),
       );
-    } else if (orderStatus == "جاري الاستلام" || orderStatus ==  "وافق المدير") {
+    } else if (orderStatus ==  "manager accepted") {
+      return Align(
+        alignment: Alignment.bottomCenter,
+        child: CustomButton(
+          text: AppStrings.selectChef,
+          textStyle: AppStyles.s14.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w700,
+          ),
+          onPressed: () {
+            context.push(RouterNames.selectChef, extra: {
+              'orderId': orderId,
+            });
+          },
+        ),
+      );
+    } 
+    else if (orderStatus == "new" ) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -54,7 +71,7 @@ class OrderDetailsActions extends StatelessWidget {
                     backgroundColor: Colors.green,
                   ),
                 );
-                showPopToChoiceChef(context, orderId);
+                showPopToChoiceChef(context, orderId, RouterNames.managerBottomNavigationBarRoot);
               } else if (state is AcceptOrderFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

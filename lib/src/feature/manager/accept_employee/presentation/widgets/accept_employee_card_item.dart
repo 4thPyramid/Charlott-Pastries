@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,16 +61,16 @@ class AcceptEmployeeCardItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   buildInfoRow(
-                      label: AppStrings.name,
+                      label: AppStrings.name.tr(),
                       value: '${employee.firstName} ${employee.lastName}'),
                   SizedBox(height: 10.h),
                   buildInfoRow(
-                      label: AppStrings.phoneNumber, value: employee.phone),
+                      label: AppStrings.phoneNumber.tr(), value: employee.phone),
                   SizedBox(height: 10.h),
-                  buildInfoRow(label: AppStrings.email, value: employee.email),
+                  buildInfoRow(label: AppStrings.email.tr(), value: employee.email),
                   SizedBox(height: 10.h),
                   buildInfoRow(
-                      label: 'تاريخ تقديم الطلب',
+                      label: AppStrings.createdAt.tr(),
                       value: formatDate(employee.createdAt.toString())),
                 ],
               ),

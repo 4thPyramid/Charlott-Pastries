@@ -12,14 +12,12 @@ InProgressOrderResponse _$InProgressOrderResponseFromJson(
       orders: (json['orders'] as List<dynamic>)
           .map((e) => InProgressOrder.fromJson(e as Map<String, dynamic>))
           .toList(),
-      rate: (json['rate'] as num).toInt(),
     );
 
 Map<String, dynamic> _$InProgressOrderResponseToJson(
         InProgressOrderResponse instance) =>
     <String, dynamic>{
       'orders': instance.orders,
-      'rate': instance.rate,
     };
 
 InProgressOrder _$InProgressOrderFromJson(Map<String, dynamic> json) =>

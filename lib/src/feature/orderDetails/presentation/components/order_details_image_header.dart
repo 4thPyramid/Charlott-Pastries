@@ -3,9 +3,11 @@ import 'package:charlot/src/feature/orderDetails/presentation/components/order_i
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OrderDetailsImageHeader extends StatefulWidget {
-  const OrderDetailsImageHeader({super.key});
+import '../../data/model/order_details_response.dart';
 
+class OrderDetailsImageHeader extends StatefulWidget {
+  const OrderDetailsImageHeader({super.key, required this.images});
+  final List<OrderImageDetails> images;
   @override
   State<OrderDetailsImageHeader> createState() =>
       _OrderDetailsImageHeaderState();
@@ -14,13 +16,6 @@ class OrderDetailsImageHeader extends StatefulWidget {
 class _OrderDetailsImageHeaderState extends State<OrderDetailsImageHeader> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-
-  final List<String> images = [
-    AppAssets.home,
-    AppAssets.logo,
-    AppAssets.home,
-    AppAssets.logo,
-  ];
 
   @override
   void dispose() {
@@ -46,10 +41,10 @@ class _OrderDetailsImageHeaderState extends State<OrderDetailsImageHeader> {
                         _currentPage = index;
                       });
                     },
-                    itemCount: images.length,
+                    itemCount: widget.images.length,
                     itemBuilder: (context, index) {
-                      return Image.asset(
-                        images[index],
+                      return Image.network(
+                        widget.images[index].image,
                         fit: BoxFit.cover,
                         width: double.infinity,
                       );
@@ -64,12 +59,12 @@ class _OrderDetailsImageHeaderState extends State<OrderDetailsImageHeader> {
             // Thumbnail images
 
             Positioned(
-             // top: 230.h,
+              // top: 230.h,
               left: 10.w,
               right: 10.w,
               bottom: 20,
               child: OrderImagesListView(
-                images: images,
+                images: widget.images,
                 pageController: _pageController,
                 currentPage: _currentPage,
               ),

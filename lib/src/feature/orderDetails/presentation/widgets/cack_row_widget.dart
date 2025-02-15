@@ -7,17 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CakeRowWidget extends StatelessWidget {
   const CakeRowWidget({
     super.key,
-    required this.quantity,
-    required this.directions,
-    required this.notes, 
-    required this.orderType,
+    required this.notes,
+    required this.orderType, required this.image,
   });
 
-  final String quantity;
-  final String directions;
   final String notes;
   final String orderType;
-
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,8 +21,8 @@ class CakeRowWidget extends StatelessWidget {
       children: [
         ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
-            child: Image.asset(
-              AppAssets.home,
+            child: Image.network(
+              image,
               fit: BoxFit.cover,
               height: 60.h,
               width: 60.w,
@@ -36,17 +32,12 @@ class CakeRowWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-             orderType,
+              orderType,
               style: AppStyles.s14.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
             SizedBox(height: 5.h),
-            Text(
-              "الكميه : $quantity ",
-              style: AppStyles.s12,
-            ),
-           
             SizedBox(height: 16.h),
             Container(
               width: 253.w,

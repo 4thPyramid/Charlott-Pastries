@@ -23,10 +23,9 @@ OrderDetailsResponse _$OrderDetailsResponseFromJson(
       remaining: (json['remaining'] as num?)?.toDouble(),
       additionalData: json['additional_data'] as String?,
       images: (json['images'] as List<dynamic>)
-          .map((e) => OrderImage.fromJson(e as Map<String, dynamic>))
+          .map((e) => OrderImageDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
       status: json['status'] as String,
-      quantity: (json['quantity'] as num).toInt(),
       problem: json['problem'] as String?,
       rejectionCause: json['rejection_cause'] as String?,
     );
@@ -51,10 +50,10 @@ Map<String, dynamic> _$OrderDetailsResponseToJson(
       'rejection_cause': instance.rejectionCause,
       'images': instance.images,
       'status': instance.status,
-      'quantity': instance.quantity,
     };
 
-OrderImage _$OrderImageFromJson(Map<String, dynamic> json) => OrderImage(
+OrderImageDetails _$OrderImageDetailsFromJson(Map<String, dynamic> json) =>
+    OrderImageDetails(
       id: (json['id'] as num).toInt(),
       orderId: (json['order_id'] as num).toInt(),
       image: json['image'] as String,
@@ -62,7 +61,7 @@ OrderImage _$OrderImageFromJson(Map<String, dynamic> json) => OrderImage(
       updatedAt: json['updated_at'] as String,
     );
 
-Map<String, dynamic> _$OrderImageToJson(OrderImage instance) =>
+Map<String, dynamic> _$OrderImageDetailsToJson(OrderImageDetails instance) =>
     <String, dynamic>{
       'id': instance.id,
       'order_id': instance.orderId,

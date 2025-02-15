@@ -12,9 +12,9 @@ abstract class OrdersApiServices {
   Future<Either<ErrorModel, OrdersResponse>> returnedOrder();
   Future<Either<ErrorModel, OrdersResponse>> deliveredOrder();
   Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder();
+  Future<Either<ErrorModel, OrdersResponse>> notAssignOrder();
   Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders();
   
-
 }
 
 class OrdersApiServicesImpl extends OrdersApiServices {
@@ -56,6 +56,16 @@ class OrdersApiServicesImpl extends OrdersApiServices {
   Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder() async {
     try {
       final response = await api.get(EndpointsStrings.withDeliveryOrders);
+      final ordersResponse = OrdersResponse.fromJson(response);
+      return Right(ordersResponse);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+  }
+    @override
+  Future<Either<ErrorModel, OrdersResponse>> notAssignOrder() async {
+    try {
+      final response = await api.get(EndpointsStrings.notAssignedOrders);
       final ordersResponse = OrdersResponse.fromJson(response);
       return Right(ordersResponse);
     } on ServerException catch (e) {

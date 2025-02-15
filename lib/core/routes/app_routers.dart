@@ -65,6 +65,7 @@ import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
 import '../../src/feature/manager/manager_bottom_navigation_bar_root.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_being_delivered_orders_view.dart';
+import '../../src/feature/manager/orders/presentation/views/manager_not_assign_order.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_refused_orders.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_returned_and_refused_orders_details.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_returned_orders.dart';
@@ -327,6 +328,7 @@ final GoRouter router = GoRouter(
       path: RouterNames.waitingOrders,
       builder: (context, state) => const WaitingOrders(),
     ),
+    
     GoRoute(
       path: RouterNames.compleatedOrders,
       builder: (context, state) => const CompleatedOrdersSales(),
@@ -369,6 +371,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.managerCompletedOrders,
       builder: (context, state) => const ManagerCompletedOrders(),
+    ),
+     GoRoute(
+      path: RouterNames.managerNotAssignedOrders,
+      builder: (context, state) => const ManagerNotAssignOrders(),
     ),
     GoRoute(
       path: RouterNames.managerReturnedOrders,

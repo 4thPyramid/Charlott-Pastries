@@ -6,13 +6,13 @@ part 'order_types_response.g.dart';
 @JsonSerializable()
 class OrderType {
   final int id;
-  final int quantity;
+  //final int quantity;
   @JsonKey(name: 'updated_at')
   final DateTime updatedAt;
 
   OrderType({
     required this.id,
-    required this.quantity,
+   // required this.quantity,
     required this.updatedAt,
   });
 

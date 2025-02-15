@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../orderDetails/data/model/order_details_response.dart';
+
 part 'orders_response.g.dart';
 
 @JsonSerializable()
@@ -27,7 +29,7 @@ class Order {
   final String status;
   @JsonKey(name: 'delivery_date')
   final String? deliveryDate;
-  final String? image;
+  final List<OrderImageDetails> images;
 
   Order({
     required this.id,
@@ -35,7 +37,7 @@ class Order {
     required this.orderType,
     required this.status,
     this.deliveryDate,
-    this.image,
+    required this.images,
   });
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);

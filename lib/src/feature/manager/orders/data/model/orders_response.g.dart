@@ -24,7 +24,9 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       orderType: json['order_type'] as String,
       status: json['status'] as String,
       deliveryDate: json['delivery_date'] as String?,
-      image: json['image'] as String?,
+      images: (json['images'] as List<dynamic>)
+          .map((e) => OrderImageDetails.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -33,5 +35,5 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'order_type': instance.orderType,
       'status': instance.status,
       'delivery_date': instance.deliveryDate,
-      'image': instance.image,
+      'images': instance.images,
     };

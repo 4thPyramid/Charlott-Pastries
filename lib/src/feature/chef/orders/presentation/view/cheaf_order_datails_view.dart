@@ -48,6 +48,7 @@ class ChefOrdersDetailsView extends StatelessWidget {
                         onBackPressed: () {
                           Navigator.pop(context);
                         },
+                        images: orderDetailsResponse.images,
                       ),
                       ChefOrderDetailsContent(
                         orderDetailsResponse: orderDetailsResponse,

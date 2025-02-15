@@ -8,13 +8,13 @@ part of 'order_types_response.dart';
 
 OrderType _$OrderTypeFromJson(Map<String, dynamic> json) => OrderType(
       id: (json['id'] as num).toInt(),
-      quantity: (json['quantity'] as num).toInt(),
+    //  quantity: (json['quantity'] as num).toInt(),
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$OrderTypeToJson(OrderType instance) => <String, dynamic>{
       'id': instance.id,
-      'quantity': instance.quantity,
+      //'quantity': instance.quantity,
       'updated_at': instance.updatedAt.toIso8601String(),
     };
 

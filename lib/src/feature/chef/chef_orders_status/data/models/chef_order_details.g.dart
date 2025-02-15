@@ -6,23 +6,6 @@ part of 'chef_order_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OrderImage _$OrderImageFromJson(Map<String, dynamic> json) => OrderImage(
-      id: (json['id'] as num).toInt(),
-      orderId: (json['order_id'] as num).toInt(),
-      image: json['image'] as String,
-      createdAt: json['created_at'] as String,
-      updatedAt: json['updated_at'] as String,
-    );
-
-Map<String, dynamic> _$OrderImageToJson(OrderImage instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'order_id': instance.orderId,
-      'image': instance.image,
-      'created_at': instance.createdAt,
-      'updated_at': instance.updatedAt,
-    };
-
 ChefOrderDetails _$ChefOrderDetailsFromJson(Map<String, dynamic> json) =>
     ChefOrderDetails(
       id: (json['id'] as num).toInt(),
@@ -58,8 +41,8 @@ ChefOrderDetails _$ChefOrderDetailsFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
       rejectionCause: json['rejection_cause'] as String?,
-      images: (json['images'] as List<dynamic>?)
-          ?.map((e) => OrderImage.fromJson(e as Map<String, dynamic>))
+      images: (json['images'] as List<dynamic>)
+          .map((e) => OrderImageDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

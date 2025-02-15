@@ -21,21 +21,18 @@ final String endAt;
   }
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-           OrderDetailsSectionsTitleWidget(
-            title: AppStrings.orderTimes,
-            subtitle: orderStatus,
-          ),
-          SizedBox(height: 16.h),
-           DatesContainerWidget(
-              startData: _formatDate(startAt), 
-            endData: _formatDate(endAt),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+         OrderDetailsSectionsTitleWidget(
+          title: AppStrings.orderTimes,
+          subtitle: orderStatus,
+        ),
+        SizedBox(height: 16.h),
+         DatesContainerWidget(
+            startData: _formatDate(startAt), 
+          endData: _formatDate(endAt),
+        ),
+      ],
     );
   }
 }

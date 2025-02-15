@@ -52,7 +52,9 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String,
       rejectionCause: json['rejection_cause'] as String?,
-      images: json['images'] as List<dynamic>,
+      images: (json['images'] as List<dynamic>)
+          .map((e) => OrderImageDetails.fromJson(e as Map<String, dynamic>))
+          .toList(),
       flowers: json['flowers'] == null
           ? null
           : Flower.fromJson(json['flowers'] as Map<String, dynamic>),

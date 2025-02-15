@@ -53,6 +53,7 @@ class OrderDetailsView extends StatelessWidget {
                         onBackPressed: () {
                           Navigator.pop(context);
                         },
+                        images: orderDetailsResponse.images,
                       ),
                       OrderDetailsContent(
                         orderDetailsResponse: orderDetailsResponse,

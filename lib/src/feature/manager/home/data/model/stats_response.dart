@@ -9,7 +9,8 @@ class StatsResponse {
   final int delivered;
   final int returned;
   final int recive;
-  
+  @JsonKey(name: 'not_assigned')
+  final int notAssigned;
   @JsonKey(name: 'percentage')
   final String percentageString;
 
@@ -23,6 +24,7 @@ class StatsResponse {
     required this.delivered,
     required this.returned,
     required this.recive,
+    required this.notAssigned,
     required this.percentageString,
   });
 

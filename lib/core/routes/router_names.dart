@@ -37,6 +37,7 @@ abstract class RouterNames {
       '/manager-bottom-navigation-bar-root';
 
   static const String managerHomView = '/manager-home';
+  static const String managerNotAssignedOrders = '/manager-not-assigned-orders';
   static const String managerRefusedOrders = '/manager-refused-orders';
   static const String chefDetails = '/chefDetails';
   static const String newestOrderDetails = '/newestOrderDetails';

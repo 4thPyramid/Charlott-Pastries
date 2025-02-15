@@ -2,6 +2,8 @@ import 'package:charlot/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../data/model/order_details_response.dart';
+
 class OrderImagesListView extends StatelessWidget {
   const OrderImagesListView({
     super.key,
@@ -11,7 +13,8 @@ class OrderImagesListView extends StatelessWidget {
   })  : _pageController = pageController,
         _currentPage = currentPage;
 
-  final List<String> images;
+  final List<OrderImageDetails> images;
+
   final PageController _pageController;
   final int _currentPage;
 
@@ -51,8 +54,8 @@ class OrderImagesListView extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  images[index],
+                child: Image.network(
+                  images[index].image,
                   fit: BoxFit.cover,
                 ),
               ),

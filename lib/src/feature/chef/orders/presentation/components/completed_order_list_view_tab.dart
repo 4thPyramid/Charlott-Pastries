@@ -83,7 +83,7 @@ class CompletedOrderListViewTab extends StatelessWidget {
               style: AppStyles.s16,
             ),
             subtitle: Text(
-              '${formatDate(order.updatedAt.toString())} · عناصر ${order.quantity}',
+              '${formatDate(order.updatedAt.toString())} ',
               style: AppStyles.s14.copyWith(
                 color: AppColors.whiteGreyForText,
               ),

@@ -16,7 +16,7 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
   const ReturnedOrderDetailsContent({
     super.key,
     required this.orderStatus,
-     required this.orderDetailsResponse,
+    required this.orderDetailsResponse,
   });
 
   @override
@@ -26,31 +26,38 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
       children: [
         OrderTimes(
           orderStatus: orderStatus,
-          startAt:orderDetailsResponse.createdAt,
+          startAt: orderDetailsResponse.createdAt,
           endAt: orderDetailsResponse.deliveryDate ?? '2024-12-12',
         ),
         SizedBox(height: 16.h),
-         ClientData(
-          customerName:  orderDetailsResponse.customerName ?? 'لم يتم اضافه اسم',
-          customerPhone: orderDetailsResponse.customerPhone ?? 'لم يتم اضافه رقم',
-          customerAddress: orderDetailsResponse.additionalData ?? 'لم يتم اضافه عنوان',
+        ClientData(
+          customerName: orderDetailsResponse.customerName ?? 'لم يتم اضافه اسم',
+          customerPhone:
+              orderDetailsResponse.customerPhone ?? 'لم يتم اضافه رقم',
+          customerAddress:
+              orderDetailsResponse.additionalData ?? 'لم يتم اضافه عنوان',
         ),
-         TeamData(
+        TeamData(
           chefName: orderDetailsResponse.chefName,
           deliveryName: orderDetailsResponse.deliveryName,
         ),
-         OrderData(
+        OrderData(
           orderType: orderDetailsResponse.orderType,
-          orderDetails:orderDetailsResponse.orderDetails??'لم يتم اضافه تفاصيل',
-          quantity: orderDetailsResponse.quantity,
+          orderDetails:
+              orderDetailsResponse.orderDetails ?? 'لم يتم اضافه تفاصيل',
+          image: orderDetailsResponse.images.isNotEmpty
+              ? orderDetailsResponse.images[0].image
+              : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com',
         ),
         ReasonForRejection(
-          reason:orderDetailsResponse.rejectionCause??orderDetailsResponse.problem ??'لم يتم اضافه سبب',
+          reason: orderDetailsResponse.rejectionCause ??
+              orderDetailsResponse.problem ??
+              'لم يتم اضافه سبب',
         ),
         SizedBox(height: 16.h),
-         OrderPrice(
+        OrderPrice(
           price: orderDetailsResponse.price ?? 0.0,
-          deposit: orderDetailsResponse.deposit??0.0,
+          deposit: orderDetailsResponse.deposit ?? 0.0,
           remaining: orderDetailsResponse.remaining ?? 0.0,
         ),
       ],

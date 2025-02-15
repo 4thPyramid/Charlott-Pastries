@@ -6,12 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/app_strings.dart';
 
 class OrderData extends StatelessWidget {
-  const OrderData({super.key, required this.orderType, required this.orderDetails, required this.quantity, });
+  const OrderData({super.key, required this.orderType, required this.orderDetails, required this.image,   });
   
    final String orderType;
-
+  final String image;
   final String orderDetails;
-  final int quantity;
+ 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,8 +25,8 @@ class OrderData extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h),
           child:  OrderDetailsCardWidget(
-            directions: '90',
-             quantity:quantity.toString() , 
+              image: image,
+           
              orderType: orderType,
               notes: orderDetails,
            

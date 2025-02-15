@@ -1,6 +1,7 @@
 
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +15,8 @@ import '../../../../../core/utils/main_function.dart';
 
 showPopToChoiceChef(
   BuildContext context,
-  final int orderId
+  final int orderId,
+  final String routeName,
 ) {
   customAlertDialog(
     marginHPadding: 20.h,
@@ -29,13 +31,12 @@ showPopToChoiceChef(
           const Center(
             child: AppImageView(
               AppAssets.successIcon,
-              // width: 50.w,
-              //  height: 50.h,
+            
             ),
           ),
           SizedBox(height: 13.h),
           Text(
-            AppStrings.acceptOrderSuccessfully,
+            AppStrings.acceptOrderSuccessfully.tr(),
             style: AppStyles.s20.copyWith(
               color: Colors.black,
               fontWeight: FontWeight.w700,
@@ -53,7 +54,7 @@ showPopToChoiceChef(
           CustomButton(
             height: 40.h,
             width: 180.w,
-            text: AppStrings.selectChef,
+            text: AppStrings.selectChef.tr(),
             textStyle: AppStyles.s16.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
@@ -62,6 +63,18 @@ showPopToChoiceChef(
               context.go(RouterNames.selectChef,extra: {
                 'orderId': orderId,
               });
+            },
+          ), 
+          CustomButton(
+            height: 40.h,
+            width: 180.w,
+            text: AppStrings.back.tr(),
+            textStyle: AppStyles.s16.copyWith(
+              color: AppColors.white,
+              fontWeight: FontWeight.w700,
+            ),
+            onPressed: () {
+            context.push(routeName);
             },
           )
         ],
