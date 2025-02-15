@@ -52,19 +52,19 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
   bool _validateInputs() {
     if (!formKey.currentState!.validate()) return false;
 
-    if (!_passwordsMatch()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("${AppStrings.passwordsdonotmatch.tr}")),
-      );
-      return false;
-    }
+    // if (!_passwordsMatch()) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text("${AppStrings.passwordsdonotmatch.tr}")),
+    //   );
+    //   return false;
+    // }
 
-    if (selectedBranch == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("${AppStrings.pleaseselectthebranch.tr}")),
-      );
-      return false;
-    }
+    // if (selectedBranch == null) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text("${AppStrings.pleaseselectthebranch.tr}")),
+    //   );
+    //   return false;
+    // }
 
     // if (selectedImage == null) {
     //   ScaffoldMessenger.of(context).showSnackBar(

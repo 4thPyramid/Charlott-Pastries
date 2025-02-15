@@ -20,7 +20,7 @@ class OrderListViewSection extends StatelessWidget {
             loading: () => const CircularProgressIndicator(),
             loaded: (order) => order.orders.isEmpty
                 ? Center(
-                    child: Text(AppStrings.noneworders.tr()),
+                    child: Text(AppStrings.noNeworders.tr()),
                   )
                 : ListView.separated(
                     shrinkWrap: true,
@@ -41,7 +41,8 @@ class OrderListViewSection extends StatelessWidget {
                         child: OrdersCardItem(
                           orderName: orders.orderType,
                           orderType: orders.orderType,
-                          date: orders.deliveryDate ?? AppStrings.nodateavailable.tr(),
+                          date: orders.deliveryDate ??
+                              AppStrings.nodateavailable.tr(),
                         ),
                       );
                     },
