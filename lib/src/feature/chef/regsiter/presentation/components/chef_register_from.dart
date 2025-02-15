@@ -1,19 +1,18 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/branches_feature/data/models/branch_model.dart';
-import '../../../../../../core/common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
 import '../../../../../../core/common/functions/validator.dart';
 import '../../../../../../core/common/specialization_feature/data/models/specialization_model.dart';
 import '../../../../../../core/common/widgets/custom_auth_app_bar.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_circle_to_upload_image.dart';
 import '../../../../../../core/routes/router_names.dart';
-import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../auth/presentation/widgets/firest_and_last_name_row.dart';
@@ -38,7 +37,7 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
 
   final TextEditingController confirmPasswordController =
       TextEditingController();
-        final TextEditingController bioController = TextEditingController();
+  final TextEditingController bioController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -55,14 +54,14 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
 
     if (!_passwordsMatch()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('كلمات المرور غير متطابقة')),
+        SnackBar(content: Text("${AppStrings.passwordsdonotmatch.tr}")),
       );
       return false;
     }
 
     if (selectedBranch == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('برجاء اختيار الفرع')),
+        SnackBar(content: Text("${AppStrings.pleaseselectthebranch.tr}")),
       );
       return false;
     }
@@ -87,9 +86,8 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
             branchId: selectedBranch!.id,
             password: passwordController.text,
             image: selectedImage,
-             specializationId: selectedSpecialization!.id,
-             bio: bioController.text,
-            
+            specializationId: selectedSpecialization!.id,
+            bio: bioController.text,
           );
     }
   }
@@ -101,7 +99,7 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
         state.whenOrNull(
           success: (message) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(message),backgroundColor: Colors.green),
+              SnackBar(content: Text(message), backgroundColor: Colors.green),
             );
             context.push(RouterNames.otpViewForEmail, extra: {
               'userType': 'chef',
@@ -121,9 +119,9 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomAuthAppBar(
-                  title: AppStrings.welcome,
-                  subTitle: AppStrings.fillFormToCreateAccount,
+                 CustomAuthAppBar(
+                  title: AppStrings.welcome.tr(),
+                  subTitle: AppStrings.fillFormToCreateAccount.tr(),
                 ),
                 SizedBox(height: 30.h),
                 Center(
@@ -140,14 +138,13 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
                   lastNameController: lNameController,
                 ),
                 ChoiceBranch(
-                                  onBranchSelected: (branch) {
-                                    setState(() {
-                                      selectedBranch = branch;
-                                    });
-                                  },
-                                ),
-                
-                 ChoiceSpecialization(
+                  onBranchSelected: (branch) {
+                    setState(() {
+                      selectedBranch = branch;
+                    });
+                  },
+                ),
+                ChoiceSpecialization(
                   onSpecializationSelected: (specialization) {
                     setState(() {
                       selectedSpecialization = specialization;
@@ -158,39 +155,39 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
                   isPassword: false,
                   controller: emailController,
                   validator: Validator.validateEmail,
-                  hintText: AppStrings.enterYourEmail,
-                  titleOfField: AppStrings.email,
+                  hintText: AppStrings.enterYourEmail.tr(),
+                  titleOfField: AppStrings.email.tr(),
                   prefixIcon: Icons.mail_outline_outlined,
                 ),
                 AuthTextFieldWidget(
                   isPassword: false,
                   controller: phoneController,
                   validator: Validator.validatePhone,
-                  hintText: AppStrings.enterYourPhoneNumber,
-                  titleOfField: AppStrings.phoneNumber,
+                  hintText: AppStrings.enterYourPhoneNumber.tr(),
+                  titleOfField: AppStrings.phoneNumber.tr(),
                   prefixIcon: Icons.phone_enabled_rounded,
                 ),
                 AuthTextFieldWidget(
                   isPassword: true,
                   controller: passwordController,
                   validator: Validator.validatePassword,
-                  hintText: AppStrings.enterPasswordHint,
-                  titleOfField: AppStrings.password,
+                  hintText: AppStrings.enterPasswordHint.tr(),
+                  titleOfField: AppStrings.password.tr(),
                   prefixIcon: Icons.lock_outline,
                 ),
                 AuthTextFieldWidget(
                   isPassword: true,
                   controller: confirmPasswordController,
-                  validator:  Validator.validatePassword,
-                  hintText: AppStrings.confirmPassword,
-                  titleOfField: AppStrings.confirmPassword,
+                  validator: Validator.validatePassword,
+                  hintText: AppStrings.confirmPassword.tr(),
+                  titleOfField: AppStrings.confirmPassword.tr(),
                   prefixIcon: Icons.lock_outline,
                 ),
-                  AuthTextFieldWidget(
+                AuthTextFieldWidget(
                   isPassword: false,
                   controller: bioController,
-                  hintText: AppStrings.aboutYou,
-                  titleOfField: AppStrings.bio,
+                  hintText: AppStrings.aboutYou.tr(),
+                  titleOfField: AppStrings.bio.tr(),
                   prefixIcon: Icons.edit_note_sharp,
                   maxLines: 2,
                 ),
@@ -200,7 +197,7 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
                 else
                   Center(
                     child: CustomButton(
-                      text: AppStrings.register,
+                      text: AppStrings.register.tr(),
                       onPressed: _handleRegister,
                     ),
                   ),

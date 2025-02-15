@@ -1,6 +1,7 @@
 import 'package:charlot/core/common/widgets/custom_app_bar.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +21,7 @@ class ChefOrdersView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(
             children: [
-              const CustomAppBar(title: "الطلبات"),
+               CustomAppBar(title: AppStrings.orders.tr()),
               Container(
                 height: 50.h,
                 decoration: const BoxDecoration(
@@ -45,10 +46,10 @@ class ChefOrdersView extends StatelessWidget {
                       color: AppColors.greyForSelectTap,
                       borderRadius: BorderRadius.circular(8.r),
                     ),
-                    tabs: const [
-                      Tab(text: AppStrings.notStarted),
-                      Tab(text: AppStrings.pending),
-                      Tab(text: AppStrings.completed),
+                    tabs:  [
+                      Tab(text: AppStrings.notStarted.tr()),
+                      Tab(text: AppStrings.pending.tr()),
+                      Tab(text: AppStrings.completed.tr()),
                     ],
                   ),
                 ),

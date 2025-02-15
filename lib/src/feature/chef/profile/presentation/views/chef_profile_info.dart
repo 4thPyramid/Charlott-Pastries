@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,18 +17,18 @@ class ChefProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ProfileCubit>().getProfile(userTyp: 'chef');
+      context.read<ProfileCubit>().getProfile(userTyp: AppStrings.chef.tr());
     });
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
         title: ProfileHeader(
-          title: AppStrings.personalInfoData,
+          title: AppStrings.personalInfoData.tr(),
           onPressed: () {
             context.push(RouterNames.chefBottomNavigationBarRoot);
           },
            onPressedEdit: (){
-            editAccountPop(context, 'chef');
+            editAccountPop(context, AppStrings.chef.tr());
           },
         ),
       ),

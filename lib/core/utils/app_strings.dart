@@ -1,4 +1,4 @@
- class AppStrings {
+class AppStrings {
   static const String appName = 'appName';
   static const String manager = 'manager';
   static const String sales = 'sales';
@@ -26,7 +26,7 @@
   static const String register = 'register';
   static const String orderTimes = 'orderTimes';
   static const String startWork = 'startWork';
-  static const String enterPasswordHint = 'enterPasswordHint';
+  static const String enterPasswordHint = 'enterPassword';
   static const String verifyEmail = 'verifyEmail';
   static const String donotHaveAnAccount = 'donotHaveAnAccount';
   static const String haveAnAccount = 'haveAnAccount';
@@ -109,7 +109,7 @@
   static const String chefName = 'chefName';
   static const String completed = 'completed';
   static const String notStarted = 'notStarted';
-  static const String  forgetPassword = "forgetPassword";
+  static const String forgetPassword = "forgetPassword";
   static const String orderDetailsChef = 'orderDetailsChef';
   static const String finishedOrderDetails = 'finishedOrderDetails';
   static const String delegateDetails = 'delegateDetails';
@@ -117,7 +117,7 @@
   static const String noCurrentOrders = 'noCurrentOrders';
   static const String numberOfSuccessfullyCompletedOrders =
       'numberOfSuccessfullyCompletedOrders';
-      static const String pleaseWaitUntil = 'pleaseWaitUntil';
+  static const String pleaseWaitUntil = 'pleaseWaitUntil';
   static const String averageDeliveryTime = 'averageDeliveryTime';
   static const String orderSentToDelegate = 'orderSentToDelegate';
   static const String completedOrderDetails = 'completedOrderDetails';
@@ -149,8 +149,7 @@
   static const String language = 'language';
   static const String likeIt = 'likeIt';
   static const String deleteAccount = 'deleteAccount';
-  static const String areYouSureToDeleteAccount =
-      'areYouSureToDeleteAccount';
+  static const String areYouSureToDeleteAccount = 'areYouSureToDeleteAccount';
   static const String areYouSureToLogOut = 'areYouSureToLogOut';
   static const String delete = 'delete';
   static const String yes = 'yes';
@@ -158,7 +157,36 @@
   static const String personalInfoData = 'personalInfoData';
   static const String changePassword = 'changePassword';
   static const String hintChangePassword = 'hintChangePassword';
-  static const String   newPassword = 'newPassword';
+  static const String newPassword = 'newPassword';
   static const String confirmNewPassword = 'confirmNewPassword';
-  
+  static const String passwordsdonotmatch = 'Passwords do not match';
+  static const pleaseselectthebranch = 'Please select the branch';
+  static const String startnow = 'startnow';
+  static const String noneworders = 'No new orders';
+  static const String nodateavailable = 'No date available';
+  static const String orders = 'orders';
+  static const String tryagain = 'tryagain';
+  static const String therearenoorders = 'There are no orders';
+  static const String order = 'order';
+  static const String items = 'items';
+  static const String showdetails = 'show details';
+  static const String orderdetailsinprogress = 'Order details in progress';
+  static const String orderdetailsarepending = 'Order details are pending';
+  static const String therearenocompletedorders =
+      'There are no completed orders';
+  static const String completedorderdetails = 'Completed order details';
+  static const String loading = 'loading';
+  static const String anerroroccurred = 'An error occurred';
+  static const String nonamehasbeenadded = 'No name has been added';
+  static const String nonumberhasbeenadded = 'No address has been added';
+  static const String noaddresshasbeenadded = 'No address has been added';
+  static const String inprogress = 'in progress';
+  static const String themanagerapproved = 'The manager approved';
+  static const    String accepted = 'accepted';
+  static const String therearenonotifications = 'There are no notifications';
+  static const String home = 'Home';
+  static const String cart = 'cart';
+  static const String profile = 'profile';
+  static const String pleasewait = 'Please wait...';
+
 }

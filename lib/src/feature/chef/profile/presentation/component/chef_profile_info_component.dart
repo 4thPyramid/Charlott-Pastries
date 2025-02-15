@@ -15,12 +15,12 @@ class ChefProfileInfoComponent extends StatelessWidget {
   @override
     @override
   Widget build(BuildContext context) {
-    context.read<ProfileCubit>().getProfile(userTyp: 'chef');
+    context.read<ProfileCubit>().getProfile(userTyp: AppStrings.chef.tr());
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return state.when(
-          initial: () => const Center(
-            child: Text("Please wait..."),
+          initial: () =>  Center(
+            child: Text(AppStrings.pleasewait.tr()),
           ),
           loading: () => const Center(
             child: CircularProgressIndicator(),
@@ -30,7 +30,7 @@ class ChefProfileInfoComponent extends StatelessWidget {
               children: [
                 SizedBox(height: 40.h),
                 
-                PersonalCircleImage(profileImage: profile.image,userType: 'chef',),
+                PersonalCircleImage(profileImage: profile.image,userType: AppStrings.chef.tr(),),
                 SizedBox(height: 40.h),
                 PersonalInfoListTile(
                   title: AppStrings.name.tr(),
@@ -39,7 +39,7 @@ class ChefProfileInfoComponent extends StatelessWidget {
                   iconColor: AppColors.orange,
                 ),
                 PersonalInfoListTile(
-                  title: AppStrings.email,
+                  title: AppStrings.email.tr(),
                   subtitle: profile.email,
                   icon: Icons.email_outlined,
                 ),

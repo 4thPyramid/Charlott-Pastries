@@ -1,4 +1,6 @@
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/chef/notification/presentation/widgets/notification_card_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,8 +22,8 @@ class NotificationListView extends StatelessWidget {
           child: BlocBuilder<ChefNotificationCubit, ChefNotificationState>(
             builder: (context, state) {
               return state.when(
-                initial: () => const Center(
-                  child: Text('لا توجد إشعارات'),
+                initial: () =>  Center(
+                  child: Text(AppStrings.therearenonotifications.tr()),
                 ),
                 loading: () => const Center(
                   child: CircularProgressIndicator(),
@@ -31,8 +33,8 @@ class NotificationListView extends StatelessWidget {
                 ),
                 loaded: (notifications) {
                   if (notifications.notifications.isEmpty) {
-                    return const Center(
-                      child: Text('لا توجد إشعارات'),
+                    return  Center(
+                      child: Text(AppStrings.therearenonotifications.tr()),
                     );
                   }
 
@@ -68,7 +70,7 @@ class NotificationListView extends StatelessWidget {
                         title: notification.title,
                         time: timeAgo,
                         type: notification.orderType,
-                         status: notification.status?? "وافق المدير",
+                         status: notification.status?? AppStrings.themanagerapproved.tr(),
                       );
                     },
                   );

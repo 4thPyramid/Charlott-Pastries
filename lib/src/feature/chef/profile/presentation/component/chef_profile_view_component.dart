@@ -17,7 +17,7 @@ class ChefProfileViewComponent extends StatelessWidget {
   const ChefProfileViewComponent({super.key});
   @override
   Widget build(BuildContext context) {
-     context.read<ProfileCubit>().getProfile(userTyp: 'chef');
+     context.read<ProfileCubit>().getProfile(userTyp: AppStrings.chef.tr());
     return Column(
       children: [
         BlocBuilder<ProfileCubit, ProfileState>(
@@ -47,7 +47,7 @@ class ChefProfileViewComponent extends StatelessWidget {
         SizedBox(height: 30.h),
         CustomListTile(
           onPressed: () =>  UrlLauncherMethods.launchInBrowser('https://charlottesweets.com/about-us/'),
-          title: AppStrings.about,
+          title: AppStrings.about.tr(),
           icon: Icons.help_outline,
           iconColor: AppColors.errorColor,
         ),
@@ -57,7 +57,7 @@ class ChefProfileViewComponent extends StatelessWidget {
           onPressed: () {
             context.go(RouterNames.chefSettingView);
           },
-          title: AppStrings.settings,
+          title: AppStrings.settings.tr(),
           icon: Icons.settings_outlined,
         ),
         SizedBox(height: 30.h),

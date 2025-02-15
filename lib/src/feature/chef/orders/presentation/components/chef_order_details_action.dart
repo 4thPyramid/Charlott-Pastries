@@ -1,4 +1,5 @@
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,13 +42,13 @@ class ChefOrderDetailsActions extends StatelessWidget {
 
   Widget _buildActionsByStatus(BuildContext context) {
     switch (orderStatus) {
-      case "قيد التنفيذ":
+      case "In Progress" :
         return Align(
           alignment: Alignment.bottomCenter,
           child: Column(
             children: [
               CustomButton(
-                  text: AppStrings.readyForDeliver,
+                  text: AppStrings.readyForDeliver.tr(),
                   textStyle: AppStyles.s14.copyWith(
                     color: AppColors.white,
                     fontWeight: FontWeight.w700,
@@ -58,19 +59,19 @@ class ChefOrderDetailsActions extends StatelessWidget {
           ),
         );
 
-      case "وافق المدير":
+      case "The manager approved" :
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AcceptAndRefuseButton(
-              text: AppStrings.accept,
+              text: AppStrings.accept.tr(),
               backgroundColor: AppColors.green,
               onPressed: () =>
                   context.read<OrderStatusCubit>().acceptOrder(orderId),
             ),
             SizedBox(width: 16.w),
             AcceptAndRefuseButton(
-              text: AppStrings.ignore,
+              text: AppStrings.ignore.tr(),
               backgroundColor: AppColors.red,
               onPressed: () =>
               context.pop()
@@ -79,11 +80,11 @@ class ChefOrderDetailsActions extends StatelessWidget {
           ],
         );
 
-      case "تم القبول":
+      case "Accepted" :
         return Align(
           alignment: Alignment.center,
           child: CustomButton(
-            text: AppStrings.startWork,
+            text: AppStrings.startWork.tr(),
             textStyle: AppStyles.s14.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
