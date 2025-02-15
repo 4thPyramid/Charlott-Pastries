@@ -195,4 +195,24 @@ class AppStrings {
   static const cart = 'cart';
   static const profile = 'profile';
   static const pleasewait = 'pleasewait';
+  static const chefList = 'chefList';
+  static const flowerPrice = 'flowerPrice';
+  static const unAvailableTime = 'unAvailableTime';
+  static const orderPickupTime = 'orderPickupTime';
+  static const orderDeliveryTime = 'orderdeliveryTime';
+  static const addedToBirthdayCakeOrder = 'addedToBirthdayCakeOrder';
+  static const aDE = 'aDE';
+
+  static const depositPrice = 'depositPrice';
+  static const remainingPrice = 'remainingPrice';
+  static const passwordsDonotMatch = 'Passwordsdonotmatch';
+  static const currentPassword = 'currentPassword';
+  static const noChangesWereMade = 'noChangesWereMade';
+  static const takePhoto = 'takePhoto';
+  static const chooseFromGallery = 'chooseFromGallery';
+  static const estimatedDistanceAndTime = 'estimatedDistanceAndTime';
+  static const distance = 'distance';
+  static const expectedTime = 'expectedTime';
+  static const reasonForRejection = 'reasonForRejection';
+  static const resendOreder = 'resendOreder';
 }

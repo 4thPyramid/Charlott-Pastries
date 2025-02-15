@@ -192,5 +192,25 @@
     "home": "الرئيسية",
     "cart": "السلة",
     "profile": "الملف الشخصي",
-    "pleasewait": "برجاء الانتظار"
+    "pleasewait": "برجاء الانتظار",
+    "totalPrice": "السعر الكلي",
+    "remaining": "المتبقي",
+    "flowerPrice": "سعر الزهور",
+
+    "unAvailableTime": "الوقت غير متاح",
+    "orderPickupTime": "موعد استلام الطلب",
+    "orderdeliveryTime": "وقت تسليم الطلب",
+    "addedToBirthdayCakeOrder": "تضاف على طلب تورتة عيد ميلاد",
+    "aDE" : "ريال",
+    "depositPrice": " العربون",
+    "remainingPrice": "المتبقى",
+    "currentPassword": "كلمة المرور الحالية",
+    "noChangesWereMade": "لم يتم إجراء أي تغييرات",
+    "takePhoto": "اختيار صورة",
+    "chooseFromGallery": "اختيار من المعرض",
+    "estimatedDistanceAndTime" : "المسافة والوقت المتوقع",
+    "distance" : "المسافة",
+    "expectedTime" : "الوقت المتوقع",
+    "reasonForRejection": "سبب الرفض",
+    "resendOreder": "إعادة إرسال الطلب"
 }
