@@ -24,7 +24,6 @@ RefusedOrder _$RefusedOrderFromJson(Map<String, dynamic> json) => RefusedOrder(
       id: (json['id'] as num).toInt(),
       status: json['status'] as String,
       orderType: json['order_type'] as String,
-    //  updatedAt: json['updated_at'] as String,
       timeDifference: json['time_difference'] as String,
     );
 
@@ -33,6 +32,5 @@ Map<String, dynamic> _$RefusedOrderToJson(RefusedOrder instance) =>
       'id': instance.id,
       'order_type': instance.orderType,
       'status': instance.status,
-     // 'updated_at': instance.updatedAt,
       'time_difference': instance.timeDifference,
     };

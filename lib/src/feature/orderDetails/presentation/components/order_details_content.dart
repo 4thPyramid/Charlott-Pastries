@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '../../data/model/order_details_response.dart';
 import 'client_data.dart';
 import 'order_data.dart';
@@ -42,15 +44,24 @@ class OrderDetailsContent extends StatelessWidget {
             deliveryName: orderDetailsResponse.deliveryName,
           ),
           OrderData(
-            orderDetails:
-                orderDetailsResponse.orderDetails ?? 'لم يتم اضافه تفاصيل',
+            title: AppStrings.orderData.tr(),
+            orderDetails: orderDetailsResponse.orderDetails ?? '',
             orderType: orderDetailsResponse.orderType,
             image: orderDetailsResponse.images.isNotEmpty
                 ? orderDetailsResponse.images[0].image
-                : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com',
+                : orderDetailsResponse.flowerImage ?? '',
           ),
+          orderDetailsResponse.description != 'No flowers'
+              ? OrderData(
+                  title: AppStrings.flowerData.tr(),
+                  orderDetails: orderDetailsResponse.description,
+                  orderType: orderDetailsResponse.orderType,
+                  image: orderDetailsResponse.flowerImage ??
+                      'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
+                )
+              : const SizedBox(),
           OrderPrice(
-            price: orderDetailsResponse.price ?? 0.0,
+            price: orderDetailsResponse.totalPrice ?? 0.0,
             deposit: orderDetailsResponse.deposit ?? 0.0,
             remaining: orderDetailsResponse.remaining ?? 0.0,
           ),

@@ -3,10 +3,12 @@ import 'package:charlot/src/feature/orderDetails/presentation/components/order_d
 import 'package:charlot/src/feature/orderDetails/presentation/components/order_price.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/components/order_times.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/cubit/sales_order_details_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/utils/app_strings.dart';
 import '../../../../orderDetails/presentation/components/order_details_header.dart';
 
 class SalesOrderDetailsContent extends StatelessWidget {
@@ -50,11 +52,15 @@ class SalesOrderDetailsContent extends StatelessWidget {
                   //   chefName: orderDetailsResponse.order.chefName,
                   //   deliveryName: orderDetailsResponse.deliveryName,
                   // ),
-                  OrderData(
-                    orderDetails: orderDetailsResponse.order.orderDetails,
+                 OrderData(
+                    title: AppStrings.orderData.tr(),
+                    orderDetails: orderDetailsResponse.order.orderDetails ?? '',
                     orderType: orderDetailsResponse.order.orderType,
-                    image: orderDetailsResponse.order.images[0].image,
+                    image: orderDetailsResponse.order.images.isNotEmpty
+                        ? orderDetailsResponse.order.images[0].image
+                        : 'https://s.itl.cat/pngfile/s/42-421036_cake-wallpaper-download-download-birthday-cake-images-hd.jpg',
                   ),
+                 
                   OrderPrice(
                     price: orderDetailsResponse.order.price?? 0.0,
                     deposit: orderDetailsResponse.order.deposit ?? 0.0,

@@ -1,7 +1,9 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/utils/app_strings.dart';
 import '../../../../orderDetails/presentation/components/client_data.dart';
 import '../../../../orderDetails/presentation/components/order_data.dart';
 import '../../../../orderDetails/presentation/components/order_price.dart';
@@ -38,12 +40,15 @@ class ChefOrderDetailsContent extends StatelessWidget {
           //   chefName: orderDetailsResponse.chefName,
           //   deliveryName: orderDetailsResponse.deliveryName,
           // ),
-          OrderData(
-            orderDetails: orderDetailsResponse.orderDetails??'',
-            orderType: orderDetailsResponse.orderType ?? 'Unknown',
-            image: orderDetailsResponse.images.isNotEmpty?orderDetailsResponse.images[0].image:
-            'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com',
+         OrderData(
+            title: AppStrings.orderData.tr(),
+            orderDetails: orderDetailsResponse.orderDetails ?? '',
+            orderType: orderDetailsResponse.orderType??'',
+            image: orderDetailsResponse.images.isNotEmpty
+                ? orderDetailsResponse.images[0].image
+                :  'https://s.itl.cat/pngfile/s/42-421036_cake-wallpaper-download-download-birthday-cake-images-hd.jpg',
           ),
+        
           OrderPrice(
             price: orderDetailsResponse.price ?? 0.0,
             deposit: orderDetailsResponse.deposit??0.0,

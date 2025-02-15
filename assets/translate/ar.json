@@ -163,11 +163,11 @@
     "changePassword": "تغيير كلمة المرور",
     "hintChangePassword": "تلميح تغيير كلمة المرور",
     "pleaseWaitUntil": "الرجاء الانتظار حتى تتم الموافقة على طلبك من قبل الإدارة",
-
+    "flowerData": "بيانات الزهور",
     "Passwordsdonotmatch.": "كلمات المرور غير متطابقة",
     "Pleaseselectthebranch": "برجاء اختيار الفرع",
-    "startnow" : "ابدأ الآن",
-    "Noneworders" : "لا يوجد طلبات جديدة",
+    "startnow": "ابدأ الآن",
+    "Noneworders": "لا يوجد طلبات جديدة",
     "nodateavailable": "لا توجد تواريخ متاحة",
     "orders": "الطلبات",
     "tryagain": "حاول مرة أخرى",
@@ -192,6 +192,4 @@
     "cart": "السلة",
     "profile": "الملف الشخصي",
     "pleasewait": "برجاء الانتظار"
-    
 }
-

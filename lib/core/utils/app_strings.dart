@@ -36,6 +36,7 @@ class AppStrings {
   static const String aboutYou = "aboutYou";
   static const String trackOrder = "trackOrder";
   static const String orderData = "orderData";
+  static const String flowerData = "flowerData";
   static const String chefRequest = "chefRequest";
   static const String deliveryRequest = "deliveryRequest";
   static const String beingDeliverOrder = "beingDeliverOrder";

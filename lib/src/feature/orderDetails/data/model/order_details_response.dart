@@ -31,6 +31,25 @@ class OrderDetailsResponse {
   final String? rejectionCause;
   final List<OrderImageDetails> images;
   final String status;
+  @JsonKey(name: 'delivery_time')
+  final String? deliveryTime;
+  
+  @JsonKey(name: 'description')
+  final String description;
+  
+  @JsonKey(name: 'flower image')
+  final String? flowerImage;
+  
+  @JsonKey(name: 'cake_price')
+  final double? cakePrice;
+  
+  @JsonKey(name: 'flower_price')
+  final double? flowerPrice;
+  
+  @JsonKey(name:"total_price")
+  final double? totalPrice;
+
+
 
   OrderDetailsResponse({
     required this.success,
@@ -50,6 +69,12 @@ class OrderDetailsResponse {
     required this.status,
     this.problem,
     this.rejectionCause,
+      this.deliveryTime,
+    required this.description,
+    this.flowerImage,
+    this.cakePrice,
+    this.flowerPrice,
+     this.totalPrice,
   });
 
   factory OrderDetailsResponse.fromJson(Map<String, dynamic> json) =>

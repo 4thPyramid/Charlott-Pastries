@@ -28,6 +28,12 @@ OrderDetailsResponse _$OrderDetailsResponseFromJson(
       status: json['status'] as String,
       problem: json['problem'] as String?,
       rejectionCause: json['rejection_cause'] as String?,
+      deliveryTime: json['delivery_time'] as String?,
+      description: json['description'] as String,
+      flowerImage: json['flower image'] as String?,
+      cakePrice: (json['cake_price'] as num?)?.toDouble(),
+      flowerPrice: (json['flower_price'] as num?)?.toDouble(),
+      totalPrice: (json['total_price'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$OrderDetailsResponseToJson(
@@ -50,6 +56,12 @@ Map<String, dynamic> _$OrderDetailsResponseToJson(
       'rejection_cause': instance.rejectionCause,
       'images': instance.images,
       'status': instance.status,
+      'delivery_time': instance.deliveryTime,
+      'description': instance.description,
+      'flower image': instance.flowerImage,
+      'cake_price': instance.cakePrice,
+      'flower_price': instance.flowerPrice,
+      'total_price': instance.totalPrice,
     };
 
 OrderImageDetails _$OrderImageDetailsFromJson(Map<String, dynamic> json) =>

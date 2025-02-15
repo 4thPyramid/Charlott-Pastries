@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/utils/app_strings.dart';
 import '../../../../orderDetails/data/model/order_details_response.dart';
 import '../../../../orderDetails/presentation/components/client_data.dart';
 import '../../../../orderDetails/presentation/components/order_data.dart';
@@ -41,14 +43,23 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
           chefName: orderDetailsResponse.chefName,
           deliveryName: orderDetailsResponse.deliveryName,
         ),
-        OrderData(
+       OrderData(
+          title: AppStrings.orderData.tr(),
+          orderDetails: orderDetailsResponse.orderDetails ?? '',
           orderType: orderDetailsResponse.orderType,
-          orderDetails:
-              orderDetailsResponse.orderDetails ?? 'لم يتم اضافه تفاصيل',
           image: orderDetailsResponse.images.isNotEmpty
               ? orderDetailsResponse.images[0].image
-              : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com',
+              : orderDetailsResponse.flowerImage ?? '',
         ),
+        orderDetailsResponse.description != 'No flowers'
+            ? OrderData(
+                title: AppStrings.flowerData.tr(),
+                orderDetails: orderDetailsResponse.description,
+                orderType: orderDetailsResponse.orderType,
+                image: orderDetailsResponse.flowerImage ??
+                    'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
+              )
+            : const SizedBox(),
         ReasonForRejection(
           reason: orderDetailsResponse.rejectionCause ??
               orderDetailsResponse.problem ??
