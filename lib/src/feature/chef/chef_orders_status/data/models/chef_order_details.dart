@@ -1,10 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import '../../../../orderDetails/data/model/order_details_response.dart';
 
 part 'chef_order_details.g.dart';
 
-// Now let's update the ChefOrderDetails model
 @JsonSerializable()
 class ChefOrderDetails {
   @JsonKey(name: 'id')
@@ -15,6 +13,12 @@ class ChefOrderDetails {
 
   @JsonKey(name: 'order_details')
   final String? orderDetails;
+
+  @JsonKey(name: 'description') // Added
+  final String? description;
+
+  @JsonKey(name: 'is_sameday') // Added
+  final int? isSameDay;
 
   @JsonKey(name: 'flower_id')
   final int? flowerId;
@@ -34,8 +38,8 @@ class ChefOrderDetails {
   @JsonKey(name: 'delivery_date')
   final String? deliveryDate;
 
-  @JsonKey(name: 'price')
-  final double? price;
+  @JsonKey(name: 'cake_price') // Corrected from 'price'
+  final double? cakePrice;
 
   @JsonKey(name: 'flower_price')
   final double? flowerPrice;
@@ -113,13 +117,15 @@ class ChefOrderDetails {
     required this.id,
     this.orderType,
     this.orderDetails,
+    this.description, 
+    this.isSameDay, 
     this.flowerId,
     this.flowerQuantity,
     this.image,
     this.quantity,
     this.deliveryTime,
     this.deliveryDate,
-    this.price,
+    this.cakePrice, 
     this.flowerPrice,
     this.deliveryPrice,
     this.totalPrice,
@@ -148,5 +154,6 @@ class ChefOrderDetails {
 
   factory ChefOrderDetails.fromJson(Map<String, dynamic> json) =>
       _$ChefOrderDetailsFromJson(json);
+      
   Map<String, dynamic> toJson() => _$ChefOrderDetailsToJson(this);
 }

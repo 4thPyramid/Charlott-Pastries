@@ -43,14 +43,16 @@ class OrderDetailsContent extends StatelessWidget {
             chefName: orderDetailsResponse.chefName,
             deliveryName: orderDetailsResponse.deliveryName,
           ),
-          OrderData(
-            title: AppStrings.orderData.tr(),
-            orderDetails: orderDetailsResponse.orderDetails ?? '',
-            orderType: orderDetailsResponse.orderType,
-            image: orderDetailsResponse.images.isNotEmpty
-                ? orderDetailsResponse.images[0].image
-                : orderDetailsResponse.flowerImage ?? '',
-          ),
+          orderDetailsResponse.orderDetails != 'No details'
+              ? OrderData(
+                  title: AppStrings.orderData.tr(),
+                  orderDetails: orderDetailsResponse.orderDetails ?? '',
+                  orderType: orderDetailsResponse.orderType,
+                  image: orderDetailsResponse.images.isNotEmpty
+                      ? orderDetailsResponse.images[0].image
+                      : '',
+                )
+              : const SizedBox(),
           orderDetailsResponse.description != 'No flowers'
               ? OrderData(
                   title: AppStrings.flowerData.tr(),
@@ -64,6 +66,7 @@ class OrderDetailsContent extends StatelessWidget {
             price: orderDetailsResponse.totalPrice ?? 0.0,
             deposit: orderDetailsResponse.deposit ?? 0.0,
             remaining: orderDetailsResponse.remaining ?? 0.0,
+            flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
           ),
           SizedBox(height: 16.h),
         ],

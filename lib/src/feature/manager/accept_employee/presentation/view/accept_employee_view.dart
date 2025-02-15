@@ -20,7 +20,7 @@ class AcceptEmployeeView extends StatelessWidget {
             ),
             
          SizedBox(
-               height: MediaQuery.of(context).size.height * 0.7, // Limit height
+               //height: MediaQuery.of(context).size.height * 0.9, 
                child: const AcceptEmployeeComponents(),
              ),
           ],

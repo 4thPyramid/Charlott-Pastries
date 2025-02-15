@@ -6,6 +6,7 @@ import 'package:charlot/src/feature/auth/presentation/widgets/have_an_account_wi
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 
@@ -37,6 +38,7 @@ class OtpViewForEmail extends StatelessWidget {
               ),
               HaveAnAccountWidget(
                   onTap: () {
+                    context.pop();
                   },
                   title1: AppStrings.codeNotSend.tr(),
                   title2: AppStrings.resend.tr()

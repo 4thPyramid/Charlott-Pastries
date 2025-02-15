@@ -75,7 +75,8 @@ class SharedOrderItemCard extends StatelessWidget {
                   color: AppColors.white,
                 ),
                 onPressed: () {
-                  if (orderResponse.status == 'مرتجع') {
+                  if (orderResponse.status == 'returned' ||
+                      orderResponse.status == 'refused') {
                     context
                         .push(RouterNames.returnAndRefusedOrderDetails, extra: {
                       'from': orderResponse.status,

@@ -43,7 +43,7 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
           chefName: orderDetailsResponse.chefName,
           deliveryName: orderDetailsResponse.deliveryName,
         ),
-       OrderData(
+        OrderData(
           title: AppStrings.orderData.tr(),
           orderDetails: orderDetailsResponse.orderDetails ?? '',
           orderType: orderDetailsResponse.orderType,
@@ -70,6 +70,7 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
           price: orderDetailsResponse.price ?? 0.0,
           deposit: orderDetailsResponse.deposit ?? 0.0,
           remaining: orderDetailsResponse.remaining ?? 0.0,
+          flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
         ),
       ],
     );

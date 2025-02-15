@@ -34,8 +34,7 @@ class ReturnedOrdersListView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child: SharedOrderItemCard(
-                          
+                        child: SharedOrderItemCard(             
                           orderResponse: ordersResponse.orders[index],
                         ),
                       );

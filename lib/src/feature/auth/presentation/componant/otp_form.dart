@@ -35,7 +35,6 @@ class _OtpFormState extends State<OtpForm> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      // توفير الـ Cubit
       create: (context) => getIt<VerifyEmailCubit>(),
       child: BlocListener<VerifyEmailCubit, VerifyEmailState>(
         listener: (context, state) {
@@ -74,7 +73,7 @@ class _OtpFormState extends State<OtpForm> {
                         style: TextStyle(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.bold,
-                              color: Colors.black, // لون النص
+                              color: Colors.black, 
 
                         ),
                         maxLength: 1,

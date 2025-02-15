@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../../../core/theme/app_colors.dart';
+import '../../../../../../../../core/utils/app_strings.dart';
 import '../components/select_chefs_list_view.dart';
 
 class SelectChefsView extends StatelessWidget {
@@ -15,10 +18,10 @@ final int orderId;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomAppBar(
-                title: " قائمه الشيفات",
+                title: AppStrings.chefList.tr(),
                 iconLeft: Icons.arrow_back_ios,
                 onPressedLeft: () {
-                  Navigator.pop(context);
+                  context.pop(context);
                 },
               ),
                SelectChefsListView(orderId: orderId,)

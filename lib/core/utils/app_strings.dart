@@ -17,6 +17,8 @@ class AppStrings {
   static const goToHome = 'goToHome';
   static const signIn = 'signIn';
   static const logout = 'logout';
+  static const totalPrice = 'totalPrice';
+  static const remaining = 'remaining';
   static const register = 'register';
   static const orderTimes = 'orderTimes';
   static const startWork = 'startWork';
@@ -193,4 +195,6 @@ class AppStrings {
   static const cart = 'cart';
   static const profile = 'profile';
   static const pleasewait = 'pleasewait';
+  static const chefList = 'chefList';
+  static const flowerPrice = 'flowerPrice';
 }

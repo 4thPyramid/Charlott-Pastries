@@ -29,7 +29,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                    OrderDetailsHeader(
+                  OrderDetailsHeader(
                     title: "Order Details",
                     onBackPressed: () => Navigator.pop(context),
                     images: orderDetailsResponse.order.images,
@@ -42,8 +42,10 @@ class SalesOrderDetailsContent extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   ClientData(
-                    customerName: orderDetailsResponse.order.customerName?? 'لم يتم اضافه اسم',
-                    customerPhone: orderDetailsResponse.order.customerPhone?? 'لم يتم اضافه رقم',
+                    customerName: orderDetailsResponse.order.customerName ??
+                        'لم يتم اضافه اسم',
+                    customerPhone: orderDetailsResponse.order.customerPhone ??
+                        'لم يتم اضافه رقم',
                     customerAddress:
                         orderDetailsResponse.order.additionalData ??
                             'لم يتم اضافه عنوان',
@@ -52,7 +54,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
                   //   chefName: orderDetailsResponse.order.chefName,
                   //   deliveryName: orderDetailsResponse.deliveryName,
                   // ),
-                 OrderData(
+                  OrderData(
                     title: AppStrings.orderData.tr(),
                     orderDetails: orderDetailsResponse.order.orderDetails ?? '',
                     orderType: orderDetailsResponse.order.orderType,
@@ -60,11 +62,12 @@ class SalesOrderDetailsContent extends StatelessWidget {
                         ? orderDetailsResponse.order.images[0].image
                         : 'https://s.itl.cat/pngfile/s/42-421036_cake-wallpaper-download-download-birthday-cake-images-hd.jpg',
                   ),
-                 
+
                   OrderPrice(
-                    price: orderDetailsResponse.order.price?? 0.0,
+                    price: orderDetailsResponse.order.price ?? 0.0,
                     deposit: orderDetailsResponse.order.deposit ?? 0.0,
                     remaining: orderDetailsResponse.order.remaining ?? 0.0,
+                    flowerPrice:  0.0,
                   ),
                   SizedBox(height: 16.h),
                 ],

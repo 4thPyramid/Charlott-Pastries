@@ -50,7 +50,7 @@ class _AcceptEmployeeComponentsState extends State<AcceptEmployeeComponents>
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 6.h),
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.9,
                 child: TabBarView(
                   controller: _tabController,
                   children: [

@@ -175,6 +175,7 @@
     "order": "الطلب",
     "items": "العناصر",
     "showdetails": "عرض التفاصيل",
+    "chefList" : "قائمة الطهاة",
     "orderdetailsinprogress": "تفاصيل الطلب قيد التنفيذ",
     "orderdetailsarepending": "تفاصيل الطلب قيد الانتظار",
     "therearenocompletedorders": "لا توجد طلبات مكتملة",
@@ -191,5 +192,8 @@
     "home": "الرئيسية",
     "cart": "السلة",
     "profile": "الملف الشخصي",
-    "pleasewait": "برجاء الانتظار"
+    "pleasewait": "برجاء الانتظار",
+    "totalPrice": "السعر الكلي",
+    "remaining": "المتبقي",
+    "flowerPrice": "سعر الزهور"
 }
