@@ -191,5 +191,13 @@
     "home": "Home",
     "cart": "Cart",
     "profile": "Profile",
-    "pleasewait": "Please wait"
+    "pleasewait": "Please wait",
+    "unAvailableTime": "Unavailable Time",
+    "orderPickupTime": "Order Pickup Time",
+    "orderdeliveryTime": "Order Delivery Time",
+    "addedToBirthdayCakeOrder": "Added to Birthday Cake Order",
+    "ADE" : "ADE",
+    "totalPrice": "Total Price",
+    "depositPrice": "Deposit Price",
+    "remainingPrice": "Remaining Price"
 }

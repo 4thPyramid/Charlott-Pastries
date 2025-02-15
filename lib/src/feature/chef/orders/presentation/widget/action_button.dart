@@ -1,3 +1,5 @@
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ActionButtons extends StatelessWidget {
@@ -5,10 +7,10 @@ class ActionButtons extends StatelessWidget {
   final VoidCallback onReject;
 
   const ActionButtons({
-    Key? key,
+    super.key,
     required this.onAccept,
     required this.onReject,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,9 @@ class ActionButtons extends StatelessWidget {
               backgroundColor: Colors.green,
               padding: const EdgeInsets.symmetric(vertical: 12),
             ),
-            child: const Text(
-              'قبول',
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              AppStrings.accept.tr(),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
@@ -35,9 +37,9 @@ class ActionButtons extends StatelessWidget {
               backgroundColor: Colors.red,
               padding: const EdgeInsets.symmetric(vertical: 12),
             ),
-            child: const Text(
-              'رفض',
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              AppStrings.ignore.tr(),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),

@@ -1,4 +1,6 @@
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/widgets/order_row_price_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,15 +28,15 @@ class PriceCardWidget extends StatelessWidget {
       child: Column(
         children: [
           OrdersRowPriceWidget(
-            priceTitle: 'السعر الاجمالي',
+            priceTitle: AppStrings.totalPrice.tr(),
             price: allPrice,
           ),
           OrdersRowPriceWidget(
-            priceTitle: 'العربون',
+            priceTitle: AppStrings.deposit.tr(),
             price: deposit,
           ),
           OrdersRowPriceWidget(
-            priceTitle: 'متبقي',
+            priceTitle: AppStrings.remainingPrice.tr(),
             price: remaining,
           )
         ],

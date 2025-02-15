@@ -1,6 +1,8 @@
 // lib/features/order_details/presentation/widgets/order_info_section.dart
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,11 +12,11 @@ class OrderInfoSection extends StatelessWidget {
   final String date;
 
   const OrderInfoSection({
-    Key? key,
+    super.key,
     required this.type,
     required this.description,
     required this.date,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +29,14 @@ class OrderInfoSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'تفاصيل الطلب',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Text(
+            AppStrings.orderDetails.tr(),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 20.h),
           Row(
             children: [
-              Text('نوع الطلب: ',
+              Text('${AppStrings.orderType.tr()}: ',
                   style: AppStyles.s20.copyWith(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.w600)),
@@ -46,7 +48,7 @@ class OrderInfoSection extends StatelessWidget {
           SizedBox(height: 8.h),
           Row(
             children: [
-              Text('وصف الطلب: ',
+              Text('${AppStrings.orderDetails.tr()}: ',
                   style: AppStyles.s20.copyWith(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.w600)),
@@ -58,7 +60,7 @@ class OrderInfoSection extends StatelessWidget {
           SizedBox(height: 8.h),
           Row(
             children: [
-              Text('تاريخ التسليم: ',
+              Text('${AppStrings.deliveryDate.tr()}: ',
                   style: AppStyles.s20.copyWith(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.w600)),

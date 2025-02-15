@@ -193,4 +193,12 @@ class AppStrings {
   static const cart = 'cart';
   static const profile = 'profile';
   static const pleasewait = 'pleasewait';
+  static const unAvailableTime = 'unAvailableTime';
+  static const orderPickupTime = 'orderPickupTime';
+  static const orderDeliveryTime = 'orderdeliveryTime';
+  static const addedToBirthdayCakeOrder = 'addedToBirthdayCakeOrder';
+  static const aDE ='ADE';
+  static const totalPrice = 'totalPrice';
+  static const depositPrice = 'depositPrice';
+  static const remainingPrice = 'remainingPrice';
 }

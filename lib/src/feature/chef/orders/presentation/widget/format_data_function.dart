@@ -1,3 +1,5 @@
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:intl/intl.dart';
 
 String formatDate(String dateTimeString) {
@@ -6,6 +8,6 @@ String formatDate(String dateTimeString) {
     final formatter = DateFormat('hh:mm a');
     return formatter.format(dateTime);
   } catch (e) {
-    return 'وقت غير صالح';
+    return AppStrings.unAvailableTime.tr();
   }
 }

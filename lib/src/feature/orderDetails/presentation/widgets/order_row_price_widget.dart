@@ -1,4 +1,6 @@
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class OrdersRowPriceWidget extends StatelessWidget {
@@ -19,7 +21,7 @@ class OrdersRowPriceWidget extends StatelessWidget {
           Text(priceTitle, style: AppStyles.s14),
           const Spacer(),
           Text(
-            "${price} ريال",
+            "$price ${AppStrings.aDE.tr()}",
             style: AppStyles.s14.copyWith(
               fontWeight: FontWeight.w700,
             ),

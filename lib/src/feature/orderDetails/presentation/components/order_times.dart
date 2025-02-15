@@ -1,5 +1,6 @@
 import 'package:charlot/src/feature/orderDetails/presentation/widgets/dates_container_widget.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/widgets/order_details_section_title.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +25,7 @@ final String endAt;
     return Column(
       children: [
          OrderDetailsSectionsTitleWidget(
-          title: AppStrings.orderTimes,
+          title: AppStrings.orderTimes.tr(),
           subtitle: orderStatus,
         ),
         SizedBox(height: 16.h),
