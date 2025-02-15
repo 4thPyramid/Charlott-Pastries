@@ -6,6 +6,8 @@ import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../generated/app_strings.g.dart';
+
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key, this.name1});
   final String? name1;

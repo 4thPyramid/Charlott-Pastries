@@ -2,6 +2,8 @@ import 'package:charlot/core/utils/app_strings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../generated/app_strings.g.dart';
+
 class ActionButtons extends StatelessWidget {
   final VoidCallback onAccept;
   final VoidCallback onReject;

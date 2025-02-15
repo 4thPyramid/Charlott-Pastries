@@ -3,6 +3,7 @@ import 'package:charlot/src/feature/sales/notification/presentation/componant/sa
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../../../generated/app_strings.g.dart';
 
 class SalesNotificationView extends StatelessWidget {
   const SalesNotificationView({super.key});

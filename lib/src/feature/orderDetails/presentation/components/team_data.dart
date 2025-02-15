@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../generated/app_strings.g.dart';
 import '../widgets/order_details_section_title.dart';
 import '../widgets/team_data_card.dart';
 

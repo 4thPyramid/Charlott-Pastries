@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../generated/app_strings.g.dart';
 import '../chef/notification/presentation/view/notification_view.dart';
 import 'accept_employee/presentation/view/accept_employee_view.dart';
 import 'home/presentation/view/manager_hom_view.dart';

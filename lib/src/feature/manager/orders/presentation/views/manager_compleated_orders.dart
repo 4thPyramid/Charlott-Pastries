@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../components/complete_orders_list_view.dart';
 
 class ManagerCompletedOrders extends StatelessWidget {

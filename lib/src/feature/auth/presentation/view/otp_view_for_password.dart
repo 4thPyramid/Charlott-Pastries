@@ -6,6 +6,7 @@ import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_image_view.dart';
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../generated/app_strings.g.dart';
 import '../componant/otp_form_for_password.dart';
 import '../widgets/have_an_account_widget.dart';
 

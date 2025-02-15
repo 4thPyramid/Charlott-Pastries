@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../logic/stats/stats_cubit.dart';
 import '../logic/stats/stats_state.dart';
 import '../widgets/progress_circle.dart';

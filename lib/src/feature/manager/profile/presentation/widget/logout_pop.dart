@@ -12,6 +12,7 @@ import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/utils/main_function.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../logic/delete_account_cubit.dart';
 import '../logic/delete_account_state.dart';
 

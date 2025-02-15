@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../generated/app_strings.g.dart';
 import '../logic/new_orders/new_orders_cubit.dart';
 import '../logic/new_orders/new_orders_state.dart';
 import '../widgets/newest_order_card_item.dart';

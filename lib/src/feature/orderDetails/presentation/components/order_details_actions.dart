@@ -9,6 +9,7 @@ import '../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_styles.dart';
+import '../../../../../generated/app_strings.g.dart';
 import '../../../manager/accept_employee/presentation/widgets/accept_and_refuse_button.dart';
 import '../logic/accept_order/accept_order_cubit.dart';
 import '../logic/accept_order/accept_order_state.dart';

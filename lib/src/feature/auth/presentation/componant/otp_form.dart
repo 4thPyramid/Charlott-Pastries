@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../generated/app_strings.g.dart';
 import '../logic/verify_email/verify_email_cubit.dart';
 import '../logic/verify_email/verify_email_state.dart';
 

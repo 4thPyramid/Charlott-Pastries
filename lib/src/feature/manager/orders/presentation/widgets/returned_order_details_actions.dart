@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../generated/app_strings.g.dart';
 
 class ReturnedOrderDetailsActions extends StatelessWidget {
   final VoidCallback onResendPressed;

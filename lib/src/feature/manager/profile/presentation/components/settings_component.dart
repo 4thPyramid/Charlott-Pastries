@@ -9,6 +9,7 @@ import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/url_launcher_methods.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../widget/custom_list_tile.dart';
 import '../widget/delete_account_pop.dart';
 

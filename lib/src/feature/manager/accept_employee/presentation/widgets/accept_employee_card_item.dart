@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/app_styles.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import 'accept_and_refuse_button.dart';
 
 class AcceptEmployeeCardItem extends StatelessWidget {

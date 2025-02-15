@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../../../../auth/presentation/widgets/have_an_account_widget.dart';
 import '../components/chef_register_from.dart';
 

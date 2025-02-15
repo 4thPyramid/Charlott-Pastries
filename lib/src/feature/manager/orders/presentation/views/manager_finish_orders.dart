@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../components/finish_order_list_view.dart';
 
 class ManagerFinishOrders extends StatelessWidget {

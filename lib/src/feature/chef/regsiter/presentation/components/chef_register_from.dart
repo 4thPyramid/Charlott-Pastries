@@ -14,6 +14,7 @@ import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_circle_to_upload_image.dart';
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../auth/presentation/widgets/firest_and_last_name_row.dart';
 import '../../../../manager/register/presentation/widgets/choice_branch_widget.dart';

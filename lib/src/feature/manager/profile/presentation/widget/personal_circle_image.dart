@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/app_image_view.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../logic/profile_cubit.dart';
 
 class PersonalCircleImage extends StatefulWidget {

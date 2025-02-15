@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../generated/app_strings.g.dart';
 import '../componant/otp_form_for_password.dart';
 
 class VerificationCodePassword extends StatelessWidget {

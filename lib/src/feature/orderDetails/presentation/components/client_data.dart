@@ -4,6 +4,8 @@ import 'package:charlot/src/feature/orderDetails/presentation/widgets/order_deta
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/app_strings.g.dart';
+
 
 class ClientData extends StatelessWidget {
   const ClientData({super.key, required this.customerName, required this.customerPhone, required this.customerAddress});

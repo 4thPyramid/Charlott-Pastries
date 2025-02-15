@@ -3,6 +3,8 @@ import 'package:charlot/core/utils/app_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../generated/app_strings.g.dart';
+
 class OrdersRowPriceWidget extends StatelessWidget {
   const OrdersRowPriceWidget({
     super.key,

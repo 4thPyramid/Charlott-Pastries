@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../generated/app_strings.g.dart';
+
 class OrderListViewSection extends StatelessWidget {
   const OrderListViewSection({super.key});
 
@@ -20,7 +22,7 @@ class OrderListViewSection extends StatelessWidget {
             loading: () => const CircularProgressIndicator(),
             loaded: (order) => order.orders.isEmpty
                 ? Center(
-                    child: Text(AppStrings.noNeworders.tr()),
+                    child: Text("AppStrings"),
                   )
                 : ListView.separated(
                     shrinkWrap: true,

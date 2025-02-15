@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../../../../orderDetails/presentation/components/order_details_header.dart';
 import '../../../chef_orders_status/presentation/logic/chef_order_details/chef_order_details_cubit.dart';
 import '../../../chef_orders_status/presentation/logic/chef_order_details/chef_order_details_state.dart';

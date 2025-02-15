@@ -8,6 +8,7 @@ import '../../../../../../core/common/widgets/custom_text_form_field.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/utils/main_function.dart';
+import '../../../../../../generated/app_strings.g.dart';
 
 changePasswordPop(BuildContext context) {
   customAlertDialog(

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../components/personal_info_component.dart';
 import '../logic/profile_cubit.dart';
 import '../widget/edit_accout_pop.dart';

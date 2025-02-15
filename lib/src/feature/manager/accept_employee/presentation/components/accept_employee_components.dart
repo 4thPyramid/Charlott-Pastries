@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../../../../auth/presentation/widgets/email_and_phone_tap_bar.dart';
 import '../logic/all_employee/all_employee_cubit.dart';
 import '../logic/all_employee/all_employee_state.dart';

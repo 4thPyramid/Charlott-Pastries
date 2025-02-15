@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import 'newest_order_list_view.dart';
 import '../widgets/custom_title.dart';
 import 'order_in_progress_list.dart';

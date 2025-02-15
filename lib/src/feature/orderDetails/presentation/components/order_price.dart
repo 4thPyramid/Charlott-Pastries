@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../generated/app_strings.g.dart';
 
 class OrderPrice extends StatelessWidget {
   const OrderPrice({super.key, required this.price, required this.deposit, required this.remaining, required this.flowerPrice});

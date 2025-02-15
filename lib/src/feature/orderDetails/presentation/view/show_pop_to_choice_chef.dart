@@ -12,6 +12,7 @@ import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_image_view.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/main_function.dart';
+import '../../../../../generated/app_strings.g.dart';
 
 showPopToChoiceChef(
   BuildContext context,

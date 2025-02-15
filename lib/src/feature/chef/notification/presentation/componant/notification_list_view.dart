@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/services/service_locator.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../logic/chef_notification_cubit.dart';
 import '../logic/chef_notification_state.dart';
 

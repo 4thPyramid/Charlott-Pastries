@@ -11,6 +11,7 @@ import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_circle_to_upload_image.dart';
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/utils/app_strings.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../auth/presentation/widgets/firest_and_last_name_row.dart';
 import '../logic/manager_register/manager_register_cubit.dart';
@@ -45,19 +46,19 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
   bool _validateInputs() {
     if (!formKey.currentState!.validate()) return false;
 
-    if (!_passwordsMatch()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text(AppStrings.passwordsDonotMatch.tr())),
-      );
-      return false;
-    }
+    // if (!_passwordsMatch()) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //      SnackBar(content: Text(AppStrings.noChangesWereMade.tr())),
+    //   );
+    //   return false;
+    // }
 
-    if (selectedBranch == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text(AppStrings.Pleaseselectthebranch.tr())),
-      );
-      return false;
-    }
+    // if (selectedBranch == null) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //      SnackBar(content: Text(AppStrings.Pleaseselectthebranch.tr())),
+    //   );
+    //   return false;
+    // }
 
    
 

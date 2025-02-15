@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../generated/app_strings.g.dart';
 import '../chef/notification/presentation/view/notification_view.dart';
 
 class ChefBottomNavigationBarRoot extends StatelessWidget {

@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../generated/app_strings.g.dart';
 import '../../../intro/data/enum/user_type_enum.dart';
 import '../../../intro/presentation/logic/user_type_cubit.dart';
 import '../logic/login/login_cubit.dart';

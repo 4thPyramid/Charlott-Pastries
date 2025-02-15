@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/app_strings.g.dart';
+
 class DatesContainerWidget extends StatelessWidget {
   const DatesContainerWidget({
     super.key,
@@ -48,7 +50,7 @@ class DatesContainerWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  AppStrings.orderDeliveryTime.tr(),
+                  AppStrings.deliveryTime.tr(),
                   style: AppStyles.s14,
                 ),
                 const Spacer(),

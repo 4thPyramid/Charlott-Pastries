@@ -10,6 +10,7 @@ import '../../../../../../core/common/branches_feature/presentation/logic/cubit/
 import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
+import '../../../../../../generated/app_strings.g.dart';
 class ChoiceBranch extends StatefulWidget {
   final void Function(BranchModel) onBranchSelected;
   final BranchModel? initialBranch;

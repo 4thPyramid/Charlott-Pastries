@@ -8,6 +8,7 @@ import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/url_launcher_methods.dart';
+import '../../../../../../generated/app_strings.g.dart';
 import '../logic/profile_cubit.dart';
 import '../widget/account_info_card.dart';
 import '../widget/custom_list_tile.dart';

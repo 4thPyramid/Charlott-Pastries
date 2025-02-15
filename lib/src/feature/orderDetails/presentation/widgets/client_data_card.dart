@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/app_strings.g.dart';
+
 class ClientDataCard extends StatelessWidget {
   const ClientDataCard({
     super.key,
