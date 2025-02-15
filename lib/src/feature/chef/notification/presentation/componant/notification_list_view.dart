@@ -1,4 +1,4 @@
-import 'package:charlot/core/utils/app_strings.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/chef/notification/presentation/widgets/notification_card_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

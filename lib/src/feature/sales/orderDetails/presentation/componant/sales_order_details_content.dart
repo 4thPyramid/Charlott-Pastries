@@ -1,3 +1,4 @@
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/components/client_data.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/components/order_data.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/components/order_price.dart';

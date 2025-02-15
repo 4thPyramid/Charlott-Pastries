@@ -1,4 +1,4 @@
-import 'package:charlot/core/utils/app_strings.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/widgets/client_data_card.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/widgets/order_details_section_title.dart';
 import 'package:flutter/material.dart';

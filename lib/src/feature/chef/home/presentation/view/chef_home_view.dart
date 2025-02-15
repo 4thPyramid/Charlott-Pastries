@@ -1,4 +1,4 @@
-import 'package:charlot/core/utils/app_strings.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/chef/home/presentation/component/order_list_view_section.dart';
 import 'package:charlot/src/feature/sales/home/presentation/componant/banner_section.dart';
 import 'package:easy_localization/easy_localization.dart';

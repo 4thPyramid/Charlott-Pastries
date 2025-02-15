@@ -1,5 +1,5 @@
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/core/utils/app_strings.dart';
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/chef/chef_orders_status/presentation/logic/new_order/new_orders_cubit.dart';
 import 'package:charlot/src/feature/chef/home/presentation/widget/ordres_card_item.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,7 +22,10 @@ class OrderListViewSection extends StatelessWidget {
             loading: () => const CircularProgressIndicator(),
             loaded: (order) => order.orders.isEmpty
                 ? Center(
-                    child: Text("AppStrings"),
+
+                   
+                    child: Text(AppStrings.Noneworders.tr()),
+
                   )
                 : ListView.separated(
                     shrinkWrap: true,

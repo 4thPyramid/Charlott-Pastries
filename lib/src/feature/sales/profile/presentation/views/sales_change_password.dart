@@ -1,3 +1,4 @@
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

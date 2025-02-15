@@ -1,3 +1,4 @@
+import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/manager/profile/presentation/widget/custom_list_tile.dart';
 import 'package:charlot/src/feature/manager/profile/presentation/widget/logout_pop.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -8,7 +9,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
-import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/url_launcher_methods.dart';
 import '../../../../../../generated/app_strings.g.dart';
 import '../../../../manager/profile/presentation/logic/profile_cubit.dart';
