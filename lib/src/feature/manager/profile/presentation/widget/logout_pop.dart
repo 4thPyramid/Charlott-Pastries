@@ -1,3 +1,5 @@
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,7 +60,7 @@ void logOutPop(BuildContext context, String userType) {
                 ),
                 SizedBox(height: 13.h),
                 Text(
-                  "تسجيل الخروج",
+                  AppStrings.logout.tr(),
                   style: AppStyles.s20.copyWith(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
@@ -66,7 +68,7 @@ void logOutPop(BuildContext context, String userType) {
                 ),
                 SizedBox(height: 39.h),
                 Text(
-                  "هل انت متأكد من تسجيل الخروج؟",
+                  AppStrings.areYouSureToLogOut.tr(),
                   textAlign: TextAlign.center,
                   style: AppStyles.s16.copyWith(
                     fontWeight: FontWeight.w400,
@@ -79,7 +81,7 @@ void logOutPop(BuildContext context, String userType) {
                     CustomButton(
                         width: 150.w,
                         backgroundColor: AppColors.primaryColor,
-                        text: "نعم",
+                        text: AppStrings.yes.tr(),
                         textStyle: AppStyles.s12.copyWith(
                           color: AppColors.white,
                           fontWeight: FontWeight.w700,
@@ -91,7 +93,7 @@ void logOutPop(BuildContext context, String userType) {
                         }),
                     CustomButton(
                       width: 150.w,
-                      text: " الغاء",
+                      text: AppStrings.cancel.tr(),
                       backgroundColor: AppColors.white,
                       textStyle: AppStyles.s12.copyWith(
                         color: AppColors.grey,

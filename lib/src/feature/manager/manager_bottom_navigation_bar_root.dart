@@ -1,3 +1,5 @@
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,24 +47,24 @@ class ManagerBottomNavigationBarRoot extends StatelessWidget {
               onTap: (index) => context
                   .read<AppCubit>()
                   .changeBottomNavBarSelectedIndex(index),
-              items: const [
+              items:  [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  label: 'Home',
+                  icon: const Icon(Icons.home_outlined),
+                  label: AppStrings.home.tr(),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.add_circle_outline,
                   ),
-                  label: 'add employee',
+                  label: AppStrings.addEmployees.tr(),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.notifications_outlined),
-                  label: 'Notification',
+                  icon: const Icon(Icons.notifications_outlined),
+                  label: AppStrings.notifications.tr(),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline),
-                  label: 'Profile',
+                  icon: const Icon(Icons.person_outline),
+                  label: AppStrings.profile.tr(),
                 ),
               ],
             ),

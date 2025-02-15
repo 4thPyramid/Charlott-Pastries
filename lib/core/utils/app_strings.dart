@@ -201,4 +201,15 @@ class AppStrings {
   static const totalPrice = 'totalPrice';
   static const depositPrice = 'depositPrice';
   static const remainingPrice = 'remainingPrice';
+  static const passwordsDonotMatch = 'Passwordsdonotmatch';
+  static const currentPassword = 'currentPassword';
+  static const noChangesWereMade = 'noChangesWereMade';
+  static const takePhoto = 'takePhoto';
+  static const chooseFromGallery = 'chooseFromGallery';
+  static const estimatedDistanceAndTime = 'estimatedDistanceAndTime';
+  static const distance = 'distance';
+  static const expectedTime = 'expectedTime';
+  static const reasonForRejection = 'reasonForRejection';
+  static const resendOreder = 'resendOreder';
+
 }

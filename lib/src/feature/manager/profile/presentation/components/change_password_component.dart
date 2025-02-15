@@ -1,4 +1,5 @@
 import 'package:charlot/src/feature/manager/profile/presentation/logic/delete_account_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,29 +57,29 @@ class _ChangePasswordComponentState extends State<ChangePasswordComponent> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AuthTextFieldWidget(
-                    titleOfField: AppStrings.password,
+                    titleOfField: AppStrings.password.tr(),
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _oldPasswordController,
                     validator: Validator.validatePassword,
-                    hintText: AppStrings.enterPasswordHint,
+                    hintText: AppStrings.enterPasswordHint.tr(),
                     isPassword: true,
                   ),
                   SizedBox(height: 20.h),
                   AuthTextFieldWidget(
-                    titleOfField: AppStrings.newPassword,
+                    titleOfField: AppStrings.newPassword.tr(),
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _newPasswordController,
                     validator: Validator.validatePassword,
-                    hintText: AppStrings.enterPasswordHint,
+                    hintText: AppStrings.enterPasswordHint.tr(),
                     isPassword: true,
                   ),
                   SizedBox(height: 20.h),
                   AuthTextFieldWidget(
-                    titleOfField: AppStrings.confirmNewPassword,
+                    titleOfField: AppStrings.confirmNewPassword.tr(),
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _confirmNewPasswordController,
                     validator: Validator.validatePassword,
-                    hintText: AppStrings.enterPasswordHint,
+                    hintText: AppStrings.enterPasswordHint.tr(),
                     isPassword: true,
                   ),
                   SizedBox(height: 100.h),
@@ -86,7 +87,7 @@ class _ChangePasswordComponentState extends State<ChangePasswordComponent> {
                     child: state.maybeWhen(
                       loading: () => const CircularProgressIndicator(),
                       orElse: () => CustomButton(
-                        text: AppStrings.confirmPassword,
+                        text: AppStrings.confirmPassword.tr(),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             context.read<DeleteAccountCubit>().changePassword(

@@ -199,5 +199,14 @@
     "ADE" : "ريال",
     "totalPrice": "السعر الاجمالى",
     "depositPrice": " العربون",
-    "remainingPrice": "المتبقى"
+    "remainingPrice": "المتبقى",
+    "currentPassword": "كلمة المرور الحالية",
+    "noChangesWereMade": "لم يتم إجراء أي تغييرات",
+    "takePhoto": "اختيار صورة",
+    "chooseFromGallery": "اختيار من المعرض",
+    "estimatedDistanceAndTime" : "المسافة والوقت المتوقع",
+    "distance" : "المسافة",
+    "expectedTime" : "الوقت المتوقع",
+    "reasonForRejection": "سبب الرفض",
+    "resendOreder": "إعادة إرسال الطلب"
 }

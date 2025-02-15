@@ -1,6 +1,7 @@
-import 'package:charlot/src/feature/manager/orderTracking/presentation/componant/order_action_bottons_widget.dart';
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_cubit.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +38,7 @@ class CustomBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "🚗 المسافة والوقت المتوقع",
+                  AppStrings.estimatedDistanceAndTime.tr(),
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
@@ -54,12 +55,12 @@ class CustomBottomSheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "المسافة: ${state.distance}",
+                        "${AppStrings.distance.tr()}: ${state.distance}",
                         style: TextStyle(fontSize: 14.sp),
                       ),
                       SizedBox(height: 5.h),
                       Text(
-                        "الوقت المتوقع: ${state.duration}",
+                        " ${AppStrings.expectedTime.tr()}: ${state.duration}",
                         style: TextStyle(fontSize: 14.sp, color: Colors.grey),
                       ),
                       // OrderActionBottonsWidget(

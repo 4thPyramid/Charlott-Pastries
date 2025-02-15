@@ -199,5 +199,15 @@
     "ADE" : "ADE",
     "totalPrice": "Total Price",
     "depositPrice": "Deposit Price",
-    "remainingPrice": "Remaining Price"
+    "remainingPrice": "Remaining Price",
+    "Passwordsdonotmatch": "Passwords do not match",
+    "currentPassword": "Current Password",
+    "noChangesWereMade": "No changes were made",
+    "takePhoto": "Take Photo",
+    "chooseFromGallery": "Choose From Gallery",
+    "estimatedDistanceAndTime": "Estimated Distance and Time",
+    "distance": "Distance",
+    "expectedTime": "Expected Time",
+    "reasonForRejection": "Reason For Rejection",
+    "resendOreder": "Resend Order"
 }

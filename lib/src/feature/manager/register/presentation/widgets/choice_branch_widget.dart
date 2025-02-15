@@ -1,4 +1,5 @@
 import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +43,7 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppStrings.choiceBranch,
+            AppStrings.choiceBranch.tr(),
             style: AppStyles.s14.copyWith(
               color: AppColors.black,
               fontWeight: FontWeight.w700,
@@ -81,18 +82,18 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
     return DropdownButtonHideUnderline(
       child: DropdownButton<BranchModel>(
         value: selectedBranch,
-        hint: const Row(
+        hint:  Row(
           children: [
-            Icon(
+            const Icon(
               Icons.apartment,
               color: AppColors.primaryColor,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
-              AppStrings.choiceBranch,
+              AppStrings.choiceBranch.tr(),
                             overflow: TextOverflow.ellipsis,
 
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.grey,
               ),
             ),

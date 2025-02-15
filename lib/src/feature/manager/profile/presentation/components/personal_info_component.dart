@@ -20,8 +20,8 @@ class PersonalInfoComponent extends StatelessWidget {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return state.when(
-          initial: () => const Center(
-            child: Text("Please wait..."),
+          initial: () =>  Center(
+            child: Text(AppStrings.pleasewait.tr()),
           ),
           loading: () => const Center(
             child: CircularProgressIndicator(),

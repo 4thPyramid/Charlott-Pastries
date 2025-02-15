@@ -47,14 +47,14 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
 
     if (!_passwordsMatch()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('كلمات المرور غير متطابقة')),
+         SnackBar(content: Text(AppStrings.passwordsDonotMatch.tr())),
       );
       return false;
     }
 
     if (selectedBranch == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('برجاء اختيار الفرع')),
+         SnackBar(content: Text(AppStrings.Pleaseselectthebranch.tr())),
       );
       return false;
     }
@@ -105,7 +105,7 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
               children: [
                  CustomAuthAppBar(
                   title: AppStrings.welcome.tr(),
-                  subTitle: AppStrings.fillFormToCreateAccount,
+                  subTitle: AppStrings.fillFormToCreateAccount.tr(),
                 ),
                 SizedBox(height: 30.h),
                 Center(
@@ -132,32 +132,32 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
                   isPassword: false,
                   controller: emailController,
                   validator: Validator.validateEmail,
-                  hintText: AppStrings.enterYourEmail,
-                  titleOfField: AppStrings.email,
+                  hintText: AppStrings.enterYourEmail.tr(),
+                  titleOfField: AppStrings.email.tr(),
                   prefixIcon: Icons.mail_outline_outlined,
                 ),
                 AuthTextFieldWidget(
                   isPassword: false,
                   controller: phoneController,
                   validator: Validator.validatePhone,
-                  hintText: AppStrings.enterYourPhoneNumber,
-                  titleOfField: AppStrings.phoneNumber,
+                  hintText: AppStrings.enterYourPhoneNumber.tr(),
+                  titleOfField: AppStrings.phoneNumber.tr(),
                   prefixIcon: Icons.phone_enabled_rounded,
                 ),
                 AuthTextFieldWidget(
                   isPassword: true,
                   controller: passwordController,
                   validator: Validator.validatePassword,
-                  hintText: AppStrings.enterPasswordHint,
-                  titleOfField: AppStrings.password,
+                  hintText: AppStrings.enterPasswordHint.tr(),
+                  titleOfField: AppStrings.password.tr(),
                   prefixIcon: Icons.lock_outline,
                 ),
                 AuthTextFieldWidget(
                   isPassword: true,
                   controller: confirmPasswordController,
                   validator:  Validator.validatePassword,
-                  hintText: AppStrings.confirmPassword,
-                  titleOfField: AppStrings.confirmPassword,
+                  hintText: AppStrings.confirmPassword.tr(),
+                  titleOfField: AppStrings.confirmPassword.tr(),
                   prefixIcon: Icons.lock_outline,
                 ),
                 SizedBox(height: 20.h),
@@ -166,7 +166,7 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
                 else
                   Center(
                     child: CustomButton(
-                      text: AppStrings.register,
+                      text: AppStrings.register.tr(),
                       onPressed: _handleRegister,
                     ),
                   ),
