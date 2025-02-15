@@ -1,3 +1,5 @@
+import 'package:charlot/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,10 +36,10 @@ class ChefOrdersDetailsView extends StatelessWidget {
         body: BlocBuilder<ChefOrderDetailsCubit, ChefOrderDetailsState>(
           builder: (context, state) {
             return state.when(
-              initial: () => const Center(child: Text('جاري التحميل...')),
+              initial: () =>  Center(child: Text(AppStrings.loading.tr())),
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (error) =>
-                  Center(child: Text('حدث خطأ: ${error.message}')),
+                  Center(child: Text('${AppStrings.anerroroccurred.tr()}: ${error.message}')),
               loaded: (orderDetailsResponse) {
                 return SingleChildScrollView(
                   child: Column(

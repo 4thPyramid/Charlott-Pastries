@@ -58,12 +58,12 @@ final TextEditingController _oldPasswordController = TextEditingController();
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _oldPasswordController,
                     validator: Validator.validatePassword,
-                    hintText: AppStrings.enterPasswordHint,
+                    hintText: AppStrings.enterPasswordHint.tr(),
                     isPassword: true,
                   ),
                   SizedBox(height: 20.h),
                   AuthTextFieldWidget(
-                    titleOfField: AppStrings.newPassword,
+                    titleOfField: AppStrings.newPassword.tr(),
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _newPasswordController,
                     validator: Validator.validatePassword,
@@ -72,7 +72,7 @@ final TextEditingController _oldPasswordController = TextEditingController();
                   ),
                   SizedBox(height: 20.h),
                   AuthTextFieldWidget(
-                    titleOfField: AppStrings.confirmNewPassword,
+                    titleOfField: AppStrings.confirmNewPassword.tr(),
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _confirmNewPasswordController,
                     validator: Validator.validatePassword,
@@ -84,7 +84,7 @@ final TextEditingController _oldPasswordController = TextEditingController();
                     child: state.maybeWhen(
                       loading: () => const CircularProgressIndicator(),
                       orElse: () => CustomButton(
-                        text: AppStrings.confirmPassword,
+                        text: AppStrings.confirmPassword.tr(),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             context.read<DeleteAccountCubit>().changePassword(

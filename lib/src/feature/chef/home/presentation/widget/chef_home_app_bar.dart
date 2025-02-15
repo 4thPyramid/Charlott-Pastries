@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/data/cached/cache_helper.dart';
@@ -19,12 +20,12 @@ class ChefHomeAppBar extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppStrings.welcome,
+            Text(AppStrings.welcome.tr(),
                 style: AppStyles.s12.copyWith(
                   color: AppColors.darkTextGrey,
                   fontWeight: FontWeight.w700,
                 )),
-            Text(name ?? 'ابدا الان',
+            Text(name ?? AppStrings.startnow.tr(),
                 style: AppStyles.s14.copyWith(
                   fontWeight: FontWeight.w600,
                 )),

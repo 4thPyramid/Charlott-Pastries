@@ -1,4 +1,5 @@
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +31,7 @@ class ChefOrderDetailsActions extends StatelessWidget {
           success: (message) {
             showSnackBar(context, message);
             context.push(RouterNames.chefBottomNavigationBarRoot);
-           // context.go(RouterNames.chefBottomNavigationBarRoot);
+            // context.go(RouterNames.chefBottomNavigationBarRoot);
           },
           error: (error) => showSnackBar(context, error.message),
         );
@@ -47,7 +48,7 @@ class ChefOrderDetailsActions extends StatelessWidget {
           child: Column(
             children: [
               CustomButton(
-                  text: AppStrings.readyForDeliver,
+                  text: AppStrings.readyForDeliver.tr(),
                   textStyle: AppStyles.s14.copyWith(
                     color: AppColors.white,
                     fontWeight: FontWeight.w700,
@@ -63,19 +64,18 @@ class ChefOrderDetailsActions extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AcceptAndRefuseButton(
-              text: AppStrings.accept,
+              text: AppStrings.accept.tr(),
               backgroundColor: AppColors.green,
               onPressed: () =>
                   context.read<OrderStatusCubit>().acceptOrder(orderId),
             ),
             SizedBox(width: 16.w),
             AcceptAndRefuseButton(
-              text: AppStrings.ignore,
-              backgroundColor: AppColors.red,
-              onPressed: () =>
-              context.pop()
-                 // context.read<OrderStatusCubit>().declineOrder(orderId),
-            ),
+                text: AppStrings.ignore.tr(),
+                backgroundColor: AppColors.red,
+                onPressed: () => context.pop()
+                // context.read<OrderStatusCubit>().declineOrder(orderId),
+                ),
           ],
         );
 
@@ -83,7 +83,7 @@ class ChefOrderDetailsActions extends StatelessWidget {
         return Align(
           alignment: Alignment.center,
           child: CustomButton(
-            text: AppStrings.startWork,
+            text: AppStrings.startWork.tr(),
             textStyle: AppStyles.s14.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,

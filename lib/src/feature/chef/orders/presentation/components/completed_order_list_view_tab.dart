@@ -1,4 +1,6 @@
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/chef/chef_orders_status/data/models/order_types_response.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,55 +18,54 @@ import '../widget/format_data_function.dart';
 class CompletedOrderListViewTab extends StatelessWidget {
   const CompletedOrderListViewTab({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
-          create: (context) =>
-              getIt<ChefCompletedOrdersCubit>()..getCompletedOrders(),
-      
-  child:  BlocBuilder<ChefCompletedOrdersCubit, OrdersTypeState>(
-      builder: (context, state) {
-        return state.when(
-          initial: () => const SizedBox(),
-          loading: () => const Center(
-            child: CircularProgressIndicator(
-              color: AppColors.primaryColor,
-            ),
-          ),
-          loaded: (data) => _buildOrdersList(context, data.orders),
-          error: (error) => Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  error.message,
-                  style: AppStyles.s16.copyWith(color: Colors.red),
-                  textAlign: TextAlign.center,
+    return BlocProvider(
+        create: (context) =>
+            getIt<ChefCompletedOrdersCubit>()..getCompletedOrders(),
+        child: BlocBuilder<ChefCompletedOrdersCubit, OrdersTypeState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () => const SizedBox(),
+              loading: () => const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
                 ),
-                SizedBox(height: 16.h),
-                CustomButton(
-                  height: 40.h,
-                  width: 120.w,
-                  text: "إعادة المحاولة",
-                  onPressed: () {
-                    context.read<ChefCompletedOrdersCubit>().getCompletedOrders();
-                  },
+              ),
+              loaded: (data) => _buildOrdersList(context, data.orders),
+              error: (error) => Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      error.message,
+                      style: AppStyles.s16.copyWith(color: Colors.red),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 16.h),
+                    CustomButton(
+                      height: 40.h,
+                      width: 120.w,
+                      text: AppStrings.tryagain.tr(),
+                      onPressed: () {
+                        context
+                            .read<ChefCompletedOrdersCubit>()
+                            .getCompletedOrders();
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        );
-      },
-  )
-    );
+              ),
+            );
+          },
+        ));
   }
 
   Widget _buildOrdersList(BuildContext context, List<OrderType> orders) {
     if (orders.isEmpty) {
       return Center(
         child: Text(
-          'لا توجد طلبات مكتملة',
+          AppStrings.therearenocompletedorders.tr(),
           style: AppStyles.s16,
         ),
       );
@@ -79,11 +80,12 @@ class CompletedOrderListViewTab extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: ListTile(
             title: Text(
-              'طلب #${order.id}',
+              '${AppStrings.order.tr()} #${order.id}',
               style: AppStyles.s16,
             ),
             subtitle: Text(
               '${formatDate(order.updatedAt.toString())} ',
+
               style: AppStyles.s14.copyWith(
                 color: AppColors.whiteGreyForText,
               ),
@@ -91,7 +93,7 @@ class CompletedOrderListViewTab extends StatelessWidget {
             trailing: CustomButton(
               height: 30.h,
               width: 120.w,
-              text: "عرض التفاصيل",
+              text: AppStrings.showdetails.tr(),
               textStyle: AppStyles.s16.copyWith(
                 color: AppColors.primaryColor,
               ),
@@ -100,8 +102,7 @@ class CompletedOrderListViewTab extends StatelessWidget {
                 context.push(
                   RouterNames.chefOrdersDetailsView,
                   extra: {
-                  
-                    'title': 'تفاصيل الطلب المكتمل',
+                    'title': AppStrings.completedOrderDetails.tr(),
                     'orderId': order.id,
                   },
                 );
@@ -113,4 +114,3 @@ class CompletedOrderListViewTab extends StatelessWidget {
     );
   }
 }
-

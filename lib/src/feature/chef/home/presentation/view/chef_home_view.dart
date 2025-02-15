@@ -1,6 +1,7 @@
-
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/chef/home/presentation/component/order_list_view_section.dart';
 import 'package:charlot/src/feature/sales/home/presentation/componant/banner_section.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,12 +22,12 @@ class ChefHomeView extends StatelessWidget {
               SizedBox(height: 30.h),
               const ChefHomeAppBar(),
               SizedBox(height: 20.h),
-            const BannerSection(),
+              const BannerSection(),
               SizedBox(height: 20.h),
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  'طلبات جديده',
+                  AppStrings.newOrders.tr(),
                   style: AppStyles.s20.copyWith(
                     fontWeight: FontWeight.w700,
                     color: Colors.black,

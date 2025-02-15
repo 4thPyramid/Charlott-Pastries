@@ -1,6 +1,8 @@
+import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.dart';
 import 'package:charlot/src/feature/chef/orders/presentation/view/chef_orders_view.dart';
 import 'package:charlot/src/feature/chef/profile/presentation/views/chef_profile_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,24 +47,24 @@ class ChefBottomNavigationBarRoot extends StatelessWidget {
               onTap: (index) => context
                   .read<AppCubit>()
                   .changeBottomNavBarSelectedIndex(index),
-              items: const [
+              items:  [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  label: 'Home',
+                  icon: const Icon(Icons.home_outlined),
+                  label: AppStrings.home.tr(),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
+                 BottomNavigationBarItem(
+                  icon: const Icon(
                     Icons.shopping_bag_outlined,
                   ),
-                  label: 'cart',
+                  label: AppStrings.cart.tr(),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.notifications_outlined),
-                  label: 'Notification',
+                 BottomNavigationBarItem(
+                  icon: const Icon(Icons.notifications_outlined),
+                  label: AppStrings.notifications.tr(),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline),
-                  label: 'Profile',
+                 BottomNavigationBarItem(
+                  icon: const Icon(Icons.person_outline),
+                  label: AppStrings.profile.tr(),
                 ),
               ],
             ),

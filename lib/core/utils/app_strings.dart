@@ -165,6 +165,33 @@ class AppStrings {
   static const String changePassword = "changePassword";
   static const String hintChangePassword = "hintChangePassword";
   static const String pleaseWaitUntil = "pleaseWaitUntil";
-
-  AppStrings._(); // Private constructor
+  static const String passwordsdonotmatch = 'Passwords do not match';
+  static const pleaseselectthebranch = 'Please select the branch';
+  static const String startnow = 'startnow';
+  static const String noneworders = 'No new orders';
+  static const String nodateavailable = 'No date available';
+  static const String orders = 'orders';
+  static const String tryagain = 'tryagain';
+  static const String therearenoorders = 'There are no orders';
+  static const String order = 'order';
+  static const String items = 'items';
+  static const String showdetails = 'show details';
+  static const String orderdetailsinprogress = 'Order details in progress';
+  static const String orderdetailsarepending = 'Order details are pending';
+  static const String therearenocompletedorders =
+      'There are no completed orders';
+  static const String completedorderdetails = 'Completed order details';
+  static const String loading = 'loading';
+  static const String anerroroccurred = 'An error occurred';
+  static const String nonamehasbeenadded = 'No name has been added';
+  static const String nonumberhasbeenadded = 'No address has been added';
+  static const String noaddresshasbeenadded = 'No address has been added';
+  static const String inprogress = 'in progress';
+  static const String themanagerapproved = 'The manager approved';
+  static const String accepted = 'accepted';
+  static const String therearenonotifications = 'There are no notifications';
+  static const String home = 'Home';
+  static const String cart = 'cart';
+  static const String profile = 'profile';
+  static const String pleasewait = 'Please wait...';
 }
