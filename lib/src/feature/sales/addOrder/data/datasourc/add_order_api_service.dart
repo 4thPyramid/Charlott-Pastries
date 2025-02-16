@@ -11,7 +11,6 @@ import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/
 import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/single_product_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/store_ready_orders_model.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 
 abstract class AddOrderApiService {
   Future<Either<ErrorModel, AddOrderResponseModel>> addOrderDetails(
