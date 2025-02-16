@@ -18,35 +18,44 @@ class AddOrderCubit extends Cubit<AddOrderState> {
     this._addOrderPriceUC,
     this._addClientDataUc,
   ) : super(const AddOrderState.initial());
+
   final AddOrderDetailsUC _addOrderDetailsUC;
   final AddOrderPriceUC _addOrderPriceUC;
   final AddClientDataUc _addClientDataUc;
 
+  /// 🔥 تحديث `isSameDay` داخل `state`
+  void updateSameDayDelivery(bool value) {
+    emit(AddOrderState.initial(isSameDay: value));
+  }
+
   Future<void> addOrderDetails(AddOrderRequestModel request) async {
-    emit(const AddOrderState.loading());
+    emit(AddOrderState.loading(isSameDay: state.isSameDay));
     final result = await _addOrderDetailsUC.call(request);
     result.fold(
-      (error) => emit(AddOrderState.failure(error)),
-      (success) => emit(AddOrderState.success(success)),
+      (error) => emit(AddOrderState.failure(error, isSameDay: state.isSameDay)),
+      (success) =>
+          emit(AddOrderState.success(success, isSameDay: state.isSameDay)),
     );
   }
 
   Future<void> addOrderPrice(AddPriceRequestModel request, int orderId) async {
-    emit(const AddOrderState.loading());
+    emit(AddOrderState.loading(isSameDay: state.isSameDay));
     final result = await _addOrderPriceUC.call(request, orderId);
     result.fold(
-      (error) => emit(AddOrderState.failure(error)),
-      (success) => emit(AddOrderState.success(success)),
+      (error) => emit(AddOrderState.failure(error, isSameDay: state.isSameDay)),
+      (success) =>
+          emit(AddOrderState.success(success, isSameDay: state.isSameDay)),
     );
   }
 
   Future<void> addClientData(
       AddCustomerRequestModel request, int orderId) async {
-    emit(const AddOrderState.loading());
+    emit(AddOrderState.loading(isSameDay: state.isSameDay));
     final result = await _addClientDataUc.call(request, orderId);
     result.fold(
-      (error) => emit(AddOrderState.failure(error)),
-      (success) => emit(AddOrderState.success(success)),
+      (error) => emit(AddOrderState.failure(error, isSameDay: state.isSameDay)),
+      (success) =>
+          emit(AddOrderState.success(success, isSameDay: state.isSameDay)),
     );
   }
 }

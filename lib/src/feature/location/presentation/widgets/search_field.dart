@@ -38,9 +38,8 @@ class _SearchFieldState extends State<SearchField> {
       child: TextField(
         controller: _controller,
         decoration: const InputDecoration(
-          hintText: 'ابحث عن مكان...',
+          hintText: 'Search for a location ...',
           prefixIcon: Icon(Icons.search),
-          // suffixIcon: _buildClearButton(),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
           ),

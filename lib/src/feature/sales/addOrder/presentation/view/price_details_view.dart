@@ -14,10 +14,10 @@ class PriceDetailsView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomAppBar(title: "اضافة طلب جديد"),
+            const CustomAppBar(title: "Add New Order"),
             const AddOrderHeader(
               image: AppAssets.addOrder2,
-              title: 'تفاصيل السعر',
+              title: 'Price Details',
             ),
             PriceForm(
               orderId: orderId,
