@@ -8,7 +8,6 @@ import 'package:charlot/src/feature/sales/addOrder/presentation/componant/cake_s
 import 'package:charlot/src/feature/sales/addOrder/presentation/componant/flowers_section_componant.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/date_row_widget.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/quantity_selector.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/show_time_picker.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
@@ -163,11 +162,11 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
             BlocConsumer<AddOrderCubit, AddOrderState>(
               listener: (context, state) {
                 state.whenOrNull(
-                  success: (requestModel) {
+                  success: (requestModel, _) {
                     context.go(
                         "${RouterNames.priceDetailsView}/${requestModel.order?.id}");
                   },
-                  failure: (error) {
+                  failure: (error, _) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(error.message),
@@ -178,7 +177,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
               },
               builder: (context, state) {
                 return state.maybeWhen(
-                  loading: () => const CircularProgressIndicator(),
+                  loading: (isLoading) => const CircularProgressIndicator(),
                   orElse: () => CustomButton(
                     text: "Next",
                     onPressed: () {

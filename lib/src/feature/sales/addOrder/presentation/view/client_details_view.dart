@@ -22,10 +22,10 @@ class ClientDetailsView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const CustomAppBar(title: "اضافة طلب جديد"),
+          const CustomAppBar(title: "Add New Order"),
           const AddOrderHeader(
             image: AppAssets.addOrder2,
-            title: 'تفاصيل العميل',
+            title: 'Client Details',
           ),
           ClientDetailsComponant(
             lat: lat.toString(),

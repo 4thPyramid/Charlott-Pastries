@@ -29,11 +29,16 @@ class ClientDetailsComponant extends StatelessWidget {
     return BlocConsumer<AddOrderCubit, AddOrderState>(
       listener: (context, state) {
         state.whenOrNull(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          success: (data) =>
-              context.go(RouterNames.salesBottomNavigationBarRoot),
-          failure: (error) => ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(error.toString()))),
+          loading: (isLoading) => isLoading ? const Center(child: CircularProgressIndicator()) : Container(),
+          success: (data, isLoading) {
+              context.go(RouterNames.salesBottomNavigationBarRoot);
+              return Container();
+          },
+          failure: (error, isLoading) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(error.toString())));
+            return Container();
+          },
         );
       },
       builder: (context, state) {

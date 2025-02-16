@@ -29,8 +29,8 @@ class OrdersCategoryRow extends StatelessWidget {
                     onTap: () {
                       context.go(RouterNames.newOrders);
                     },
-                    title: 'اجمالى الجديد ',
-                    subTitle: ' ${stats.newOrder} من الطلبات الجديده',
+                    title: 'New Orders',
+                    subTitle: ' ${stats.newOrder}  New Orders',
                     image: AppAssets.category1,
                   ),
                   SizedBox(width: 6.w),
@@ -38,9 +38,8 @@ class OrdersCategoryRow extends StatelessWidget {
                     onTap: () {
                       context.go(RouterNames.incompleatedOrders);
                     },
-                    title: 'اجمالى قيد التنفيذ ',
-                    subTitle:
-                        ' ${stats.orderInProgress} من الطلبات قيد التنفيذ',
+                    title: 'In Progress',
+                    subTitle: ' ${stats.orderInProgress}  Orders in Progress',
                     image: AppAssets.category2,
                   ),
                   SizedBox(width: 6.w),
@@ -48,8 +47,8 @@ class OrdersCategoryRow extends StatelessWidget {
                     onTap: () {
                       context.go(RouterNames.compleatedOrders);
                     },
-                    title: 'اجمالى المكتمل ',
-                    subTitle: ' ${stats.completedOrder} من الطلبات المكتمله',
+                    title: 'Completed',
+                    subTitle: ' ${stats.completedOrder}  Completed Orders',
                     image: AppAssets.category3,
                   ),
                 ],

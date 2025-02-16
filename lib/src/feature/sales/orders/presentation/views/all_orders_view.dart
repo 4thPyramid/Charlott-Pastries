@@ -18,7 +18,7 @@ class AllOrdersView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(
             children: [
-              const CustomAppBar(title: "الطلبات"),
+              const CustomAppBar(title: "All Orders"),
               Container(
                 height: 50.h,
                 decoration: const BoxDecoration(
@@ -44,9 +44,9 @@ class AllOrdersView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     tabs: const [
-                      Tab(text: "جديد"),
-                      Tab(text: "قيد التنفيذ"),
-                      Tab(text: "مكتمل"),
+                      Tab(text: "New"),
+                      Tab(text: "In Progress"),
+                      Tab(text: "Completed"),
                     ],
                   ),
                 ),
