@@ -13,10 +13,10 @@ class AddOrderViewFirst extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(title: "اضافة طلب جديد"),
+            CustomAppBar(title: "Add New Order"),
             AddOrderHeader(
               image: AppAssets.addOrder1,
-              title: 'بيانات الطلب',
+              title: 'Order Data',
             ),
             ChooseOrderType(),
           ],

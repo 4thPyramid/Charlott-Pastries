@@ -23,12 +23,6 @@ abstract class AddOrderApiService {
   Future<Either<ErrorModel, AddOrderResponseModel>> addOrderClientData(
       AddCustomerRequestModel request, int orderId);
 
-  Future<Either<ErrorModel, StoreReadyOrdersModel>> storeReadyOrders(
-      int quantity, int orderId);
-
-  Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts();
-  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
-      int orderId);
 }
 
 class AddOrderApiServiceImpl implements AddOrderApiService {
@@ -93,61 +87,4 @@ class AddOrderApiServiceImpl implements AddOrderApiService {
     }
   }
 
-  @override
-  Future<Either<ErrorModel, StoreReadyOrdersModel>> storeReadyOrders(
-      int quantity, int productId) async {
-    try {
-      final response = await apiConsumer.post(
-        "sales/product-order",
-        isFormData: true,
-        data: {
-          "product_id": productId,
-          "quantity": quantity,
-        },
-      );
-
-      print("Full Response: $response");
-
-      if (response is Map<String, dynamic> &&
-          response.containsKey('statusCode')) {
-        print("Response Status: ${response['statusCode']}");
-      }
-
-      final model = StoreReadyOrdersModel.fromJson(response);
-      return Right(model);
-    } catch (error) {
-      return Left(ErrorModel(message: error.toString()));
-    }
-  }
-
-  @override
-  Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts() async {
-    try {
-      final response = await apiConsumer.get("sales/products");
-
-      final productsList = response['products'] as List<dynamic>;
-
-      final result = AllReadyProductModel(
-        products: productsList
-            .map((e) => Product.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      );
-
-      return Right(result);
-    } on ServerException catch (error) {
-      return Left(ErrorModel(message: error.errorModel.message));
-    }
-  }
-
-  @override
-  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
-      int orderId) async {
-    try {
-      final response = await apiConsumer.get("sales/product/$orderId");
-      final result = SingleProductModel.fromJson(response['product']);
-      return Right(result);
-    } on ServerException catch (error) {
-      return Left(ErrorModel(message: error.errorModel.message));
-    }
-  }
 }

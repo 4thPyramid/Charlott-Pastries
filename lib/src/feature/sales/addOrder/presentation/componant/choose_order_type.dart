@@ -1,4 +1,3 @@
-import 'package:charlot/src/feature/sales/addOrder/presentation/componant/products_grid_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/componant/requset_type_form.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/order_type_taps.dart';
 import 'package:flutter/material.dart';
@@ -29,20 +28,10 @@ class _ChooseOrderTypeState extends State<ChooseOrderType>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 1363.h,
+    return const SizedBox(
       child: Column(
         children: [
-          RequestTypeTapsWidget(tabController: _tabController),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: const [
-                RequestTypeForm(),
-                ReadyProductsForm(),
-              ],
-            ),
-          ),
+          RequestTypeForm(),
         ],
       ),
     );

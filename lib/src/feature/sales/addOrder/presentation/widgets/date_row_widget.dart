@@ -13,11 +13,11 @@ class DateRowWidget extends StatefulWidget {
   final bool isRequired;
 
   const DateRowWidget({
-    Key? key,
+    super.key,
     this.initialDate,
     required this.onDateChanged,
     this.isRequired = false,
-  }) : super(key: key);
+  });
 
   @override
   State<DateRowWidget> createState() => _DateRowWidgetState();
@@ -112,13 +112,13 @@ class _DateRowWidgetState extends State<DateRowWidget> {
           onChanged: (value) => _updateDate(),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return widget.isRequired ? 'مطلوب' : null;
+              return widget.isRequired ? 'Required' : null;
             }
             final numValue = int.tryParse(value);
             if (numValue == null ||
                 numValue < minValue ||
                 numValue > maxValue) {
-              return 'قيمة غير صالحة';
+              return 'Invalid value';
             }
             return null;
           },
@@ -136,7 +136,7 @@ class _DateRowWidgetState extends State<DateRowWidget> {
         Row(
           children: [
             Text(
-              'الموعد المطلوب',
+              'Delivered Date',
               style: AppStyles.s14.copyWith(fontWeight: FontWeight.w700),
             ),
             if (widget.isRequired)
@@ -152,11 +152,11 @@ class _DateRowWidgetState extends State<DateRowWidget> {
         SizedBox(height: 8.h),
         Row(
           children: [
-            _buildDateField(_dayController, 'يوم', 2, 1, 31),
+            _buildDateField(_dayController, 'Day', 2, 1, 31),
             const SizedBox(width: 30),
-            _buildDateField(_monthController, 'شهر', 2, 1, 12),
+            _buildDateField(_monthController, 'Month', 2, 1, 12),
             const SizedBox(width: 30),
-            _buildDateField(_yearController, 'سنة', 4, 1900, 2100),
+            _buildDateField(_yearController, 'Year', 4, 1900, 2100),
           ],
         ),
       ],

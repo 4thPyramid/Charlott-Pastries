@@ -31,33 +31,10 @@ class PriceForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("اجمالي السعر",
-              style: AppStyles.s16.copyWith(
-                fontWeight: FontWeight.w700,
-              )),
-          SizedBox(height: 10.h),
-          CustomTextFormField(
-            hintText: 'ادخل السعر',
-            prefixIcon: const Icon(Icons.attach_money_rounded,
-                size: 30, color: AppColors.green),
-            controller: totalPriceController,
-          ),
-          SizedBox(height: 10.h),
-          Text("العربون",
-              style: AppStyles.s16.copyWith(
-                fontWeight: FontWeight.w700,
-              )),
-          SizedBox(height: 10.h),
-          CustomTextFormField(
-            hintText: 'ادخل السعر',
-            prefixIcon: const Icon(Icons.attach_money_rounded,
-                size: 30, color: AppColors.green),
-            controller: depositController,
-          ),
           SizedBox(height: 10.h),
           Text("سعر التوصيل",
               style: AppStyles.s16.copyWith(
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w700, 
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(

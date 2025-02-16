@@ -21,11 +21,7 @@ abstract class AddOrderRepo {
   Future<Either<ErrorModel, AddOrderResponseModel>> addOrderClientData(
       AddCustomerRequestModel request, int orderId);
 
-  Future<Either<ErrorModel, StoreReadyOrdersModel>> storeReadyOrders(
-      int quantity, int orderId);
-  Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts();
-  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
-      int orderId);
+
 }
 
 class AddOrderRepoImpl extends AddOrderRepo {
@@ -44,20 +40,5 @@ class AddOrderRepoImpl extends AddOrderRepo {
           AddCustomerRequestModel request, int orderId) =>
       addOrderRemoteDataSource.addOrderClientData(request, orderId);
 
-  @override
-  Future<Either<ErrorModel, StoreReadyOrdersModel>> storeReadyOrders(
-      int quantity, int orderId) {
-    return addOrderRemoteDataSource.storeReadyOrders(quantity, orderId);
-  }
-
-  @override
-  Future<Either<ErrorModel, AllReadyProductModel>> getAllReadyProducts() {
-    return addOrderRemoteDataSource.getAllReadyProducts();
-  }
-
-  @override
-  Future<Either<ErrorModel, SingleProductModel>> getReadyOrderDetails(
-      int orderId) {
-    return addOrderRemoteDataSource.getReadyOrderDetails(orderId);
-  }
+  
 }

@@ -35,13 +35,7 @@ import 'package:charlot/src/feature/sales/addOrder/domain/repo/add_order_repo.da
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_client_data_uc.dart';
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_order_details_uc.dart';
 import 'package:charlot/src/feature/sales/addOrder/domain/usecase/add_order_price_uc.dart';
-import 'package:charlot/src/feature/sales/addOrder/domain/usecase/get_all_ready_products.dart';
-import 'package:charlot/src/feature/sales/addOrder/domain/usecase/get_ready_order_details.dart';
-import 'package:charlot/src/feature/sales/addOrder/domain/usecase/store_ready_orders.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/logic/AllReadyOrders/get_ready_orders_cubit.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/logic/SingelReadyOrder/ready_order_details_cubit.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/logic/storeReadyOrder/ready_ordre_cubit.dart';
 import 'package:charlot/src/feature/sales/home/data/datasource/home_api_service.dart';
 import 'package:charlot/src/feature/sales/home/data/datasource/home_remote_d_s.dart';
 import 'package:charlot/src/feature/sales/home/domain/repos/home_repos.dart';
@@ -252,7 +246,7 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SalesSearchApiService>(
       () => SalesSearchApiServiceImpl(getIt()));
-getIt.registerLazySingleton<SalesNotificationApiServices>(
+  getIt.registerLazySingleton<SalesNotificationApiServices>(
       () => SalesNotificationApiServicesImpl(getIt()));
 
   ///! --DataSources-- ///
@@ -373,8 +367,6 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   getIt.registerLazySingleton<SpecializationRepo>(
       () => SpecializationRepoImp(getIt()));
 
-
-
   ///! -- UseCases -- ///
 
   getIt.registerLazySingleton<GetProfileDataUC>(
@@ -481,9 +473,6 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   getIt.registerLazySingleton<GetDeliveredOrderUseCase>(
     () => GetDeliveredOrderUseCase(getIt()),
   );
-  getIt.registerLazySingleton<GetReadyOrderDetailsUC>(
-    () => GetReadyOrderDetailsUC(getIt()),
-  );
 
   getIt.registerLazySingleton<GetReturnedOrderUseCase>(
     () => GetReturnedOrderUseCase(getIt()),
@@ -528,13 +517,6 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
     () => GetChefDetailsUseCase(getIt()),
   );
 
-// getIt.registerLazySingleton<SalesRegisterUseCase>(
-//     () => SalesRegisterUseCase(getIt()),
-//   );
-//   getIt.registerLazySingleton<ChefRegisterUseCase>(
-//     () => ChefRegisterUseCase(getIt()),
-//   );
-
   getIt.registerLazySingleton<GetOrderStatsUC>(
     () => GetOrderStatsUC(getIt()),
   );
@@ -565,16 +547,11 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   getIt.registerLazySingleton<GetSalesSearchUC>(
     () => GetSalesSearchUC(getIt()),
   );
-  getIt.registerLazySingleton<GetAllReadyProductsUC>(
-    () => GetAllReadyProductsUC(getIt()),
-  );
+
   getIt.registerLazySingleton<GetSalesNotificationUseCase>(
     () => GetSalesNotificationUseCase(getIt()),
   );
 
-  getIt.registerLazySingleton<StoreReadyOrdersUseCase>(
-    () => StoreReadyOrdersUseCase(getIt()),
-  );
   getIt.registerLazySingleton<GetNotAssignOrderUseCase>(
     () => GetNotAssignOrderUseCase(getIt()),
   );
@@ -614,7 +591,8 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   getIt.registerFactory<SalesRegisterCubit>(() => SalesRegisterCubit(getIt()));
 
   getIt.registerFactory<BannerCubit>(() => BannerCubit(getIt()));
-  getIt.registerFactory<SpecializationCubit>(() => SpecializationCubit(getIt()));
+  getIt
+      .registerFactory<SpecializationCubit>(() => SpecializationCubit(getIt()));
 
   getIt.registerFactory<NewOrdersCubit>(() => NewOrdersCubit(getIt()));
   getIt.registerFactory<ManagerNewOrdersCubit>(
@@ -647,8 +625,7 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
   getIt.registerFactory<ChefNotificationCubit>(
       () => ChefNotificationCubit(getIt()));
 
-        getIt.registerFactory<BranchesCubit>(
-      () => BranchesCubit(getIt()));
+  getIt.registerFactory<BranchesCubit>(() => BranchesCubit(getIt()));
   getIt.registerFactory<ResetPasswordCubit>(
       () => ResetPasswordCubit(getIt(), getIt(), getIt()));
   getIt.registerFactory<ChefRegisterCubit>(() => ChefRegisterCubit(getIt()));
@@ -678,19 +655,10 @@ getIt.registerLazySingleton<SalesNotificationApiServices>(
     () => SalesSearchCubit(getIt()),
   );
 
-  getIt.registerFactory<GetReadyOrdersCubit>(
-    () => GetReadyOrdersCubit(getIt()),
-  );
-   getIt.registerFactory<SalesNotificationCubit>(
-    () => SalesNotificationCubit(getIt()));
+  getIt.registerFactory<SalesNotificationCubit>(
+      () => SalesNotificationCubit(getIt()));
 
-  getIt.registerFactory<ReadyOrderDetailsCubit>(
-    () => ReadyOrderDetailsCubit(getIt()),
-  );
-  getIt.registerFactory<StoreReadyOrdreCubit>(
-    () => StoreReadyOrdreCubit(getIt()),
-  );
-    getIt.registerFactory<NotAssignOrdersCubit>(
+  getIt.registerFactory<NotAssignOrdersCubit>(
     () => NotAssignOrdersCubit(getIt()),
   );
 }

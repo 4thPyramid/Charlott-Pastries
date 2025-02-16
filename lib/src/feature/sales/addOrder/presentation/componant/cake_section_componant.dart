@@ -24,11 +24,11 @@ class CakeSectionComponant extends StatelessWidget {
         SizedBox(height: 20.h),
         DetailsField(
           textEditingController: controller,
-          text: 'تفاصيل طلب الكيك',
+          text: 'Cake Details',
         ),
         ImagePickerWidget(
           onChanged: onImagesChanged,
-          title: '',
+          title: 'Cake Images',
         ),
       ],
     );

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:charlot/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_request_model.dart';
@@ -20,8 +21,10 @@ class RequestTypeForm extends StatefulWidget {
 }
 
 class _RequestTypeFormState extends State<RequestTypeForm> {
-  String selectedType = "كيك و ورد";
+  bool isSameDay = false;
+  String selectedType = "cake and flower";
   TextEditingController cakeDetailsController = TextEditingController();
+  TextEditingController flowerDetailsController = TextEditingController();
   String? flowerType;
   String? flowerColor;
   TimeOfDay? deliveryTime;
@@ -31,10 +34,6 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
   List<File> flowerImages = [];
   bool isDeliveryTimeValid = true;
 
-  void _handleFlowerTypeChanged(String? value) =>
-      setState(() => flowerType = value);
-  void _handleFlowerColorChanged(String? value) =>
-      setState(() => flowerColor = value);
   void _handleDeliveryTimeChanged(TimeOfDay time) {
     setState(() {
       deliveryTime = time;
@@ -43,7 +42,6 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
   }
 
   void _handleDateChanged(DateTime date) => setState(() => selectedDate = date);
-  void _handleQuantityChanged(int qty) => setState(() => quantity = qty);
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +51,56 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
         child: Column(
           children: [
             const SizedBox(height: 16.0),
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0, vertical: 12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.delivery_dining,
+                          color: isSameDay ? Colors.green : Colors.grey,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          "Same day delivery ?",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: isSameDay ? Colors.green : Colors.black87,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Switch(
+                      trackOutlineColor:
+                          WidgetStateProperty.all(AppColors.grey),
+                      value: isSameDay,
+                      activeColor: Colors.green,
+                      inactiveTrackColor: AppColors.grey,
+                      inactiveThumbColor: AppColors.primaryColor,
+                      onChanged: (value) {
+                        setState(() {
+                          isSameDay = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10.0),
             DropdownButtonFormField<String>(
               value: selectedType,
               decoration: InputDecoration(
-                labelText: "نوع الطلب",
+                labelText: "Request Type",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(color: Colors.grey),
@@ -68,7 +112,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 contentPadding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 12.0),
               ),
-              items: ["كيك", "ورد", "كيك و ورد"].map((type) {
+              items: ["cake", "flower", "cake and flower"].map((type) {
                 return DropdownMenuItem(value: type, child: Text(type));
               }).toList(),
               onChanged: (value) {
@@ -77,7 +121,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 });
               },
             ),
-            if (selectedType == 'كيك' || selectedType == 'كيك و ورد')
+            if (selectedType == 'cake' || selectedType == 'cake and flower')
               CakeSectionComponant(
                 controller: cakeDetailsController,
                 onImagesChanged: (images) => setState(
@@ -85,22 +129,25 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 ),
                 onDateChanged: _handleDateChanged,
               ),
-            if (selectedType == 'ورد' || selectedType == 'كيك و ورد')
+            if (selectedType == 'flower' || selectedType == 'cake and flower')
               FlowersSectionComponant(
-                onTypeChanged: _handleFlowerTypeChanged,
-                onColorChanged: _handleFlowerColorChanged,
                 onImagesChanged: (images) =>
                     setState(() => flowerImages = images),
-                onDateChanged: _handleDateChanged,
+                controller: flowerDetailsController,
               ),
             const SizedBox(height: 16.0),
             Row(
               children: [
-                QuantitySelector(onChanged: _handleQuantityChanged),
+                DeliveryTimePicker(
+                  title: "From",
+                  initialTime: deliveryTime,
+                  onTimeChanged: _handleDeliveryTimeChanged,
+                ),
                 const Spacer(),
                 DeliveryTimePicker(
                   initialTime: deliveryTime,
                   onTimeChanged: _handleDeliveryTimeChanged,
+                  title: 'To',
                 ),
               ],
             ),
@@ -108,7 +155,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
               const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Text(
-                  "الرجاء اختيار وقت التوصيل!",
+                  "Please select a valid delivery time.",
                   style: TextStyle(color: Colors.red, fontSize: 14),
                 ),
               ),
@@ -133,7 +180,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 return state.maybeWhen(
                   loading: () => const CircularProgressIndicator(),
                   orElse: () => CustomButton(
-                    text: "التالي",
+                    text: "Next",
                     onPressed: () {
                       if (deliveryTime == null) {
                         setState(() {
@@ -144,14 +191,14 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
 
                       final requestModel = AddOrderRequestModel(
                         files: cakeImages + flowerImages,
+                        isSameDay: isSameDay,
                         orderType: selectedType,
                         orderDetails: cakeDetailsController.text,
                         quantity: quantity,
                         deliveryDate: selectedDate?.toIso8601String() ?? '',
                         deliveryTime:
                             '${deliveryTime!.hour.toString().padLeft(2, '0')}:${deliveryTime!.minute.toString().padLeft(2, '0')}',
-                        flowerId: flowerType ?? '',
-                        flowerQuantity: quantity,
+                        description: flowerDetailsController.text,
                       );
 
                       context

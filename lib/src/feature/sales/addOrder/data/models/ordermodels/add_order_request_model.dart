@@ -9,8 +9,11 @@ class AddOrderRequestModel {
   @JsonKey(fromJson: _filesFromJson, toJson: _filesToJson)
   final List<File> files;
 
+  @JsonKey(name: 'is_sameday')
+  final bool isSameDay;
+
   @JsonKey(name: 'order_type')
-  final String? orderType;
+  final String orderType;
 
   @JsonKey(name: 'order_details')
   final String orderDetails;
@@ -23,21 +26,18 @@ class AddOrderRequestModel {
   @JsonKey(name: 'delivery_time')
   final String deliveryTime;
 
-  @JsonKey(name: 'flower_id')
-  final String flowerId;
-
-  @JsonKey(name: 'flower_quantity')
-  final int flowerQuantity;
+  @JsonKey(name: 'description')
+  final String description;
 
   AddOrderRequestModel({
     required this.files,
-    this.orderType,
+    required this.isSameDay,
+    required this.orderType,
     required this.orderDetails,
     required this.quantity,
     required this.deliveryDate,
     required this.deliveryTime,
-    required this.flowerId,
-    required this.flowerQuantity,
+    required this.description,
   });
 
   factory AddOrderRequestModel.fromJson(Map<String, dynamic> json) =>
@@ -50,13 +50,13 @@ class AddOrderRequestModel {
       "files": await Future.wait(
         files.map((file) async => await MultipartFile.fromFile(file.path)),
       ),
-      "order_type": orderType ?? '',
+      "is_sameday": isSameDay ? '1' : '0',
+      "order_type": orderType,
       "order_details": orderDetails,
       "quantity": quantity.toString(),
       "delivery_date": deliveryDate,
       "delivery_time": deliveryTime,
-      "flower_id": flowerId.toString(),
-      "flower_quantity": flowerQuantity.toString(),
+      "description": description,
     });
   }
 

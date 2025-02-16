@@ -9,15 +9,15 @@ part of 'order_status_counts.dart';
 OrderStatusCountsModel _$OrderStatusCountsModelFromJson(
         Map<String, dynamic> json) =>
     OrderStatusCountsModel(
-      newOrder: (json['طلب جديد'] as num).toInt(),
-      orderInProgress: (json['طلب قيد التنفيذ'] as num).toInt(),
-      completedOrder: (json['طلب مكتمل'] as num).toInt(),
+      newOrder: (json['new orders'] as num).toInt(),
+      orderInProgress: (json['inprogress orders'] as num).toInt(),
+      completedOrder: (json['completed orders'] as num).toInt(),
     );
 
 Map<String, dynamic> _$OrderStatusCountsModelToJson(
         OrderStatusCountsModel instance) =>
     <String, dynamic>{
-      'طلب جديد': instance.newOrder,
-      'طلب قيد التنفيذ': instance.orderInProgress,
-      'طلب مكتمل': instance.completedOrder,
+      'new orders': instance.newOrder,
+      'inprogress orders': instance.orderInProgress,
+      'completed orders': instance.completedOrder,
     };

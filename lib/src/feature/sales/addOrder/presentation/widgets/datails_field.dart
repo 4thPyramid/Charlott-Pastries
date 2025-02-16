@@ -31,7 +31,7 @@ class DetailsField extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 70),
                   child:
                       Icon(Icons.description_outlined, color: AppColors.blue)),
-              hintText: 'ادخل تفاصيل الطلب',
+              hintText: 'Enter Details Here',
               hintStyle: const TextStyle(color: Colors.grey),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

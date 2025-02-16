@@ -6,12 +6,14 @@ import '../../../../../../core/theme/app_colors.dart';
 class DeliveryTimePicker extends StatefulWidget {
   final ValueChanged<TimeOfDay>? onTimeChanged;
   final TimeOfDay? initialTime;
+  final String title;
 
   const DeliveryTimePicker({
-    Key? key,
+    super.key,
     this.onTimeChanged,
     this.initialTime,
-  }) : super(key: key);
+    required this.title,
+  });
 
   @override
   _DeliveryTimePickerState createState() => _DeliveryTimePickerState();
@@ -25,7 +27,6 @@ class _DeliveryTimePickerState extends State<DeliveryTimePicker> {
     super.initState();
     selectedTime = widget.initialTime ?? TimeOfDay.now();
 
-    // **إرسال القيمة الافتراضية فور تشغيل الواجهة**
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.onTimeChanged != null) {
         widget.onTimeChanged!(selectedTime!);
@@ -53,7 +54,7 @@ class _DeliveryTimePickerState extends State<DeliveryTimePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "وقت التسليم",
+          widget.title,
           style: AppStyles.s14.copyWith(
             color: AppColors.black,
             fontWeight: FontWeight.w700,

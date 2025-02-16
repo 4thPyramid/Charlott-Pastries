@@ -4,13 +4,13 @@ part 'order_status_counts.g.dart';
 
 @JsonSerializable()
 class OrderStatusCountsModel {
-  @JsonKey(name: 'طلب جديد')
+  @JsonKey(name: 'new orders')
   final int newOrder;
 
-  @JsonKey(name: 'طلب قيد التنفيذ')
+  @JsonKey(name: 'inprogress orders')
   final int orderInProgress;
 
-  @JsonKey(name: 'طلب مكتمل')
+  @JsonKey(name: 'completed orders')
   final int completedOrder;
 
   OrderStatusCountsModel({
