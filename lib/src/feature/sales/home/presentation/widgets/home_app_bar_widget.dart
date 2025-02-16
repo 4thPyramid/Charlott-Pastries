@@ -1,13 +1,12 @@
 import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/generated/app_strings.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../generated/app_strings.g.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key, this.name1});
@@ -34,12 +33,12 @@ class HomeAppBar extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppStrings.welcome,
+            Text(AppStrings.welcome.tr(),
                 style: AppStyles.s12.copyWith(
                   color: AppColors.darkTextGrey,
                   fontWeight: FontWeight.w700,
                 )),
-            Text(name ?? 'ابدا الان',
+            Text(name ?? "startnow".tr(),
                 style: AppStyles.s14.copyWith(
                   fontWeight: FontWeight.w600,
                 )),

@@ -3,6 +3,7 @@ import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/quantity_selector.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/ready_order_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,14 +39,14 @@ class ReadyOrderContentWidget extends StatelessWidget {
           const QuantitySelector(),
           SizedBox(height: 10.h),
           Text(
-            "وصف المنتج",
+            "productDescription".tr(),
             style: AppStyles.s20.copyWith(
               color: AppColors.black,
               fontWeight: FontWeight.w700,
             ),
           ),
           SizedBox(height: 10.h),
-          Text(orderDescription ?? "لا يوجد وصف للمنتج",
+          Text(orderDescription ?? "noProductDescriptionAvailable".tr(),
               style: AppStyles.s14.copyWith(
                 color: AppColors.black,
                 fontWeight: FontWeight.w700,
@@ -59,7 +60,7 @@ class ReadyOrderContentWidget extends StatelessWidget {
           SizedBox(height: 20.h),
           Center(
             child: CustomButton(
-              text: "التالي",
+              text: "next".tr(),
               onPressed: onTap,
             ),
           ),

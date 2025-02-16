@@ -1,5 +1,6 @@
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -79,7 +80,7 @@ class ProductCardWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  'ريال',
+                  'aDE'.tr(),
                   style: AppStyles.s12.copyWith(
                     color: AppColors.primaryColor,
                     fontWeight: FontWeight.w600,

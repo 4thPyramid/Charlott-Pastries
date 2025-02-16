@@ -2,6 +2,7 @@ import 'package:charlot/src/feature/sales/home/presentation/view/home_view.dart'
 import 'package:charlot/src/feature/sales/notification/presentation/view/notification_view.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/views/all_orders_view.dart';
 import 'package:charlot/src/feature/sales/profile/presentation/views/sales_profile_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,24 +46,24 @@ class SalesBottomNavigationBarRoot extends StatelessWidget {
               onTap: (index) => context
                   .read<AppCubit>()
                   .changeBottomNavBarSelectedIndex(index),
-              items: const [
+              items:  [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  label: 'Home',
+                  icon: const Icon(Icons.home_outlined),
+                  label: 'home'.tr(),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.shopping_bag_outlined,
                   ),
-                  label: 'add employee',
+                  label: 'addEmployees'.tr(),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.notifications_outlined),
-                  label: 'Notification',
+                  icon: const Icon(Icons.notifications_outlined),
+                  label: 'notifications'.tr(),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline),
-                  label: 'Profile',
+                  icon: const Icon(Icons.person_outline),
+                  label: 'profile'.tr(),
                 ),
               ],
             ),

@@ -3,6 +3,7 @@ import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -45,18 +46,18 @@ class ReadyToDeliverOrderCard extends StatelessWidget {
               children: [
                 SizedBox(height: 20.h),
                 Text(
-                  "حلويات غربيه",
+                  "westernSweets".tr(),
                   style: AppStyles.s14.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(height: 8.h),
                 Text(
-                  "تورتة عيد الميلاد",
+                  "birthdayCake".tr(),
                   style: AppStyles.s14,
                 ),
                 SizedBox(height: 20.h),
-                const Text("فريق العمل"),
+                 Text("teamWork".tr()),
                 SizedBox(height: 8.h),
                 const AppImageView(
                   AppAssets.logo,
@@ -67,7 +68,7 @@ class ReadyToDeliverOrderCard extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Text("تاريخ التسليم"),
+                 Text("deliveryDate".tr()),
                 SizedBox(height: 8.h),
                 Row(children: [
                   const Icon(
@@ -83,7 +84,7 @@ class ReadyToDeliverOrderCard extends StatelessWidget {
                 CustomButton(
                     width: 130.w,
                     height: 30.h,
-                    text: "عرض التفاصيل",
+                    text: "showdetails".tr(),
                     onPressed: () {}),
                 SizedBox(height: 10.h),
               ],

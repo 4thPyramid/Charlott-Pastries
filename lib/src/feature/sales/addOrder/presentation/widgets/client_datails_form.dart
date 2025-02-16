@@ -1,11 +1,10 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/common/widgets/custom_text_form_field.dart';
-import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class ClientDatailsForm extends StatelessWidget {
   const ClientDatailsForm({
@@ -27,25 +26,25 @@ class ClientDatailsForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("اسم العميل",
+          Text("clientName".tr(),
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'ادخل اسم العميل',
+            hintText: 'enterClientName'.tr(),
             controller: nameController,
             prefixIcon: const Icon(Icons.edit_note_outlined,
                 size: 30, color: AppColors.blue),
           ),
           SizedBox(height: 10.h),
-          Text("رقم الجوال",
+          Text("phoneNumber".tr(),
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'ادخل رقم الجوال الخاص بالعميل',
+            hintText: 'enterClientPhoneNumber'.tr(),
             controller: phoneController,
             prefixIcon: const Icon(
               Icons.phone,
@@ -54,13 +53,13 @@ class ClientDatailsForm extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.h),
-          Text("العنوان",
+          Text("address".tr(),
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'رقم الشقه ،البنايه، الشارع',
+            hintText: 'enterTheAdressInDetails'.tr(),
             controller: addressController,
             prefixIcon: const Icon(
               Icons.location_on_outlined,
@@ -70,7 +69,7 @@ class ClientDatailsForm extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Center(
-            child: CustomButton(text: "التالي", onPressed: onPressed),
+            child: CustomButton(text: "next".tr(), onPressed: onPressed),
           ),
         ],
       ),

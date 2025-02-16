@@ -1,5 +1,6 @@
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/grid_view_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,15 +10,15 @@ class OrdersGridView extends StatelessWidget {
     GridViewmodel(
       RouterNames.newOrders,
       number: "14",
-      title: "طلب جديد ",
+      title: "newOrder".tr(),
       icon: Icons.checklist,
     ),
     GridViewmodel(RouterNames.waitingOrders,
-        number: "20", title: "طلب قيد التنفيذ ", icon: Icons.timelapse_sharp),
+        number: "20", title: " orderInProgress".tr(), icon: Icons.timelapse_sharp),
     GridViewmodel(RouterNames.completeOrdersDetails,
-        number: "3", title: "طلب مكتمل ", icon: Icons.done_all),
+        number: "3", title: "completedOrder".tr(), icon: Icons.done_all),
     GridViewmodel(RouterNames.compleatedOrders,
-        number: "18", title: "طلب غير مكتمل ", icon: Icons.cancel),
+        number: "18", title: "unCompletedOrder".tr(), icon: Icons.cancel),
   ];
 
   @override

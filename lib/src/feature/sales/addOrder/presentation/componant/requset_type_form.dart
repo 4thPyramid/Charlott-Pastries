@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_request_model.dart';
@@ -8,7 +9,6 @@ import 'package:charlot/src/feature/sales/addOrder/presentation/componant/cake_s
 import 'package:charlot/src/feature/sales/addOrder/presentation/componant/flowers_section_componant.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/date_row_widget.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/quantity_selector.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/show_time_picker.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
@@ -22,7 +22,7 @@ class RequestTypeForm extends StatefulWidget {
 
 class _RequestTypeFormState extends State<RequestTypeForm> {
   bool isSameDay = false;
-  String selectedType = "cake and flower";
+  String selectedType = "Cake And Flowers";
   TextEditingController cakeDetailsController = TextEditingController();
   TextEditingController flowerDetailsController = TextEditingController();
   String? flowerType;
@@ -70,7 +70,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          "Same day delivery ?",
+                          "sameDayDelivery".tr(),
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

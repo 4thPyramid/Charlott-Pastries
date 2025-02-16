@@ -1,4 +1,5 @@
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/theme/app_colors.dart';
@@ -78,7 +79,7 @@ class _DeliveryTimePickerState extends State<DeliveryTimePicker> {
                 Text(
                   selectedTime != null
                       ? selectedTime!.format(context)
-                      : "وقت التسليم",
+                      : "deliveryDate".tr(),
                   style: AppStyles.s14.copyWith(color: AppColors.black),
                 ),
                 const Icon(Icons.keyboard_arrow_down, color: AppColors.grey),

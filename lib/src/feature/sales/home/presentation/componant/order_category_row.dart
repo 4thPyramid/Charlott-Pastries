@@ -3,6 +3,7 @@ import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/src/feature/sales/home/presentation/logic/cubit/sales_home_cubit.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/category_card_widget.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/sales_home_new_order.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,8 +30,8 @@ class OrdersCategoryRow extends StatelessWidget {
                     onTap: () {
                       context.go(RouterNames.newOrders);
                     },
-                    title: 'اجمالى الجديد ',
-                    subTitle: ' ${stats.newOrder} من الطلبات الجديده',
+                    title: 'totalOfNew'.tr(),
+                    subTitle: ' ${stats.newOrder} ofNewOrders'.tr(),
                     image: AppAssets.category1,
                   ),
                   SizedBox(width: 6.w),
@@ -38,9 +39,9 @@ class OrdersCategoryRow extends StatelessWidget {
                     onTap: () {
                       context.go(RouterNames.incompleatedOrders);
                     },
-                    title: 'اجمالى قيد التنفيذ ',
+                    title: 'totalPendingOrders'.tr(),
                     subTitle:
-                        ' ${stats.orderInProgress} من الطلبات قيد التنفيذ',
+                        ' ${stats.orderInProgress} ofInProgressOrders'.tr(),
                     image: AppAssets.category2,
                   ),
                   SizedBox(width: 6.w),
@@ -48,8 +49,8 @@ class OrdersCategoryRow extends StatelessWidget {
                     onTap: () {
                       context.go(RouterNames.compleatedOrders);
                     },
-                    title: 'اجمالى المكتمل ',
-                    subTitle: ' ${stats.completedOrder} من الطلبات المكتمله',
+                    title: 'totalOfCompleted'.tr(), 
+                    subTitle: ' ${stats.completedOrder} ofCompletedOrders'.tr(),
                     image: AppAssets.category3,
                   ),
                 ],

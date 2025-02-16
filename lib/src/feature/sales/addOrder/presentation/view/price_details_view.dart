@@ -2,6 +2,7 @@ import 'package:charlot/core/common/widgets/custom_app_bar.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/componant/price_form.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/add_order_header.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PriceDetailsView extends StatelessWidget {
@@ -14,10 +15,10 @@ class PriceDetailsView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomAppBar(title: "اضافة طلب جديد"),
-            const AddOrderHeader(
+             CustomAppBar(title: "addNewOrder".tr()),
+             AddOrderHeader(
               image: AppAssets.addOrder2,
-              title: 'تفاصيل السعر',
+              title: 'priceDetails'.tr(),
             ),
             PriceForm(
               orderId: orderId,

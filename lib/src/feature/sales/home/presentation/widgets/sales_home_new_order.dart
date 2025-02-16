@@ -1,6 +1,7 @@
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,11 +29,11 @@ class SalesHomeNewOrders extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              "اجمالي الطلبات الجديده",
+              "totalNewOrders".tr(),
               style: AppStyles.s14,
             ),
             SizedBox(height: 10.h),
-            Text("$number من الطلبات الجديدة",
+            Text("$number ofNewOrders".tr(),
                 style: AppStyles.s24.copyWith(fontWeight: FontWeight.w700)),
           ],
         ),

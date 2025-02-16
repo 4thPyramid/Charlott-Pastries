@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/image_picker_section.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class OrederImageSection extends StatefulWidget {
@@ -18,7 +19,7 @@ class _OrederImageSectionState extends State<OrederImageSection> {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ImagePickerWidget(
-        title: 'أضف الصور',
+        title: 'addImages'.tr(),
         initialImages: images,
         onChanged: (updatedImages) {
           setState(() {

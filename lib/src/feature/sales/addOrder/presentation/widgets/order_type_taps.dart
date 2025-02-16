@@ -1,4 +1,5 @@
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,14 +35,14 @@ class RequestTypeTapsWidget extends StatelessWidget {
             color: AppColors.greyForSelectTap,
             borderRadius: BorderRadius.circular(8.r),
           ),
-          tabs: const [
+          tabs:  [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Tab(text: 'طلب مخصص'),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Tab(text: 'specialOrder'.tr()),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Tab(text: 'في نفس اليوم '),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Tab(text: 'onTheSameDay'.tr()),
             ),
           ],
         ),

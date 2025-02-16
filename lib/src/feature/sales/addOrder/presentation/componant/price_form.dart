@@ -1,12 +1,11 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/common/widgets/custom_text_form_field.dart';
-import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_price_request_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/componant/requset_type_form.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,47 +31,47 @@ class PriceForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h),
-          Text("سعر التوصيل",
+          Text("deliveryPrice".tr(),
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700, 
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'ادخل السعر',
+            hintText: 'enterPrice'.tr(),
             prefixIcon: const Icon(Icons.attach_money_rounded,
                 size: 30, color: AppColors.green),
             controller: deliveryPriceController,
           ),
           SizedBox(height: 10.h),
-          Text("سعر الكيك",
+          Text("cakePrice".tr(),
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'ادخل السعر',
+            hintText: 'enterPrice'.tr(),
             prefixIcon: const Icon(Icons.attach_money_rounded,
                 size: 30, color: AppColors.green),
             controller: cakePriceController,
           ),
-          Text("سعر الورد",
+          Text("flowerPrice".tr(),
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'ادخل السعر',
+            hintText: 'enterPrice'.tr(),
             prefixIcon: const Icon(Icons.attach_money_rounded,
                 size: 30, color: AppColors.green),
             controller: flowerPriceController,
           ),
-          Text("المبلغ المتبقي",
+          Text("remainingPrice".tr(),
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'ادخل السعر',
+            hintText: 'enterPrice'.tr(),
             prefixIcon: const Icon(Icons.attach_money_rounded,
                 size: 30, color: AppColors.green),
             controller: remainingPriceController,
@@ -97,7 +96,7 @@ class PriceForm extends StatelessWidget {
               child: BlocBuilder<AddOrderCubit, AddOrderState>(
                 builder: (context, state) {
                   return CustomButton(
-                    text: "التالي",
+                    text: "next".tr(),
                     onPressed: () {
                       final request = AddPriceRequestModel(
                         price: cakePriceController.text,

@@ -1,5 +1,6 @@
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,11 +10,11 @@ class RequestTypeDropdown extends StatelessWidget {
   final String hintText;
   final FormFieldValidator<String>? validator;
 
-  const RequestTypeDropdown({
+   const RequestTypeDropdown({
     super.key,
     required this.value,
     required this.onChanged,
-    this.hintText = ' اختر نوع الطلب',
+    this.hintText = 'Choose Order Type',
     this.validator,
   });
 
@@ -23,7 +24,7 @@ class RequestTypeDropdown extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'نوع الطلب',
+          'orderType'.tr(),
           style: AppStyles.s14.copyWith(
             color: AppColors.black,
             fontWeight: FontWeight.w700,
@@ -62,18 +63,18 @@ class RequestTypeDropdown extends StatelessWidget {
               borderSide: BorderSide(color: Colors.red),
             ),
           ),
-          items: const [
+          items:  [
             DropdownMenuItem(
-              value: 'تورته',
-              child: Text('تورته'),
+              value: 'cake'.tr(),
+              child: Text('cake'.tr()),
             ),
             DropdownMenuItem(
-              value: 'ورد',
-              child: Text('ورد'),
+              value: 'flowers'.tr(),
+              child: Text('flowers'.tr()),
             ),
             DropdownMenuItem(
-              value: 'تورته مع ورد',
-              child: Text('تورته مع ورد'),
+              value: 'cakeAndFlowers'.tr(),
+              child: Text('cakeAndFlowers'.tr()),
             ),
           ],
         ),
