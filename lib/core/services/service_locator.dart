@@ -61,6 +61,7 @@ import 'package:charlot/src/feature/sales/search/presentation/cubit/sales_search
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../src/feature/auth/data/remote/auth_api_services.dart';
 import '../../src/feature/auth/data/remote/auth_remote_ds.dart';
 import '../../src/feature/auth/domain/repository/auth_repo.dart';
@@ -92,6 +93,10 @@ import '../../src/feature/chef/regsiter/data/remote/chef_register_remote_ds.dart
 import '../../src/feature/chef/regsiter/domain/repository/chef_register_repo.dart';
 import '../../src/feature/chef/regsiter/domain/usecase/chef_register_usecase.dart';
 import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
+import '../../src/feature/language/data/app_repository.dart';
+import '../../src/feature/language/domain/usecases/get_selected_language_usecase.dart';
+import '../../src/feature/language/domain/usecases/select_language_use_case.dart';
+import '../../src/feature/language/presentation/logic/language_cubit.dart';
 import '../../src/feature/manager/accept_employee/data/remote/all_employee_api_services.dart';
 import '../../src/feature/manager/accept_employee/data/remote/all_employee_remote_ds.dart';
 import '../../src/feature/manager/accept_employee/domain/repo/all_employee_repository.dart';
@@ -179,6 +184,9 @@ void setupLocator() {
   ///! FOR APP CUBIT ///
   getIt.registerFactory<AppCubit>(() => AppCubit());
 
+  getIt.registerFactoryAsync<SharedPreferences>(() async {
+    return await SharedPreferences.getInstance();
+  });
   getIt.registerSingleton<CacheHelper>(CacheHelper());
   getIt.registerLazySingleton<Dio>(() => Dio());
   getIt
@@ -248,7 +256,10 @@ void setupLocator() {
       () => SalesSearchApiServiceImpl(getIt()));
   getIt.registerLazySingleton<SalesNotificationApiServices>(
       () => SalesNotificationApiServicesImpl(getIt()));
-
+  getIt.registerLazySingleton<IAppRepository>(
+    () => AppRepositoryImpl(getIt()),
+  );
+  
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
       () => ProfileRemoteDSImpl(getIt()));
@@ -555,7 +566,12 @@ void setupLocator() {
   getIt.registerLazySingleton<GetNotAssignOrderUseCase>(
     () => GetNotAssignOrderUseCase(getIt()),
   );
-
+   getIt.registerFactory<GetSelectedLanguageUseCase>(
+    () => GetSelectedLanguageUseCase(getIt()),
+  );
+  getIt.registerFactory<SaveSelectedLanguageUseCase>(
+    () => SaveSelectedLanguageUseCase(getIt()),
+  );
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
         getIt(),
@@ -647,7 +663,9 @@ void setupLocator() {
         getIt(),
         getIt(),
       ));
-
+getIt.registerFactory<LanguageCubit>(
+    () => LanguageCubit(getIt(), getIt()),
+  );
   getIt.registerFactory<SalesOrderDetailsCubit>(
       () => SalesOrderDetailsCubit(getIt()));
 

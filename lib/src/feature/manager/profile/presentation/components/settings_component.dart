@@ -1,9 +1,7 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
 
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
@@ -23,35 +21,34 @@ class SettingsComponent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         CustomListTile(
-          title: AppStrings.changePassword.tr(),
-          icon: Icons.key,
-          iconColor: AppColors.primaryColor,
-          onPressed: () => context.push(RouterNames.changePasswordView),
-        ),
-        SizedBox(height: 20.h),
-           CustomListTile(
-          title: AppStrings.language.tr(),
-          icon: Icons.language,
-          iconColor: AppColors.primaryColor,
-        ),
-        SizedBox(height: 20.h),
-
           CustomListTile(
-                    onPressed: () =>  UrlLauncherMethods.launchInBrowser('https://charlottesweets.com/privacy-policy/'),
-
-          title: AppStrings.privacy.tr(),
-          icon: Icons.verified_user_outlined,
-          iconColor: AppColors.primaryColor,
-        ),
-        SizedBox(height: 20.h),
-
-           CustomListTile(
-            onPressed: ()=>deleteAccountPop(context,'manager'),
-          title: AppStrings.deleteAccount.tr(),
-          icon: Icons.delete,
-          iconColor: AppColors.primaryColor,
-        ),
+            title: AppStrings.changePassword.tr(),
+            icon: Icons.key,
+            iconColor: AppColors.primaryColor,
+            onPressed: () => context.push(RouterNames.changePasswordView),
+          ),
+          SizedBox(height: 20.h),
+          CustomListTile(
+            title: AppStrings.language.tr(),
+            icon: Icons.language,
+            iconColor: AppColors.primaryColor,
+            onPressed: () => context.push(RouterNames.selectLanguage),
+          ),
+          SizedBox(height: 20.h),
+          CustomListTile(
+            onPressed: () => UrlLauncherMethods.launchInBrowser(
+                'https://charlottesweets.com/privacy-policy/'),
+            title: AppStrings.privacy.tr(),
+            icon: Icons.verified_user_outlined,
+            iconColor: AppColors.primaryColor,
+          ),
+          SizedBox(height: 20.h),
+          CustomListTile(
+            onPressed: () => deleteAccountPop(context, 'manager'),
+            title: AppStrings.deleteAccount.tr(),
+            icon: Icons.delete,
+            iconColor: AppColors.primaryColor,
+          ),
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/home_app_bar_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -28,7 +29,8 @@ class SalesHomeView extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  AppStrings.readyForDelivery,
+                 // 'readyForDelivery'.tr(),
+                  AppStrings.readyForDelivery.tr(),
                   style: AppStyles.s20.copyWith(
                     fontWeight: FontWeight.w700,
                     color: Colors.black,

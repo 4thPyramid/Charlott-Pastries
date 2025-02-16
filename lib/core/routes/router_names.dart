@@ -1,5 +1,6 @@
 abstract class RouterNames {
   static const String splashView = '/';
+  static const String selectLanguage = '/select-language';
   static const String userTypeView = '/user-type-view';
   static const String salesRegisterView = '/sales-register';
   static const String otpViewForEmail = '/otp-email';

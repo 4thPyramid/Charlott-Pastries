@@ -12,7 +12,7 @@ SalesSearchModel _$SalesSearchModelFromJson(Map<String, dynamic> json) =>
       orderType: json['order_type'] as String,
       status: json['status'] as String,
       deliveryDate: json['delivery_date'] as String?,
-      customerName: json['customer_name'] as String,
+      customerName: json['customer_name'] as String?,
     );
 
 Map<String, dynamic> _$SalesSearchModelToJson(SalesSearchModel instance) =>
