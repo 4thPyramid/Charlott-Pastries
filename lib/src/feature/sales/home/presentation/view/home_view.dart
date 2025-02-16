@@ -27,6 +27,7 @@ class SalesHomeView extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
+                 // 'readyForDelivery'.tr(),
                   AppStrings.readyForDelivery.tr(),
                   style: AppStyles.s20.copyWith(
                     fontWeight: FontWeight.w700,

@@ -54,6 +54,7 @@ import '../../src/feature/chef/profile/presentation/views/chef_change_password.d
 import '../../src/feature/chef/profile/presentation/views/chef_profile_info.dart';
 import '../../src/feature/chef/profile/presentation/views/chef_setting_view.dart';
 import '../../src/feature/chef/regsiter/presentation/logic/chef_register_cubit.dart';
+import '../../src/feature/language/presentation/screen/select_language_view.dart';
 import '../../src/feature/manager/empolyee/presentation/chef_list/presentation/view/chef_details_view.dart';
 import '../../src/feature/manager/empolyee/presentation/chef_list/presentation/view/select_chefs_view.dart';
 import '../../src/feature/manager/empolyee/presentation/delivery/presentation/views/select_delivery_view.dart';
@@ -79,6 +80,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.splashView,
       builder: (context, state) => const AnimatedSplashScreen(),
+    ),
+    GoRoute(
+      path: RouterNames.selectLanguage,
+      builder: (context, state) => const LanguageSelectionPage (),
     ),
     GoRoute(
       path: RouterNames.userTypeView,

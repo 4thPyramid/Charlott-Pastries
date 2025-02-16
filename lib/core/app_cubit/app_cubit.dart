@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../data/cached/cache_helper.dart';
@@ -36,11 +37,11 @@ class AppCubit extends Cubit<AppState> {
   }
 
   //! ----------- Change Language ----------- //
-  // Future<void> changeLanguage([String? value]) async {
-  //   final newLanguage = state.language == "ar" ? "en" : "ar";
+ 
 
-  //   emit(state.copyWith(language: newLanguage));
-
-  //   await CacheHelper.saveData(key: 'language', value: newLanguage);
-  // }
+   
+    // await context
+    //     .setLocale(Locale(state.language));
+   
+  
 }

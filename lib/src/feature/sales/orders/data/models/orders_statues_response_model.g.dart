@@ -22,6 +22,7 @@ Map<String, dynamic> _$OrdersStatuesResponseModelToJson(
 
 OrderItem _$OrderItemFromJson(Map<String, dynamic> json) => OrderItem(
       id: (json['id'] as num).toInt(),
+    
       updatedAt: json['updated_at'] as String,
     );
 

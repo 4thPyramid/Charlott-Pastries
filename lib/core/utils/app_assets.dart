@@ -8,6 +8,7 @@ abstract class AppAssets {
   static const String chefImage = "assets/images/chef_image.png";
   static const String rejectImage = "assets/images/rejectImage.png";
 
+  static const String langImage = "assets/images/lang.jpg";
   static const String cake1 = "assets/images/cake1.png";
   static const String cake2 = "assets/images/cake2.png";
   static const String cake3 = "assets/images/cake3.png";

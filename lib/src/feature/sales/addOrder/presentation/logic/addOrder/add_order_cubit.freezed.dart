@@ -16,28 +16,30 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AddOrderState {
+  bool get isSameDay => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(bool isSameDay) initial,
+    required TResult Function(bool isSameDay) loading,
+    required TResult Function(ErrorModel error, bool isSameDay) failure,
+    required TResult Function(AddOrderResponseModel message, bool isSameDay)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(bool isSameDay)? initial,
+    TResult? Function(bool isSameDay)? loading,
+    TResult? Function(ErrorModel error, bool isSameDay)? failure,
+    TResult? Function(AddOrderResponseModel message, bool isSameDay)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(bool isSameDay)? initial,
+    TResult Function(bool isSameDay)? loading,
+    TResult Function(ErrorModel error, bool isSameDay)? failure,
+    TResult Function(AddOrderResponseModel message, bool isSameDay)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,6 +68,12 @@ mixin _$AddOrderState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of AddOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AddOrderStateCopyWith<AddOrderState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -73,6 +81,8 @@ abstract class $AddOrderStateCopyWith<$Res> {
   factory $AddOrderStateCopyWith(
           AddOrderState value, $Res Function(AddOrderState) then) =
       _$AddOrderStateCopyWithImpl<$Res, AddOrderState>;
+  @useResult
+  $Res call({bool isSameDay});
 }
 
 /// @nodoc
@@ -87,13 +97,29 @@ class _$AddOrderStateCopyWithImpl<$Res, $Val extends AddOrderState>
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isSameDay = null,
+  }) {
+    return _then(_value.copyWith(
+      isSameDay: null == isSameDay
+          ? _value.isSameDay
+          : isSameDay // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $AddOrderStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isSameDay});
 }
 
 /// @nodoc
@@ -106,60 +132,88 @@ class __$$InitialImplCopyWithImpl<$Res>
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isSameDay = null,
+  }) {
+    return _then(_$InitialImpl(
+      isSameDay: null == isSameDay
+          ? _value.isSameDay
+          : isSameDay // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  const _$InitialImpl({this.isSameDay = false});
+
+  @override
+  @JsonKey()
+  final bool isSameDay;
 
   @override
   String toString() {
-    return 'AddOrderState.initial()';
+    return 'AddOrderState.initial(isSameDay: $isSameDay)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitialImpl &&
+            (identical(other.isSameDay, isSameDay) ||
+                other.isSameDay == isSameDay));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isSameDay);
+
+  /// Create a copy of AddOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(bool isSameDay) initial,
+    required TResult Function(bool isSameDay) loading,
+    required TResult Function(ErrorModel error, bool isSameDay) failure,
+    required TResult Function(AddOrderResponseModel message, bool isSameDay)
+        success,
   }) {
-    return initial();
+    return initial(isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(bool isSameDay)? initial,
+    TResult? Function(bool isSameDay)? loading,
+    TResult? Function(ErrorModel error, bool isSameDay)? failure,
+    TResult? Function(AddOrderResponseModel message, bool isSameDay)? success,
   }) {
-    return initial?.call();
+    return initial?.call(isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(bool isSameDay)? initial,
+    TResult Function(bool isSameDay)? loading,
+    TResult Function(ErrorModel error, bool isSameDay)? failure,
+    TResult Function(AddOrderResponseModel message, bool isSameDay)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(isSameDay);
     }
     return orElse();
   }
@@ -203,14 +257,28 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements AddOrderState {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial({final bool isSameDay}) = _$InitialImpl;
+
+  @override
+  bool get isSameDay;
+
+  /// Create a copy of AddOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
+abstract class _$$LoadingImplCopyWith<$Res>
+    implements $AddOrderStateCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isSameDay});
 }
 
 /// @nodoc
@@ -223,60 +291,88 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isSameDay = null,
+  }) {
+    return _then(_$LoadingImpl(
+      isSameDay: null == isSameDay
+          ? _value.isSameDay
+          : isSameDay // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+  const _$LoadingImpl({this.isSameDay = false});
+
+  @override
+  @JsonKey()
+  final bool isSameDay;
 
   @override
   String toString() {
-    return 'AddOrderState.loading()';
+    return 'AddOrderState.loading(isSameDay: $isSameDay)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
+            (identical(other.isSameDay, isSameDay) ||
+                other.isSameDay == isSameDay));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isSameDay);
+
+  /// Create a copy of AddOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(bool isSameDay) initial,
+    required TResult Function(bool isSameDay) loading,
+    required TResult Function(ErrorModel error, bool isSameDay) failure,
+    required TResult Function(AddOrderResponseModel message, bool isSameDay)
+        success,
   }) {
-    return loading();
+    return loading(isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(bool isSameDay)? initial,
+    TResult? Function(bool isSameDay)? loading,
+    TResult? Function(ErrorModel error, bool isSameDay)? failure,
+    TResult? Function(AddOrderResponseModel message, bool isSameDay)? success,
   }) {
-    return loading?.call();
+    return loading?.call(isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(bool isSameDay)? initial,
+    TResult Function(bool isSameDay)? loading,
+    TResult Function(ErrorModel error, bool isSameDay)? failure,
+    TResult Function(AddOrderResponseModel message, bool isSameDay)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(isSameDay);
     }
     return orElse();
   }
@@ -320,16 +416,28 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements AddOrderState {
-  const factory _Loading() = _$LoadingImpl;
+  const factory _Loading({final bool isSameDay}) = _$LoadingImpl;
+
+  @override
+  bool get isSameDay;
+
+  /// Create a copy of AddOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
+abstract class _$$FailureImplCopyWith<$Res>
+    implements $AddOrderStateCopyWith<$Res> {
   factory _$$FailureImplCopyWith(
           _$FailureImpl value, $Res Function(_$FailureImpl) then) =
       __$$FailureImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({ErrorModel error});
+  $Res call({ErrorModel error, bool isSameDay});
 }
 
 /// @nodoc
@@ -346,12 +454,17 @@ class __$$FailureImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? error = null,
+    Object? isSameDay = null,
   }) {
     return _then(_$FailureImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorModel,
+      isSameDay: null == isSameDay
+          ? _value.isSameDay
+          : isSameDay // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -359,14 +472,17 @@ class __$$FailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.error);
+  const _$FailureImpl(this.error, {this.isSameDay = false});
 
   @override
   final ErrorModel error;
+  @override
+  @JsonKey()
+  final bool isSameDay;
 
   @override
   String toString() {
-    return 'AddOrderState.failure(error: $error)';
+    return 'AddOrderState.failure(error: $error, isSameDay: $isSameDay)';
   }
 
   @override
@@ -374,11 +490,13 @@ class _$FailureImpl implements _Failure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureImpl &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.isSameDay, isSameDay) ||
+                other.isSameDay == isSameDay));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode => Object.hash(runtimeType, error, isSameDay);
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
@@ -391,36 +509,37 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(bool isSameDay) initial,
+    required TResult Function(bool isSameDay) loading,
+    required TResult Function(ErrorModel error, bool isSameDay) failure,
+    required TResult Function(AddOrderResponseModel message, bool isSameDay)
+        success,
   }) {
-    return failure(error);
+    return failure(error, isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(bool isSameDay)? initial,
+    TResult? Function(bool isSameDay)? loading,
+    TResult? Function(ErrorModel error, bool isSameDay)? failure,
+    TResult? Function(AddOrderResponseModel message, bool isSameDay)? success,
   }) {
-    return failure?.call(error);
+    return failure?.call(error, isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(bool isSameDay)? initial,
+    TResult Function(bool isSameDay)? loading,
+    TResult Function(ErrorModel error, bool isSameDay)? failure,
+    TResult Function(AddOrderResponseModel message, bool isSameDay)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(error);
+      return failure(error, isSameDay);
     }
     return orElse();
   }
@@ -464,24 +583,30 @@ class _$FailureImpl implements _Failure {
 }
 
 abstract class _Failure implements AddOrderState {
-  const factory _Failure(final ErrorModel error) = _$FailureImpl;
+  const factory _Failure(final ErrorModel error, {final bool isSameDay}) =
+      _$FailureImpl;
 
   ErrorModel get error;
+  @override
+  bool get isSameDay;
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
+abstract class _$$SuccessImplCopyWith<$Res>
+    implements $AddOrderStateCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({AddOrderResponseModel message});
+  $Res call({AddOrderResponseModel message, bool isSameDay});
 }
 
 /// @nodoc
@@ -498,12 +623,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? isSameDay = null,
   }) {
     return _then(_$SuccessImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as AddOrderResponseModel,
+      isSameDay: null == isSameDay
+          ? _value.isSameDay
+          : isSameDay // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -511,14 +641,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.message);
+  const _$SuccessImpl(this.message, {this.isSameDay = false});
 
   @override
   final AddOrderResponseModel message;
+  @override
+  @JsonKey()
+  final bool isSameDay;
 
   @override
   String toString() {
-    return 'AddOrderState.success(message: $message)';
+    return 'AddOrderState.success(message: $message, isSameDay: $isSameDay)';
   }
 
   @override
@@ -526,11 +659,13 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.isSameDay, isSameDay) ||
+                other.isSameDay == isSameDay));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, isSameDay);
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
@@ -543,36 +678,37 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ErrorModel error) failure,
-    required TResult Function(AddOrderResponseModel message) success,
+    required TResult Function(bool isSameDay) initial,
+    required TResult Function(bool isSameDay) loading,
+    required TResult Function(ErrorModel error, bool isSameDay) failure,
+    required TResult Function(AddOrderResponseModel message, bool isSameDay)
+        success,
   }) {
-    return success(message);
+    return success(message, isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ErrorModel error)? failure,
-    TResult? Function(AddOrderResponseModel message)? success,
+    TResult? Function(bool isSameDay)? initial,
+    TResult? Function(bool isSameDay)? loading,
+    TResult? Function(ErrorModel error, bool isSameDay)? failure,
+    TResult? Function(AddOrderResponseModel message, bool isSameDay)? success,
   }) {
-    return success?.call(message);
+    return success?.call(message, isSameDay);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ErrorModel error)? failure,
-    TResult Function(AddOrderResponseModel message)? success,
+    TResult Function(bool isSameDay)? initial,
+    TResult Function(bool isSameDay)? loading,
+    TResult Function(ErrorModel error, bool isSameDay)? failure,
+    TResult Function(AddOrderResponseModel message, bool isSameDay)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(message);
+      return success(message, isSameDay);
     }
     return orElse();
   }
@@ -616,12 +752,16 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements AddOrderState {
-  const factory _Success(final AddOrderResponseModel message) = _$SuccessImpl;
+  const factory _Success(final AddOrderResponseModel message,
+      {final bool isSameDay}) = _$SuccessImpl;
 
   AddOrderResponseModel get message;
+  @override
+  bool get isSameDay;
 
   /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -26,25 +26,27 @@ class ClientDatailsForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("clientName".tr(),
+          Text("Client Name",
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'enterClientName'.tr(),
+            hintText: 'Enter Client Name',
             controller: nameController,
             prefixIcon: const Icon(Icons.edit_note_outlined,
                 size: 30, color: AppColors.blue),
           ),
           SizedBox(height: 10.h),
-          Text("phoneNumber".tr(),
-              style: AppStyles.s16.copyWith(
-                fontWeight: FontWeight.w700,
-              )),
+          Text(
+            "Phone Number",
+            style: AppStyles.s16.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'enterClientPhoneNumber'.tr(),
+            hintText: 'Enter Phone Number',
             controller: phoneController,
             prefixIcon: const Icon(
               Icons.phone,
@@ -53,13 +55,13 @@ class ClientDatailsForm extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.h),
-          Text("address".tr(),
+          Text("Address",
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'enterTheAdressInDetails'.tr(),
+            hintText: 'Apartment, floor, street',
             controller: addressController,
             prefixIcon: const Icon(
               Icons.location_on_outlined,
@@ -69,7 +71,7 @@ class ClientDatailsForm extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Center(
-            child: CustomButton(text: "next".tr(), onPressed: onPressed),
+            child: CustomButton(text: "Submit", onPressed: onPressed),
           ),
         ],
       ),

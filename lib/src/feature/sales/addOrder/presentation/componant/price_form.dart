@@ -13,11 +13,9 @@ import 'package:go_router/go_router.dart';
 
 class PriceForm extends StatelessWidget {
   PriceForm({super.key, required this.orderId});
-  final TextEditingController totalPriceController = TextEditingController();
   final TextEditingController depositController = TextEditingController();
   final TextEditingController deliveryPriceController = TextEditingController();
-  final TextEditingController remainingPriceController =
-      TextEditingController();
+
   final TextEditingController cakePriceController = TextEditingController();
   final TextEditingController flowerPriceController = TextEditingController();
 
@@ -31,60 +29,69 @@ class PriceForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h),
-          Text("deliveryPrice".tr(),
-              style: AppStyles.s16.copyWith(
-                fontWeight: FontWeight.w700, 
-              )),
-          SizedBox(height: 10.h),
-          CustomTextFormField(
-            hintText: 'enterPrice'.tr(),
-            prefixIcon: const Icon(Icons.attach_money_rounded,
-                size: 30, color: AppColors.green),
-            controller: deliveryPriceController,
-          ),
-          SizedBox(height: 10.h),
-          Text("cakePrice".tr(),
+          Text("Cake Price",
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'enterPrice'.tr(),
-            prefixIcon: const Icon(Icons.attach_money_rounded,
-                size: 30, color: AppColors.green),
+            hintText: ' inter the cake price',
+            prefixIcon: const Icon(
+              Icons.cake,
+              size: 30,
+              color: AppColors.primaryColor,
+            ),
             controller: cakePriceController,
           ),
-          Text("flowerPrice".tr(),
+          SizedBox(height: 10.h),
+          Text("Flower Price",
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'enterPrice'.tr(),
-            prefixIcon: const Icon(Icons.attach_money_rounded,
-                size: 30, color: AppColors.green),
+            hintText: 'inter the flower price',
+            prefixIcon:
+                const Icon(Icons.money, size: 30, color: AppColors.green),
             controller: flowerPriceController,
           ),
-          Text("remainingPrice".tr(),
+          Text("Delivery Price",
               style: AppStyles.s16.copyWith(
                 fontWeight: FontWeight.w700,
               )),
           SizedBox(height: 10.h),
           CustomTextFormField(
-            hintText: 'enterPrice'.tr(),
-            prefixIcon: const Icon(Icons.attach_money_rounded,
-                size: 30, color: AppColors.green),
-            controller: remainingPriceController,
+            hintText: 'inter the delivery price',
+            prefixIcon: const Icon(
+              Icons.attach_money_rounded,
+              size: 30,
+              color: AppColors.orange,
+            ),
+            controller: deliveryPriceController,
+          ),
+          Text("Deposit ",
+              style: AppStyles.s16.copyWith(
+                fontWeight: FontWeight.w700,
+              )),
+          SizedBox(height: 10.h),
+          CustomTextFormField(
+            hintText: 'inter the deposit if it is exist',
+            prefixIcon: const Icon(
+              Icons.motion_photos_pause_rounded,
+              size: 30,
+              color: AppColors.blue,
+            ),
+            controller: depositController,
           ),
           SizedBox(height: 10.h),
           Center(
             child: BlocListener<AddOrderCubit, AddOrderState>(
               listener: (context, state) {
                 state.whenOrNull(
-                  success: (message) {
+                  success: (message, _) {
                     context.go("${RouterNames.mapPicker}/$orderId");
                   },
-                  failure: (error) {
+                  failure: (error, _) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(error.message),
@@ -96,14 +103,14 @@ class PriceForm extends StatelessWidget {
               child: BlocBuilder<AddOrderCubit, AddOrderState>(
                 builder: (context, state) {
                   return CustomButton(
-                    text: "next".tr(),
+                    text: "Next",
                     onPressed: () {
                       final request = AddPriceRequestModel(
                         price: cakePriceController.text,
                         deposit: depositController.text,
-                        remaining: remainingPriceController.text,
+                        remaining: "",
                         deliveryPrice: deliveryPriceController.text,
-                        totalPrice: totalPriceController.text,
+                        totalPrice: "",
                         flowerPrice: flowerPriceController.text,
                       );
                       context

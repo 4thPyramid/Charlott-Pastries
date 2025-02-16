@@ -75,14 +75,14 @@ class MapPickerView extends StatelessWidget {
     }
     if (state is MapPickerLoaded) {
       return Text(
-        'العنوان: ${state.address}',
+        'Address: ${state.address}',
         style: const TextStyle(fontSize: 16),
         textAlign: TextAlign.right,
       );
     }
     if (state is MapPickerError) {
       return Text(
-        'خطأ: ${state.message}',
+        'Error: ${state.message}',
         style: const TextStyle(color: Colors.red),
         textAlign: TextAlign.right,
       );
@@ -92,7 +92,7 @@ class MapPickerView extends StatelessWidget {
 
   Widget _buildConfirmationButton(MapPickerState state, BuildContext context) {
     return CustomButton(
-      text: "تاكيد الموقع",
+      text: "Confirm Location",
       onPressed: state is MapPickerLoaded
           ? () => _confirmLocation(state, context)
           : () {},
@@ -102,11 +102,13 @@ class MapPickerView extends StatelessWidget {
   void _confirmLocation(MapPickerLoaded state, BuildContext context) {
     final encodedAddress = Uri.encodeComponent(state.address);
     context.go(
-      RouterNames.addClientDetailsView, extra: {
-        'longitude': state.longitude, 
+      RouterNames.addClientDetailsView,
+      extra: {
+        'longitude': state.longitude,
         'latitude': state.latitude,
-         'address': encodedAddress, 
-         'orderId': orderId},
+        'address': encodedAddress,
+        'orderId': orderId
+      },
     );
   }
 }

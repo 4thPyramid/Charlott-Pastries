@@ -8,17 +8,16 @@ import 'package:flutter/material.dart';
 import 'generated/codegen_loader.g.dart';
 
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator();
-  await getIt<CacheHelper>().init();
+  setupLocator(); 
+  await getIt<CacheHelper>().init(); 
   await EasyLocalization.ensureInitialized();
 
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translate', 
-      assetLoader: const CodegenLoader(),
       fallbackLocale: const Locale('en'),
       child: const MyApp(),
     ),

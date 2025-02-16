@@ -88,7 +88,7 @@ class _SalesSearchViewState extends State<SalesSearchView> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: ListTile(
-              title: Text(order.customerName, style: AppStyles.s18),
+              title: Text(order.customerName??"", style: AppStyles.s18),
               subtitle:
                   Text("النوع: ${order.orderType} | الحالة: ${order.status}"),
               trailing: Text(order.deliveryDate ?? 'N/A'),
