@@ -22,11 +22,11 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       id: (json['id'] as num).toInt(),
       orderType: json['order_type'] as String,
       orderDetails: json['order_details'] as String,
+      description: json['description'] as String?,
       flowerId: (json['flower_id'] as num?)?.toInt(),
       flowerQuantity: (json['flower_quantity'] as num?)?.toInt(),
       image: json['image'] as String?,
-      quantity: (json['quantity'] as num).toInt(),
-      deliveryTime: json['delivery_time'] as String,
+      deliveryTime: json['delivery_time'] as String?,
       deliveryDate: json['delivery_date'] as String,
       price: (json['price'] as num?)?.toDouble(),
       flowerPrice: (json['flower_price'] as num?)?.toDouble(),
@@ -55,9 +55,6 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       images: (json['images'] as List<dynamic>)
           .map((e) => OrderImageDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
-      flowers: json['flowers'] == null
-          ? null
-          : Flower.fromJson(json['flowers'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -67,7 +64,6 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'flower_id': instance.flowerId,
       'flower_quantity': instance.flowerQuantity,
       'image': instance.image,
-      'quantity': instance.quantity,
       'delivery_time': instance.deliveryTime,
       'delivery_date': instance.deliveryDate,
       'price': instance.price,
@@ -95,21 +91,4 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'updated_at': instance.updatedAt,
       'rejection_cause': instance.rejectionCause,
       'images': instance.images,
-      'flowers': instance.flowers,
-    };
-
-Flower _$FlowerFromJson(Map<String, dynamic> json) => Flower(
-      id: (json['id'] as num).toInt(),
-      type: json['type'] as String,
-      branchId: (json['branch_id'] as num).toInt(),
-      createdAt: json['created_at'] as String,
-      updatedAt: json['updated_at'] as String,
-    );
-
-Map<String, dynamic> _$FlowerToJson(Flower instance) => <String, dynamic>{
-      'id': instance.id,
-      'type': instance.type,
-      'branch_id': instance.branchId,
-      'created_at': instance.createdAt,
-      'updated_at': instance.updatedAt,
     };

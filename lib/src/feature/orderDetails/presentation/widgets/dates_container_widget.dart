@@ -50,9 +50,7 @@ class DatesContainerWidget extends StatelessWidget {
             const Divider(),
             Row(
               children: [
-                Text(
-                
-
+                Text( 
                   AppStrings.orderdeliveryTime.tr(),
                   style: AppStyles.s14,
                 ),

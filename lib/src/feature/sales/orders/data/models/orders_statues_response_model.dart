@@ -16,16 +16,11 @@ class OrdersStatuesResponseModel {
 @JsonSerializable()
 class OrderItem {
   final int id;
-  final int quantity;
-  @JsonKey(name: 'flower_quantity')
-  final int flowerQuantity;
   @JsonKey(name: 'updated_at')
   final String updatedAt;
 
   OrderItem({
     required this.id,
-    required this.quantity,
-    required this.flowerQuantity,
     required this.updatedAt,
   });
 

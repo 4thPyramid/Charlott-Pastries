@@ -2,12 +2,6 @@ import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-<<<<<<< HEAD
-import '../../../../../../core/utils/app_strings.dart';
-import '../../../../../../generated/app_strings.g.dart';
-=======
->>>>>>> b347856459b5ee1ba017a6b340b69497317a5fe5
 import '../../../../orderDetails/presentation/components/client_data.dart';
 import '../../../../orderDetails/presentation/components/order_data.dart';
 import '../../../../orderDetails/presentation/components/order_price.dart';
@@ -43,18 +37,25 @@ class ChefOrderDetailsContent extends StatelessWidget {
             customerAddress:
                 orderDetailsResponse.additionalData ?? 'لم يتم اضافه عنوان',
           ),
-          // TeamData(
-          //   chefName: orderDetailsResponse.chefName,
-          //   deliveryName: orderDetailsResponse.deliveryName,
-          // ),
-          OrderData(
-            title: AppStrings.orderData.tr(),
-            orderDetails: orderDetailsResponse.orderDetails ?? '',
-            orderType: orderDetailsResponse.orderType ?? '',
-            image: orderDetailsResponse.images.isNotEmpty
-                ? orderDetailsResponse.images[0].image
-                : 'https://s.itl.cat/pngfile/s/42-421036_cake-wallpaper-download-download-birthday-cake-images-hd.jpg',
-          ),
+        orderDetailsResponse.orderDetails != 'No details'
+              ? OrderData(
+                  title: AppStrings.orderData.tr(),
+                  orderDetails: orderDetailsResponse.orderDetails ?? '',
+                  orderType: orderDetailsResponse.orderType??'',
+                  image: orderDetailsResponse.images.isNotEmpty
+                      ? orderDetailsResponse.images[0].image
+                      : '',
+                )
+              : const SizedBox(),
+          orderDetailsResponse.description != 'No flowers'
+              ? OrderData(
+                  title: AppStrings.flowerData.tr(),
+                  orderDetails: '',
+                  orderType: orderDetailsResponse.description ??'',
+                  image: orderDetailsResponse.image ??
+                      'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
+                )
+              : const SizedBox(),
 
           OrderPrice(
             price: orderDetailsResponse.totalPrice ?? 0.0,

@@ -4,8 +4,6 @@ import 'package:charlot/src/feature/orderDetails/presentation/widgets/price_card
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_strings.dart';
-import '../../../../../generated/app_strings.g.dart';
 
 class OrderPrice extends StatelessWidget {
   const OrderPrice({super.key, required this.price, required this.deposit, required this.remaining, required this.flowerPrice});
@@ -29,7 +27,9 @@ class OrderPrice extends StatelessWidget {
           deposit: deposit.toString(),
           remaining: remaining.toString(),
           flowerPrice: flowerPrice.toString(),
-        )
+        ),
+                 const SizedBox(height: 16),
+
       ],
     );
   }

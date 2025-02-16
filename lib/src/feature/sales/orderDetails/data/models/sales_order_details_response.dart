@@ -17,6 +17,7 @@ class SalesOrderDetailsResponse {
 }
 
 @JsonSerializable()
+@JsonSerializable()
 class Order {
   final int id;
   @JsonKey(name: 'order_type')
@@ -28,11 +29,11 @@ class Order {
   @JsonKey(name: 'flower_quantity')
   final int? flowerQuantity;
   final String? image;
-  final int quantity;
   @JsonKey(name: 'delivery_time')
-  final String deliveryTime;
+  final String? deliveryTime;
   @JsonKey(name: 'delivery_date')
   final String deliveryDate;
+  final String? description;
   final double? price;
   @JsonKey(name: 'flower_price')
   final double? flowerPrice;
@@ -74,8 +75,8 @@ class Order {
   final String updatedAt;
   @JsonKey(name: 'rejection_cause')
   final String? rejectionCause;
+  @JsonKey(name: 'images')
   final List<OrderImageDetails> images;
-  final Flower? flowers;
 
   Order({
     required this.id,
@@ -84,20 +85,20 @@ class Order {
     this.flowerId,
     this.flowerQuantity,
     this.image,
-    required this.quantity,
-    required this.deliveryTime,
+     this.description,
+     this.deliveryTime,
     required this.deliveryDate,
-    required this.price,
-     this.flowerPrice,
-     this.deliveryPrice,
-     this.totalPrice,
+    this.price,
+    this.flowerPrice,
+    this.deliveryPrice,
+    this.totalPrice,
     required this.deposit,
-     this.remaining,
-     this.customerName,
-     this.customerPhone,
-     this.longitude,
-     this.latitude,
-     this.mapDesc,
+    this.remaining,
+    this.customerName,
+    this.customerPhone,
+    this.longitude,
+    this.latitude,
+    this.mapDesc,
     this.additionalData,
     this.productId,
     required this.isReturned,
@@ -105,41 +106,16 @@ class Order {
     required this.status,
     required this.paymentMethod,
     required this.saleId,
-     this.managerId,
-     this.chefId,
-     this.deliveryId,
+    this.managerId,
+    this.chefId,
+    this.deliveryId,
     required this.createdAt,
     required this.updatedAt,
     this.rejectionCause,
     required this.images,
-    this.flowers,
   });
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderToJson(this);
-}
-
-@JsonSerializable()
-class Flower {
-  final int id;
-  final String type;
-  @JsonKey(name: 'branch_id')
-  final int branchId;
-  @JsonKey(name: 'created_at')
-  final String createdAt;
-  @JsonKey(name: 'updated_at')
-  final String updatedAt;
-
-  Flower({
-    required this.id,
-    required this.type,
-    required this.branchId,
-    required this.createdAt,
-    required this.updatedAt,
-  });
-
-  factory Flower.fromJson(Map<String, dynamic> json) => _$FlowerFromJson(json);
-
-  Map<String, dynamic> toJson() => _$FlowerToJson(this);
 }

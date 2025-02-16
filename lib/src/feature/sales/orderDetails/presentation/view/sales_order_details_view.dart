@@ -13,7 +13,6 @@ class SalesOrderDetailsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.greyForSelectTap,
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

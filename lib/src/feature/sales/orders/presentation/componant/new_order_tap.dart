@@ -1,10 +1,12 @@
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/cubit/sales_order_statues_cubit.dart';
-import 'package:charlot/src/feature/sales/orders/presentation/widgets/orderd_list_view_for_taps_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../data/models/orders_statues_response_model.dart';
+import '../widgets/orders_taps_item_card_widget.dart';
 
 class NewOrderTap extends StatelessWidget {
   const NewOrderTap({
@@ -24,19 +26,19 @@ class NewOrderTap extends StatelessWidget {
                   const Center(child: SizedBox(child: Text("loading"))),
               error: (error) => Center(child: Text(error.message)),
               loaded: (orders) {
+                List<OrderItem> sortedOrders = List.from(orders.orders);
+                sortedOrders.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+
                 return SizedBox(
                   child: ListView.builder(
-                    reverse: true,
-                    itemCount: orders.orders.length,
+                    itemCount: sortedOrders.length,
                     itemBuilder: (context, index) {
                       return Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
                           child: OrdersTapsItemCardWidget(
-                            orederId: orders.orders[index].id,
-                            time: orders.orders[index].updatedAt,
-                            itemCount: orders.orders[index].quantity +
-                                orders.orders[index].flowerQuantity,
+                            orderId: sortedOrders[index].id,
+                            time: sortedOrders[index].updatedAt,
                             onPressed: () {
                               context.push(
                                   "${RouterNames.salesOrderDetails}/${orders.orders[index].id}");
