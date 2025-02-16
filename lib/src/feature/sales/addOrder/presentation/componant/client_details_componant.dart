@@ -1,4 +1,3 @@
-import 'package:charlot/core/common/widgets/shared_order_item_card.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_customer_request_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';

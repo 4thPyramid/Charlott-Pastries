@@ -1,5 +1,6 @@
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -112,13 +113,13 @@ class _DateRowWidgetState extends State<DateRowWidget> {
           onChanged: (value) => _updateDate(),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return widget.isRequired ? 'Required' : null;
+              return widget.isRequired ? 'required'.tr() : null;
             }
             final numValue = int.tryParse(value);
             if (numValue == null ||
                 numValue < minValue ||
                 numValue > maxValue) {
-              return 'Invalid value';
+              return 'invalidValue'.tr();
             }
             return null;
           },
@@ -136,7 +137,7 @@ class _DateRowWidgetState extends State<DateRowWidget> {
         Row(
           children: [
             Text(
-              'Delivered Date',
+              'deliveryDate'.tr(),
               style: AppStyles.s14.copyWith(fontWeight: FontWeight.w700),
             ),
             if (widget.isRequired)
@@ -152,11 +153,11 @@ class _DateRowWidgetState extends State<DateRowWidget> {
         SizedBox(height: 8.h),
         Row(
           children: [
-            _buildDateField(_dayController, 'Day', 2, 1, 31),
+            _buildDateField(_dayController, 'day'.tr(), 2, 1, 31),
             const SizedBox(width: 30),
-            _buildDateField(_monthController, 'Month', 2, 1, 12),
+            _buildDateField(_monthController, 'month'.tr(), 2, 1, 12),
             const SizedBox(width: 30),
-            _buildDateField(_yearController, 'Year', 4, 1900, 2100),
+            _buildDateField(_yearController, 'year'.tr(), 4, 1900, 2100),
           ],
         ),
       ],

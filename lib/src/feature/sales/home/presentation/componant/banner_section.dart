@@ -1,7 +1,6 @@
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
 import 'package:charlot/src/feature/sales/home/presentation/widgets/home_intro_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

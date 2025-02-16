@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/datails_field.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/image_picker_section.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,11 +25,11 @@ class CakeSectionComponant extends StatelessWidget {
         SizedBox(height: 20.h),
         DetailsField(
           textEditingController: controller,
-          text: 'Cake Details',
+          text: 'cakedetails'.tr(),
         ),
         ImagePickerWidget(
           onChanged: onImagesChanged,
-          title: 'Cake Images',
+          title: 'cakeImages'.tr(),
         ),
       ],
     );

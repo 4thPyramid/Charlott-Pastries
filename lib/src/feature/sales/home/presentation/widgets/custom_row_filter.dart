@@ -1,4 +1,5 @@
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class OrderFilter extends StatefulWidget {
@@ -9,13 +10,13 @@ class OrderFilter extends StatefulWidget {
 }
 
 class _OrderFilterState extends State<OrderFilter> {
-  String selectedFilter = 'الكل';
+  String selectedFilter = 'all'.tr();
 
   final List<String> filters = [
-    'الكل',
-    'الطلبات الجديدة',
-    'الطلبات قيد التنفيذ',
-    'الطلبات المكتملة',
+    'all'.tr(),
+    ' newOrders'.tr(),
+    'inProgressOrders'.tr(),
+    'completedOrders'.tr(),
   ];
 
   @override

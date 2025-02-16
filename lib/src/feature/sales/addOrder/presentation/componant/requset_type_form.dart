@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_request_model.dart';
@@ -21,7 +22,7 @@ class RequestTypeForm extends StatefulWidget {
 
 class _RequestTypeFormState extends State<RequestTypeForm> {
   bool isSameDay = false;
-  String selectedType = "cake and flower";
+  String selectedType = "Cake And Flowers";
   TextEditingController cakeDetailsController = TextEditingController();
   TextEditingController flowerDetailsController = TextEditingController();
   String? flowerType;
