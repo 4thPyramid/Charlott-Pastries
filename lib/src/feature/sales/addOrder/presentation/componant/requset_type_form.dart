@@ -50,50 +50,55 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
         child: Column(
           children: [
             const SizedBox(height: 16.0),
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+            BlocBuilder<AddOrderCubit, AddOrderState>(
+              builder: (context, state) {
+                return Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          Icons.delivery_dining,
-                          color: isSameDay ? Colors.green : Colors.grey,
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.delivery_dining,
+                              color:
+                                  state.isSameDay ? Colors.green : Colors.grey,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              "Same day delivery?",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: state.isSameDay
+                                    ? Colors.green
+                                    : Colors.black87,
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 10),
-                        Text(
-                          "Same day delivery ?",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: isSameDay ? Colors.green : Colors.black87,
-                          ),
+                        Switch(
+                          value: state.isSameDay,
+                          activeColor: Colors.green,
+                          inactiveTrackColor: Colors.grey,
+                          inactiveThumbColor: Colors.black,
+                          onChanged: (value) {
+                            context
+                                .read<AddOrderCubit>()
+                                .updateSameDayDelivery(value);
+                          },
                         ),
                       ],
                     ),
-                    Switch(
-                      trackOutlineColor:
-                          WidgetStateProperty.all(AppColors.grey),
-                      value: isSameDay,
-                      activeColor: Colors.green,
-                      inactiveTrackColor: AppColors.grey,
-                      inactiveThumbColor: AppColors.primaryColor,
-                      onChanged: (value) {
-                        setState(() {
-                          isSameDay = value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 10.0),
             DropdownButtonFormField<String>(
