@@ -33,6 +33,8 @@ abstract class EndpointsStrings {
   static const String managerDeliveryDetails = 'manager/show-delivery/';
   static const String managerSelectChef = 'manager/assign-to-Chef';
   static const String managerSelectDelivery = 'manager/assign-order-delivery';
+  static const String salesSelectDelivery = 'sales/deliveries';
+
   static const String managerAllEmployee = 'manager/all-requests';
   static const String managerAcceptChef = 'manager/accept-chef/';
   static const String managerRejectChef = 'manager/reject-chef/';

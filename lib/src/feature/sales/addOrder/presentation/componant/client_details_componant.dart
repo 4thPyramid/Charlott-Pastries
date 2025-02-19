@@ -33,11 +33,13 @@ class ClientDetailsComponant extends StatelessWidget {
               : Container(),
           success: (data, isSameDay) {
             Future.microtask(() {
-              print('\\\\\\\\\\\\\\\\\\\\\\\isSameDay: $isSameDay');
+              print('\\\\\\\\\\\\\\\\\\\\\\isSameDay: $isSameDay');
               if (isSameDay) {
-                context.go(RouterNames.selectDeliveryBoy,extra: {'orderId': orderId});
+                context.go(RouterNames.selectDeliveryBoy,
+                    extra: {'orderId': orderId});
               } else {
-                context.go(RouterNames.salesBottomNavigationBarRoot);
+                context.go(RouterNames.selectDeliveryBoy,
+                    extra: {'orderId': orderId});
               }
             });
           },

@@ -13,8 +13,8 @@ Employee _$EmployeeFromJson(Map<String, dynamic> json) => Employee(
       phone: json['phone'] as String,
       image: json['image'] as String?,
       specialization: json['specialization'] as String?,
-      canTakeOrder: json['canTakeOrder'] as String,
-      orderCount: (json['orderCount'] as num).toInt(),
+      canTakeOrder: json['canTakeOrder'] as String? ?? 'No',
+      orderCount: (json['orderCount'] as num? ?? 0).toInt(),
     );
 
 Map<String, dynamic> _$EmployeeToJson(Employee instance) => <String, dynamic>{

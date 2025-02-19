@@ -1,4 +1,3 @@
-
 import 'package:charlot/src/feature/manager/empolyee/domain/usecase/get_delivery_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,9 +8,10 @@ class EmployeesCubit extends Cubit<EmployeesState<dynamic>> {
   final GetChefUseCase _chefsUseCase;
   final GetDeliveryUseCase _deliveryUseCase;
 
-  EmployeesCubit(this._chefsUseCase, this._deliveryUseCase) : super(EmployeesState.initial());
+  EmployeesCubit(this._chefsUseCase, this._deliveryUseCase)
+      : super(EmployeesState.initial());
 
-  Future<void> callChef() async {  
+  Future<void> callChef() async {
     emit(EmployeesState.loading());
     final result = await _chefsUseCase.execute();
 
@@ -21,8 +21,7 @@ class EmployeesCubit extends Cubit<EmployeesState<dynamic>> {
     );
   }
 
-  
-  Future<void> callDelivery() async {  
+  Future<void> callDelivery() async {
     emit(EmployeesState.loading());
     final result = await _deliveryUseCase.execute();
 
