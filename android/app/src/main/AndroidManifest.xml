@@ -4,7 +4,6 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <!-- إضافة API Key الخاص بـ Google Maps هنا -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAvRUO9js6cWK6PC42iKxLr7X0T0wVyOBE" />
@@ -40,4 +39,7 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="true"/>
 </manifest>

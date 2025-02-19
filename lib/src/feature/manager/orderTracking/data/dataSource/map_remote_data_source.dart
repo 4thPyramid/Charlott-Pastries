@@ -1,4 +1,7 @@
+import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/src/feature/manager/orderTracking/data/dataSource/api_service.dart';
+import 'package:charlot/src/feature/manager/orderTracking/data/model/location_model.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -10,13 +13,15 @@ abstract class MapRemoteDataSource {
 
   Future<Map<String, dynamic>> getDestenationAndTime(
       LatLng origin, LatLng destination);
+
+  Future<Either<ErrorModel, LocationModel>> getDeliveryBoyLocation(
+      int deliveryId);
 }
 
 class MapRemoteDataSourceImpl implements MapRemoteDataSource {
   final String googleApiKey;
-  final mapTrackingApiService = MapTrackingApiServiceImpl();
-
-  MapRemoteDataSourceImpl({required this.googleApiKey});
+final MapTrackingApiService mapTrackingApiService;
+  MapRemoteDataSourceImpl(this.mapTrackingApiService, { required this.googleApiKey});
 
   @override
   Future<List<LatLng>> getRoutePolyline({
@@ -48,4 +53,10 @@ class MapRemoteDataSourceImpl implements MapRemoteDataSource {
     return await mapTrackingApiService.getDestenationAndTime(
         origin, destination);
   }
+@override
+  Future<Either<ErrorModel, LocationModel>> getDeliveryBoyLocation(
+      int deliveryId) async {
+    return await mapTrackingApiService.getDeliveryBoyLocation(deliveryId);
+  }
+
 }

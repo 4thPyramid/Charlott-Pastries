@@ -14,6 +14,9 @@ class StatsResponse {
   @JsonKey(name: 'percentage')
   final String percentageString;
 
+  @JsonKey(name:'assigned_orders')
+  final int assignedOrders;
+
   double get percentage {
     return double.tryParse(percentageString.replaceAll('%', '')) ?? 0.0;
   }
@@ -26,6 +29,7 @@ class StatsResponse {
     required this.recive,
     required this.notAssigned,
     required this.percentageString,
+    required this.assignedOrders,
   });
 
   factory StatsResponse.fromJson(Map<String, dynamic> json) =>

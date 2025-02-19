@@ -1,3 +1,4 @@
+import 'package:charlot/src/feature/manager/orderTracking/data/model/location_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -32,3 +33,9 @@ class MapError extends MapState {
 
   MapError(this.message);
 }
+class MapDeliveryBoyLocationLoaded extends MapState {
+  final LocationModel location;
+
+  MapDeliveryBoyLocationLoaded(this.location);
+}
+

@@ -1,9 +1,12 @@
 import 'package:charlot/core/services/service_locator.dart';
+import 'package:charlot/generated/app_strings.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../../../../core/theme/app_colors.dart';
 import '../../../../../../../../core/utils/app_styles.dart';
 import '../../../../../home/presentation/widgets/custom_title.dart';
 import '../../../../../home/presentation/widgets/newest_order_card_item.dart';
@@ -76,11 +79,15 @@ class _BuildSuccessView extends StatelessWidget {
             ordersCount: chef.completedOrdersCount,
           ),
           SizedBox(height: 20.h),
-          const CustomTitle(title: 'نبذه عن الشيف'),
+           CustomTitle(title:AppStrings.aboutChef.tr()),
           SizedBox(height: 10.h),
           Text(
             chef.bio,
-            style: AppStyles.s12,
+            style: AppStyles.s12.copyWith(
+              color: AppColors.greyForText,
+              fontWeight: FontWeight.w500,
+            ),
+
           ),
           SizedBox(height: 20.h),
           const CustomTitle(title: 'طرق التواصل بالشيف'),

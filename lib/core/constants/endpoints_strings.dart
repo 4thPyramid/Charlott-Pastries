@@ -20,6 +20,7 @@ abstract class EndpointsStrings {
   static const String managerStats = 'manager/stats';
   static const String completedOrders = 'manager/completed-orders';
   static const String notAssignedOrders = 'manager/not-assigned-orders';
+  static const String assignedOrders = 'manager/assigned-orders';
   static const String deliveredOrders = 'manager/delivered-orders';
   static const String returnedOrders = 'manager/returned-orders';
   static const String withDeliveryOrders = 'manager/orders-with-delivery';

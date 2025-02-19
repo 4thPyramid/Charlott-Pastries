@@ -28,6 +28,13 @@ import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit
 import 'package:charlot/src/feature/manager/home/data/remote/home_api_services.dart';
 import 'package:charlot/src/feature/manager/home/data/remote/home_remote_ds.dart';
 import 'package:charlot/src/feature/manager/home/domain/repository/home_repository.dart';
+import 'package:charlot/src/feature/manager/orderTracking/data/dataSource/api_service.dart';
+import 'package:charlot/src/feature/manager/orderTracking/data/dataSource/map_remote_data_source.dart';
+import 'package:charlot/src/feature/manager/orderTracking/domain/repository/map_repository.dart';
+import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_delivery_boy_location.dart';
+import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_destenation_and_time_uc.dart';
+import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_route.dart';
+import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_cubit.dart';
 import 'package:charlot/src/feature/manager/register/domain/usecase/manager_register_usecase.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/datasourc/add_order_api_service.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/datasourc/add_order_remote_data_source.dart';
@@ -129,12 +136,14 @@ import '../../src/feature/manager/home/presentation/logic/stats/stats_cubit.dart
 import '../../src/feature/manager/orders/data/remote/orders_api_services.dart';
 import '../../src/feature/manager/orders/data/remote/orders_remote_ds.dart';
 import '../../src/feature/manager/orders/domain/repo/orders_repo.dart';
+import '../../src/feature/manager/orders/domain/usecase/get_assigned_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_completed_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_delivered_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_not_assign_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_order_with_delivery_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_refused_order_use_case.dart';
 import '../../src/feature/manager/orders/domain/usecase/get_returned_order_use_case.dart';
+import '../../src/feature/manager/orders/presentation/logic/assigned/assigned_order_cubit.dart';
 import '../../src/feature/manager/orders/presentation/logic/completed/completed_order_cubit.dart';
 import '../../src/feature/manager/orders/presentation/logic/delivered/delivered_order_cubit.dart';
 import '../../src/feature/manager/orders/presentation/logic/not_assign/not_assign_order_cubit.dart';
@@ -259,7 +268,15 @@ void setupLocator() {
   getIt.registerLazySingleton<IAppRepository>(
     () => AppRepositoryImpl(getIt()),
   );
-  
+getIt.registerLazySingleton<MapTrackingApiServiceImpl>(
+    () => MapTrackingApiServiceImpl(getIt()),
+  );
+
+  getIt.registerLazySingleton<MapTrackingApiService>(
+    () => getIt<MapTrackingApiServiceImpl>(),
+  );
+
+
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
       () => ProfileRemoteDSImpl(getIt()));
@@ -319,6 +336,10 @@ void setupLocator() {
   getIt.registerLazySingleton<SalesNotificationRemoteDs>(
       () => SalesNotificationRemoteDsImpl(getIt()));
 
+  getIt.registerLazySingleton<MapRemoteDataSource>(() =>
+      MapRemoteDataSourceImpl(getIt(), googleApiKey: "AIzaSyBKHhTQI6x7OVbOTiozcbPpX63deiLYoTI",
+          ));
+
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(getIt()));
@@ -377,6 +398,10 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SpecializationRepo>(
       () => SpecializationRepoImp(getIt()));
+
+  getIt.registerLazySingleton<MapRepository>(
+    () => MapRepositoryImpl(getIt()),
+  );
 
   ///! -- UseCases -- ///
 
@@ -562,16 +587,27 @@ void setupLocator() {
   getIt.registerLazySingleton<GetSalesNotificationUseCase>(
     () => GetSalesNotificationUseCase(getIt()),
   );
-
+  getIt.registerLazySingleton<GetAssignedOrderUseCase>(
+    () => GetAssignedOrderUseCase(getIt()),
+  );
   getIt.registerLazySingleton<GetNotAssignOrderUseCase>(
     () => GetNotAssignOrderUseCase(getIt()),
   );
-   getIt.registerFactory<GetSelectedLanguageUseCase>(
+  getIt.registerFactory<GetSelectedLanguageUseCase>(
     () => GetSelectedLanguageUseCase(getIt()),
   );
   getIt.registerFactory<SaveSelectedLanguageUseCase>(
     () => SaveSelectedLanguageUseCase(getIt()),
   );
+
+  getIt.registerLazySingleton<GetDeliveryBoyLocation>(
+      () => GetDeliveryBoyLocation(getIt()));
+
+  getIt.registerLazySingleton<GetDestenationAndTimeUc>(
+      () => GetDestenationAndTimeUc(getIt()));
+
+  getIt.registerLazySingleton<GetRouteUC>(() => GetRouteUC(getIt()));
+
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
         getIt(),
@@ -663,7 +699,7 @@ void setupLocator() {
         getIt(),
         getIt(),
       ));
-getIt.registerFactory<LanguageCubit>(
+  getIt.registerFactory<LanguageCubit>(
     () => LanguageCubit(getIt(), getIt()),
   );
   getIt.registerFactory<SalesOrderDetailsCubit>(
@@ -678,5 +714,17 @@ getIt.registerFactory<LanguageCubit>(
 
   getIt.registerFactory<NotAssignOrdersCubit>(
     () => NotAssignOrdersCubit(getIt()),
+  );
+  getIt.registerFactory<AssignedOrdersCubit>(
+    () => AssignedOrdersCubit(getIt()),
+  );
+
+  getIt.registerFactory<MapCubit>(
+    () => MapCubit(
+      getIt(),
+      getIt(),
+      getIt(),
+      getIt(),
+    ),
   );
 }

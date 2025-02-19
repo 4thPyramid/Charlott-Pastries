@@ -55,19 +55,7 @@ class SharedOrderItemCard extends StatelessWidget {
               ),
             ],
           ),
-          if (orderResponse.status == AppStrings.beingDeliverOrder)
-            CustomButton(
-              width: 150.w,
-              height: 30.h,
-              text: AppStrings.trackOrder.tr(),
-              textStyle: AppStyles.s12.copyWith(
-                color: AppColors.white,
-              ),
-              onPressed: () {
-                //!navigate to track order
-              },
-            )
-          else
+         
             CustomButton(
                 width: 150.w,
                 height: 30.h,

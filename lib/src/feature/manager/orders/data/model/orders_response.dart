@@ -21,6 +21,8 @@ class OrdersResponse {
 @JsonSerializable()
 class Order {
   final int id;
+  @JsonKey(name: 'delivery_id')
+  final int? deliveryId;
   @JsonKey(name: 'customer_name')
   final String? customerName;
 
@@ -33,7 +35,8 @@ class Order {
 
   Order({
     required this.id,
-     this.customerName,
+    this.deliveryId,
+    this.customerName,
     required this.orderType,
     required this.status,
     this.deliveryDate,

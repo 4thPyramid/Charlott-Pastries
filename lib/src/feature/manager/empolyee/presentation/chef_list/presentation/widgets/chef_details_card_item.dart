@@ -52,7 +52,7 @@ class ChefAndDeliveryDetailsCardItem extends StatelessWidget {
             subtitle: Text(
               specialization,
               style: AppStyles.s10.copyWith(
-                color: AppColors.grey,
+                color: AppColors.greyForText,
                 fontWeight: FontWeight.w500,
               ),
             ),

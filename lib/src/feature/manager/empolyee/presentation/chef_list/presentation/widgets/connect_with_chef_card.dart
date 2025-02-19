@@ -52,7 +52,7 @@ class ConnectWithChefRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, color: AppColors.grey),
+      leading: Icon(icon, color: AppColors.greyForText),
       title: Text(
         title,
         style: AppStyles.s14.copyWith(

@@ -8,6 +8,7 @@ abstract class  AppStrings {
   static const sales = 'sales';
   static const chef = 'chef';
   static const skip = 'skip';
+  static const waitingOrders = 'waitingOrders';
   static const forgetPassword = 'forgetPassword';
   static const choiceSpecialization = 'choiceSpecialization';
   static const welcomeInOurApp = 'welcomeInOurApp';
@@ -15,6 +16,11 @@ abstract class  AppStrings {
   static const welcome = 'welcome';
   static const ignore = 'ignore';
   static const save = 'save';
+
+  static const aboutChef = 'aboutChef';
+  static const aboutDelivery = 'aboutDelivery';
+  static const orderCount = 'orderCount';
+  static const chefDetails = 'chefDetails';
   static const editPersonalInf = 'editPersonalInf';
   static const addEmployees = 'addEmployees';
   static const welcomeBack = 'welcomeBack';

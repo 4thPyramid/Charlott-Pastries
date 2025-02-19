@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../../../core/theme/app_colors.dart';
+import '../../../../../../../../generated/app_strings.g.dart';
 import '../components/chef_details_components.dart';
 
 class ChefDetailsView extends StatelessWidget {
@@ -17,7 +19,7 @@ final int orderId;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomAppBar(
-                title: "تفاصيل الشيف",
+                title: AppStrings.chefDetails.tr(),
                 iconLeft: Icons.arrow_back_ios,
                 onPressedLeft: () {
                   Navigator.pop(context);

@@ -11,6 +11,8 @@ OrderDetailsResponse _$OrderDetailsResponseFromJson(
     OrderDetailsResponse(
       success: json['success'] as bool,
       deliveryDate: json['delivery_date'] as String?,
+      from: json['from'] as String?,
+      to: json['to'] as String?,
       createdAt: json['created_at'] as String,
       orderDetails: json['order_details'] as String?,
       orderType: json['order_type'] as String,
@@ -34,6 +36,12 @@ OrderDetailsResponse _$OrderDetailsResponseFromJson(
       cakePrice: (json['cake_price'] as num?)?.toDouble(),
       flowerPrice: (json['flower_price'] as num?)?.toDouble(),
       totalPrice: (json['total_price'] as num?)?.toDouble(),
+      longitude: json['longitude'] as String?,
+      latitude: json['latitude'] as String?,
+      mapDesc: json['map_desc'] as String?,
+      branch: json['branch'] == null
+          ? null
+          : Branch.fromJson(json['branch'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OrderDetailsResponseToJson(
@@ -41,6 +49,8 @@ Map<String, dynamic> _$OrderDetailsResponseToJson(
     <String, dynamic>{
       'success': instance.success,
       'delivery_date': instance.deliveryDate,
+      'from': instance.from,
+      'to': instance.to,
       'created_at': instance.createdAt,
       'order_details': instance.orderDetails,
       'order_type': instance.orderType,
@@ -62,6 +72,10 @@ Map<String, dynamic> _$OrderDetailsResponseToJson(
       'cake_price': instance.cakePrice,
       'flower_price': instance.flowerPrice,
       'total_price': instance.totalPrice,
+      'longitude': instance.longitude,
+      'latitude': instance.latitude,
+      'map_desc': instance.mapDesc,
+      'branch': instance.branch,
     };
 
 OrderImageDetails _$OrderImageDetailsFromJson(Map<String, dynamic> json) =>
@@ -78,6 +92,28 @@ Map<String, dynamic> _$OrderImageDetailsToJson(OrderImageDetails instance) =>
       'id': instance.id,
       'order_id': instance.orderId,
       'image': instance.image,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+    };
+
+Branch _$BranchFromJson(Map<String, dynamic> json) => Branch(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      phone: json['phone'] as String,
+      address: json['address'] as String,
+      longitude: json['long'] as String,
+      latitude: json['lat'] as String,
+      createdAt: json['created_at'] as String,
+      updatedAt: json['updated_at'] as String,
+    );
+
+Map<String, dynamic> _$BranchToJson(Branch instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'phone': instance.phone,
+      'address': instance.address,
+      'long': instance.longitude,
+      'lat': instance.latitude,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
     };

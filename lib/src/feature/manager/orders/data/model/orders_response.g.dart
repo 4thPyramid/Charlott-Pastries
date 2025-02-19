@@ -20,6 +20,7 @@ Map<String, dynamic> _$OrdersResponseToJson(OrdersResponse instance) =>
 
 Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       id: (json['id'] as num).toInt(),
+      deliveryId: (json['delivery_id'] as num?)?.toInt(),
       customerName: json['customer_name'] as String?,
       orderType: json['order_type'] as String,
       status: json['status'] as String,
@@ -31,6 +32,7 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'id': instance.id,
+      'delivery_id': instance.deliveryId,
       'customer_name': instance.customerName,
       'order_type': instance.orderType,
       'status': instance.status,

@@ -39,6 +39,7 @@ abstract class RouterNames {
 
   static const String managerHomView = '/manager-home';
   static const String managerNotAssignedOrders = '/manager-not-assigned-orders';
+  static const String managerAssignedOrders = '/manager-assigned-orders';
   static const String managerRefusedOrders = '/manager-refused-orders';
   static const String chefDetails = '/chefDetails';
   static const String newestOrderDetails = '/newestOrderDetails';
@@ -56,6 +57,7 @@ abstract class RouterNames {
   static const String managerCompletedOrders = '/manager-complete-orders';
   static const String managerFinishOrders = '/finish-orders';
   static const String completeOrdersDetails = '/complete-orders-details';
+  static const String orderTrackingView = '/order-tracking-view';
 
   //!chef
   static const String chefChangePassword = '/chef-change-password';

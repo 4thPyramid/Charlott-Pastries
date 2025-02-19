@@ -15,6 +15,7 @@ StatsResponse _$StatsResponseFromJson(Map<String, dynamic> json) =>
       recive: (json['recive'] as num).toInt(),
       notAssigned: (json['not_assigned'] as num).toInt(),
       percentageString: json['percentage'] as String,
+      assignedOrders: (json['assigned_orders'] as num).toInt(),
     );
 
 Map<String, dynamic> _$StatsResponseToJson(StatsResponse instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$StatsResponseToJson(StatsResponse instance) =>
       'recive': instance.recive,
       'not_assigned': instance.notAssigned,
       'percentage': instance.percentageString,
+      'assigned_orders': instance.assignedOrders,
     };

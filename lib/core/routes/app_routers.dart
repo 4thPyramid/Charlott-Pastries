@@ -1,3 +1,4 @@
+import 'package:charlot/src/feature/manager/orderTracking/presentation/views/order_tracking_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/cubit/sales_order_details_cubit.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/view/sales_order_details_view.dart';
@@ -61,6 +62,7 @@ import '../../src/feature/manager/empolyee/presentation/delivery/presentation/vi
 import '../../src/feature/manager/home/presentation/view/manager_hom_view.dart';
 import '../../src/feature/manager/manager_bottom_navigation_bar_root.dart';
 import '../../src/feature/manager/newest_orders/presentation/views/newest_order_details.dart';
+import '../../src/feature/manager/orders/presentation/views/manager_assigned_orders.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_being_delivered_orders_view.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_not_assign_order.dart';
 import '../../src/feature/manager/orders/presentation/views/manager_refused_orders.dart';
@@ -83,7 +85,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouterNames.selectLanguage,
-      builder: (context, state) => const LanguageSelectionPage (),
+      builder: (context, state) => const LanguageSelectionPage(),
     ),
     GoRoute(
       path: RouterNames.userTypeView,
@@ -252,7 +254,6 @@ final GoRouter router = GoRouter(
       path: RouterNames.salesHome,
       builder: (context, state) => const SalesHomeView(),
     ),
-    
 
     GoRoute(
       path: RouterNames.addOrder,
@@ -261,7 +262,6 @@ final GoRouter router = GoRouter(
           BlocProvider(
             create: (context) => getIt<AddOrderCubit>(),
           ),
-        
         ],
         child: const AddOrderViewFirst(),
       ),
@@ -308,7 +308,7 @@ final GoRouter router = GoRouter(
       path: RouterNames.waitingOrders,
       builder: (context, state) => const WaitingOrders(),
     ),
-    
+
     GoRoute(
       path: RouterNames.compleatedOrders,
       builder: (context, state) => const CompleatedOrdersSales(),
@@ -352,9 +352,13 @@ final GoRouter router = GoRouter(
       path: RouterNames.managerCompletedOrders,
       builder: (context, state) => const ManagerCompletedOrders(),
     ),
-     GoRoute(
+    GoRoute(
       path: RouterNames.managerNotAssignedOrders,
       builder: (context, state) => const ManagerNotAssignOrders(),
+    ),
+    GoRoute(
+      path: RouterNames.managerAssignedOrders,
+      builder: (context, state) => const ManagerAssignedOrders(),
     ),
     GoRoute(
       path: RouterNames.managerReturnedOrders,
@@ -363,6 +367,16 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.managerRefusedOrders,
       builder: (context, state) => const ManagerRefusedOrders(),
+    ),
+    GoRoute(
+      path: RouterNames.orderTrackingView,
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+
+        return OrderTrackingView(
+          orderId: data['orderId'] as int ? ?? 0,
+        );
+      },
     ),
     GoRoute(
       path: RouterNames.completeOrdersDetails,

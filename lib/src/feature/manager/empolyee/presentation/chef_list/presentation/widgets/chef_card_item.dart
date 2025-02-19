@@ -1,6 +1,7 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -59,7 +60,7 @@ class ChefAndDeliveryCard extends StatelessWidget {
             subtitle: Text(
               employee.specialization ?? '',
               style: AppStyles.s10.copyWith(
-                color: AppColors.grey,
+                color: AppColors.greyForText,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -86,7 +87,7 @@ class ChefAndDeliveryCard extends StatelessWidget {
           const SizedBox(height: 16),
           Row(
             children: [
-              Text('#عدد الطلبات المنفذه',
+              Text('#${AppStrings.orderCount.tr()}',
                   style: AppStyles.s12.copyWith(
                     color: AppColors.darkTextGrey,
                     fontWeight: FontWeight.w400,

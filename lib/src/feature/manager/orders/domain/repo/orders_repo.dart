@@ -11,6 +11,7 @@ abstract class OrderRepository {
   Future<Either<ErrorModel, OrdersResponse>> deliveredOrder();
   Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder();
     Future<Either<ErrorModel, OrdersResponse>> notAssignOrder();
+  Future<Either<ErrorModel, OrdersResponse>> assignOrder();
 
     Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders();
 
@@ -49,5 +50,10 @@ class OrderRepositoryImpl extends OrderRepository {
         Future<Either<ErrorModel, OrdersResponse>> notAssignOrder() async {
           return ordersRemoteDs.notAssignOrder();
         }
+        
+          @override
+          Future<Either<ErrorModel, OrdersResponse>> assignOrder() async {
+            return ordersRemoteDs.assignOrder();
+          }
 }
 

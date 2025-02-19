@@ -1,4 +1,3 @@
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import '../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_styles.dart';
-import '../../../../../generated/app_strings.g.dart';
 import '../../../manager/accept_employee/presentation/widgets/accept_and_refuse_button.dart';
 import '../logic/accept_order/accept_order_cubit.dart';
 import '../logic/accept_order/accept_order_state.dart';
@@ -57,6 +55,24 @@ class OrderDetailsActions extends StatelessWidget {
             context.push(RouterNames.selectChef, extra: {
               'orderId': orderId,
             });
+          },
+        ),
+      );
+    } else if (orderStatus == "delivery recieved") {
+      return Align(
+        alignment: Alignment.bottomCenter,
+        child: CustomButton(
+          text: AppStrings.trackOrder.tr(),
+          textStyle: AppStyles.s14.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w700,
+          ),
+          onPressed: () {
+            context.push(RouterNames.orderTrackingView, extra: {
+              'orderId': orderId,
+            });
+     
+         
           },
         ),
       );
