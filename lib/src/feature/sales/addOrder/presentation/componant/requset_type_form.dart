@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -27,16 +28,23 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
   TextEditingController flowerDetailsController = TextEditingController();
   String? flowerType;
   String? flowerColor;
-  TimeOfDay? deliveryTime;
+  TimeOfDay? deliveryTimeFrom;
+  TimeOfDay? deliveryTimeTo;
   DateTime? selectedDate;
   int quantity = 1;
   List<File> cakeImages = [];
   List<File> flowerImages = [];
   bool isDeliveryTimeValid = true;
 
-  void _handleDeliveryTimeChanged(TimeOfDay time) {
+  void _handleDeliveryTimeToChanged(TimeOfDay time) {
     setState(() {
-      deliveryTime = time;
+      deliveryTimeFrom = time;
+      isDeliveryTimeValid = true;
+    });
+  }
+  void _handleDeliveryTimeFromChanged(TimeOfDay time) {
+    setState(() {
+      deliveryTimeTo = time;
       isDeliveryTimeValid = true;
     });
   }
@@ -90,6 +98,10 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                           inactiveTrackColor: Colors.grey,
                           inactiveThumbColor: Colors.black,
                           onChanged: (value) {
+                            print("------------------value--$value");
+                            print("---------------state-----${state.isSameDay}");
+                            CacheHelper.saveData(key: 'isSameDay', value: value);
+
                             context
                                 .read<AddOrderCubit>()
                                 .updateSameDayDelivery(value);
@@ -145,13 +157,13 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
               children: [
                 DeliveryTimePicker(
                   title: "From",
-                  initialTime: deliveryTime,
-                  onTimeChanged: _handleDeliveryTimeChanged,
+                  initialTime: deliveryTimeFrom,
+                  onTimeChanged: _handleDeliveryTimeFromChanged,
                 ),
                 const Spacer(),
                 DeliveryTimePicker(
-                  initialTime: deliveryTime,
-                  onTimeChanged: _handleDeliveryTimeChanged,
+                  initialTime: deliveryTimeTo,
+                  onTimeChanged: _handleDeliveryTimeToChanged,
                   title: 'To',
                 ),
               ],
@@ -187,10 +199,11 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                   orElse: () => CustomButton(
                     text: "Next",
                     onPressed: () {
-                      if (deliveryTime == null) {
+                      if (deliveryTimeFrom == null|| deliveryTimeTo == null) {
                         setState(() {
                           isDeliveryTimeValid = false;
-                        });
+
+                        }); 
                         return;
                       }
 
@@ -201,9 +214,10 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                         orderDetails: cakeDetailsController.text,
                         quantity: quantity,
                         deliveryDate: selectedDate?.toIso8601String() ?? '',
-                        deliveryTime:
-                            '${deliveryTime!.hour.toString().padLeft(2, '0')}:${deliveryTime!.minute.toString().padLeft(2, '0')}',
+                      
                         description: flowerDetailsController.text,
+                        from: deliveryTimeFrom != null ? '${deliveryTimeFrom!.hour.toString().padLeft(2, '0')}:${deliveryTimeFrom!.minute.toString().padLeft(2, '0')}' : '',
+                        to: deliveryTimeTo != null ? '${deliveryTimeTo!.hour.toString().padLeft(2, '0')}:${deliveryTimeTo!.minute.toString().padLeft(2, '0')}' : ''
                       );
 
                       context

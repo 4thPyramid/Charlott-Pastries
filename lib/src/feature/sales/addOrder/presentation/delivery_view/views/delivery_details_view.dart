@@ -1,14 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../../../core/theme/app_colors.dart';
-import '../../../../../../../../generated/app_strings.g.dart';
-import '../components/select_delivery_list_view.dart';
 
-class SelectDeliveryView extends StatelessWidget {
-  const SelectDeliveryView({super.key, required this.orderId});
-  final int orderId;
+import '../components/delivery_details_components.dart';
+
+class SalesDeliveryDetailsView extends StatelessWidget {
+  const SalesDeliveryDetailsView({super.key, required this.deliveryId, required this.orderId});
+final int deliveryId;
+final int orderId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,15 +19,13 @@ class SelectDeliveryView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomAppBar(
-                title: AppStrings.deliveryData.tr(),
+                title: "تفاصيل المندوب",
                 iconLeft: Icons.arrow_back_ios,
                 onPressedLeft: () {
                   Navigator.pop(context);
                 },
               ),
-              SelectDeriversListView(
-                orderId: orderId,
-              )
+               SalesDeliveryDetailsComponents(deliveryId: deliveryId, orderId: orderId,),
             ],
           ),
         ));

@@ -31,7 +31,7 @@ abstract class RouterNames {
   static const String salesProfileInfo = '/sales-profile-info';
   static const String salesSettingView = '/sales-setting-view';
   static const String readyOrderDetailsView = '/ready-order-details';
-
+  static const String salesSelectDeliveryView = '/sales-select-delivery';
   //!manager
   static const String managerRegister = '/manager-register';
   static const String managerBottomNavigationBarRoot =
@@ -45,6 +45,7 @@ abstract class RouterNames {
   static const String newestOrderDetails = '/newestOrderDetails';
   static const String selectChef = '/select-chef';
   static const String selectDeliveryBoy = '/select-delivery';
+  static const String salesDeliveryDetails = '/sales-delivery-details';
   static const String deliveryBoyDetails = '/delivery-details';
   static const String managerReturnedOrders = '/manager-returned-orders';
   static const String settingView = '/settingView';

@@ -23,6 +23,7 @@ class AddOrderCubit extends Cubit<AddOrderState> {
   final AddOrderPriceUC _addOrderPriceUC;
   final AddClientDataUc _addClientDataUc;
 
+  
   void updateSameDayDelivery(bool value) {
     emit(AddOrderState.initial(isSameDay: value));
   }

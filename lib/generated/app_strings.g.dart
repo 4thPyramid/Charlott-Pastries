@@ -151,6 +151,7 @@ abstract class  AppStrings {
   static const foodQuality = 'foodQuality';
   static const addDetailsOptional = 'addDetailsOptional';
   static const send = 'send';
+  static const deliveryData = 'deliveryData';
   static const cancel = 'cancel';
   static const clientData = 'clientData';
   static const personalData = 'personalData';

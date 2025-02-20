@@ -120,6 +120,12 @@ class ChefAndDeliveryCard extends StatelessWidget {
                       'chefId': employee.id,
                       'orderId': orderId,
                     });
+                  }else{
+                     
+                     context.push(RouterNames.salesDeliveryDetails,extra: {
+                      'deliveryId': employee.id,
+                      'orderId': orderId,
+                    });
                   }
                 }),
           )

@@ -15,8 +15,9 @@ AddOrderRequestModel _$AddOrderRequestModelFromJson(
       orderDetails: json['order_details'] as String,
       quantity: (json['quantity'] as num).toInt(),
       deliveryDate: json['delivery_date'] as String,
-      deliveryTime: json['delivery_time'] as String,
       description: json['description'] as String,
+      from: json['from'] as String,
+      to: json['to'] as String,
     );
 
 Map<String, dynamic> _$AddOrderRequestModelToJson(
@@ -28,6 +29,7 @@ Map<String, dynamic> _$AddOrderRequestModelToJson(
       'order_details': instance.orderDetails,
       'quantity': instance.quantity,
       'delivery_date': instance.deliveryDate,
-      'delivery_time': instance.deliveryTime,
       'description': instance.description,
+      'from': instance.from,
+      'to': instance.to,
     };

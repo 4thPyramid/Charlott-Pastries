@@ -6,8 +6,8 @@ import '../../../../../../../../core/theme/app_colors.dart';
 import '../../../../../../../../generated/app_strings.g.dart';
 import '../components/select_delivery_list_view.dart';
 
-class SelectDeliveryView extends StatelessWidget {
-  const SelectDeliveryView({super.key, required this.orderId});
+class SalesSelectDeliveryView extends StatelessWidget {
+  const SalesSelectDeliveryView({super.key, required this.orderId});
   final int orderId;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SelectDeliveryView extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
-              SelectDeriversListView(
+              SalesSelectDeriversListView(
                 orderId: orderId,
               )
             ],

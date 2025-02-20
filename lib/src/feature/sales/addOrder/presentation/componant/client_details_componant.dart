@@ -1,3 +1,4 @@
+import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_customer_request_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
@@ -33,13 +34,17 @@ class ClientDetailsComponant extends StatelessWidget {
               : Container(),
           success: (data, isSameDay) {
             Future.microtask(() {
+              var isSame = CacheHelper.getData(key: 'isSameDay');
               print('\\\\\\\\\\\\\\\\\\\\\\isSameDay: $isSameDay');
-              if (isSameDay) {
-                context.go(RouterNames.selectDeliveryBoy,
+              if (isSame) {
+                print('\\\\\\\\\\\\\\\\\\\\\\isSameDay true: $isSame');
+                context.push(RouterNames.salesSelectDeliveryView,
                     extra: {'orderId': orderId});
               } else {
-                context.go(RouterNames.selectDeliveryBoy,
-                    extra: {'orderId': orderId});
+                print('\\\\\\\\\\\\\\\\\\\\\\isSameDay false : $isSame');
+                context.push(
+                  RouterNames.salesBottomNavigationBarRoot,
+                );
               }
             });
           },

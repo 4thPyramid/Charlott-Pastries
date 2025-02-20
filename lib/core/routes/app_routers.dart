@@ -73,6 +73,8 @@ import '../../src/feature/manager/profile/presentation/view/change_password_view
 import '../../src/feature/manager/profile/presentation/view/personal_info_view.dart';
 import '../../src/feature/manager/profile/presentation/view/settings_view.dart';
 import '../../src/feature/manager/register/presentation/logic/manager_register/manager_register_cubit.dart';
+import '../../src/feature/sales/addOrder/presentation/delivery_view/views/delivery_details_view.dart';
+import '../../src/feature/sales/addOrder/presentation/delivery_view/views/select_delivery_view.dart';
 import '../../src/feature/sales/register/presentation/logic/sales_register/sales_register_cubit.dart';
 import '../../src/feature/sales/sales_bottom_navigation_bar_root.dart';
 import '../../src/feature/splash/splash_view.dart';
@@ -410,6 +412,26 @@ final GoRouter router = GoRouter(
             orderId: data['orderId'] as int? ?? 0,
           );
         }),
+
+    GoRoute(
+        path: RouterNames.salesSelectDeliveryView,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return SalesSelectDeliveryView(
+            orderId: data['orderId'] as int? ?? 0,
+          );
+        }),
+
+         GoRoute(
+        path: RouterNames.salesDeliveryDetails,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return SalesDeliveryDetailsView(
+            deliveryId: data['deliveryId'] as int? ?? 0,
+            orderId: data['orderId'] as int? ?? 0,
+          );
+        }),
+
     GoRoute(
         path: RouterNames.chefDetails,
         builder: (context, state) {

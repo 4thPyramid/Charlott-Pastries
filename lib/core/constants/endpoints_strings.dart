@@ -33,7 +33,6 @@ abstract class EndpointsStrings {
   static const String managerDeliveryDetails = 'manager/show-delivery/';
   static const String managerSelectChef = 'manager/assign-to-Chef';
   static const String managerSelectDelivery = 'manager/assign-order-delivery';
-  static const String salesSelectDelivery = 'sales/deliveries';
 
   static const String managerAllEmployee = 'manager/all-requests';
   static const String managerAcceptChef = 'manager/accept-chef/';
@@ -55,6 +54,11 @@ abstract class EndpointsStrings {
   static const String salesBanner = 'sales/banners';
   static const String salesOrdersStatus = 'sales/stats';
   static const String salesChangePassword = 'sales/change-password';
+  static const String salesGetDelivery = 'sales/deliveries';
+  static const String salesDeliveryDetails = 'sales/deliveries/';
+  static const String salesSelectDelivery = 'sales/assign-to-delivery/';
+
+
 
   //!chef//
   static const String chefRegister = 'chef/register';

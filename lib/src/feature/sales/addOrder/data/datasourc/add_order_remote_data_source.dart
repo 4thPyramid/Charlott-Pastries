@@ -6,6 +6,9 @@ import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_o
 import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_price_request_model.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../../../manager/empolyee/data/model/delivery_details_response.dart';
+import '../../../../manager/empolyee/data/model/employee_response.dart';
+
 abstract class AddOrderRemoteDataSource {
   Future<Either<ErrorModel, AddOrderResponseModel>> addOrderDetails(
       AddOrderRequestModel request);
@@ -15,6 +18,11 @@ abstract class AddOrderRemoteDataSource {
 
   Future<Either<ErrorModel, AddOrderResponseModel>> addOrderClientData(
       AddCustomerRequestModel request, int orderId);
+
+  Future<Either<ErrorModel, EmployeesResponse>> getDelivery();
+  Future<Either<ErrorModel, DeliveryDetails>> getDeliveryDetails(int id);
+  Future<Either<ErrorModel, String>> selectDelivery(
+      int deliveryId, int branchId, int orderId);
 }
 
 class AddOrderRemoteDataSourceImpl implements AddOrderRemoteDataSource {
@@ -33,4 +41,20 @@ class AddOrderRemoteDataSourceImpl implements AddOrderRemoteDataSource {
   Future<Either<ErrorModel, AddOrderResponseModel>> addOrderClientData(
           AddCustomerRequestModel request, int orderId) =>
       apiService.addOrderClientData(request, orderId);
+
+  @override
+  Future<Either<ErrorModel, EmployeesResponse>> getDelivery() async {
+    return apiService.getDelivery();
+  }
+
+  @override
+  Future<Either<ErrorModel, DeliveryDetails>> getDeliveryDetails(int id) async {
+    return apiService.getDeliveryDetails(id);
+  }
+
+  @override
+  Future<Either<ErrorModel, String>> selectDelivery(
+      int deliveryId, int branchId, int orderId) async {
+    return apiService.selectDelivery( deliveryId, branchId,  orderId);
+  }
 }

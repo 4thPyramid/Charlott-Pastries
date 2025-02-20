@@ -23,12 +23,12 @@ class AddOrderRequestModel {
   @JsonKey(name: 'delivery_date')
   final String deliveryDate;
 
-  @JsonKey(name: 'delivery_time')
-  final String deliveryTime;
+ 
 
   @JsonKey(name: 'description')
   final String description;
-
+  final String from;
+  final String to;
   AddOrderRequestModel({
     required this.files,
     required this.isSameDay,
@@ -36,8 +36,9 @@ class AddOrderRequestModel {
     required this.orderDetails,
     required this.quantity,
     required this.deliveryDate,
-    required this.deliveryTime,
     required this.description,
+    required this.from,
+    required this.to,
   });
 
   factory AddOrderRequestModel.fromJson(Map<String, dynamic> json) =>
@@ -55,8 +56,9 @@ class AddOrderRequestModel {
       "order_details": orderDetails,
       "quantity": quantity.toString(),
       "delivery_date": deliveryDate,
-      "delivery_time": deliveryTime,
       "description": description,
+      "from": from,
+      "to": to,
     });
   }
 

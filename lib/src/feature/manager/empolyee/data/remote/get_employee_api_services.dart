@@ -39,7 +39,7 @@ class EmployeeApiServicesImpl extends EmployeeApiServices {
   Future<Either<ErrorModel, EmployeesResponse>> getDelivery() async {
     try {
       final response = await api.get(
-        EndpointsStrings.salesSelectDelivery,
+        EndpointsStrings.managerDelivery,
       );
       return Right(EmployeesResponse.fromJson({'employees': response}));
     } on ServerException catch (e) {
@@ -92,7 +92,7 @@ class EmployeeApiServicesImpl extends EmployeeApiServices {
       int deliveryId, int orderId) async {
     try {
       final response = await api.post(
-        EndpointsStrings.salesSelectDelivery,
+        EndpointsStrings.managerSelectDelivery,
         data: {
           'delivery_id': deliveryId,
           'order_id': orderId,

@@ -21,20 +21,22 @@ class ClientDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const CustomAppBar(title: "Add New Order"),
-          const AddOrderHeader(
-            image: AppAssets.addOrder2,
-            title: 'Client Details',
-          ),
-          ClientDetailsComponant(
-            lat: lat.toString(),
-            long: long.toString(),
-            address: address,
-            orderId: orderId,
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const CustomAppBar(title: "Add New Order"),
+            const AddOrderHeader(
+              image: AppAssets.addOrder2,
+              title: 'Client Details',
+            ),
+            ClientDetailsComponant(
+              lat: lat.toString(),
+              long: long.toString(),
+              address: address,
+              orderId: orderId,
+            ),
+          ],
+        ),
       ),
     );
   }

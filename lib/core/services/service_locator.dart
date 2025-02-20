@@ -172,6 +172,10 @@ import '../../src/feature/orderDetails/domain/usecase/accept_order_use_case.dart
 import '../../src/feature/orderDetails/domain/usecase/get_order_details_use_case.dart';
 import '../../src/feature/orderDetails/presentation/logic/accept_order/accept_order_cubit.dart';
 import '../../src/feature/orderDetails/presentation/logic/order_details_cubit.dart';
+import '../../src/feature/sales/addOrder/domain/usecase/delivery_use_case.dart';
+import '../../src/feature/sales/addOrder/presentation/logic/delivery/delivery_cubit.dart';
+import '../../src/feature/sales/addOrder/presentation/logic/delivery/get_one/get_delivery_details_cubit.dart';
+import '../../src/feature/sales/addOrder/presentation/logic/delivery/select_delivery/select_delivery_cubit.dart';
 import '../../src/feature/sales/notification/data/remote/sales_notification_api_services.dart';
 import '../../src/feature/sales/notification/data/remote/sales_notification_remote_ds.dart';
 import '../../src/feature/sales/notification/domain/repo/sales_notification_repo.dart';
@@ -608,6 +612,12 @@ void setupLocator() {
       () => GetDestenationAndTimeUc(getIt()));
 
   getIt.registerLazySingleton<GetRouteUC>(() => GetRouteUC(getIt()));
+  getIt.registerLazySingleton<SalesGetDeliveryUseCase>(
+      () => SalesGetDeliveryUseCase(getIt()));
+  getIt.registerLazySingleton<SalesSelectDeliveryUseCase>(
+      () => SalesSelectDeliveryUseCase(getIt()));
+  getIt.registerLazySingleton<SalesGetDeliveryDetailsUseCase>(
+      () => SalesGetDeliveryDetailsUseCase(getIt()));
 
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
@@ -615,6 +625,9 @@ void setupLocator() {
         getIt(),
         getIt(),
       ));
+  getIt.registerFactory<SalesSelectDeliveryCubit>(
+    () => SalesSelectDeliveryCubit(getIt()),
+  );
 
   getIt.registerFactory<MapPickerRepository>(
     () => MapPickerRepositoryImpl(getIt<MapPickerRemoteDataSource>()),
@@ -717,6 +730,12 @@ void setupLocator() {
   );
   getIt.registerFactory<AssignedOrdersCubit>(
     () => AssignedOrdersCubit(getIt()),
+  );
+  getIt.registerFactory<GetDeliveryCubit>(
+    () => GetDeliveryCubit(getIt()),
+  );
+  getIt.registerFactory<GetDeliveryDetailsCubit>(
+    () => GetDeliveryDetailsCubit(getIt()),
   );
 
   getIt.registerFactory<MapCubit>(
