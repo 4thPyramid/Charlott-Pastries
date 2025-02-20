@@ -16,7 +16,8 @@ abstract class EmployeeApiServices {
   Future<Either<ErrorModel, DeliveryDetails>> getDeliveryDetails(int id);
 
   Future<Either<ErrorModel, String>> selectChef(int chefId, int orderId);
-  Future<Either<ErrorModel, String>> selectDelivery(int deliveryId, int orderId);
+  Future<Either<ErrorModel, String>> selectDelivery(
+      int deliveryId, int orderId);
 }
 
 class EmployeeApiServicesImpl extends EmployeeApiServices {
@@ -38,9 +39,9 @@ class EmployeeApiServicesImpl extends EmployeeApiServices {
   Future<Either<ErrorModel, EmployeesResponse>> getDelivery() async {
     try {
       final response = await api.get(
-        EndpointsStrings.managerDelivery,
+        EndpointsStrings.salesSelectDelivery,
       );
-      return Right(EmployeesResponse.fromJson(response));
+      return Right(EmployeesResponse.fromJson({'employees': response}));
     } on ServerException catch (e) {
       return Left(e.errorModel);
     }
@@ -69,8 +70,9 @@ class EmployeeApiServicesImpl extends EmployeeApiServices {
       return Left(e.errorModel);
     }
   }
- @override
-   Future<Either<ErrorModel, String>> selectChef(int chefId, int orderId)async {
+
+  @override
+  Future<Either<ErrorModel, String>> selectChef(int chefId, int orderId) async {
     try {
       final response = await api.post(
         EndpointsStrings.managerSelectChef,
@@ -82,14 +84,15 @@ class EmployeeApiServicesImpl extends EmployeeApiServices {
       return Right(response['message']);
     } on ServerException catch (e) {
       return Left(e.errorModel);
-    } 
-    
-}
- @override
- Future<Either<ErrorModel, String>> selectDelivery(int deliveryId, int orderId)async {
+    }
+  }
+
+  @override
+  Future<Either<ErrorModel, String>> selectDelivery(
+      int deliveryId, int orderId) async {
     try {
       final response = await api.post(
-        EndpointsStrings.managerSelectDelivery,
+        EndpointsStrings.salesSelectDelivery,
         data: {
           'delivery_id': deliveryId,
           'order_id': orderId,
@@ -98,6 +101,6 @@ class EmployeeApiServicesImpl extends EmployeeApiServices {
       return Right(response['message']);
     } on ServerException catch (e) {
       return Left(e.errorModel);
-    } 
-}
+    }
+  }
 }

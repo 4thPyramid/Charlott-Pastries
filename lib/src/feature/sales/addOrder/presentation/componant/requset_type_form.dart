@@ -22,7 +22,7 @@ class RequestTypeForm extends StatefulWidget {
 
 class _RequestTypeFormState extends State<RequestTypeForm> {
   bool isSameDay = false;
-  String selectedType = "Cake And Flowers";
+  String selectedType = "cake and flower";
   TextEditingController cakeDetailsController = TextEditingController();
   TextEditingController flowerDetailsController = TextEditingController();
   String? flowerType;

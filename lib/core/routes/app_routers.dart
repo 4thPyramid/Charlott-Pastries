@@ -422,7 +422,7 @@ final GoRouter router = GoRouter(
     GoRoute(
         path: RouterNames.selectDeliveryBoy,
         builder: (context, state) {
-          final data = state.extra as Map<String, dynamic>;
+          final data = state.extra as Map<String, dynamic>? ?? {};
           return SelectDeliveryView(
             orderId: data['orderId'] as int? ?? 0,
           );
