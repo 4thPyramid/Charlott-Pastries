@@ -1,10 +1,8 @@
 import 'package:charlot/core/common/widgets/custom_app_bar.dart';
 import 'package:charlot/generated/app_strings.g.dart';
-import 'package:charlot/src/feature/sales/notification/presentation/componant/sales_notification_list_view.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/utils/app_strings.dart';
-import '../../../../../../generated/app_strings.g.dart';
+import '../../../../chef/notification/presentation/componant/notification_list_view.dart';
 
 class SalesNotificationView extends StatelessWidget {
   const SalesNotificationView({super.key});
@@ -16,8 +14,9 @@ class SalesNotificationView extends StatelessWidget {
         CustomAppBar(
           title: AppStrings.notifications,
         ),
-        SalesNotificationListView(),
-      ]),
+         NotificationListView(
+          userType: 'sales',
+        ),      ]),
     );
   }
 }

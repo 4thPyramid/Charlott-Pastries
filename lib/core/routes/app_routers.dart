@@ -163,7 +163,7 @@ final GoRouter router = GoRouter(
         }),
     GoRoute(
       path: RouterNames.notification,
-      builder: (context, state) => const NotificationView(),
+      builder: (context, state) => const ChefNotificationView(),
     ),
     GoRoute(
       path: RouterNames.returnAndRefusedOrderDetails,
@@ -374,7 +374,7 @@ final GoRouter router = GoRouter(
         final data = state.extra as Map<String, dynamic>;
 
         return OrderTrackingView(
-          orderId: data['orderId'] as int ? ?? 0,
+          orderId: data['orderId'] as int? ?? 0,
         );
       },
     ),

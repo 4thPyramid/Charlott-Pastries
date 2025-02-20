@@ -18,7 +18,7 @@ class ChefProfileViewComponent extends StatelessWidget {
   const ChefProfileViewComponent({super.key});
   @override
   Widget build(BuildContext context) {
-     context.read<ProfileCubit>().getProfile(userTyp: AppStrings.chef.tr());
+     context.read<ProfileCubit>().getProfile(userTyp: 'chef');
     return Column(
       children: [
         BlocBuilder<ProfileCubit, ProfileState>(

@@ -13,7 +13,7 @@ abstract class EndpointsStrings {
   static const String managerVerifyResetCode = 'manager/verify-reset-code';
   static const String managerProfile = 'manager/profile';
   static const String managerResetPassword = 'manager/reset-password';
-
+  static const String managerNotifications = 'manager/notifications';
   static const String managerDeleteProfile = 'manager/delete-account';
   static const String managerNewOrders = 'manager/new-orders';
   static const String managerInProgressOrder = 'manager/inprogress-orders';
@@ -43,6 +43,7 @@ abstract class EndpointsStrings {
   static const String salesRegister = 'sales/register';
   static const String salesVerifyEmail = 'sales/verify';
   static const String salesLogin = 'sales/login';
+  static const String salesNotification = 'sales/notifications';
   static const String salesVerifyResetCode = 'sales/verify-reset-code';
   static const String salesResetPassword = 'sales/reset-password';
   static const String salesLogout = 'sales/logout';
@@ -56,14 +57,13 @@ abstract class EndpointsStrings {
   //!chef//
   static const String chefRegister = 'chef/register';
   static const String chefVerifyEmail = 'chef/verify';
-
+  static const String chefNotifications = 'chef/notifications';
   static const String chefLogin = 'chef/login';
   static const String chefVerifyResetCode = 'chef/verify-reset-code';
   static const String chefResetPassword = 'chef/reset-password';
   static const String chefLogout = 'chef/logout';
   static const String chefForgotPassword = 'chef/forgot-password';
   static const String chefProfile = 'chef/profile';
-  static const String chefNotifications = 'chef/notifications';
   static const String chefDeleteProfile = 'chef/delete-account';
   static const String chefNewsOrder = 'chef/new-orders';
   static const String chefPendingOrder = 'chef/pending-orders';

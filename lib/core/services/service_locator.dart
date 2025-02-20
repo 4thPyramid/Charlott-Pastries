@@ -243,8 +243,8 @@ void setupLocator() {
 
   getIt.registerLazySingleton<OrderStatusApiService>(
       () => OrderStatusApiServiceImpl(getIt()));
-  getIt.registerLazySingleton<ChefNotificationApiServices>(
-      () => ChefNotificationApiServicesImpl(getIt()));
+  getIt.registerLazySingleton<NotificationApiServices>(
+      () => NotificationApiServicesImpl(getIt()));
 
   // getIt.registerLazySingleton<OrdersTypeApiSevcies>(
   //     () => OrdersTypeApiSevciesImp(getIt()));
@@ -268,14 +268,13 @@ void setupLocator() {
   getIt.registerLazySingleton<IAppRepository>(
     () => AppRepositoryImpl(getIt()),
   );
-getIt.registerLazySingleton<MapTrackingApiServiceImpl>(
+  getIt.registerLazySingleton<MapTrackingApiServiceImpl>(
     () => MapTrackingApiServiceImpl(getIt()),
   );
 
   getIt.registerLazySingleton<MapTrackingApiService>(
     () => getIt<MapTrackingApiServiceImpl>(),
   );
-
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
@@ -317,8 +316,8 @@ getIt.registerLazySingleton<MapTrackingApiServiceImpl>(
 
   getIt.registerLazySingleton<OrderStatusRemoteDs>(
       () => OrderStatusRemoteDsImpl(getIt()));
-  getIt.registerLazySingleton<ChefNotificationRemoteDs>(
-      () => ChefNotificationRemoteDsImpl(getIt()));
+  getIt.registerLazySingleton<NotificationRemoteDs>(
+      () => NotificationRemoteDsImpl(getIt()));
 
   getIt.registerLazySingleton<SalesHomeRemoteDS>(
       () => SalesHomeRemoteDS(getIt()));
@@ -336,8 +335,10 @@ getIt.registerLazySingleton<MapTrackingApiServiceImpl>(
   getIt.registerLazySingleton<SalesNotificationRemoteDs>(
       () => SalesNotificationRemoteDsImpl(getIt()));
 
-  getIt.registerLazySingleton<MapRemoteDataSource>(() =>
-      MapRemoteDataSourceImpl(getIt(), googleApiKey: "AIzaSyBKHhTQI6x7OVbOTiozcbPpX63deiLYoTI",
+  getIt
+      .registerLazySingleton<MapRemoteDataSource>(() => MapRemoteDataSourceImpl(
+            getIt(),
+            googleApiKey: "AIzaSyBKHhTQI6x7OVbOTiozcbPpX63deiLYoTI",
           ));
 
   ///! -- Repositories -- ///
@@ -674,8 +675,7 @@ getIt.registerLazySingleton<MapTrackingApiServiceImpl>(
         getIt(),
         //  getIt(),
       ));
-  getIt.registerFactory<ChefNotificationCubit>(
-      () => ChefNotificationCubit(getIt()));
+  getIt.registerFactory<NotificationCubit>(() => NotificationCubit(getIt()));
 
   getIt.registerFactory<BranchesCubit>(() => BranchesCubit(getIt()));
   getIt.registerFactory<ResetPasswordCubit>(

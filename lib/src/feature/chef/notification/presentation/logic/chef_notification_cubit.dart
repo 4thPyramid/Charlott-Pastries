@@ -1,23 +1,20 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/usecase/get_notification_use_case.dart';
 import 'chef_notification_state.dart';
 
-class ChefNotificationCubit extends Cubit<ChefNotificationState> {
-  final GetNotificationUseCase notificationUC;
 
-  ChefNotificationCubit(
-     this.notificationUC,
-    
-  ) : super(const ChefNotificationState.initial());
+class NotificationCubit extends Cubit<NotificationState> {
+  final GetNotificationUseCase getNotificationUseCase;
+  NotificationCubit(this.getNotificationUseCase)
+      : super(const NotificationState.initial());
 
-  Future<void> getChefNotification() async {
-    emit(const ChefNotificationState.loading());
-    final result = await notificationUC.call();
+  Future<void> getNotification(String userType) async {
+    emit(const NotificationState.loading());
+    final result = await getNotificationUseCase.call(userType);
     result.fold(
-      (failure) => emit(ChefNotificationState.error(failure)),
-      (success) => emit(ChefNotificationState.loaded(success)),
+      (error) => emit(NotificationState.error(error)),
+      (r) => emit(NotificationState.loaded(r)),
     );
   }
 }

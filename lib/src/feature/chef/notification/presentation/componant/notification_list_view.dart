@@ -12,18 +12,19 @@ import '../logic/chef_notification_state.dart';
 class NotificationListView extends StatelessWidget {
   const NotificationListView({
     super.key,
+    required this.userType,
   });
-
+  final String userType;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+      return BlocProvider(
         create: (BuildContext context) =>
-            getIt<ChefNotificationCubit>()..getChefNotification(),
+            getIt<NotificationCubit>()..getNotification(userType),
         child: Expanded(
-          child: BlocBuilder<ChefNotificationCubit, ChefNotificationState>(
+          child: BlocBuilder<NotificationCubit, NotificationState>(
             builder: (context, state) {
               return state.when(
-                initial: () =>  Center(
+                initial: () => Center(
                   child: Text(AppStrings.therearenonotifications.tr()),
                 ),
                 loading: () => const Center(
@@ -34,7 +35,7 @@ class NotificationListView extends StatelessWidget {
                 ),
                 loaded: (notifications) {
                   if (notifications.notifications.isEmpty) {
-                    return  Center(
+                    return Center(
                       child: Text(AppStrings.therearenonotifications.tr()),
                     );
                   }
@@ -45,33 +46,29 @@ class NotificationListView extends StatelessWidget {
                     itemCount: notifications.notifications.length,
                     itemBuilder: (context, index) {
                       final notification = notifications.notifications[index];
-                      final imageUrl = notification.orderImages.isNotEmpty
-                          ? notification.orderImages.first.image
-                          : 'https://media.istockphoto.com/id/1482059977/vector/order-now-stamp-seal-vector-badge-icon-template-illustration-isolated-on-white-background.jpg?s=170667a&w=0&k=20&c=UBi8yzHTuHYDwlDSEMYvUNLUVXDB9VsSV7csvE-die4=';
+                      const imageUrl =
+                          'https://media.istockphoto.com/id/1482059977/vector/order-now-stamp-seal-vector-badge-icon-template-illustration-isolated-on-white-background.jpg?s=170667a&w=0&k=20&c=UBi8yzHTuHYDwlDSEMYvUNLUVXDB9VsSV7csvE-die4=';
 
                       // Parse the datetime string
-                      final notificationDate =
-                          DateTime.parse(notification.notificationCreatedAt);
-                      final now = DateTime.now();
-                      final difference = now.difference(notificationDate);
+                      // final notificationDate =
+                      //   DateTime.parse(notification.notificationCreatedAt);
+                      //final now = DateTime.now();
+                      // final difference = now.difference(notificationDate);
 
                       // Format the time difference
-                      String timeAgo;
-                      if (difference.inMinutes < 60) {
-                        timeAgo = 'قبل ${difference.inMinutes} دقيقة';
-                      } else if (difference.inHours < 24) {
-                        timeAgo = 'قبل ${difference.inHours} ساعة';
-                      } else {
-                        timeAgo = 'قبل ${difference.inDays} يوم';
-                      }
+                      // String timeAgo;
+                      // if (difference.inMinutes < 60) {
+                      //   timeAgo = 'قبل ${difference.inMinutes} دقيقة';
+                      // } else if (difference.inHours < 24) {
+                      //   timeAgo = 'قبل ${difference.inHours} ساعة';
+                      // } else {
+                      //   timeAgo = 'قبل ${difference.inDays} يوم';
+                      // }
 
                       return NotificationCardWidget(
-                        id: notification.id,
                         imageUrl: imageUrl,
-                        title: notification.title,
-                        time: timeAgo,
-                        type: notification.orderType,
-                         status: notification.status?? AppStrings.themanagerapproved.tr(),
+                        title: notification.data.title,
+                        type: notification.data.body,
                       );
                     },
                   );

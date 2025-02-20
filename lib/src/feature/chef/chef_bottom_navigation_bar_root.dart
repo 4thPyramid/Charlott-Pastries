@@ -21,7 +21,7 @@ class ChefBottomNavigationBarRoot extends StatelessWidget {
         final List<Widget> pages = [
           const ChefHomeView(),
           const ChefOrdersView(),
-          const NotificationView(),
+          const ChefNotificationView(),
           const ChefProfileView(),
         ];
         return Scaffold(
@@ -48,22 +48,22 @@ class ChefBottomNavigationBarRoot extends StatelessWidget {
               onTap: (index) => context
                   .read<AppCubit>()
                   .changeBottomNavBarSelectedIndex(index),
-              items:  [
+              items: [
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.home_outlined),
                   label: AppStrings.home.tr(),
                 ),
-                 BottomNavigationBarItem(
+                BottomNavigationBarItem(
                   icon: const Icon(
                     Icons.shopping_bag_outlined,
                   ),
                   label: AppStrings.cart.tr(),
                 ),
-                 BottomNavigationBarItem(
+                BottomNavigationBarItem(
                   icon: const Icon(Icons.notifications_outlined),
                   label: AppStrings.notifications.tr(),
                 ),
-                 BottomNavigationBarItem(
+                BottomNavigationBarItem(
                   icon: const Icon(Icons.person_outline),
                   label: AppStrings.profile.tr(),
                 ),
