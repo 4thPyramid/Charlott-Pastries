@@ -36,10 +36,10 @@ class OrdersStatisticsRow extends StatelessWidget {
                   ),
                   SizedBox(height: 24.h),
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CustomCardStatistics(
-                        width: 96.w,
+                        width: 100.w,
                         // height: 90.h,
                         number: statsResponse.prepared,
                         name: AppStrings.orderCompleted.tr(),
@@ -48,7 +48,7 @@ class OrdersStatisticsRow extends StatelessWidget {
                         },
                       ),
                       CustomCardStatistics(
-                        width: 96.w,
+                        width: 100.w,
                         number: statsResponse.delivered,
                         name: AppStrings.orderEnded.tr(),
                         onPressed: () {
@@ -56,7 +56,7 @@ class OrdersStatisticsRow extends StatelessWidget {
                         },
                       ),
                       CustomCardStatistics(
-                        width: 96.w,
+                        width: 100.w,
                         number: statsResponse.returned,
                         name: AppStrings.returnOrder.tr(),
                         onPressed: () {
@@ -69,6 +69,7 @@ class OrdersStatisticsRow extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CustomCardStatistics(
+                        width: 150.w,
                         number: statsResponse.rejected,
                         name: AppStrings.refusedOrder.tr(),
                         onPressed: () {
@@ -76,6 +77,7 @@ class OrdersStatisticsRow extends StatelessWidget {
                         },
                       ),
                       CustomCardStatistics(
+                        width: 150.w,
                         number: statsResponse.recive,
                         name: AppStrings.orderBeingDeliver.tr(),
                         onPressed: () {
@@ -84,7 +86,13 @@ class OrdersStatisticsRow extends StatelessWidget {
                           );
                         },
                       ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
                       CustomCardStatistics(
+                        width: 150.w,
                         number: statsResponse.assignedOrders,
                         name: AppStrings.waitingOrders.tr(),
                         onPressed: () {
@@ -92,6 +100,7 @@ class OrdersStatisticsRow extends StatelessWidget {
                         },
                       ),
                       CustomCardStatistics(
+                        width: 150.w,
                         number: statsResponse.notAssigned,
                         name: AppStrings.notAssignedOrders.tr(),
                         onPressed: () {
