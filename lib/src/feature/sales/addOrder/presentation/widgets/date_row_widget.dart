@@ -8,9 +8,7 @@ import 'package:intl/intl.dart';
 
 class DateRowWidget extends StatefulWidget {
   final DateTime? initialDate;
-
   final ValueChanged<DateTime> onDateChanged;
-
   final bool isRequired;
 
   const DateRowWidget({
@@ -21,10 +19,10 @@ class DateRowWidget extends StatefulWidget {
   });
 
   @override
-  State<DateRowWidget> createState() => _DateRowWidgetState();
+  DateRowWidgetState createState() => DateRowWidgetState();
 }
 
-class _DateRowWidgetState extends State<DateRowWidget> {
+class DateRowWidgetState extends State<DateRowWidget> {
   final TextEditingController _dayController = TextEditingController();
   final TextEditingController _monthController = TextEditingController();
   final TextEditingController _yearController = TextEditingController();
@@ -71,6 +69,49 @@ class _DateRowWidgetState extends State<DateRowWidget> {
     }
 
     widget.onDateChanged.call(date);
+  }
+
+  bool isValid() {
+    final day = int.tryParse(_dayController.text);
+    final month = int.tryParse(_monthController.text);
+    final year = int.tryParse(_yearController.text);
+
+    if (day == null || day < 1 || day > 31) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('invalidDay'.tr()),
+          backgroundColor: AppColors.red,
+        ),
+      );
+      return false;
+    }
+
+    if (month == null || month < 1 || month > 12) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('invalidMonth'.tr()),
+          backgroundColor: AppColors.red,
+        ),
+      );
+      return false;
+    }
+
+    if (year == null || year < 2025 || year > 2100) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('enterValidYearAfter2025'.tr()),
+          backgroundColor: AppColors.red,
+        ),
+      );
+      return false;
+    }
+
+    try {
+      final date = DateTime(year, month, day);
+      return date.year == year && date.month == month && date.day == day;
+    } catch (e) {
+      return false;
+    }
   }
 
   Widget _buildDateField(
@@ -157,7 +198,7 @@ class _DateRowWidgetState extends State<DateRowWidget> {
             const SizedBox(width: 30),
             _buildDateField(_monthController, 'month'.tr(), 2, 1, 12),
             const SizedBox(width: 30),
-            _buildDateField(_yearController, 'year'.tr(), 4, 1900, 2100),
+            _buildDateField(_yearController, 'year'.tr(), 4, 2025, 2100),
           ],
         ),
       ],

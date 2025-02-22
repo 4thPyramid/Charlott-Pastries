@@ -14,7 +14,10 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final Color? fillColor;
   final void Function()? toggleObscure;
- final TextInputType? keyboardType;
+  final TextInputType? keyboardType;
+  final void Function(String)? onChanged;
+  final void Function()? onEditingComplete;
+  final void Function()? onTap;
 
   const CustomTextFormField({
     super.key,
@@ -29,6 +32,9 @@ class CustomTextFormField extends StatelessWidget {
     this.isPassword = false,
     this.toggleObscure,
     this.keyboardType,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onTap,
   });
 
   @override
@@ -39,7 +45,8 @@ class CustomTextFormField extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
-        textInputAction: TextInputAction.next,
+        onTap: onTap,
+        onEditingComplete: onEditingComplete,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
               vertical: 18.0.w,
