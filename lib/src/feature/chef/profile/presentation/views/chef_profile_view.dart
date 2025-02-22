@@ -26,7 +26,6 @@ class ChefProfileView extends StatelessWidget {
             BlocProvider(
               create: (context) => getIt<ProfileCubit>(),
               child: const ChefProfileViewComponent(),
-             // const ChefBottomNavigationBarRoot(),
             ),
             ],
           ),
