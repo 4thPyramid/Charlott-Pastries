@@ -98,9 +98,13 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                           inactiveTrackColor: Colors.grey,
                           inactiveThumbColor: Colors.black,
                           onChanged: (value) {
-                            print("------------------value--$value");
-                            print("---------------state-----${state.isSameDay}");
-                            CacheHelper.saveData(key: 'isSameDay', value: value);
+                          //  print("------------------value--$value");
+                          //  print("---------------state-----${state.isSameDay}");
+                            if(value == true){
+                            CacheHelper.saveData(key: 'isSameDay', value: true);
+                            }else{
+                              CacheHelper.saveData(key: 'isSameDay', value: false);
+                            }
 
                             context
                                 .read<AddOrderCubit>()

@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  AppStrings {
+abstract class AppStrings {
   static const appName = 'appName';
   static const manager = 'manager';
   static const sales = 'sales';
@@ -16,7 +16,9 @@ abstract class  AppStrings {
   static const welcome = 'welcome';
   static const ignore = 'ignore';
   static const save = 'save';
-
+  static const sendOrderToDelivery = 'sendOrderToDelivery';
+  static const currentOrdersList = 'currentOrdersList';
+  static const connectWithDelivery = 'connectWithDelivery';
   static const aboutChef = 'aboutChef';
   static const aboutDelivery = 'aboutDelivery';
   static const orderCount = 'orderCount';
@@ -92,7 +94,8 @@ abstract class  AppStrings {
   static const confirmPassword = 'confirmPassword';
   static const alreadyHaveAccount = 'alreadyHaveAccount';
   static const enterVerificationCode = 'enterVerificationCode';
-  static const enterVerificationCodeToAccessAccount = 'enterVerificationCodeToAccessAccount';
+  static const enterVerificationCodeToAccessAccount =
+      'enterVerificationCodeToAccessAccount';
   static const didNotReceiveCode = 'didNotReceiveCode';
   static const happyToSeeYouAgain = 'happyToSeeYouAgain';
   static const loginToContinue = 'loginToContinue';
@@ -132,7 +135,8 @@ abstract class  AppStrings {
   static const finishedOrderDetails = 'finishedOrderDetails';
   static const delegateDetails = 'delegateDetails';
   static const numberOfCurrentOrders = 'numberOfCurrentOrders';
-  static const numberOfSuccessfullyCompletedOrders = 'numberOfSuccessfullyCompletedOrders';
+  static const numberOfSuccessfullyCompletedOrders =
+      'numberOfSuccessfullyCompletedOrders';
   static const averageDeliveryTime = 'averageDeliveryTime';
   static const orderSentToDelegate = 'orderSentToDelegate';
   static const completedOrderDetails = 'completedOrderDetails';
@@ -222,5 +226,4 @@ abstract class  AppStrings {
   static const expectedTime = 'expectedTime';
   static const reasonForRejection = 'reasonForRejection';
   static const resendOreder = 'resendOreder';
-
 }

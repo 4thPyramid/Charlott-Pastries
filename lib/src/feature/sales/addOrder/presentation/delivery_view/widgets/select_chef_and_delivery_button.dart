@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +7,7 @@ import '../../../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../../../core/routes/router_names.dart';
 import '../../../../../../../../core/theme/app_colors.dart';
 import '../../../../../../../../core/utils/app_styles.dart';
+import '../../../../../../../generated/app_strings.g.dart';
 import '../../../../../manager/empolyee/presentation/logic/select/select_chef_delivery_state.dart';
 import '../../../../../manager/newest_orders/presentation/widgets/accept_order_pop.dart';
 import '../../logic/delivery/select_delivery/select_delivery_cubit.dart';
@@ -27,14 +29,7 @@ class SalesSelectDeliveryButton extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           success: (success) {
-            acceptOrderPop(
-              context,
-              title: 'تم ارسال الطلب للمندوب',
-              buttonTitle: 'رجوع',
-              onPressed: () => context.go(
-                RouterNames.salesBottomNavigationBarRoot,
-              ),
-            );
+            
           },
           failure: (error) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -46,16 +41,22 @@ class SalesSelectDeliveryButton extends StatelessWidget {
       builder: (context, state) {
         return Align(
           child: CustomButton(
-            text: 'ارسال الطلب للمندوب',
+            text: AppStrings.sendOrderToDelivery.tr(),
             isLoading: state is SelectChefAndDeliveryLoading,
             textStyle: AppStyles.s14.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
             ),
             onPressed: () {
-              context
-                  .read<SalesSelectDeliveryCubit>()
-                  .selectDelivery(id,1 ,orderId);
+              acceptOrderPop(
+                context,
+                title:AppStrings.choiceBranch.tr(),
+                buttonTitle: '',
+                onPressed: () => context.go(
+                  RouterNames.salesBottomNavigationBarRoot,
+                ),
+              );
+             
             },
           ),
         );
