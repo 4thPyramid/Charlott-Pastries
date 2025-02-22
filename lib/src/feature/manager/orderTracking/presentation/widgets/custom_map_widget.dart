@@ -77,7 +77,7 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
       icon: customIcon ?? BitmapDescriptor.defaultMarker,
     );
 
-    currentPosition = widget.origin;
+    currentPosition = widget.currentPosition;
   }
 
   void _updateMovingMarker(LatLng newPosition) {
@@ -114,6 +114,14 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
         points: coordinates,
       );
     });
+  }
+
+  @override
+  void didUpdateWidget(CustomMapWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.currentPosition != oldWidget.currentPosition) {
+      _updateMovingMarker(widget.currentPosition);
+    }
   }
 
   @override

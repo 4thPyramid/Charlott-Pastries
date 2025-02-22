@@ -24,17 +24,26 @@ class MapTrackingApiServiceImpl implements MapTrackingApiService {
   @override
   Future<Map<String, dynamic>> getDestenationAndTime(
       LatLng origin, LatLng destination) async {
-    final String url =
-        "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&key=$apiKey";
+    final String url = Uri.https(
+      'maps.googleapis.com',
+      '/maps/api/directions/json',
+      {
+        'origin': '${origin.latitude},${origin.longitude}',
+        'destination': '${destination.latitude},${destination.longitude}',
+        'mode':
+            'driving', 
+        'key': apiKey,
+      },
+    ).toString();
 
     try {
-      print(
-          "Requesting route from: $origin to: $destination"); 
+      print("Requesting route from: $origin to: $destination");
+      print("Request URL: $url");
 
       final response = await dio.get(url);
       final data = response.data;
 
-      print("API Response: $data"); 
+      print("API Response: $data");
 
       if (data['status'] == 'OK') {
         final route = data['routes'][0]['legs'][0];
@@ -42,6 +51,9 @@ class MapTrackingApiServiceImpl implements MapTrackingApiService {
           "distance": route['distance']['text'],
           "duration": route['duration']['text'],
         };
+      } else if (data['status'] == 'REQUEST_DENIED') {
+        throw Exception(
+            "طلب مرفوض: ${data['error_message'] ?? 'تحقق من الـ API Key.'}");
       } else {
         throw Exception("خطأ في استرجاع البيانات: ${data['status']}");
       }
