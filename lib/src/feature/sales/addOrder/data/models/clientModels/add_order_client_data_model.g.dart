@@ -29,6 +29,7 @@ UpdatedDataAddress _$UpdatedDataAddressFromJson(Map<String, dynamic> json) =>
       latitude: json['latitude'] as String,
       mapDesc: json['map_desc'] as String,
       additionalData: json['additional_data'] as String,
+      isSameday: (json['is_sameday'] as num).toInt(),
     );
 
 Map<String, dynamic> _$UpdatedDataAddressToJson(UpdatedDataAddress instance) =>
@@ -39,4 +40,5 @@ Map<String, dynamic> _$UpdatedDataAddressToJson(UpdatedDataAddress instance) =>
       'latitude': instance.latitude,
       'map_desc': instance.mapDesc,
       'additional_data': instance.additionalData,
+      'is_sameday': instance.isSameday,
     };

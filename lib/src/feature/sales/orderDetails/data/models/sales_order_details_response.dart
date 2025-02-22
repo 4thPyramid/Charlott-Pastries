@@ -6,7 +6,7 @@ part 'sales_order_details_response.g.dart';
 
 @JsonSerializable()
 class SalesOrderDetailsResponse {
-  final Order order;
+  final SalesOrder order;
 
   SalesOrderDetailsResponse({required this.order});
 
@@ -17,8 +17,7 @@ class SalesOrderDetailsResponse {
 }
 
 @JsonSerializable()
-@JsonSerializable()
-class Order {
+class SalesOrder {
   final int id;
   @JsonKey(name: 'order_type')
   final String orderType;
@@ -56,13 +55,9 @@ class Order {
   @JsonKey(name: 'product_id')
   final int? productId;
   @JsonKey(name: 'is_returned')
-  final int isReturned;
+  final int? isReturned;
   final String? problem;
   final String status;
-  @JsonKey(name: 'payment_method')
-  final String paymentMethod;
-  @JsonKey(name: 'sale_id')
-  final int saleId;
   @JsonKey(name: 'manager_id')
   final int? managerId;
   @JsonKey(name: 'chef_id')
@@ -78,15 +73,15 @@ class Order {
   @JsonKey(name: 'images')
   final List<OrderImageDetails> images;
 
-  Order({
+  SalesOrder({
     required this.id,
     required this.orderType,
     required this.orderDetails,
     this.flowerId,
     this.flowerQuantity,
     this.image,
-     this.description,
-     this.deliveryTime,
+    this.description,
+    this.deliveryTime,
     required this.deliveryDate,
     this.price,
     this.flowerPrice,
@@ -101,11 +96,9 @@ class Order {
     this.mapDesc,
     this.additionalData,
     this.productId,
-    required this.isReturned,
+     this.isReturned,
     this.problem,
     required this.status,
-    required this.paymentMethod,
-    required this.saleId,
     this.managerId,
     this.chefId,
     this.deliveryId,
@@ -115,7 +108,8 @@ class Order {
     required this.images,
   });
 
-  factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
+  factory SalesOrder.fromJson(Map<String, dynamic> json) =>
+      _$SalesOrderFromJson(json);
 
-  Map<String, dynamic> toJson() => _$OrderToJson(this);
+  Map<String, dynamic> toJson() => _$SalesOrderToJson(this);
 }

@@ -23,10 +23,12 @@ class AddOrderCubit extends Cubit<AddOrderState> {
   final AddOrderPriceUC _addOrderPriceUC;
   final AddClientDataUc _addClientDataUc;
 
-  
   void updateSameDayDelivery(bool value) {
-    emit(AddOrderState.initial(isSameDay: value));
+        print('Updating isSameDay to: $value');
+
+    emit(state.copyWith(isSameDay: value));
   }
+  
 
   Future<void> addOrderDetails(AddOrderRequestModel request) async {
     emit(AddOrderState.loading(isSameDay: state.isSameDay));

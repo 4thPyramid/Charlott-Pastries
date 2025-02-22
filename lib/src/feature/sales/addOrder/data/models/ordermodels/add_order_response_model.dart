@@ -44,6 +44,9 @@ class OrderAdded {
   @JsonKey(name: 'delivery_time')
   final String? deliveryTime;
 
+  @JsonKey(name: 'is_sameday')
+  final String? isSameday;
+
   @JsonKey(name: 'delivery_date')
   final String? deliveryDate;
 
@@ -71,6 +74,7 @@ class OrderAdded {
     this.saleId,
     this.updatedAt,
     this.createdAt,
+    required this.isSameday,
     required this.id,
     this.images,
   });

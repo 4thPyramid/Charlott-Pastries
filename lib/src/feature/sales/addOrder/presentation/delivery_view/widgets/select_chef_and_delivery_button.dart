@@ -1,15 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../core/common/widgets/custom_btn.dart';
-import '../../../../../../../../core/routes/router_names.dart';
 import '../../../../../../../../core/theme/app_colors.dart';
 import '../../../../../../../../core/utils/app_styles.dart';
-import '../../../../../manager/empolyee/presentation/logic/select/select_chef_delivery_state.dart';
-import '../../../../../manager/newest_orders/presentation/widgets/accept_order_pop.dart';
+import '../../../../../../../core/routes/router_names.dart';
+import '../../../../../../../generated/app_strings.g.dart';
 import '../../logic/delivery/select_delivery/select_delivery_cubit.dart';
 import '../../logic/delivery/select_delivery/select_delivery_state.dart';
+import 'pop_to_choice_branch.dart';
 
 class SalesSelectDeliveryButton extends StatelessWidget {
   const SalesSelectDeliveryButton({
@@ -27,13 +28,8 @@ class SalesSelectDeliveryButton extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           success: (success) {
-            acceptOrderPop(
-              context,
-              title: 'تم ارسال الطلب للمندوب',
-              buttonTitle: 'رجوع',
-              onPressed: () => context.go(
-                RouterNames.salesBottomNavigationBarRoot,
-              ),
+            context.go(
+              RouterNames.salesBottomNavigationBarRoot,
             );
           },
           failure: (error) {
@@ -46,16 +42,29 @@ class SalesSelectDeliveryButton extends StatelessWidget {
       builder: (context, state) {
         return Align(
           child: CustomButton(
-            text: 'ارسال الطلب للمندوب',
-            isLoading: state is SelectChefAndDeliveryLoading,
+            text: AppStrings.sendOrderToDelivery.tr(),
             textStyle: AppStyles.s14.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
             ),
-            onPressed: () {
-              context
-                  .read<SalesSelectDeliveryCubit>()
-                  .selectDelivery(id,1 ,orderId);
+            onPressed: () async {
+              final branchId = await popToChoiceBranch(
+                context,
+                title: AppStrings.choiceBranch.tr(),
+                buttonTitle: AppStrings.send.tr(),
+                selectedBranch: null,
+              );
+              if (branchId != null) {
+                context.read<SalesSelectDeliveryCubit>().selectDelivery(
+                      id,
+                      branchId,
+                      orderId,
+                    );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('No branch selected')),
+                );
+              }
             },
           ),
         );

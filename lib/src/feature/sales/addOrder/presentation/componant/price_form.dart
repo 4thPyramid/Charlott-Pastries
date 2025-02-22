@@ -10,40 +10,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class PriceForm extends StatefulWidget {
-  const PriceForm({super.key, required this.orderId});
-  final int orderId;
-
-  @override
-  State<PriceForm> createState() => _PriceFormState();
-}
-
-class _PriceFormState extends State<PriceForm> {
+class PriceForm extends StatelessWidget {
+  PriceForm({super.key, required this.orderId, required this.isSameday});
   final TextEditingController depositController = TextEditingController();
   final TextEditingController deliveryPriceController = TextEditingController();
   final TextEditingController cakePriceController = TextEditingController();
   final TextEditingController flowerPriceController = TextEditingController();
 
-  double totalPrice = 0.0;
-  @override
-  void initState() {
-    super.initState();
-    calculateTotalPrice();
-  }
-
-  void calculateTotalPrice() {
-    final double cakePrice = double.tryParse(cakePriceController.text) ?? 0.0;
-    final double flowerPrice =
-        double.tryParse(flowerPriceController.text) ?? 0.0;
-    final double deliveryPrice =
-        double.tryParse(deliveryPriceController.text) ?? 0.0;
-    final double deposit = double.tryParse(depositController.text) ?? 0.0;
-
-    setState(() {
-      totalPrice = (cakePrice + flowerPrice + deliveryPrice) - deposit;
-    });
-  }
-
+  final int orderId;
+  final String isSameday;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -128,12 +103,16 @@ class _PriceFormState extends State<PriceForm> {
             child: BlocListener<AddOrderCubit, AddOrderState>(
               listener: (context, state) {
                 state.whenOrNull(
-                  success: (message, _) =>
-                      context.go("${RouterNames.mapPicker}/${widget.orderId}"),
-                  failure: (error, _) =>
-                      ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(error.message)),
-                  ),
+                  success: (message, _) {
+                    context.push("${RouterNames.mapPicker}/$orderId/$isSameday");
+                  },
+                  failure: (error, _) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(error.message),
+                      ),
+                    );
+                  },
                 );
               },
               child: BlocBuilder<AddOrderCubit, AddOrderState>(

@@ -4,7 +4,7 @@ import 'package:charlot/src/feature/sales/orderDetails/data/models/sales_order_d
 import 'package:dartz/dartz.dart';
 
 abstract class SalesOrderDetailsApiService {
-  Future<Either<ErrorModel, SalesOrderDetailsResponse>> getSalesOrderDetails(
+  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(
       String orderId);
 }
 
@@ -12,13 +12,13 @@ class SalesOrderDetailsApiServiceImpl implements SalesOrderDetailsApiService {
   final ApiConsumer apiConsumer;
   SalesOrderDetailsApiServiceImpl(this.apiConsumer);
   @override
-  Future<Either<ErrorModel, SalesOrderDetailsResponse>> getSalesOrderDetails(
+  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(
       String orderId) async {
     try {
       final response = await apiConsumer.get(
         'sales/orders/$orderId',
       );
-      return Right(SalesOrderDetailsResponse.fromJson(response));
+      return Right(SalesOrder.fromJson(response));
     } catch (e) {
       return Left(ErrorModel(message: e.toString()));
     }

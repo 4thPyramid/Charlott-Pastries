@@ -6,8 +6,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PriceDetailsView extends StatelessWidget {
-  const PriceDetailsView({super.key, required this.orderId});
+  const PriceDetailsView({super.key, required this.orderId, required this.isSameday});
   final int orderId;
+  final String isSameday;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class PriceDetailsView extends StatelessWidget {
             ),
             PriceForm(
               orderId: orderId,
+              isSameday: isSameday,
             ),
             const SizedBox(height: 20),
           ],

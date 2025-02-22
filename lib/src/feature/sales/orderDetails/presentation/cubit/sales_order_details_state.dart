@@ -6,5 +6,5 @@ class SalesOrderDetailsState with _$SalesOrderDetailsState {
   const factory SalesOrderDetailsState.loading() = _Loading;
   const factory SalesOrderDetailsState.failure(ErrorModel error) = _Failure;
   const factory SalesOrderDetailsState.success(
-      SalesOrderDetailsResponse response) = _Success;
+      SalesOrder response) = _Success;
 }

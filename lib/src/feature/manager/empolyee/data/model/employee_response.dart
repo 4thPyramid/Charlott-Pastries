@@ -13,9 +13,10 @@ class Employee {
   final String? image;
   final String? specialization;
   @JsonKey(name: 'canTakeOrder')
-  final String canTakeOrder;
+  final String? canTakeOrder;
   @JsonKey(name: 'orderCount')
-  final int orderCount;
+  final int? orderCount;
+    final String? status;
 
   Employee({
     required this.id,
@@ -24,8 +25,9 @@ class Employee {
     required this.phone,
     this.image,
     this.specialization,
-    required this.canTakeOrder,
-    required this.orderCount,
+    this.status,
+     this.canTakeOrder,
+     this.orderCount,
   });
 
   factory Employee.fromJson(Map<String, dynamic> json) =>

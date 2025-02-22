@@ -32,7 +32,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
                   OrderDetailsHeader(
                     title: "Order Details",
                     onBackPressed: () => Navigator.pop(context),
-                    images: orderDetailsResponse.order.images,
+                    images: orderDetailsResponse.images,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -40,47 +40,47 @@ class SalesOrderDetailsContent extends StatelessWidget {
                       children: [
                         SizedBox(height: 16.h),
                         OrderTimes(
-                          orderStatus: orderDetailsResponse.order.status,
-                          startAt: orderDetailsResponse.order.createdAt,
-                          endAt: orderDetailsResponse.order.updatedAt,
+                          orderStatus: orderDetailsResponse.status,
+                          startAt: orderDetailsResponse.createdAt,
+                          endAt: orderDetailsResponse.updatedAt,
                         ),
                         SizedBox(height: 16.h),
                         ClientData(
-                          customerName: orderDetailsResponse.order.customerName ??
+                          customerName: orderDetailsResponse.customerName ??
                               'لم يتم اضافه اسم',
-                          customerPhone: orderDetailsResponse.order.customerPhone ??
+                          customerPhone: orderDetailsResponse.customerPhone ??
                               'لم يتم اضافه رقم',
                           customerAddress:
-                              orderDetailsResponse.order.additionalData ??
+                              orderDetailsResponse.additionalData ??
                                   'لم يتم اضافه عنوان',
                         ),
                         // TeamData(
                         //   chefName: orderDetailsResponse.order.chefName,
                         //   deliveryName: orderDetailsResponse.deliveryName,
                         // ),
-                                      orderDetailsResponse.order.orderDetails != 'No details'
+                                      orderDetailsResponse.orderDetails != 'No details'
                             ? OrderData(
                                 title: AppStrings.orderData.tr(),
-                                orderDetails: orderDetailsResponse.order.orderDetails ,
-                                orderType: orderDetailsResponse.order.orderType,
-                                image: orderDetailsResponse.order.images.isNotEmpty
-                                    ? orderDetailsResponse.order.images[0].image
+                                orderDetails: orderDetailsResponse.orderDetails ,
+                                orderType: orderDetailsResponse.orderType,
+                                image: orderDetailsResponse.images.isNotEmpty
+                                    ? orderDetailsResponse.images[0].image
                                     : '',
                               )
                             : const SizedBox(),
-                        orderDetailsResponse.order.description != 'No flowers'
+                        orderDetailsResponse.description != 'No flowers'
                             ? OrderData(
                                 title: AppStrings.flowerData.tr(),
                                 orderDetails:'',
-                                orderType: orderDetailsResponse.order.description??'',
-                                image: orderDetailsResponse.order.image ??
+                                orderType: orderDetailsResponse.description??'',
+                                image: orderDetailsResponse.image ??
                                     'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
                               )
                             : const SizedBox(),
                         OrderPrice(
-                          price: orderDetailsResponse.order.price ?? 0.0,
-                          deposit: orderDetailsResponse.order.deposit ?? 0.0,
-                          remaining: orderDetailsResponse.order.remaining ?? 0.0,
+                          price: orderDetailsResponse.price ?? 0.0,
+                          deposit: orderDetailsResponse.deposit ?? 0.0,
+                          remaining: orderDetailsResponse.remaining ?? 0.0,
                           flowerPrice:  0.0,
                         ),
                         SizedBox(height: 16.h),

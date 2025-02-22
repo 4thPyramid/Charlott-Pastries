@@ -36,6 +36,8 @@ class UpdatedDataAddress {
 
   @JsonKey(name: 'additional_data')
   final String additionalData;
+  @JsonKey(name: 'is_sameday')
+  final int isSameday;
 
   UpdatedDataAddress({
     required this.customerName,
@@ -44,12 +46,11 @@ class UpdatedDataAddress {
     required this.latitude,
     required this.mapDesc,
     required this.additionalData,
+    required this.isSameday,
   });
 
-  /// إنشاء كائن من JSON
   factory UpdatedDataAddress.fromJson(Map<String, dynamic> json) =>
       _$UpdatedDataAddressFromJson(json);
 
-  /// تحويل الكائن إلى JSON
   Map<String, dynamic> toJson() => _$UpdatedDataAddressToJson(this);
 }

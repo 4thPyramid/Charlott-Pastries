@@ -12,11 +12,13 @@ class ClientDetailsView extends StatelessWidget {
     required this.lat,
     required this.address,
     required this.orderId,
+    required this.isSameday,
   });
   final double long;
   final double lat;
   final String address;
   final int orderId;
+  final String isSameday;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class ClientDetailsView extends StatelessWidget {
               long: long.toString(),
               address: address,
               orderId: orderId,
+              isSameday: isSameday,
             ),
           ],
         ),
