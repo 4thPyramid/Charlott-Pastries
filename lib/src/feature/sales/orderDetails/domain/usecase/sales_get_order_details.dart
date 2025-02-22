@@ -7,7 +7,7 @@ class SalesGetOrderDetailsUC {
   final SalesOrderDetailsRepo salesOrderDetailsRepo;
   SalesGetOrderDetailsUC(this.salesOrderDetailsRepo);
 
-  Future<Either<ErrorModel, SalesOrderDetailsResponse>> call(
+  Future<Either<ErrorModel, SalesOrder>> call(
       String orderId) async {
     return await salesOrderDetailsRepo.getSalesOrderDetails(orderId);
   }

@@ -181,14 +181,16 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: "${RouterNames.mapPicker}/:orderId",
+      path: "${RouterNames.mapPicker}/:orderId/:isSameday",
       builder: (context, state) {
         final orderId =
             int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+            final isSameday = state.pathParameters['isSameday'] ?? '';
         return BlocProvider(
           create: (context) => getIt<MapPickerCubit>(),
           child: MapPickerView(
             orderId: orderId,
+            isSameday: isSameday,
           ),
         );
       },
@@ -270,14 +272,16 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: "${RouterNames.priceDetailsView}/:orderId",
+      path: "${RouterNames.priceDetailsView}/:orderId/:isSameday",
       builder: (context, state) {
         final orderId =
             int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
+            final isSameday = state.pathParameters['isSameday'] ?? '';
         return BlocProvider(
           create: (context) => getIt<AddOrderCubit>(),
           child: PriceDetailsView(
             orderId: orderId,
+            isSameday: isSameday,
           ),
         );
       },
@@ -291,6 +295,7 @@ final GoRouter router = GoRouter(
         final lat = data["latitude"] as double? ?? 0.0;
         final address = Uri.decodeComponent(data['address'] ?? '');
         final orderId = data['orderId'] ?? 0;
+        final isSameday = data['isSameday'] ?? '';
         return BlocProvider(
           create: (context) => getIt<AddOrderCubit>(),
           child: ClientDetailsView(
@@ -298,6 +303,7 @@ final GoRouter router = GoRouter(
             lat: lat,
             address: address,
             orderId: orderId,
+            isSameday: isSameday,
           ),
         );
       },

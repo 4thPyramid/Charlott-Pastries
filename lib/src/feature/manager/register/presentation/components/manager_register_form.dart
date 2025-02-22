@@ -99,7 +99,7 @@ class _ManagerRegisterFormState extends State<ManagerRegisterForm> {
       },
       builder: (context, state) {
         return Form(
-          key: formKey,
+          key: formKey, 
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

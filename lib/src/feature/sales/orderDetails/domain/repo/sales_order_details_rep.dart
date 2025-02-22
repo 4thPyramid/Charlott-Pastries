@@ -4,7 +4,7 @@ import 'package:charlot/src/feature/sales/orderDetails/data/models/sales_order_d
 import 'package:dartz/dartz.dart';
 
 abstract class SalesOrderDetailsRepo {
-  Future<Either<ErrorModel, SalesOrderDetailsResponse>> getSalesOrderDetails(
+  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(
       String orderId);
 }
 
@@ -12,7 +12,7 @@ class SalesOrderDetailsRepoImpl implements SalesOrderDetailsRepo {
   final SalesOrderDetailsRemoteDataSource salesOrderDetailsRemoteDataSource;
   SalesOrderDetailsRepoImpl(this.salesOrderDetailsRemoteDataSource);
   @override
-  Future<Either<ErrorModel, SalesOrderDetailsResponse>> getSalesOrderDetails(
+  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(
       String orderId) {
     return salesOrderDetailsRemoteDataSource.getSalesOrderDetails(orderId);
   }

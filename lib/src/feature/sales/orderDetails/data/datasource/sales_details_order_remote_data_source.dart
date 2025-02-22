@@ -4,7 +4,7 @@ import 'package:charlot/src/feature/sales/orderDetails/data/models/sales_order_d
 import 'package:dartz/dartz.dart';
 
 abstract class SalesOrderDetailsRemoteDataSource {
-  Future<Either<ErrorModel, SalesOrderDetailsResponse>> getSalesOrderDetails(
+  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(
       String orderId);
 }
 
@@ -13,7 +13,7 @@ class SalesOrderDetailsRemoteDataSourceImpl
   final SalesOrderDetailsApiService salesOrderDetailsApiService;
   SalesOrderDetailsRemoteDataSourceImpl(this.salesOrderDetailsApiService);
   @override
-  Future<Either<ErrorModel, SalesOrderDetailsResponse>> getSalesOrderDetails(
+  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(
       String orderId) {
     return salesOrderDetailsApiService.getSalesOrderDetails(orderId);
   }

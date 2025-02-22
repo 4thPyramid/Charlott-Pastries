@@ -70,13 +70,16 @@ class ChefAndDeliveryCard extends StatelessWidget {
                 vertical: 10.h,
               ),
               decoration: BoxDecoration(
-                color: employee.canTakeOrder == 'Available'
+                color:employee.status == null ?employee.canTakeOrder == 'Available'
+                    ? AppColors.green
+                    : AppColors.red
+                    :employee.status == 'Available'
                     ? AppColors.green
                     : AppColors.red,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                employee.canTakeOrder,
+                employee.canTakeOrder??employee.status!,
                 style: AppStyles.s12.copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.w700,
@@ -95,7 +98,7 @@ class ChefAndDeliveryCard extends StatelessWidget {
               const Spacer(),
               _buildInfoItem(
                 Icons.date_range_outlined,
-                '${employee.orderCount} من الطلبات',
+                '${employee.orderCount}${AppStrings.orders.tr()} ',
               ),
             ],
           ),

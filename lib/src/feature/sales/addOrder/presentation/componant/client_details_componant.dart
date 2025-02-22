@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../data/models/ordermodels/add_order_request_model.dart';
+
 class ClientDetailsComponant extends StatelessWidget {
   ClientDetailsComponant({
     super.key,
@@ -14,6 +16,7 @@ class ClientDetailsComponant extends StatelessWidget {
     required this.long,
     required this.address,
     required this.orderId,
+    required this.isSameday,
   });
 
   final TextEditingController nameController = TextEditingController();
@@ -23,6 +26,8 @@ class ClientDetailsComponant extends StatelessWidget {
   final String long;
   final String address;
   final int orderId;
+    final String isSameday;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +38,16 @@ class ClientDetailsComponant extends StatelessWidget {
               ? const Center(child: CircularProgressIndicator())
               : Container(),
           success: (data, isSameDay) {
-            Future.microtask(() {
-              var isSame = CacheHelper.getData(key: 'isSameDay');
-              print('\\\\\\\\\\\\\\\\\\\\\\isSameDay: $isSameDay');
-              if (isSame) {
-                print('\\\\\\\\\\\\\\\\\\\\\\isSameDay true: $isSame');
-                context.push(RouterNames.salesSelectDeliveryView,
-                    extra: {'orderId': orderId});
-              } else {
-                print('\\\\\\\\\\\\\\\\\\\\\\isSameDay false : $isSame');
-                context.push(
-                  RouterNames.salesBottomNavigationBarRoot,
-                );
-              }
-            });
+            if (isSameday == "1") {
+              context.push(RouterNames.salesSelectDeliveryView,
+                  extra: {'orderId': orderId});
+            } else {
+              context.push(
+                RouterNames.salesBottomNavigationBarRoot,
+              );
+            }
+
+          
           },
           failure: (error, isLoading) {
             ScaffoldMessenger.of(context)
@@ -56,6 +57,8 @@ class ClientDetailsComponant extends StatelessWidget {
         );
       },
       builder: (context, state) {
+        print('ClientDetailsComponant: isSameDay = ${state.isSameDay}');
+
         return ClientDatailsForm(
           nameController: nameController,
           phoneController: phoneController,

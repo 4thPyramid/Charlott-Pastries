@@ -1,8 +1,5 @@
 import 'dart:io';
-import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/core/theme/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_request_model.dart';
@@ -22,7 +19,7 @@ class RequestTypeForm extends StatefulWidget {
 }
 
 class _RequestTypeFormState extends State<RequestTypeForm> {
-  bool isSameDay = false;
+ // bool isSameDaii = false;
   String selectedType = "cake and flower";
   TextEditingController cakeDetailsController = TextEditingController();
   TextEditingController flowerDetailsController = TextEditingController();
@@ -61,6 +58,8 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
             const SizedBox(height: 16.0),
             BlocBuilder<AddOrderCubit, AddOrderState>(
               builder: (context, state) {
+                    print('RequestTypeForm: isSameDay = ${state.isSameDay}');
+
                 return Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
@@ -98,17 +97,12 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                           inactiveTrackColor: Colors.grey,
                           inactiveThumbColor: Colors.black,
                           onChanged: (value) {
-                          //  print("------------------value--$value");
-                          //  print("---------------state-----${state.isSameDay}");
-                            if(value == true){
-                            CacheHelper.saveData(key: 'isSameDay', value: true);
-                            }else{
-                              CacheHelper.saveData(key: 'isSameDay', value: false);
-                            }
-
+                         
                             context
                                 .read<AddOrderCubit>()
                                 .updateSameDayDelivery(value);
+
+                         
                           },
                         ),
                       ],
@@ -186,7 +180,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 state.whenOrNull(
                   success: (requestModel, _) {
                     context.go(
-                        "${RouterNames.priceDetailsView}/${requestModel.order?.id}");
+                        "${RouterNames.priceDetailsView}/${requestModel.order?.id}/${requestModel.order?.isSameday}");
                   },
                   failure: (error, _) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -213,7 +207,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
 
                       final requestModel = AddOrderRequestModel(
                         files: cakeImages + flowerImages,
-                        isSameDay: isSameDay,
+                        isSameDay: state.isSameDay,
                         orderType: selectedType,
                         orderDetails: cakeDetailsController.text,
                         quantity: quantity,

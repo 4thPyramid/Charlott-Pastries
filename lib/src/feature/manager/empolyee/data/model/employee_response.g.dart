@@ -13,8 +13,9 @@ Employee _$EmployeeFromJson(Map<String, dynamic> json) => Employee(
       phone: json['phone'] as String,
       image: json['image'] as String?,
       specialization: json['specialization'] as String?,
-      canTakeOrder: json['canTakeOrder'] as String? ?? 'No',
-      orderCount: (json['orderCount'] as num? ?? 0).toInt(),
+      status: json['status'] as String?,
+      canTakeOrder: json['canTakeOrder'] as String?,
+      orderCount: (json['orderCount'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$EmployeeToJson(Employee instance) => <String, dynamic>{
@@ -26,6 +27,7 @@ Map<String, dynamic> _$EmployeeToJson(Employee instance) => <String, dynamic>{
       'specialization': instance.specialization,
       'canTakeOrder': instance.canTakeOrder,
       'orderCount': instance.orderCount,
+      'status': instance.status,
     };
 
 EmployeesResponse _$EmployeesResponseFromJson(Map<String, dynamic> json) =>

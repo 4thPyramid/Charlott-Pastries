@@ -21,7 +21,7 @@ mixin _$SalesOrderDetailsState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel error) failure,
-    required TResult Function(SalesOrderDetailsResponse response) success,
+    required TResult Function(SalesOrder response) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$SalesOrderDetailsState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel error)? failure,
-    TResult? Function(SalesOrderDetailsResponse response)? success,
+    TResult? Function(SalesOrder response)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$SalesOrderDetailsState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel error)? failure,
-    TResult Function(SalesOrderDetailsResponse response)? success,
+    TResult Function(SalesOrder response)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,7 +134,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel error) failure,
-    required TResult Function(SalesOrderDetailsResponse response) success,
+    required TResult Function(SalesOrder response) success,
   }) {
     return initial();
   }
@@ -145,7 +145,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel error)? failure,
-    TResult? Function(SalesOrderDetailsResponse response)? success,
+    TResult? Function(SalesOrder response)? success,
   }) {
     return initial?.call();
   }
@@ -156,7 +156,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel error)? failure,
-    TResult Function(SalesOrderDetailsResponse response)? success,
+    TResult Function(SalesOrder response)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -251,7 +251,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel error) failure,
-    required TResult Function(SalesOrderDetailsResponse response) success,
+    required TResult Function(SalesOrder response) success,
   }) {
     return loading();
   }
@@ -262,7 +262,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel error)? failure,
-    TResult? Function(SalesOrderDetailsResponse response)? success,
+    TResult? Function(SalesOrder response)? success,
   }) {
     return loading?.call();
   }
@@ -273,7 +273,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel error)? failure,
-    TResult Function(SalesOrderDetailsResponse response)? success,
+    TResult Function(SalesOrder response)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -395,7 +395,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel error) failure,
-    required TResult Function(SalesOrderDetailsResponse response) success,
+    required TResult Function(SalesOrder response) success,
   }) {
     return failure(error);
   }
@@ -406,7 +406,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel error)? failure,
-    TResult? Function(SalesOrderDetailsResponse response)? success,
+    TResult? Function(SalesOrder response)? success,
   }) {
     return failure?.call(error);
   }
@@ -417,7 +417,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel error)? failure,
-    TResult Function(SalesOrderDetailsResponse response)? success,
+    TResult Function(SalesOrder response)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -482,7 +482,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SalesOrderDetailsResponse response});
+  $Res call({SalesOrder response});
 }
 
 /// @nodoc
@@ -504,7 +504,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as SalesOrderDetailsResponse,
+              as SalesOrder,
     ));
   }
 }
@@ -515,7 +515,7 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.response);
 
   @override
-  final SalesOrderDetailsResponse response;
+  final SalesOrder response;
 
   @override
   String toString() {
@@ -548,7 +548,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel error) failure,
-    required TResult Function(SalesOrderDetailsResponse response) success,
+    required TResult Function(SalesOrder response) success,
   }) {
     return success(response);
   }
@@ -559,7 +559,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel error)? failure,
-    TResult? Function(SalesOrderDetailsResponse response)? success,
+    TResult? Function(SalesOrder response)? success,
   }) {
     return success?.call(response);
   }
@@ -570,7 +570,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel error)? failure,
-    TResult Function(SalesOrderDetailsResponse response)? success,
+    TResult Function(SalesOrder response)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -618,10 +618,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements SalesOrderDetailsState {
-  const factory _Success(final SalesOrderDetailsResponse response) =
-      _$SuccessImpl;
+  const factory _Success(final SalesOrder response) = _$SuccessImpl;
 
-  SalesOrderDetailsResponse get response;
+  SalesOrder get response;
 
   /// Create a copy of SalesOrderDetailsState
   /// with the given fields replaced by the non-null parameter values.

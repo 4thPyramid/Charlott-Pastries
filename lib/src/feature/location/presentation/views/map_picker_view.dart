@@ -1,8 +1,6 @@
 // ملف: map_picker_view.dart
 import 'package:charlot/core/common/widgets/custom_btn.dart';
-import 'package:charlot/core/common/widgets/custom_text_form_field.dart';
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/componant/requset_type_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/src/feature/location/presentation/cubit/map_picker_cubit.dart';
@@ -12,9 +10,9 @@ import 'package:charlot/src/feature/location/presentation/widgets/search_field.d
 import 'package:go_router/go_router.dart';
 
 class MapPickerView extends StatelessWidget {
-  MapPickerView({super.key, required this.orderId});
+  const MapPickerView({super.key, required this.orderId, required this.isSameday});
   final int orderId;
-  final TextEditingController _addressController = TextEditingController();
+  final String isSameday;
 
   @override
   Widget build(BuildContext context) {
@@ -101,13 +99,14 @@ class MapPickerView extends StatelessWidget {
 
   void _confirmLocation(MapPickerLoaded state, BuildContext context) {
     final encodedAddress = Uri.encodeComponent(state.address);
-    context.go(
+    context.push(
       RouterNames.addClientDetailsView,
       extra: {
         'longitude': state.longitude,
         'latitude': state.latitude,
         'address': encodedAddress,
-        'orderId': orderId
+        'orderId': orderId,
+        'isSameday': isSameday,
       },
     );
   }

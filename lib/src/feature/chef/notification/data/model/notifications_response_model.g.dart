@@ -5,6 +5,7 @@ part of 'notifications_response_model.dart';
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
+
 NotificationResponseModel _$NotificationResponseModelFromJson(
         Map<String, dynamic> json) =>
     NotificationResponseModel(

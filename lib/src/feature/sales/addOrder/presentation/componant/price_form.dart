@@ -12,7 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class PriceForm extends StatelessWidget {
-  PriceForm({super.key, required this.orderId});
+  PriceForm({super.key, required this.orderId, required this.isSameday});
   final TextEditingController depositController = TextEditingController();
   final TextEditingController deliveryPriceController = TextEditingController();
 
@@ -20,7 +20,7 @@ class PriceForm extends StatelessWidget {
   final TextEditingController flowerPriceController = TextEditingController();
 
   final int orderId;
-
+  final String isSameday;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -89,7 +89,7 @@ class PriceForm extends StatelessWidget {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (message, _) {
-                    context.go("${RouterNames.mapPicker}/$orderId");
+                    context.push("${RouterNames.mapPicker}/$orderId/$isSameday");
                   },
                   failure: (error, _) {
                     ScaffoldMessenger.of(context).showSnackBar(

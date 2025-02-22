@@ -9,7 +9,7 @@ part of 'sales_order_details_response.dart';
 SalesOrderDetailsResponse _$SalesOrderDetailsResponseFromJson(
         Map<String, dynamic> json) =>
     SalesOrderDetailsResponse(
-      order: Order.fromJson(json['order'] as Map<String, dynamic>),
+      order: SalesOrder.fromJson(json['order'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SalesOrderDetailsResponseToJson(
@@ -18,7 +18,7 @@ Map<String, dynamic> _$SalesOrderDetailsResponseToJson(
       'order': instance.order,
     };
 
-Order _$OrderFromJson(Map<String, dynamic> json) => Order(
+SalesOrder _$SalesOrderFromJson(Map<String, dynamic> json) => SalesOrder(
       id: (json['id'] as num).toInt(),
       orderType: json['order_type'] as String,
       orderDetails: json['order_details'] as String,
@@ -41,11 +41,9 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       mapDesc: json['map_desc'] as String?,
       additionalData: json['additional_data'] as String?,
       productId: (json['product_id'] as num?)?.toInt(),
-      isReturned: (json['is_returned'] as num).toInt(),
+      isReturned: (json['is_returned'] as num?)?.toInt(),
       problem: json['problem'] as String?,
       status: json['status'] as String,
-      paymentMethod: json['payment_method'] as String,
-      saleId: (json['sale_id'] as num).toInt(),
       managerId: (json['manager_id'] as num?)?.toInt(),
       chefId: (json['chef_id'] as num?)?.toInt(),
       deliveryId: (json['delivery_id'] as num?)?.toInt(),
@@ -57,7 +55,8 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
           .toList(),
     );
 
-Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
+Map<String, dynamic> _$SalesOrderToJson(SalesOrder instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'order_type': instance.orderType,
       'order_details': instance.orderDetails,
@@ -83,8 +82,6 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'is_returned': instance.isReturned,
       'problem': instance.problem,
       'status': instance.status,
-      'payment_method': instance.paymentMethod,
-      'sale_id': instance.saleId,
       'manager_id': instance.managerId,
       'chef_id': instance.chefId,
       'delivery_id': instance.deliveryId,

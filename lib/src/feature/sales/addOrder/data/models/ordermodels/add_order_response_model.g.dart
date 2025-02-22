@@ -43,6 +43,7 @@ OrderAdded _$OrderAddedFromJson(Map<String, dynamic> json) => OrderAdded(
       saleId: (json['sale_id'] as num?)?.toInt(),
       updatedAt: json['updated_at'] as String?,
       createdAt: json['created_at'] as String?,
+      isSameday: json['is_sameday'] as String?,
       id: (json['id'] as num).toInt(),
       images: (json['images'] as List<dynamic>?)
           ?.map((e) => OrderImage.fromJson(e as Map<String, dynamic>))
@@ -57,6 +58,7 @@ Map<String, dynamic> _$OrderAddedToJson(OrderAdded instance) =>
       'flower_quantity': instance.flowerQuantity,
       'quantity': instance.quantity,
       'delivery_time': instance.deliveryTime,
+      'is_sameday': instance.isSameday,
       'delivery_date': instance.deliveryDate,
       'sale_id': instance.saleId,
       'updated_at': instance.updatedAt,
