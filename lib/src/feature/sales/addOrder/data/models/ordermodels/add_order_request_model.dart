@@ -7,7 +7,7 @@ part 'add_order_request_model.g.dart';
 @JsonSerializable()
 class AddOrderRequestModel {
   @JsonKey(fromJson: _filesFromJson, toJson: _filesToJson)
-  final List<File> files;
+  final List<File> images;
 
   @JsonKey(name: 'is_sameday')
   final bool isSameDay;
@@ -23,14 +23,15 @@ class AddOrderRequestModel {
   @JsonKey(name: 'delivery_date')
   final String deliveryDate;
 
- 
-
+ @JsonKey(ignore: true)
+  final File? image;
   @JsonKey(name: 'description')
   final String description;
   final String from;
   final String to;
   AddOrderRequestModel({
-    required this.files,
+    required this.images,
+       this.image,
     required this.isSameDay,
     required this.orderType,
     required this.orderDetails,
@@ -45,21 +46,36 @@ class AddOrderRequestModel {
       _$AddOrderRequestModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddOrderRequestModelToJson(this);
+Future<FormData> toFormData() async {
+    Map<String, dynamic> formData = {};
 
-  Future<FormData> toFormData() async {
-    return FormData.fromMap({
-      "files": await Future.wait(
-        files.map((file) async => await MultipartFile.fromFile(file.path)),
-      ),
-      "is_sameday": isSameDay ? '1' : '0',
-      "order_type": orderType,
-      "order_details": orderDetails,
-      "quantity": quantity.toString(),
-      "delivery_date": deliveryDate,
-      "description": description,
-      "from": from,
-      "to": to,
-    });
+    formData['is_sameday'] = isSameDay ? '1' : '0';
+    formData['order_type'] = orderType;
+    formData['order_details'] = orderDetails;
+    formData['quantity'] = quantity.toString();
+    formData['delivery_date'] = deliveryDate;
+    formData['description'] = description;
+    formData['from'] = from;
+    formData['to'] = to;
+
+    if (image != null && await image!.exists()) {
+      formData['image'] = await MultipartFile.fromFile(image!.path);
+    }
+  
+
+    for (int i = 0; i < images.length; i++) {
+      var file = images[i];
+      if (await file.exists()) {
+        formData['images[$i]'] = await MultipartFile.fromFile(file.path);
+      } else {
+        throw Exception('File does not exist: ${file.path}');
+      }
+    }
+
+    print(
+        "FormData files: ${formData.values.where((e) => e is MultipartFile).map((e) => (e as MultipartFile).filename).toList()}");
+
+    return FormData.fromMap(formData);
   }
 
   static List<File> _filesFromJson(List<dynamic> json) =>

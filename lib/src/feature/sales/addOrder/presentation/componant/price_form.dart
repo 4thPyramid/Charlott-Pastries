@@ -16,6 +16,7 @@ class PriceForm extends StatelessWidget {
   final TextEditingController deliveryPriceController = TextEditingController();
   final TextEditingController cakePriceController = TextEditingController();
   final TextEditingController flowerPriceController = TextEditingController();
+ 
 
   final int orderId;
   final String isSameday;
@@ -38,8 +39,6 @@ class PriceForm extends StatelessWidget {
             prefixIcon:
                 const Icon(Icons.cake, size: 30, color: AppColors.primaryColor),
             controller: cakePriceController,
-            onEditingComplete:
-                calculateTotalPrice, // 🔥 يحسب المجموع عند الخروج من الحقل
           ),
           SizedBox(height: 10.h),
           Text("Flower Price",
@@ -53,12 +52,6 @@ class PriceForm extends StatelessWidget {
             prefixIcon:
                 const Icon(Icons.money, size: 30, color: AppColors.green),
             controller: flowerPriceController,
-            onEditingComplete: calculateTotalPrice,
-            onTap: () {
-              setState(() {
-                calculateTotalPrice();
-              });
-            },
           ),
           SizedBox(height: 10.h),
           Text("Delivery Price",
@@ -72,10 +65,6 @@ class PriceForm extends StatelessWidget {
             prefixIcon: const Icon(Icons.attach_money_rounded,
                 size: 30, color: AppColors.orange),
             controller: deliveryPriceController,
-            onEditingComplete: () {
-              calculateTotalPrice();
-              setState(() {});
-            },
           ),
           SizedBox(height: 10.h),
           Text("Deposit",
@@ -87,16 +76,6 @@ class PriceForm extends StatelessWidget {
             prefixIcon: const Icon(Icons.motion_photos_pause_rounded,
                 size: 30, color: AppColors.blue),
             controller: depositController,
-            onEditingComplete: () {
-              calculateTotalPrice();
-              setState(() {});
-            },
-          ),
-          SizedBox(height: 20.h),
-          Text(
-            "Total Price: ${totalPrice.toStringAsFixed(2)}",
-            style: AppStyles.s16.copyWith(
-                fontWeight: FontWeight.bold, color: AppColors.primaryColor),
           ),
           SizedBox(height: 20.h),
           Center(
@@ -104,7 +83,8 @@ class PriceForm extends StatelessWidget {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (message, _) {
-                    context.push("${RouterNames.mapPicker}/$orderId/$isSameday");
+                    context
+                        .push("${RouterNames.mapPicker}/$orderId/$isSameday");
                   },
                   failure: (error, _) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -121,16 +101,14 @@ class PriceForm extends StatelessWidget {
                     text: "Next",
                     onPressed: () {
                       final request = AddPriceRequestModel(
-                        price: cakePriceController.text,
+                        cakePrice: cakePriceController.text,
                         deposit: depositController.text,
-                        remaining: "",
                         deliveryPrice: deliveryPriceController.text,
-                        totalPrice: totalPrice.toString(),
                         flowerPrice: flowerPriceController.text,
                       );
                       context
                           .read<AddOrderCubit>()
-                          .addOrderPrice(request, widget.orderId);
+                          .addOrderPrice(request, orderId);
                     },
                   );
                 },

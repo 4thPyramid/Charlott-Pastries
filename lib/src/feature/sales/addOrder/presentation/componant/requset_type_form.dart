@@ -19,7 +19,6 @@ class RequestTypeForm extends StatefulWidget {
 }
 
 class _RequestTypeFormState extends State<RequestTypeForm> {
- // bool isSameDaii = false;
   String selectedType = "cake and flower";
   TextEditingController cakeDetailsController = TextEditingController();
   TextEditingController flowerDetailsController = TextEditingController();
@@ -29,8 +28,9 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
   TimeOfDay? deliveryTimeTo;
   DateTime? selectedDate;
   int quantity = 1;
+  
   List<File> cakeImages = [];
-  List<File> flowerImages = [];
+  File? flowerImages ;
   bool isDeliveryTimeValid = true;
 
   void _handleDeliveryTimeToChanged(TimeOfDay time) {
@@ -98,9 +98,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                           inactiveTrackColor: Colors.grey,
                           inactiveThumbColor: Colors.black,
                           onChanged: (value) {
-                            print("------------------value--$value");
-                            print("---------------state-----${state.isSameDay}");
-                            CacheHelper.saveData(key: 'isSameDay', value: value);
+                          
 
                             context
                                 .read<AddOrderCubit>()
@@ -147,11 +145,15 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 onDateChanged: _handleDateChanged,
               ),
             if (selectedType == 'flower' || selectedType == 'cake and flower')
-              FlowersSectionComponant(
-                onImagesChanged: (images) =>
-                    setState(() => flowerImages = images),
+            FlowersSectionComponant(
+                onImagesChanged: (images) {
+                  setState(() {
+                    flowerImages = images;
+                  });
+                },
                 controller: flowerDetailsController,
               ),
+             
             const SizedBox(height: 16.0),
             Row(
               children: [
@@ -182,7 +184,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 state.whenOrNull(
                   success: (requestModel, _) {
                     context.go(
-                        "${RouterNames.priceDetailsView}/${requestModel.order?.id}");
+                        "${RouterNames.priceDetailsView}/${requestModel.order?.id}/${requestModel.order?.isSameday}");
                   },
                   failure: (error, _) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -208,8 +210,9 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                       }
 
                       final requestModel = AddOrderRequestModel(
-                        files: cakeImages + flowerImages,
-                        isSameDay: isSameDay,
+                        images: cakeImages,
+                       image: flowerImages,
+                        isSameDay: state.isSameDay,
                         orderType: selectedType,
                         orderDetails: cakeDetailsController.text,
                         quantity: quantity,
@@ -231,7 +234,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

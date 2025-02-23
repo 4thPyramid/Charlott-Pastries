@@ -42,7 +42,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
                         OrderTimes(
                           orderStatus: orderDetailsResponse.status,
                           startAt: orderDetailsResponse.createdAt,
-                          endAt: orderDetailsResponse.updatedAt,
+                          endAt: orderDetailsResponse.updatedAt??'0000-00-00 00:00:00',
                         ),
                         SizedBox(height: 16.h),
                         ClientData(
@@ -65,7 +65,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
                                 orderType: orderDetailsResponse.orderType,
                                 image: orderDetailsResponse.images.isNotEmpty
                                     ? orderDetailsResponse.images[0].image
-                                    : '',
+                                    : 'https://th.bing.com/th/id/OIP.Fw-199hoU0qcuFHEL9Vf8wHaLH?rs=1&pid=ImgDetMain',
                               )
                             : const SizedBox(),
                         orderDetailsResponse.description != 'No flowers'

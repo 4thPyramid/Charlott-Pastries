@@ -18,6 +18,8 @@ class SalesOrderDetailsResponse {
 
 @JsonSerializable()
 class SalesOrder {
+
+  
   final int id;
   @JsonKey(name: 'order_type')
   final String orderType;
@@ -67,7 +69,7 @@ class SalesOrder {
   @JsonKey(name: 'created_at')
   final String createdAt;
   @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final String? updatedAt;
   @JsonKey(name: 'rejection_cause')
   final String? rejectionCause;
   @JsonKey(name: 'images')
@@ -103,7 +105,7 @@ class SalesOrder {
     this.chefId,
     this.deliveryId,
     required this.createdAt,
-    required this.updatedAt,
+     this.updatedAt,
     this.rejectionCause,
     required this.images,
   });

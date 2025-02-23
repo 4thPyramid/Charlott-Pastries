@@ -18,7 +18,7 @@ class SalesOrderDetailsApiServiceImpl implements SalesOrderDetailsApiService {
       final response = await apiConsumer.get(
         'sales/orders/$orderId',
       );
-      return Right(SalesOrder.fromJson(response));
+      return Right(SalesOrder.fromJson(response['order']));
     } catch (e) {
       return Left(ErrorModel(message: e.toString()));
     }

@@ -109,10 +109,12 @@ class _ChoiceBranchState extends State<ChoiceBranch> {
                   color: AppColors.primaryColor,
                 ),
                 SizedBox(width: 8.w),
-                Text(
-                  branch.name,
-                  style: const TextStyle(
-                    color: AppColors.primaryColor,
+                Flexible(
+                  child: Text(
+                    branch.name,
+                    style: const TextStyle(
+                      color: AppColors.primaryColor,
+                    ),
                   ),
                 ),
               ],

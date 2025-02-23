@@ -38,10 +38,10 @@ class AddOrderApiServiceImpl implements AddOrderApiService {
     try {
       final response = await apiConsumer.post("/sales/orders/first-screen",
           data: await request.toFormData(),
-          isFormData: true,
+           isFormData: true,
           headers: {
             'Accept': 'application/vnd.api+json',
-            'Content-Type': 'multipart/form-data',
+             'Content-Type': 'multipart/form-data',
             'Authorization': 'Bearer ${CacheHelper.getToken()}'
           });
       final model = AddOrderResponseModel.fromJson(response);

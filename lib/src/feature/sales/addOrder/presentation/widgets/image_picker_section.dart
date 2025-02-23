@@ -32,13 +32,24 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     _selectedImages = List.from(widget.initialImages);
   }
 
-  Future<void> _pickImages() async {
+  // Future<void> _pickImages() async {
+  //   final pickedFiles = await ImagePicker().pickMultiImage();
+
+  //   if (pickedFiles.isNotEmpty) {
+  //     setState(() {
+  //       _selectedImages.addAll(pickedFiles.map((e) => File(e.path)));
+  //     });
+  //     widget.onChanged?.call(_selectedImages);
+  //   }
+  // }
+  void _pickImages() async {
     final pickedFiles = await ImagePicker().pickMultiImage();
 
     if (pickedFiles.isNotEmpty) {
       setState(() {
         _selectedImages.addAll(pickedFiles.map((e) => File(e.path)));
       });
+      print("Selected images: ${_selectedImages.map((e) => e.path).toList()}");
       widget.onChanged?.call(_selectedImages);
     }
   }

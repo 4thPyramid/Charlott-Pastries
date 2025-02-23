@@ -9,7 +9,7 @@ part of 'add_order_request_model.dart';
 AddOrderRequestModel _$AddOrderRequestModelFromJson(
         Map<String, dynamic> json) =>
     AddOrderRequestModel(
-      files: AddOrderRequestModel._filesFromJson(json['files'] as List),
+      images: AddOrderRequestModel._filesFromJson(json['images'] as List),
       isSameDay: json['is_sameday'] as bool,
       orderType: json['order_type'] as String,
       orderDetails: json['order_details'] as String,
@@ -23,7 +23,7 @@ AddOrderRequestModel _$AddOrderRequestModelFromJson(
 Map<String, dynamic> _$AddOrderRequestModelToJson(
         AddOrderRequestModel instance) =>
     <String, dynamic>{
-      'files': AddOrderRequestModel._filesToJson(instance.files),
+      'images': AddOrderRequestModel._filesToJson(instance.images),
       'is_sameday': instance.isSameDay,
       'order_type': instance.orderType,
       'order_details': instance.orderDetails,

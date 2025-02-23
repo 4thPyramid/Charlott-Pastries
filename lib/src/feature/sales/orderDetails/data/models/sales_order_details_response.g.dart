@@ -9,7 +9,7 @@ part of 'sales_order_details_response.dart';
 SalesOrderDetailsResponse _$SalesOrderDetailsResponseFromJson(
         Map<String, dynamic> json) =>
     SalesOrderDetailsResponse(
-      order: Order.fromJson(json['order'] as Map<String, dynamic>? ?? {}),
+      order: SalesOrder.fromJson(json['order'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SalesOrderDetailsResponseToJson(
@@ -18,8 +18,8 @@ Map<String, dynamic> _$SalesOrderDetailsResponseToJson(
       'order': instance.order,
     };
 
-Order _$OrderFromJson(Map<String, dynamic> json) => Order(
-      id: (json['id'] as num? ?? 0).toInt(),
+SalesOrder _$SalesOrderFromJson(Map<String, dynamic> json) => SalesOrder(
+      id: (json['id'] as num).toInt(),
       orderType: json['order_type'] as String,
       orderDetails: json['order_details'] as String,
       flowerId: (json['flower_id'] as num?)?.toInt(),
@@ -48,7 +48,7 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       chefId: (json['chef_id'] as num?)?.toInt(),
       deliveryId: (json['delivery_id'] as num?)?.toInt(),
       createdAt: json['created_at'] as String,
-      updatedAt: json['updated_at'] as String,
+      updatedAt: json['updated_at'] as String?,
       rejectionCause: json['rejection_cause'] as String?,
       images: (json['images'] as List<dynamic>)
           .map((e) => OrderImageDetails.fromJson(e as Map<String, dynamic>))
