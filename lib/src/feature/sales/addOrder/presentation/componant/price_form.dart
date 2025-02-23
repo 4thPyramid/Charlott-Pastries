@@ -41,6 +41,7 @@ class PriceForm extends StatelessWidget {
             controller: cakePriceController,
           ),
           SizedBox(height: 10.h),
+        if (isSameday == "false") ...[
           Text("Flower Price",
               style: AppStyles.s16.copyWith(fontWeight: FontWeight.w700)),
           SizedBox(height: 10.h),
@@ -53,6 +54,7 @@ class PriceForm extends StatelessWidget {
                 const Icon(Icons.money, size: 30, color: AppColors.green),
             controller: flowerPriceController,
           ),
+        ] else SizedBox(height: 10.h),
           SizedBox(height: 10.h),
           Text("Delivery Price",
               style: AppStyles.s16.copyWith(fontWeight: FontWeight.w700)),
