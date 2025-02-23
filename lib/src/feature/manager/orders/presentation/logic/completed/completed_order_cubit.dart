@@ -6,11 +6,12 @@ import 'completed_order_state.dart';
 class CompletedOrdersCubit extends Cubit<CompletedOrderState<dynamic>> {
   final GetCompletedOrderUseCase _completedOrdersUseCase;
 
-  CompletedOrdersCubit(this._completedOrdersUseCase) : super(CompletedOrderState.initial());
+  CompletedOrdersCubit(this._completedOrdersUseCase)
+      : super(CompletedOrderState.initial());
 
-  Future<void> call() async { 
+  Future<void> call([DateTime? from, DateTime? to]) async {
     emit(CompletedOrderState.loading());
-    final result = await _completedOrdersUseCase.call();
+    final result = await _completedOrdersUseCase.call(from, to);
 
     result.fold(
       (error) => emit(CompletedOrderState.failure(error)),

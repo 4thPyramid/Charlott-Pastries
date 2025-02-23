@@ -7,7 +7,8 @@ import '../model/stats_response.dart';
 import 'home_api_services.dart';
 
 abstract class HomeRemoteDs {
-    Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder();
+    Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder(
+      DateTime? from, DateTime? to);
   Future<Either<ErrorModel, InProgressOrderResponse>> getInProgressOrder();
     Future<Either<ErrorModel,  StatsResponse >> getStats();
 
@@ -18,8 +19,9 @@ class HomeRemoteDsImpl extends HomeRemoteDs {
   final HomeApiServices homeApiServices;
   HomeRemoteDsImpl(this.homeApiServices);
   @override
-  Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder() async {
-    return homeApiServices.getNewOrder();
+  Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder(
+      DateTime? from, DateTime? to) async {
+    return homeApiServices.getNewOrder(from, to);
   }
   
   @override

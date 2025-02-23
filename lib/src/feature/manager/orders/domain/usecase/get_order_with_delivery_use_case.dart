@@ -10,7 +10,8 @@ class GetOrderWithDeliveryUseCase {
 
   GetOrderWithDeliveryUseCase(this._orderRepository);
 
-  Future<Either<ErrorModel, OrdersResponse>> call() {
-    return _orderRepository.withDeliveryOrder();
+  Future<Either<ErrorModel, OrdersResponse>> call(
+      DateTime? from, DateTime? to) {
+    return _orderRepository.withDeliveryOrder(from, to);
   }
 }

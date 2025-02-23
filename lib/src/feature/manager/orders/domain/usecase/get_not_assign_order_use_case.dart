@@ -5,12 +5,12 @@ import '../../data/model/orders_response.dart';
 import '../repo/orders_repo.dart';
 
 class GetNotAssignOrderUseCase {
-   final OrderRepository _orderRepository;
+  final OrderRepository _orderRepository;
 
   GetNotAssignOrderUseCase(this._orderRepository);
 
-  Future<Either<ErrorModel, OrdersResponse>> call() {
-    return _orderRepository.notAssignOrder();
+  Future<Either<ErrorModel, OrdersResponse>> call(
+      DateTime? from, DateTime? to) {
+    return _orderRepository.notAssignOrder(from, to);
   }
-
 }

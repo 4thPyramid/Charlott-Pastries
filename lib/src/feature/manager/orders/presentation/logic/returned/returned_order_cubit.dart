@@ -6,11 +6,12 @@ import 'returned_order_state.dart';
 class ReturnedOrdersCubit extends Cubit<ReturnedOrderState<dynamic>> {
   final GetReturnedOrderUseCase _returnedOrdersUseCase;
 
-  ReturnedOrdersCubit(this._returnedOrdersUseCase) : super(ReturnedOrderState.initial());
+  ReturnedOrdersCubit(this._returnedOrdersUseCase)
+      : super(ReturnedOrderState.initial());
 
-  Future<void> call() async { 
+  Future<void> call([DateTime? from, DateTime? to]) async {
     emit(ReturnedOrderState.loading());
-    final result = await _returnedOrdersUseCase.call();
+    final result = await _returnedOrdersUseCase.call(from, to);
 
     result.fold(
       (error) => emit(ReturnedOrderState.failure(error)),

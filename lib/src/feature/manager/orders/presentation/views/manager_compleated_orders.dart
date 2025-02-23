@@ -21,7 +21,7 @@ class ManagerCompletedOrders extends StatelessWidget {
               iconLeft: Icons.arrow_back_ios,
               onPressedLeft: () => context.pop(),
             ),
-            const ManagerCompleteOrdersListView()
+            const Expanded(child: ManagerCompleteOrdersListView())
           ],
         ));
   }

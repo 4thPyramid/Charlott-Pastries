@@ -10,7 +10,6 @@ import '../components/manager_not_assign_order_list_view.dart';
 class ManagerNotAssignOrders extends StatelessWidget {
   const ManagerNotAssignOrders({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +21,7 @@ class ManagerNotAssignOrders extends StatelessWidget {
               iconLeft: Icons.arrow_back_ios,
               onPressedLeft: () => context.pop(),
             ),
-            const ManagerNotAssignOrdersListView()
+            const Expanded(child: ManagerNotAssignOrdersListView())
           ],
         ));
   }

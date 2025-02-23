@@ -9,7 +9,13 @@ class GetCompletedOrderUseCase {
 
   GetCompletedOrderUseCase(this._orderRepository);
 
-  Future<Either<ErrorModel, OrdersResponse>> call() {
-    return _orderRepository.completedOrder();
+  Future<Either<ErrorModel, OrdersResponse>> call(
+    DateTime? from,
+    DateTime? to,
+  ) {
+    return _orderRepository.completedOrder(
+      from,
+      to,
+    );
   }
 }

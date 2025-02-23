@@ -6,54 +6,68 @@ import '../../data/model/refused_orders_response.dart';
 import '../../data/remote/orders_remote_ds.dart';
 
 abstract class OrderRepository {
-  Future<Either<ErrorModel, OrdersResponse>> completedOrder();
-   Future<Either<ErrorModel, OrdersResponse>> returnedOrder();
-  Future<Either<ErrorModel, OrdersResponse>> deliveredOrder();
-  Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder();
-    Future<Either<ErrorModel, OrdersResponse>> notAssignOrder();
+  Future<Either<ErrorModel, OrdersResponse>> completedOrder(
+    DateTime? from,
+    DateTime? to,
+  );
+  Future<Either<ErrorModel, OrdersResponse>> returnedOrder(
+      DateTime? from, DateTime? to);
+  Future<Either<ErrorModel, OrdersResponse>> deliveredOrder(
+      DateTime? from, DateTime? to);
+  Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder(
+      DateTime? from, DateTime? to);
+  Future<Either<ErrorModel, OrdersResponse>> notAssignOrder(
+      DateTime? from, DateTime? to);
   Future<Either<ErrorModel, OrdersResponse>> assignOrder();
 
-    Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders();
-
+  Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders();
 }
 
 class OrderRepositoryImpl extends OrderRepository {
   final OrdersRemoteDs ordersRemoteDs;
   OrderRepositoryImpl(this.ordersRemoteDs);
   @override
-  Future<Either<ErrorModel, OrdersResponse>> completedOrder() async {
-    return ordersRemoteDs.completedOrder();
+  Future<Either<ErrorModel, OrdersResponse>> completedOrder(
+    DateTime? from,
+    DateTime? to,
+  ) async {
+    return ordersRemoteDs.completedOrder(
+      from,
+      to,
+    );
   }
-  
-  @override
-  Future<Either<ErrorModel, OrdersResponse>> deliveredOrder() async {
-    return ordersRemoteDs.deliveredOrder();
-  
-  }
-  
-  @override
-  Future<Either<ErrorModel, OrdersResponse>> returnedOrder() async {
-    return ordersRemoteDs.returnedOrder();
-  }
-  
-  @override
-  Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder() async {
-    return ordersRemoteDs.withDeliveryOrder();
-    }
-    
-      @override
-      Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders() async {
-        return ordersRemoteDs.refusedOrders();
-      }
-      
-        @override
-        Future<Either<ErrorModel, OrdersResponse>> notAssignOrder() async {
-          return ordersRemoteDs.notAssignOrder();
-        }
-        
-          @override
-          Future<Either<ErrorModel, OrdersResponse>> assignOrder() async {
-            return ordersRemoteDs.assignOrder();
-          }
-}
 
+  @override
+  Future<Either<ErrorModel, OrdersResponse>> deliveredOrder(
+      DateTime? from, DateTime? to) async {
+    return ordersRemoteDs.deliveredOrder(from, to);
+  }
+
+  @override
+  Future<Either<ErrorModel, OrdersResponse>> returnedOrder(
+      DateTime? from, DateTime? to) async {
+    return ordersRemoteDs.returnedOrder(from, to);
+  }
+
+  @override
+  Future<Either<ErrorModel, OrdersResponse>> withDeliveryOrder(
+      DateTime? from, DateTime? to) async {
+    return ordersRemoteDs.withDeliveryOrder(from, to);
+  }
+
+  @override
+  Future<Either<ErrorModel, RefusedOrderResponse>> refusedOrders() async {
+    return ordersRemoteDs.refusedOrders();
+  }
+
+  @override
+  Future<Either<ErrorModel, OrdersResponse>> notAssignOrder(
+      DateTime? from, DateTime? to) async {
+    return ordersRemoteDs.notAssignOrder(from, to);
+  }
+
+  @override
+  Future<Either<ErrorModel, OrdersResponse>> assignOrder() async {
+    return ordersRemoteDs.assignOrder();
+  }
+}
