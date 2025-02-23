@@ -1,4 +1,5 @@
 import 'package:charlot/src/feature/manager/orderTracking/presentation/views/order_tracking_view.dart';
+import 'package:charlot/src/feature/manager/orders/presentation/logic/completed/completed_order_cubit.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/cubit/sales_order_details_cubit.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/view/sales_order_details_view.dart';
@@ -185,7 +186,7 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final orderId =
             int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
-            final isSameday = state.pathParameters['isSameday'] ?? '';
+        final isSameday = state.pathParameters['isSameday'] ?? '';
         return BlocProvider(
           create: (context) => getIt<MapPickerCubit>(),
           child: MapPickerView(
@@ -276,7 +277,7 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final orderId =
             int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
-            final isSameday = state.pathParameters['isSameday'] ?? '';
+        final isSameday = state.pathParameters['isSameday'] ?? '';
         return BlocProvider(
           create: (context) => getIt<AddOrderCubit>(),
           child: PriceDetailsView(
@@ -358,7 +359,10 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouterNames.managerCompletedOrders,
-      builder: (context, state) => const ManagerCompletedOrders(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<CompletedOrdersCubit>(),
+        child: const ManagerCompletedOrders(),
+      ),
     ),
     GoRoute(
       path: RouterNames.managerNotAssignedOrders,
@@ -428,7 +432,7 @@ final GoRouter router = GoRouter(
           );
         }),
 
-         GoRoute(
+    GoRoute(
         path: RouterNames.salesDeliveryDetails,
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;

@@ -8,8 +8,9 @@ class GetNewOrdersUseCase {
 final HomeRepository homeRepository;
 GetNewOrdersUseCase(this.homeRepository);
 
-Future<Either<ErrorModel, NewestOrdersResponse>> call() async {
-return homeRepository.getNewOrder();
+Future<Either<ErrorModel, NewestOrdersResponse>> call(
+      DateTime? from, DateTime? to) async {
+return homeRepository.getNewOrder(from, to);
 }
 
 }

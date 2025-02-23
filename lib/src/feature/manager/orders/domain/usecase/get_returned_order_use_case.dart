@@ -9,7 +9,8 @@ class GetReturnedOrderUseCase {
 
   GetReturnedOrderUseCase(this._orderRepository);
 
-  Future<Either<ErrorModel, OrdersResponse>> call() {
-    return _orderRepository.returnedOrder();
+  Future<Either<ErrorModel, OrdersResponse>> call(
+      DateTime? from, DateTime? to) {
+    return _orderRepository.returnedOrder(from, to);
   }
 }

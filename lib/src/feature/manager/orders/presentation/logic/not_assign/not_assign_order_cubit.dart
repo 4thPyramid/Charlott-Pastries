@@ -9,9 +9,9 @@ class NotAssignOrdersCubit extends Cubit<NotAssignOrderState<dynamic>> {
   NotAssignOrdersCubit(this._notAssignOrdersUseCase)
       : super(NotAssignOrderState.initial());
 
-  Future<void> call() async {
+  Future<void> call([DateTime? from, DateTime? to]) async {
     emit(NotAssignOrderState.loading());
-    final result = await _notAssignOrdersUseCase.call();
+    final result = await _notAssignOrdersUseCase.call(from  , to);
 
     result.fold(
       (error) => emit(NotAssignOrderState.failure(error)),

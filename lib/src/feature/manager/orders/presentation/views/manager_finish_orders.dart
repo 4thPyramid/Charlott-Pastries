@@ -22,7 +22,7 @@ class ManagerFinishOrders extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            const FinishOrderListView()
+            const Expanded(child: FinishOrderListView())
           ],
         ));
   }

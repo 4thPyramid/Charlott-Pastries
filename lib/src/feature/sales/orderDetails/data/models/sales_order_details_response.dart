@@ -98,7 +98,7 @@ class SalesOrder {
     this.mapDesc,
     this.additionalData,
     this.productId,
-     this.isReturned,
+    this.isReturned,
     this.problem,
     required this.status,
     this.managerId,

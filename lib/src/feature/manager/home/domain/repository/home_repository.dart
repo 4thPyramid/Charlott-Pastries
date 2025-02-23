@@ -7,26 +7,27 @@ import '../../data/model/stats_response.dart';
 import '../../data/remote/home_remote_ds.dart';
 
 abstract class HomeRepository {
-  Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder();
-    Future<Either<ErrorModel, InProgressOrderResponse>> getInProgressOrder();
-      Future<Either<ErrorModel,  StatsResponse >> getStats();
-
-
+  Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder(
+      DateTime? from, DateTime? to);
+  Future<Either<ErrorModel, InProgressOrderResponse>> getInProgressOrder();
+  Future<Either<ErrorModel, StatsResponse>> getStats();
 }
 
 class HomeRepositoryImpl extends HomeRepository {
   final HomeRemoteDs homeRemoteDs;
   HomeRepositoryImpl(this.homeRemoteDs);
   @override
-  Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder() async {
-    return homeRemoteDs.getNewOrder();
+  Future<Either<ErrorModel, NewestOrdersResponse>> getNewOrder(
+      DateTime? from, DateTime? to) async {
+    return homeRemoteDs.getNewOrder(from, to);
   }
-  
+
   @override
-  Future<Either<ErrorModel, InProgressOrderResponse>> getInProgressOrder() async {
+  Future<Either<ErrorModel, InProgressOrderResponse>>
+      getInProgressOrder() async {
     return homeRemoteDs.getInProgressOrder();
   }
-  
+
   @override
   Future<Either<ErrorModel, StatsResponse>> getStats() async {
     return homeRemoteDs.getStats();

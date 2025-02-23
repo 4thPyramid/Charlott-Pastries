@@ -1,5 +1,3 @@
-
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,13 +29,13 @@ class InProgressAndNewestOrderContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20.h),
-           CustomTitle(
-            title:AppStrings.ordersInProgress.tr(),
+          CustomTitle(
+            title: AppStrings.ordersInProgress.tr(),
           ),
           SizedBox(height: 20.h),
           const OrdersInProgressList(),
           SizedBox(height: 20.h),
-           CustomTitle(title:AppStrings.newestOrders.tr()),
+          CustomTitle(title: AppStrings.newestOrders.tr()),
           SizedBox(height: 20.h),
           const NewestOrderListView()
         ],
