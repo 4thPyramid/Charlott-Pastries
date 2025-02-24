@@ -58,6 +58,7 @@ abstract class EndpointsStrings {
   static const String salesDeliveryDetails = 'sales/deliveries/';
   static const String salesSelectDelivery = 'sales/assign-to-delivery/';
 
+  static const storeFcmToken ="api/store-fcm-token";
 
 
   //!chef//
