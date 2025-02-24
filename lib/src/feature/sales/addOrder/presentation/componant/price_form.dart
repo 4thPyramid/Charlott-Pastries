@@ -16,7 +16,6 @@ class PriceForm extends StatelessWidget {
   final TextEditingController deliveryPriceController = TextEditingController();
   final TextEditingController cakePriceController = TextEditingController();
   final TextEditingController flowerPriceController = TextEditingController();
- 
 
   final int orderId;
   final String isSameday;
@@ -53,6 +52,7 @@ class PriceForm extends StatelessWidget {
                 const Icon(Icons.money, size: 30, color: AppColors.green),
             controller: flowerPriceController,
           ),
+          SizedBox(height: 10.h),
           SizedBox(height: 10.h),
           Text("Delivery Price",
               style: AppStyles.s16.copyWith(fontWeight: FontWeight.w700)),
@@ -101,10 +101,16 @@ class PriceForm extends StatelessWidget {
                     text: "Next",
                     onPressed: () {
                       final request = AddPriceRequestModel(
-                        cakePrice: cakePriceController.text,
-                        deposit: depositController.text,
+                        cakePrice: cakePriceController.text.isEmpty
+                            ? '0'
+                            : cakePriceController.text,
+                        deposit: depositController.text.isEmpty
+                            ? '0'
+                            : depositController.text,
                         deliveryPrice: deliveryPriceController.text,
-                        flowerPrice: flowerPriceController.text,
+                        flowerPrice: flowerPriceController.text.isEmpty
+                            ? '0'
+                            : flowerPriceController.text,
                       );
                       context
                           .read<AddOrderCubit>()

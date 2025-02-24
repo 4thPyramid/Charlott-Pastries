@@ -1,3 +1,4 @@
+import 'package:charlot/core/common/widgets/custom_date_filter.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/core/utils/app_strings.dart';
@@ -20,14 +21,12 @@ class NewestOrderListView extends StatefulWidget {
 }
 
 class _NewestOrderListViewState extends State<NewestOrderListView> {
-  DateTime? startDate;
-  DateTime? endDate;
   late ManagerNewOrdersCubit _cubit;
 
   @override
   void initState() {
     _cubit = getIt<ManagerNewOrdersCubit>();
-    _applyFilter();
+    _cubit.newOrders(null, null);
     super.initState();
   }
 
@@ -43,7 +42,11 @@ class _NewestOrderListViewState extends State<NewestOrderListView> {
       value: _cubit,
       child: Column(
         children: [
-          // _buildDatePicker(context),
+          CustomDateFilter(
+            onFilterApplied: (startDate, endDate) {
+              _cubit.newOrders(startDate, endDate);
+            },
+          ),
           BlocBuilder<ManagerNewOrdersCubit, NewOrdersState>(
             builder: (context, state) {
               return state.when(
@@ -87,81 +90,5 @@ class _NewestOrderListViewState extends State<NewestOrderListView> {
         ],
       ),
     );
-  }
-
-  Widget _buildDatePicker(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton.icon(
-                icon: const Icon(Icons.calendar_today),
-                label: Text(
-                  startDate != null
-                      ? '${startDate!.day}/${startDate!.month}/${startDate!.year}'
-                      : 'اختر تاريخ البداية',
-                ),
-                onPressed: () async => await _selectDate(true),
-              ),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.calendar_today),
-                label: Text(
-                  endDate != null
-                      ? '${endDate!.day}/${endDate!.month}/${endDate!.year}'
-                      : 'اختر تاريخ النهاية',
-                ),
-                onPressed: () async => await _selectDate(false),
-              ),
-            ],
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-            ),
-            onPressed: () => _applyFilter(),
-            child: const Text('تطبيق التصفية'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<void> _selectDate(bool isStartDate) async {
-    final pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime.now(),
-      helpText: isStartDate ? 'اختر تاريخ البداية' : 'اختر تاريخ النهاية',
-    );
-
-    if (pickedDate != null) {
-      setState(() {
-        if (isStartDate) {
-          startDate = pickedDate;
-          if (endDate != null && startDate!.isAfter(endDate!)) {
-            endDate = null;
-          }
-        } else {
-          endDate = pickedDate;
-        }
-      });
-    }
-  }
-
-  void _applyFilter() {
-    if (startDate != null && endDate != null && startDate!.isAfter(endDate!)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('تاريخ البداية يجب أن يكون قبل تاريخ النهاية')),
-      );
-      return;
-    }
-
-    _cubit.newOrders(startDate, endDate); // تطبيق التصفية
   }
 }

@@ -28,9 +28,9 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
   TimeOfDay? deliveryTimeTo;
   DateTime? selectedDate;
   int quantity = 1;
-  
+  bool isSameDay = false;
   List<File> cakeImages = [];
-  File? flowerImages ;
+  File? flowerImages;
   bool isDeliveryTimeValid = true;
 
   void _handleDeliveryTimeToChanged(TimeOfDay time) {
@@ -98,11 +98,15 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                           inactiveTrackColor: Colors.grey,
                           inactiveThumbColor: Colors.black,
                           onChanged: (value) {
-                          
+                            
 
                             context
                                 .read<AddOrderCubit>()
                                 .updateSameDayDelivery(value);
+                              //  isSameDay = value;
+                                setState(() {
+                                  isSameDay = value;
+                                });
                           },
                         ),
                       ],
@@ -145,7 +149,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 onDateChanged: _handleDateChanged,
               ),
             if (selectedType == 'flower' || selectedType == 'cake and flower')
-            FlowersSectionComponant(
+              FlowersSectionComponant(
                 onImagesChanged: (images) {
                   setState(() {
                     flowerImages = images;
@@ -153,7 +157,6 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                 },
                 controller: flowerDetailsController,
               ),
-             
             const SizedBox(height: 16.0),
             Row(
               children: [
@@ -178,7 +181,9 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                   style: TextStyle(color: Colors.red, fontSize: 14),
                 ),
               ),
-            DateRowWidget(onDateChanged: _handleDateChanged),
+            isSameDay
+                ? const SizedBox(height: 16.0)
+                : DateRowWidget(onDateChanged: _handleDateChanged),
             BlocConsumer<AddOrderCubit, AddOrderState>(
               listener: (context, state) {
                 state.whenOrNull(
@@ -201,40 +206,40 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                   orElse: () => CustomButton(
                     text: "Next",
                     onPressed: () {
-                      if (deliveryTimeFrom == null|| deliveryTimeTo == null) {
+                      if (deliveryTimeFrom == null || deliveryTimeTo == null) {
                         setState(() {
                           isDeliveryTimeValid = false;
-
-                        }); 
+                        });
                         return;
                       }
 
                       final requestModel = AddOrderRequestModel(
-                        images: cakeImages,
-                       image: flowerImages,
-                        isSameDay: state.isSameDay,
-                        orderType: selectedType,
-                        orderDetails: cakeDetailsController.text,
-                        quantity: quantity,
-                        deliveryDate: selectedDate?.toIso8601String() ?? '',
-                      
-                        description: flowerDetailsController.text,
-                        from: deliveryTimeFrom != null ? '${deliveryTimeFrom!.hour.toString().padLeft(2, '0')}:${deliveryTimeFrom!.minute.toString().padLeft(2, '0')}' : '',
-                        to: deliveryTimeTo != null ? '${deliveryTimeTo!.hour.toString().padLeft(2, '0')}:${deliveryTimeTo!.minute.toString().padLeft(2, '0')}' : ''
-                      );
+                          images: cakeImages,
+                          image: flowerImages,
+                          isSameDay: state.isSameDay,
+                          orderType: selectedType,
+                          orderDetails: cakeDetailsController.text,
+                          quantity: quantity,
+                          deliveryDate: selectedDate?.toIso8601String() ?? '',
+                          description: flowerDetailsController.text,
+                          from: deliveryTimeFrom != null
+                              ? '${deliveryTimeFrom!.hour.toString().padLeft(2, '0')}:${deliveryTimeFrom!.minute.toString().padLeft(2, '0')}'
+                              : '',
+                          to: deliveryTimeTo != null
+                              ? '${deliveryTimeTo!.hour.toString().padLeft(2, '0')}:${deliveryTimeTo!.minute.toString().padLeft(2, '0')}'
+                              : '');
 
-                        context
-                            .read<AddOrderCubit>()
-                            .addOrderDetails(requestModel);
-                      },
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+                      context
+                          .read<AddOrderCubit>()
+                          .addOrderDetails(requestModel);
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
         ),
-      
+      ),
     );
   }
 }
