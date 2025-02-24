@@ -36,6 +36,7 @@ class InProgressAndNewestOrderContainer extends StatelessWidget {
           const OrdersInProgressList(),
           SizedBox(height: 20.h),
           CustomTitle(title: AppStrings.newestOrders.tr()),
+          
           SizedBox(height: 20.h),
           const NewestOrderListView()
         ],

@@ -8,16 +8,15 @@ class AddPriceRequestModel {
   final String cakePrice;
 
   @JsonKey(name: 'flower_price')
-  final String flowerPrice;
+  String? flowerPrice;
 
   final String deposit;
 
   @JsonKey(name: 'delivery_price')
   final String deliveryPrice;
- 
 
   AddPriceRequestModel({
-    required this.flowerPrice,
+    this.flowerPrice,
     required this.cakePrice,
     required this.deposit,
     required this.deliveryPrice,

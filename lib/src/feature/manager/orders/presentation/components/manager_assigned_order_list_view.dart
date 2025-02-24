@@ -8,8 +8,6 @@ import '../../../../../../core/common/widgets/shared_order_item_card.dart';
 import '../../../../../../core/services/service_locator.dart';
 import '../logic/assigned/assigned_order_cubit.dart';
 import '../logic/assigned/assigned_order_state.dart';
-import '../logic/not_assign/not_assign_order_cubit.dart';
-import '../logic/not_assign/not_assign_order_state.dart';
 
 class ManagerAssignedOrdersListView extends StatelessWidget {
   const ManagerAssignedOrdersListView({super.key});

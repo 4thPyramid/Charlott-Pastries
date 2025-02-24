@@ -9,7 +9,7 @@ part of 'add_price_request_model.dart';
 AddPriceRequestModel _$AddPriceRequestModelFromJson(
         Map<String, dynamic> json) =>
     AddPriceRequestModel(
-      flowerPrice: json['flower_price'] as String,
+      flowerPrice: json['flower_price'] as String? ,
       cakePrice: json['cake_price'] as String,
       deposit: json['deposit'] as String,
       deliveryPrice: json['delivery_price'] as String,
