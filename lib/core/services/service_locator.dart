@@ -190,6 +190,8 @@ import '../common/banner_feature/presentation/logic/cubit/banner_cubit.dart';
 import '../common/branches_feature/presentation/logic/cubit/cubit/branches_cubit.dart';
 import '../common/specialization_feature/domain/repo/specialization_repo.dart';
 import '../common/specialization_feature/presentation/logic/cubit/specialization_cubit.dart';
+import '../fcm_token/logic/send_fcm_token_cubit.dart';
+import '../fcm_token/repo/fcm_repository.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -214,6 +216,9 @@ void setupLocator() {
       () => ManagerRegisterApiServicesImpl(getIt()));
   getIt.registerLazySingleton<SalesRegisterApiServices>(
       () => SalesRegisterApiServicesImpl(getIt()));
+  getIt.registerLazySingleton<FcmRepository>(
+      () => FcmRepositoryImpl(getIt<ApiConsumer>()));
+
 
   getIt.registerLazySingleton<BranchesApiServices>(
     () => BranchesApiServicesImp(getIt()),
@@ -737,7 +742,9 @@ void setupLocator() {
   getIt.registerFactory<GetDeliveryDetailsCubit>(
     () => GetDeliveryDetailsCubit(getIt()),
   );
-
+    getIt.registerFactory<StoreFcmTokenCubit>(
+    () => StoreFcmTokenCubit(getIt()),
+  );
   getIt.registerFactory<MapCubit>(
     () => MapCubit(
       getIt(),

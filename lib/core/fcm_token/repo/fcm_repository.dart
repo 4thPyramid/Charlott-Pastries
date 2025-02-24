@@ -19,7 +19,7 @@ class FcmRepositoryImpl implements FcmRepository {
 
       // return Right(response.data);
 
-      return  Right(response['message']);
+      return  Right(response['fcm_token']);
     } catch (e) {
       return Left(e.toString());
     }
