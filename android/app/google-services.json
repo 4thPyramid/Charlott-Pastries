@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "577557834859",
+    "project_id": "charlotte-78955",
+    "storage_bucket": "charlotte-78955.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577557834859:android:a6a0f1150463678690d52e",
+        "android_client_info": {
+          "package_name": "com.example.charllot_dalivery_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVUynD6hF4RHFDqTUnTuwUgoruw5vlQXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577557834859:android:4ba46dae55ee89c090d52e",
+        "android_client_info": {
+          "package_name": "com.example.charlot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVUynD6hF4RHFDqTUnTuwUgoruw5vlQXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

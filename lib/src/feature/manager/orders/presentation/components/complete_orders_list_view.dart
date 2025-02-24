@@ -15,15 +15,12 @@ class ManagerCompleteOrdersListView extends StatefulWidget {
 
 class _ManagerCompleteOrdersListViewState
     extends State<ManagerCompleteOrdersListView> {
-  DateTime? startDate;
-  DateTime? endDate;
   late CompletedOrdersCubit _cubit;
 
   @override
   void initState() {
     _cubit = getIt<CompletedOrdersCubit>();
-    _applyFilter();
-
+    _cubit.call(null, null); // Initial call with no filters
     super.initState();
   }
 
@@ -39,7 +36,11 @@ class _ManagerCompleteOrdersListViewState
       value: _cubit,
       child: Column(
         children: [
-          _buildDatePicker(context),
+          CustomDateFilter(
+            onFilterApplied: (startDate, endDate) {
+              _cubit.call(startDate, endDate); // Call Cubit with selected dates
+            },
+          ),
           Expanded(
             child: BlocBuilder<CompletedOrdersCubit, CompletedOrderState>(
               builder: (context, state) {
@@ -71,8 +72,37 @@ class _ManagerCompleteOrdersListViewState
       ),
     );
   }
+}
 
-  Widget _buildDatePicker(BuildContext context) {
+class CustomDateFilter extends StatefulWidget {
+  final DateTime? initialStartDate;
+  final DateTime? initialEndDate;
+  final Function(DateTime?, DateTime?) onFilterApplied;
+
+  const CustomDateFilter({
+    super.key,
+    this.initialStartDate,
+    this.initialEndDate,
+    required this.onFilterApplied,
+  });
+
+  @override
+  State<CustomDateFilter> createState() => _CustomDateFilterState();
+}
+
+class _CustomDateFilterState extends State<CustomDateFilter> {
+  DateTime? startDate;
+  DateTime? endDate;
+
+  @override
+  void initState() {
+    startDate = widget.initialStartDate;
+    endDate = widget.initialEndDate;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -105,7 +135,7 @@ class _ManagerCompleteOrdersListViewState
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
             ),
-            onPressed: () => _applyFilter(),
+            onPressed: _applyFilter,
             child: const Text('تطبيق التصفية'),
           ),
         ],
@@ -127,7 +157,7 @@ class _ManagerCompleteOrdersListViewState
         if (isStartDate) {
           startDate = pickedDate;
           if (endDate != null && startDate!.isAfter(endDate!)) {
-            endDate = null;
+            endDate = null; // Reset end date if it’s before the new start date
           }
         } else {
           endDate = pickedDate;
@@ -140,11 +170,11 @@ class _ManagerCompleteOrdersListViewState
     if (startDate != null && endDate != null && startDate!.isAfter(endDate!)) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-            content: Text('تاريخ البداية يجب أن يكون قبل تاريخ النهاية')),
+          content: Text('تاريخ البداية يجب أن يكون قبل تاريخ النهاية'),
+        ),
       );
       return;
     }
-
-    _cubit.call(startDate, endDate);
+    widget.onFilterApplied(startDate, endDate);
   }
 }
