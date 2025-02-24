@@ -3,21 +3,14 @@ import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/auth/presentation/componant/otp_form.dart';
-import 'package:charlot/src/feature/auth/presentation/widgets/have_an_account_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
-
-import '../../../../../core/utils/app_strings.dart';
-import '../../../../../generated/app_strings.g.dart';
 
 class OtpViewForEmail extends StatelessWidget {
-
-  const OtpViewForEmail({super.key ,required this.userType});
-    final String userType;
-  
+  const OtpViewForEmail({super.key, required this.userType});
+  final String userType;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +24,7 @@ class OtpViewForEmail extends StatelessWidget {
               const SizedBox(height: 100),
               const Center(child: AppImageView(AppAssets.blackLogo)),
               SizedBox(height: 40.h),
-                CustomAuthAppBar(
+              CustomAuthAppBar(
                 title: AppStrings.enterVerificationCode.tr(),
                 subTitle: AppStrings.enterVerificationCodeToAccessAccount.tr(),
               ),
@@ -39,13 +32,13 @@ class OtpViewForEmail extends StatelessWidget {
               OtpForm(
                 userType: userType,
               ),
-              HaveAnAccountWidget(
-                  onTap: () {
-                    context.pop();
-                  },
-                  title1: AppStrings.codeNotSend.tr(),
-                  title2: AppStrings.resend.tr()
-                  ),
+              // HaveAnAccountWidget(
+              //     onTap: () {
+
+              //     },
+              //     title1: AppStrings.codeNotSend.tr(),
+              //     title2: AppStrings.resend.tr()
+              //     ),
             ],
           ),
         ),

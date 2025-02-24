@@ -9,8 +9,6 @@ import '../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 
-import '../../../../../core/utils/app_strings.dart';
-import '../../../../../generated/app_strings.g.dart';
 
 import '../logic/reset_password/reset_password_cubit.dart';
 import '../logic/reset_password/reset_password_state.dart';

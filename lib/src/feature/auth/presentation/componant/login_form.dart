@@ -1,4 +1,3 @@
-
 import 'package:charlot/core/common/functions/validator.dart';
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/common/widgets/custom_text_field_button.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../generated/app_strings.g.dart';
 import '../../../intro/data/enum/user_type_enum.dart';
 import '../../../intro/presentation/logic/user_type_cubit.dart';
 import '../logic/login/login_cubit.dart';
@@ -36,7 +34,6 @@ class _LoginFormState extends State<LoginForm>
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
   @override
   void initState() {
     super.initState();
@@ -54,17 +51,18 @@ class _LoginFormState extends State<LoginForm>
 
   @override
   Widget build(BuildContext context) {
-  
     return BlocProvider(
-      create: (context) =>  getIt<LoginCubit>(),
+      create: (context) => getIt<LoginCubit>(),
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-
-             const  SnackBar(content: Text("login Successfully"),backgroundColor: Colors.green,),
+              SnackBar(
+                content: Text(AppStrings.loginSuccessfuly.tr()),
+                backgroundColor: Colors.green,
+              ),
             );
-            navigateTo(context,state.response.key);
+            navigateTo(context, state.response.key);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.errorMessage.message)),
@@ -77,18 +75,21 @@ class _LoginFormState extends State<LoginForm>
               key: formKey,
               child: Column(
                 children: [
-                  EmailAndPhoneTapBarWidget(tabController: _tabController, title1: AppStrings.phoneNumber.tr(), title2: AppStrings.email),
+                  EmailAndPhoneTapBarWidget(
+                      tabController: _tabController,
+                      title1: AppStrings.phoneNumber.tr(),
+                      title2: AppStrings.email),
                   SizedBox(
                     height: 145.h,
                     child: TabBarView(
                       controller: _tabController,
                       children: [
                         AuthTextFieldWidget(
-                          titleOfField:AppStrings.phoneNumber.tr(),
+                          titleOfField: AppStrings.phoneNumber.tr(),
                           prefixIcon: Icons.phone,
                           controller: _phoneController,
                           validator: Validator.validatePhoneNumber,
-                          hintText:AppStrings.enterYourPhoneNumber.tr(),
+                          hintText: AppStrings.enterYourPhoneNumber.tr(),
                           isPassword: false,
                         ),
                         AuthTextFieldWidget(
@@ -103,7 +104,7 @@ class _LoginFormState extends State<LoginForm>
                     ),
                   ),
                   AuthTextFieldWidget(
-                    titleOfField:AppStrings.enterPasswordHint.tr(),
+                    titleOfField: AppStrings.password.tr(),
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _passwordController,
                     validator: Validator.validatePassword,
@@ -113,7 +114,7 @@ class _LoginFormState extends State<LoginForm>
                   CustomTextButton(
                     title: AppStrings.forgetPassword.tr(),
                     onTap: () {
-                      context.go(RouterNames.forgetPasswordView,extra: {
+                      context.go(RouterNames.forgetPasswordView, extra: {
                         'userType': widget.userType,
                       });
                     },
@@ -121,7 +122,7 @@ class _LoginFormState extends State<LoginForm>
                   BlocBuilder<LoginCubit, LoginState>(
                     builder: (context, state) {
                       if (state is LoginLoading) {
-                        return const CircularProgressIndicator(); 
+                        return const CircularProgressIndicator();
                       }
                       return CustomButton(
                         width: 230.w,
@@ -135,7 +136,6 @@ class _LoginFormState extends State<LoginForm>
                                 : _emailController.text;
                             final password = _passwordController.text;
 
-                        
                             context.read<LoginCubit>().login(
                                   widget.userType,
                                   identifier,
@@ -154,21 +154,22 @@ class _LoginFormState extends State<LoginForm>
       ),
     );
   }
- void navigateTo(BuildContext context, String key) {
-  final userTypeCubit = context.read<UserTypeCubit>();
 
-  if (key == 'manager') {
-    userTypeCubit.selectUserType(UserTypeEnum.manager); 
-    userTypeCubit.login(); 
-    context.go(RouterNames.managerBottomNavigationBarRoot);
-  } else if (key == 'sales') {
-    userTypeCubit.selectUserType(UserTypeEnum.sales);
-    userTypeCubit.login();
-    context.go(RouterNames.salesBottomNavigationBarRoot);
-  } else if (key == 'chef') {
-    userTypeCubit.selectUserType(UserTypeEnum.chef);
-    userTypeCubit.login();
-   context.go(RouterNames.chefBottomNavigationBarRoot);
+  void navigateTo(BuildContext context, String key) {
+    final userTypeCubit = context.read<UserTypeCubit>();
+
+    if (key == 'manager') {
+      userTypeCubit.selectUserType(UserTypeEnum.manager);
+      userTypeCubit.login();
+      context.go(RouterNames.managerBottomNavigationBarRoot);
+    } else if (key == 'sales') {
+      userTypeCubit.selectUserType(UserTypeEnum.sales);
+      userTypeCubit.login();
+      context.go(RouterNames.salesBottomNavigationBarRoot);
+    } else if (key == 'chef') {
+      userTypeCubit.selectUserType(UserTypeEnum.chef);
+      userTypeCubit.login();
+      context.go(RouterNames.chefBottomNavigationBarRoot);
+    }
   }
 }
-    }

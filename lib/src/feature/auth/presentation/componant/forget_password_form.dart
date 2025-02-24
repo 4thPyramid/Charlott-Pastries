@@ -12,9 +12,10 @@ import 'package:go_router/go_router.dart';
 import '../../../../../generated/app_strings.g.dart';
 import '../logic/reset_password/reset_password_cubit.dart';
 import '../logic/reset_password/reset_password_state.dart';
+
 class ForgetPasswordForm extends StatefulWidget {
   const ForgetPasswordForm({super.key, required this.userType});
-final String userType;
+  final String userType;
   @override
   State<ForgetPasswordForm> createState() => _ForgetPasswordFormState();
 }
@@ -30,7 +31,6 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    
   }
 
   @override
@@ -47,10 +47,12 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
       listener: (context, state) {
         state.whenOrNull(
           forgetPasswordSuccess: (message) {
-            context.go(RouterNames.verifyCodeView,extra: {'userType': widget.userType , 'identifier':  _tabController.index == 0
-                          ? _phoneController.text
-                          : _emailController.text
-          });
+            context.go(RouterNames.verifyCodeView, extra: {
+              'userType': widget.userType,
+              'identifier': _tabController.index == 0
+                  ? _phoneController.text
+                  : _emailController.text
+            });
           },
           forgetPasswordError: (error) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -66,15 +68,15 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
             EmailAndPhoneTapBarWidget(
               tabController: _tabController,
               title1: AppStrings.phoneNumber.tr(),
-              title2: AppStrings.email,
+              title2: AppStrings.email.tr(),
             ),
             SizedBox(
-              height: 120.h,
+              height: 140.h,
               child: TabBarView(
                 controller: _tabController,
                 children: [
                   AuthTextFieldWidget(
-                    titleOfField: AppStrings.phoneNumber,
+                    titleOfField: AppStrings.phoneNumber.tr(),
                     prefixIcon: Icons.phone,
                     controller: _phoneController,
                     validator: Validator.validatePhoneNumber,
@@ -82,7 +84,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
                     isPassword: false,
                   ),
                   AuthTextFieldWidget(
-                    titleOfField: AppStrings.email,
+                    titleOfField: AppStrings.email.tr(),
                     prefixIcon: Icons.email,
                     controller: _emailController,
                     validator: Validator.validateEmail,
@@ -95,8 +97,8 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
             BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
               builder: (context, state) {
                 return CustomButton(
-                  text: AppStrings.hintChangePassword.tr(),
-                 // isLoading: state is ForgetPasswordLoading,
+                  text: AppStrings.resetPassword.tr(),
+                  // isLoading: state is ForgetPasswordLoading,
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       final activeIndex = _tabController.index;
@@ -107,8 +109,6 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm>
                       context.read<ResetPasswordCubit>().forgetPassword(
                             identifier: identifier,
                             userType: widget.userType,
-
-
                           );
                     }
                   },

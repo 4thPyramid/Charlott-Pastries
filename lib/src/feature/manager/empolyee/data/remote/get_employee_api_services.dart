@@ -41,7 +41,7 @@ class EmployeeApiServicesImpl extends EmployeeApiServices {
       final response = await api.get(
         EndpointsStrings.managerDelivery,
       );
-      return Right(EmployeesResponse.fromJson({'employees': response}));
+      return Right(EmployeesResponse.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel);
     }

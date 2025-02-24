@@ -262,7 +262,25 @@
     "cakePrice": "Cake Price",
     "flowersPrice": "Flowers Price",
     "deliveryPrice": "Delivery Price",
-    "sameDayDelivery": "Same Day Delivery?"
+    "sameDayDelivery": "Same Day Delivery?",
+    "resetPassword": "Reset Password",
+
+    "Donthaveanaccountyet": "Don't have an account yet?",
+    "signUp": "Sign Up",
+    "Pleaseenteranemail": "Please enter an email",
+    "Pleaseenteravalidemail": "Please enter a valid email",
+    "thisFieldIsRequired": "This field is required",
+    "Pleaseenteraphonenumber": "Please enter a phone number",
+    "Pleaseenteravalidphonenumber": "Please enter a valid phone number",
+    "Pleaseenterapassword": "Please enter a password",
+    "Passwordmustbeatleast6characters": "Password must be at least 6 characters",
+    "EntertheManagersCode": "Enter the manager's code",
+    "Managercodemustbeatleast6characters": "Manager code must be at least 6 characters",
+    "enterNewPassword": "Enter new password",
+    "createANewPassword": "Create a new password",
+    "verificationSuccessful" : "Verification Successful",
+    "loginSuccessfuly" : "Login Successfuly"
+    
 
     
 }

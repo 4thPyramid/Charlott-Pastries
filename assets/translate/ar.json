@@ -261,5 +261,20 @@
     "cakePrice": "سعر الكيك",
     "flowersPrice": "سعر الورد",
     "deliveryPrice": "سعر التوصيل",
-    "sameDayDelivery": "توصيل في نفس اليوم؟"
+    "sameDayDelivery": "توصيل في نفس اليوم؟",
+    "Donthaveanaccountyet": "ليس لديك حساب بعد؟",
+    "signUp": "تسجيل",
+    "Pleaseenteranemail": "الرجاء إدخال بريد إلكتروني",
+    "Pleaseenteravalidemail": "الرجاء إدخال بريد إلكتروني صالح",
+    "thisFieldIsRequired" : "هذا الحقل مطلوب",
+    "Pleaseenteraphonenumber": "الرجاء إدخال رقم هاتف",
+    "Pleaseenteravalidphonenumber": "الرجاء إدخال رقم هاتف صالح",
+    "Pleaseenterapassword": "الرجاء إدخال كلمة مرور",
+    "Passwordmustbeatleast6characters": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+    "EntertheManagersCode": "أدخل كود المدير",
+    "Managercodemustbeatleast6characters": "يجب أن يتكون كود المدير من 6 أحرف على الأقل",
+    "enterNewPassword": "أدخل كلمة المرور الجديدة",
+    "createANewPassword": "قم بإنشاء كلمة مرور جديدة" ,
+    "verificationSuccessful": "تم التحقق بنجاح",
+    "loginSuccessfuly": "تم تسجيل الدخول بنجاح"
 }

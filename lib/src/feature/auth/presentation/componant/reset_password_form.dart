@@ -7,15 +7,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/utils/app_strings.dart';
-import '../../../../../generated/app_strings.g.dart';
 import '../logic/reset_password/reset_password_cubit.dart';
 import '../logic/reset_password/reset_password_state.dart';
+
 class ResetPasswordForm extends StatelessWidget {
-  ResetPasswordForm({super.key, required this.userType, required this.otp, required this.identifier});
-final String userType;
-final String otp;
-final String identifier;
+  ResetPasswordForm(
+      {super.key,
+      required this.userType,
+      required this.otp,
+      required this.identifier});
+  final String userType;
+  final String otp;
+  final String identifier;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -27,7 +30,7 @@ final String identifier;
       listener: (context, state) {
         state.whenOrNull(
           newPasswordSuccess: (message) {
-            showSuccessPop(context,userType);
+            showSuccessPop(context, userType);
           },
           newPasswordError: (error) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -41,7 +44,7 @@ final String identifier;
         child: Column(
           children: [
             AuthTextFieldWidget(
-              titleOfField:AppStrings.newPassword.tr(),
+              titleOfField: AppStrings.newPassword.tr(),
               prefixIcon: Icons.lock,
               controller: _passwordController,
               validator: Validator.validatePassword,
@@ -49,30 +52,30 @@ final String identifier;
               isPassword: true,
             ),
             AuthTextFieldWidget(
-              titleOfField: AppStrings.confirmNewPassword,
+              titleOfField: AppStrings.confirmNewPassword.tr(),
               prefixIcon: Icons.lock,
               controller: _confirmPasswordController,
               validator: (value) {
                 if (value != _passwordController.text) {
-                  return "كلمة المرور غير متطابقة";
+                  return AppStrings.Passwordsdonotmatch.tr();
                 }
                 return null;
               },
-              hintText: AppStrings.confirmPassword,
+              hintText: AppStrings.confirmPassword.tr(),
               isPassword: true,
             ),
             BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
               builder: (context, state) {
                 return CustomButton(
-                  text:AppStrings.changePassword.tr(),
-                 // isLoading: state is NewPasswordLoading,
+                  text: AppStrings.changePassword.tr(),
+                  // isLoading: state is NewPasswordLoading,
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       context.read<ResetPasswordCubit>().resetPassword(
-                            password: _passwordController.text,
-                            userType:userType, otp:otp ,
-                             identifier:identifier 
-                          );
+                          password: _passwordController.text,
+                          userType: userType,
+                          otp: otp,
+                          identifier: identifier);
                     }
                   },
                 );

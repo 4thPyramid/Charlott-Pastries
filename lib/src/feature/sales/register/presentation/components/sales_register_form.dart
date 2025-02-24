@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:charlot/core/common/functions/validator.dart';
 import 'package:charlot/generated/app_strings.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,8 +12,6 @@ import '../../../../../../core/common/widgets/custom_auth_app_bar.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_circle_to_upload_image.dart';
 import '../../../../../../core/routes/router_names.dart';
-import '../../../../../../core/utils/app_strings.dart';
-import '../../../../../../generated/app_strings.g.dart';
 import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../auth/presentation/widgets/firest_and_last_name_row.dart';
 import '../logic/sales_register/sales_register_cubit.dart';
@@ -53,7 +52,7 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
 
     if (!_passwordsMatch()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('كلمات المرور غير متطابقة')),
+        SnackBar(content: Text(AppStrings.Passwordsdonotmatch.tr())),
       );
       return false;
     }
@@ -80,7 +79,7 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
       state.whenOrNull(
         success: (message) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message),backgroundColor: Colors.green),
+            SnackBar(content: Text(message), backgroundColor: Colors.green),
           );
           context.push(RouterNames.otpViewForEmail, extra: {
             'userType': 'sales',
@@ -98,9 +97,9 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomAuthAppBar(
-              title: AppStrings.welcome,
-              subTitle: AppStrings.fillFormToCreateAccount,
+            CustomAuthAppBar(
+              title: AppStrings.welcome.tr(),
+              subTitle: AppStrings.fillFormToCreateAccount.tr(),
             ),
             SizedBox(height: 30.h),
             Center(
@@ -120,32 +119,32 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
               isPassword: false,
               validator: Validator.validateEmail,
               controller: emailController,
-              hintText: AppStrings.enterYourEmail,
-              titleOfField: AppStrings.email,
+              hintText: AppStrings.enterYourEmail.tr(),
+              titleOfField: AppStrings.email.tr(),
               prefixIcon: Icons.mail_outline_outlined,
             ),
             AuthTextFieldWidget(
               isPassword: false,
               validator: Validator.validatePhoneNumber,
               controller: phoneController,
-              hintText: AppStrings.enterYourPhoneNumber,
-              titleOfField: AppStrings.phoneNumber,
+              hintText: AppStrings.enterYourPhoneNumber.tr(),
+              titleOfField: AppStrings.phoneNumber.tr(),
               prefixIcon: Icons.phone_enabled_rounded,
             ),
             AuthTextFieldWidget(
               isPassword: true,
               validator: Validator.validatePassword,
               controller: passwordController,
-              hintText: AppStrings.enterPasswordHint,
-              titleOfField: AppStrings.password,
+              hintText: AppStrings.enterPasswordHint.tr(),
+              titleOfField: AppStrings.password.tr(),
               prefixIcon: Icons.lock_outline,
             ),
             AuthTextFieldWidget(
               isPassword: true,
               validator: Validator.validatePassword,
               controller: confirmPasswordController,
-              hintText: AppStrings.confirmPassword,
-              titleOfField: AppStrings.confirmPassword,
+              hintText: AppStrings.confirmPassword.tr(),
+              titleOfField: AppStrings.confirmPassword.tr(),
               prefixIcon: Icons.lock_outline,
             ),
             SizedBox(height: 20.h),
@@ -154,7 +153,7 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
             else
               Center(
                 child: CustomButton(
-                  text: AppStrings.register,
+                  text: AppStrings.register.tr(),
                   onPressed: _handleRegister,
                 ),
               ),

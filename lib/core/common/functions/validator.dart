@@ -1,45 +1,48 @@
+import 'package:charlot/generated/app_strings.g.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 class Validator {
   static String? validateRequired(String? value) {
     if (value == null || value.isEmpty) {
-      return 'يرجى إدخال قيمة';
+      return AppStrings.thisFieldIsRequired.tr();
     }
     return null;
   }
 
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'يرجى إدخال بريد إلكتروني';
+      return AppStrings.pleaseEnterAnEmail.tr();
     }
 
     const pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
     final regex = RegExp(pattern);
 
     if (!regex.hasMatch(value)) {
-      return 'يرجى إدخال بريد إلكتروني صالح';
+      return AppStrings.pleaseEnterAValidEmail.tr();
     }
     return null;
   }
 
   static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
-      return 'يرجى إدخال رقم الهاتف';
+      return AppStrings.pleaseEnterAPhoneNumber.tr();
     }
 
     const pattern = r'^\+?[0-9]{10,15}$';
     final regex = RegExp(pattern);
 
     if (!regex.hasMatch(value)) {
-      return 'يرجى إدخال رقم هاتف صالح';
+      return AppStrings.pleaseEnterAValidPhoneNumber.tr();
     }
     return null;
   }
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'يرجى إدخال كلمة المرور';
+      return AppStrings.pleaseEnterAPassword.tr();
     }
     if (value.length < 6) {
-      return 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل';
+      return AppStrings.passwordMustBeAtLeast6Characters.tr();
     }
     return null;
   }
@@ -61,7 +64,7 @@ class Validator {
       return 'يرجى إدخال الاسم';
     }
     final parts = value.split(' ');
-    if (parts.length < 1) {
+    if (parts.isEmpty) {
       return 'يرجى إدخال اسم ثلاثي ';
     }
     const pattern = r'^[a-zA-Zا-ي ]+$';
@@ -76,7 +79,7 @@ class Validator {
 
   static String? validatePhone(String? value) {
     if (value == null || value.isEmpty) {
-      return 'يرجى إدخال رقم الهاتف';
+      return AppStrings.pleaseEnterAPhoneNumber.tr();
     }
     if (value.length < 10) {
       return 'يرجى إدخال رقم هاتف صالح';
@@ -86,15 +89,13 @@ class Validator {
 
   static String? validateManagerCode(String? value) {
     if (value == null || value.isEmpty) {
-      return 'يرجى إدخال كود المدير';
+      return AppStrings.EnterTheManagersCode.tr();
     }
 
     if (value.length <= 6) {
-      return 'يرجى إدخال كود مدير يحتوي على أكثر من 6 أحرف أو أرقام';
+      return AppStrings.managerCodeMustBeAtLeast6Characters.tr();
     }
 
     return null;
   }
-  
-
 }

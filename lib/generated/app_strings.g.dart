@@ -32,7 +32,7 @@ abstract class AppStrings {
   static const register = 'register';
   static const orderTimes = 'orderTimes';
   static const startWork = 'startWork';
-  static const enterPasswordHint = 'enterPasswordHint';
+  static const enterPasswordHint = 'enterPassword';
   static const verifyEmail = 'verifyEmail';
   static const donotHaveAnAccount = 'donotHaveAnAccount';
   static const haveAnAccount = 'haveAnAccount';
@@ -226,4 +226,23 @@ abstract class AppStrings {
   static const expectedTime = 'expectedTime';
   static const reasonForRejection = 'reasonForRejection';
   static const resendOreder = 'resendOreder';
+  static const Donthaveanaccountyet = 'Donthaveanaccountyet';
+  static const signUp = 'signUp';
+  static const Passwordsdonotmatch = 'Passwordsdonotmatch';
+  static const pleaseEnterAnEmail = 'Pleaseenteranemail';
+  static const pleaseEnterAValidEmail = 'Pleaseenteravalidemail';
+  static const thisFieldIsRequired = 'Thisfieldisrequired';
+  static const pleaseEnterAPhoneNumber = 'Pleaseenteraphonenumber';
+  static const pleaseEnterAValidPhoneNumber = 'Pleaseenteravalidphonenumber';
+  static const pleaseEnterAPassword = 'Pleaseenterapassword';
+  static const passwordMustBeAtLeast6Characters =
+      'Passwordmustbeatleast6characters';
+  static const EnterTheManagersCode = 'EntertheManagersCode';
+  static const managerCodeMustBeAtLeast6Characters =
+      'Managercodemustbeatleast6characters';
+  static const resetPassword = 'resetPassword';
+  static const enterNewPassword = 'enterNewPassword';
+  static const createANewPassword = 'createANewPassword';
+  static const verificationSuccessful = 'verificationSuccessful';
+  static const loginSuccessfuly = 'loginSuccessfuly';
 }

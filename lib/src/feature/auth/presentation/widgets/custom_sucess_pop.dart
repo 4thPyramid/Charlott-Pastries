@@ -4,6 +4,8 @@ import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/core/utils/main_function.dart';
+import 'package:charlot/generated/app_strings.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -33,7 +35,7 @@ showSuccessPop(
           ),
           SizedBox(height: 13.h),
           Text(
-            "تم التحقق بنجاح",
+            AppStrings.verificationSuccessful.tr(),
             style: AppStyles.s20.copyWith(
               color: Colors.black,
               fontWeight: FontWeight.w700,
@@ -51,14 +53,14 @@ showSuccessPop(
           CustomButton(
             height: 40.h,
             width: 180.w,
-            text: "التالي",
+            text: AppStrings.next.tr(),
             textStyle: AppStyles.s16.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
             ),
             onPressed: () {
               //Navigator.pop(context);
-              context.go(RouterNames.loginView, extra: {'userType':userType });
+              context.go(RouterNames.loginView, extra: {'userType': userType});
             },
           )
         ],

@@ -10,44 +10,42 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routes/router_names.dart';
-import '../../../../../core/utils/app_strings.dart';
-import '../../../../../generated/app_strings.g.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key, required this.userType});
-final String userType;
+  final String userType;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
-            children: [       
+            children: [
               SizedBox(height: 100.h),
               const Center(child: AppImageView(AppAssets.blackLogo)),
               SizedBox(height: 40.h),
-               CustomAuthAppBar(
+              CustomAuthAppBar(
                   title: AppStrings.welcome.tr(),
-                  subTitle:
-                    AppStrings.happyToSeeYouAgain.tr()),
+                  subTitle: AppStrings.happyToSeeYouAgain.tr()),
               SizedBox(height: 40.h),
-               LoginForm(userType: userType,),
+              LoginForm(
+                userType: userType,
+              ),
               HaveAnAccountWidget(
-                  onTap: () {
-                    print(userType);
-                    if (userType == "manager") {
-                      context.push(RouterNames.managerRegister);
-                    }else if(userType == "sales"){
-                      context.push(RouterNames.salesRegisterView);
-                    }else {
-                  context.push(RouterNames.chefRegister);
-                    }
-                  },
-                  title1:AppStrings.haveAnAccount.tr(),
-                  title2: AppStrings.createNewAccount.tr(),
-                  ),
+                onTap: () {
+                  print(userType);
+                  if (userType == "manager") {
+                    context.push(RouterNames.managerRegister);
+                  } else if (userType == "sales") {
+                    context.push(RouterNames.salesRegisterView);
+                  } else {
+                    context.push(RouterNames.chefRegister);
+                  }
+                },
+                title1: AppStrings.Donthaveanaccountyet.tr(),
+                title2: AppStrings.signUp.tr(),
+              ),
             ],
           ),
         ),
