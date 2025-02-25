@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/app_image_view.dart';
@@ -15,7 +14,8 @@ import '../../../../../../generated/app_strings.g.dart';
 import '../logic/profile_cubit.dart';
 
 class PersonalCircleImage extends StatefulWidget {
-  const PersonalCircleImage({super.key, this.profileImage, required this.userType});
+  const PersonalCircleImage(
+      {super.key, this.profileImage, required this.userType});
 
   final String? profileImage;
   final String userType;
@@ -45,7 +45,7 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
             children: [
               ListTile(
                 leading: const Icon(Icons.camera),
-                title:  Text(AppStrings.takePhoto.tr()),
+                title: Text(AppStrings.takePhoto.tr()),
                 onTap: () async {
                   final XFile? image =
                       await picker.pickImage(source: ImageSource.camera);
@@ -55,12 +55,12 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
                           image); // إرجاع الصورة للـ showModalBottomSheet
                     }
                   }
-                 // context.go(RouterNames.personalInfoView);
+                  // context.go(RouterNames.personalInfoView);
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.photo),
-                title:  Text(AppStrings.chooseFromGallery.tr()),
+                title: Text(AppStrings.chooseFromGallery.tr()),
                 onTap: () async {
                   final XFile? image =
                       await picker.pickImage(source: ImageSource.gallery);
@@ -86,7 +86,9 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
         profileImage = imageFile!.path;
       });
 
-      context.read<ProfileCubit>().updateProfilePhoto(imageFile, userTyp:widget.userType);
+      context
+          .read<ProfileCubit>()
+          .updateProfilePhoto(imageFile, userTyp: widget.userType);
     }
   }
 
@@ -97,7 +99,8 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
         ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: Image.network(
-            profileImage ?? AppAssets.profileImage,
+            profileImage ??
+                "https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc",
             width: 120.r,
             height: 120.r,
             fit: BoxFit.cover,

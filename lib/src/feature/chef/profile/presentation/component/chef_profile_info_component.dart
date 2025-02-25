@@ -32,7 +32,7 @@ class ChefProfileInfoComponent extends StatelessWidget {
               children: [
                 SizedBox(height: 40.h),
                 
-                PersonalCircleImage(profileImage: profile.image,userType: AppStrings.chef.tr(),),
+                PersonalCircleImage(profileImage: profile.image,userType: 'chef',),
                 SizedBox(height: 40.h),
                 PersonalInfoListTile(
                   title: AppStrings.name.tr(),

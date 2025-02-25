@@ -29,7 +29,7 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   // Initialize FCM and Local Notifications
-  await initializeFcmAndLocalNotifications();
+ // await initializeFcmAndLocalNotifications();
 
   runApp(
     EasyLocalization(

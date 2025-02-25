@@ -1,113 +1,110 @@
+import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 import '../../main.dart';
 import '../fcm_token/logic/send_fcm_token_cubit.dart';
 import '../services/service_locator.dart';
 
 Future<void> initializeFcmAndLocalNotifications() async {
-  // Request permission for FCM
-  NotificationSettings settings =
-      await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
+  await _setupLocalNotifications();
 
-  // Configure Android Notification Settings
-  const AndroidInitializationSettings initializationSettingsAndroid =
+  await _requestNotificationPermissions();
+
+  await _handleFcmToken();
+
+  _setupForegroundMessageHandling();
+}
+
+Future<void> _setupLocalNotifications() async {
+  const AndroidInitializationSettings androidSettings =
       AndroidInitializationSettings('@mipmap/ic_launcher');
 
-  // Configure iOS Notification Details
-  //final IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings();
-const DarwinInitializationSettings initializationSettingsIOS =
-      DarwinInitializationSettings(
-    requestAlertPermission: true,
+  const DarwinInitializationSettings iosSettings = DarwinInitializationSettings(
+    requestAlertPermission: false, 
     requestBadgePermission: true,
     requestSoundPermission: true,
   );
-  // Initialize FlutterLocalNotificationsPlugin
-  const InitializationSettings initializationSettings = InitializationSettings(
-    android: initializationSettingsAndroid,
-     iOS: initializationSettingsIOS,
 
+  const InitializationSettings initSettings = InitializationSettings(
+    android: androidSettings,
+    iOS: iosSettings,
   );
 
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  await flutterLocalNotificationsPlugin.initialize(
+    initSettings,
+    onDidReceiveNotificationResponse: (details) {
+    },
+  );
+}
 
-  // Get FCM Token
-  String? token = await FirebaseMessaging.instance.getToken();
-  print('FCM Token: $token');
+Future<void> _requestNotificationPermissions() async {
+  final settings = await FirebaseMessaging.instance.requestPermission(
+    alert: true,
+    badge: true,
+    sound: true,
+    provisional: true, // مهم لـ iOS (إذن مؤقت)
+  );
 
-  final storeFcmTokenCubit = getIt<StoreFcmTokenCubit>();
+  print('إعدادات الصلاحيات: ${settings.authorizationStatus}');
+}
 
-  // Store the token if it exists
-  if (token != null) {
-    storeFcmTokenCubit.storeToken(token);
-  }
+Future<void> _handleFcmToken() async {
+  try {
+    final String? token = await FirebaseMessaging.instance.getToken();
+    print('FCM Token الأولي: $token');
 
-  // Handle incoming foreground messages
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    print('Got a message whilst in the foreground!');
-    print('Message data: ${message.data}');
-
-    if (message.notification != null) {
-      print('Message also contained a notification: ${message.notification}');
-      
-      flutterLocalNotificationsPlugin.show(
-        message.notification.hashCode,
-        message.notification?.title,
-        message.notification?.body,
-        const NotificationDetails(
-          android: AndroidNotificationDetails(
-            'your_channel_id',
-            'your_channel_name',
-            channelDescription: 'your_channel_description',
-            importance: Importance.high,
-            priority: Priority.high,
-            // Add actions or other configurations here
-          ),
-          iOS: DarwinNotificationDetails(
-            presentAlert: true,
-            presentBadge: true,
-            presentSound: true,
-          ),
-        ),
-      );
+    if (token != null) {
+      await CacheHelper.saveData(key: 'fcm_token', value: token);
+     // await getIt<StoreFcmTokenCubit>().storeToken(token);
     }
+
+    FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
+      print('تم تحديث الـ FCM Token: $newToken');
+      await getIt<StoreFcmTokenCubit>().storeToken(newToken);
+    });
+  } catch (e) {
+    print('خطأ في الحصول على الـ Token: ${e.toString()}');
+  }
+}
+
+void _setupForegroundMessageHandling() {
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('رسالة واردة في الواجهة الأمامية: ${message.messageId}');
+    _showLocalNotification(message);
   });
 }
 
+void _showLocalNotification(RemoteMessage message) {
+  if (message.notification == null) return;
+
+  final notification = message.notification!;
+  final android = message.notification?.android;
+
+  flutterLocalNotificationsPlugin.show(
+    notification.hashCode,
+    notification.title,
+    notification.body,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        android?.channelId ?? 'your_channel_id',
+        android?.channelId ?? 'your_channel_name',
+        channelDescription: 'your_channel_description',
+        importance: Importance.high,
+        priority: Priority.high,
+        icon: android?.smallIcon,
+      ),
+      iOS: const DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+      ),
+    ),
+  );
+}
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print("Handling a background message: ${message.messageId}");
-
-  // Show local notification in the background
-  if (message.notification != null) {
-    await flutterLocalNotificationsPlugin.show(
-      message.notification.hashCode,
-      message.notification?.title,
-      message.notification?.body,
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'your_channel_id',
-          'your_channel_name',
-          channelDescription: 'your_channel_description',
-          importance: Importance.high,
-          priority: Priority.high,
-          actions: <AndroidNotificationAction>[
-            AndroidNotificationAction('ACTION_1', 'Action 1'),
-            AndroidNotificationAction('ACTION_2', 'Action 2'),
-          ],
-        ),
-        iOS: DarwinNotificationDetails(
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true,
-        ),
-      ),
-    );
-  }
+  print("معالجة رسالة في الخلفية: ${message.messageId}");
+  _showLocalNotification(message);
 }

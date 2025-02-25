@@ -176,11 +176,6 @@ import '../../src/feature/sales/addOrder/domain/usecase/delivery_use_case.dart';
 import '../../src/feature/sales/addOrder/presentation/logic/delivery/delivery_cubit.dart';
 import '../../src/feature/sales/addOrder/presentation/logic/delivery/get_one/get_delivery_details_cubit.dart';
 import '../../src/feature/sales/addOrder/presentation/logic/delivery/select_delivery/select_delivery_cubit.dart';
-import '../../src/feature/sales/notification/data/remote/sales_notification_api_services.dart';
-import '../../src/feature/sales/notification/data/remote/sales_notification_remote_ds.dart';
-import '../../src/feature/sales/notification/domain/repo/sales_notification_repo.dart';
-import '../../src/feature/sales/notification/domain/usecase/get_notification_use_case.dart';
-import '../../src/feature/sales/notification/presentation/logic/sales_notification_cubit.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_api_serivces.dart';
 import '../../src/feature/sales/register/data/remote/sales_register_remote_ds.dart';
 import '../../src/feature/sales/register/domain/repository/sales_register_repo.dart';
@@ -209,13 +204,12 @@ void setupLocator() {
   getIt.registerLazySingleton<ImagePicker>(() => ImagePicker());
 
 //!Api Services //
+getIt.registerLazySingleton<SalesRegisterApiServices>(() => SalesRegisterApiServicesImpl(getIt()));
   getIt.registerLazySingleton<ProfileApiService>(
       () => ProfileApiServiceImpl(getIt()));
 
   getIt.registerLazySingleton<ManagerRegisterApiServices>(
       () => ManagerRegisterApiServicesImpl(getIt()));
-  getIt.registerLazySingleton<SalesRegisterApiServices>(
-      () => SalesRegisterApiServicesImpl(getIt()));
   getIt.registerLazySingleton<FcmRepository>(
       () => FcmRepositoryImpl(getIt<ApiConsumer>()));
 
@@ -271,8 +265,6 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SalesSearchApiService>(
       () => SalesSearchApiServiceImpl(getIt()));
-  getIt.registerLazySingleton<SalesNotificationApiServices>(
-      () => SalesNotificationApiServicesImpl(getIt()));
   getIt.registerLazySingleton<IAppRepository>(
     () => AppRepositoryImpl(getIt()),
   );
@@ -340,8 +332,6 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SalesSearchRemoteData>(
       () => SalesSearchRemoteDataImpl(getIt()));
-  getIt.registerLazySingleton<SalesNotificationRemoteDs>(
-      () => SalesNotificationRemoteDsImpl(getIt()));
 
   getIt
       .registerLazySingleton<MapRemoteDataSource>(() => MapRemoteDataSourceImpl(
@@ -402,8 +392,6 @@ void setupLocator() {
 
   getIt.registerLazySingleton<SalesSearchRepo>(
       () => SalesSearchRepoImpl(getIt()));
-  getIt.registerLazySingleton<SalesNotificationRepo>(
-      () => SalesNotificationRepoImpl(getIt()));
 
   getIt.registerLazySingleton<SpecializationRepo>(
       () => SpecializationRepoImp(getIt()));
@@ -593,9 +581,6 @@ void setupLocator() {
     () => GetSalesSearchUC(getIt()),
   );
 
-  getIt.registerLazySingleton<GetSalesNotificationUseCase>(
-    () => GetSalesNotificationUseCase(getIt()),
-  );
   getIt.registerLazySingleton<GetAssignedOrderUseCase>(
     () => GetAssignedOrderUseCase(getIt()),
   );
@@ -726,9 +711,6 @@ void setupLocator() {
     () => SalesSearchCubit(getIt()),
   );
 
-  getIt.registerFactory<SalesNotificationCubit>(
-      () => SalesNotificationCubit(getIt()));
-
   getIt.registerFactory<NotAssignOrdersCubit>(
     () => NotAssignOrdersCubit(getIt()),
   );
@@ -741,7 +723,7 @@ void setupLocator() {
   getIt.registerFactory<GetDeliveryDetailsCubit>(
     () => GetDeliveryDetailsCubit(getIt()),
   );
-  getIt.registerFactory<StoreFcmTokenCubit>(
+  getIt.registerLazySingleton<StoreFcmTokenCubit>(
     () => StoreFcmTokenCubit(getIt()),
   );
   getIt.registerFactory<MapCubit>(

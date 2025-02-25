@@ -515,10 +515,8 @@ final GoRouter router = GoRouter(
             )),
     GoRoute(
       path: RouterNames.chefBottomNavigationBarRoot,
-      builder: (context, state) => BlocProvider(
-        create: (context) => getIt<NewOrdersCubit>()..getNewOrders(),
-        child: const ChefBottomNavigationBarRoot(),
-      ),
+      builder: (context, state) =>  const ChefBottomNavigationBarRoot(),
+      
     ),
     GoRoute(
       path: RouterNames.chefChangePassword,

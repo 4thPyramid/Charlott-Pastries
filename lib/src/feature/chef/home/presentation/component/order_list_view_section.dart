@@ -8,14 +8,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../generated/app_strings.g.dart';
+import '../../../../../../core/services/service_locator.dart';
+
 
 class OrderListViewSection extends StatelessWidget {
   const OrderListViewSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewOrdersCubit, NewOrderState>(
+    return BlocProvider(
+        create: (context) => getIt<NewOrdersCubit>()..getNewOrders(),
+        child: BlocBuilder<NewOrdersCubit, NewOrderState>(
       builder: (context, state) {
         return state.when(
             initial: () => const CircularProgressIndicator(),
@@ -57,6 +60,7 @@ class OrderListViewSection extends StatelessWidget {
                   ),
             error: (error) => Center(child: Text(error.message)));
       },
+      )
     );
   }
 }

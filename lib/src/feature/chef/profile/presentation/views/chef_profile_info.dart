@@ -18,7 +18,7 @@ class ChefProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ProfileCubit>().getProfile(userTyp: AppStrings.chef.tr());
+      context.read<ProfileCubit>().getProfile(userTyp: "chef");
     });
     return Scaffold(
       appBar: AppBar(

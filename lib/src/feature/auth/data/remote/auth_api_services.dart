@@ -6,6 +6,9 @@ import '../../../../../core/data/api/api_consumer.dart';
 import '../../../../../core/data/cached/cache_helper.dart';
 import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/errors/exceptions.dart';
+import '../../../../../core/fcm_token/logic/send_fcm_token_cubit.dart';
+import '../../../../../core/services/service_locator.dart';
+import '../../../../../core/utils/notifications_configration.dart';
 
 abstract class AuthApiServices {
   Future<Either<ErrorModel, LoginResponse>> login(
@@ -83,6 +86,14 @@ class AuthApiServicesImpl extends AuthApiServices {
               '${userResponse.user.firstName}  ${userResponse.user.lastName}');
       CacheHelper.saveData(
           key: 'image', value: userResponse.user.image.toString());
+          
+            await initializeFcmAndLocalNotifications();
+
+      final fcmToken = await CacheHelper.getData(
+        key: 'fcm_token',
+      );
+      await getIt<StoreFcmTokenCubit>().storeToken(fcmToken);
+
       return Right(userResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);
