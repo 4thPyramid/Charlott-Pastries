@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:charlot/core/routes/app_routers.dart';
@@ -11,6 +10,7 @@ import '../core/app_cubit/app_cubit.dart';
 import '../core/services/service_locator.dart';
 import 'feature/intro/presentation/logic/user_type_cubit.dart';
 import 'feature/language/presentation/logic/language_cubit.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,23 +24,19 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) => getIt<AppCubit>(),
             ),
-             BlocProvider<LanguageCubit>(
+            BlocProvider<LanguageCubit>(
                 create: (_) => getIt<LanguageCubit>()..loadSavedLanguage()),
             BlocProvider(
               create: (context) => UserTypeCubit(),
             ),
-            
-
           ],
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             routerConfig: router,
             locale: context.locale,
-            supportedLocales: context
-                .supportedLocales, 
-            localizationsDelegates: context
-                .localizationDelegates, 
+            supportedLocales: context.supportedLocales,
+            localizationsDelegates: context.localizationDelegates,
             localeListResolutionCallback: (locales, supportedLocales) {
               return locales?.firstWhere(
                 (locale) => supportedLocales.contains(locale),

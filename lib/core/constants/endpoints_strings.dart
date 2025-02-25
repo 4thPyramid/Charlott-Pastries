@@ -58,8 +58,7 @@ abstract class EndpointsStrings {
   static const String salesDeliveryDetails = 'sales/deliveries/';
   static const String salesSelectDelivery = 'sales/assign-to-delivery/';
 
-  static const storeFcmToken ="api/store-fcm-token";
-
+  static const storeFcmToken = "api/store-fcm-token";
 
   //!chef//
   static const String chefRegister = 'chef/register';
@@ -85,5 +84,5 @@ abstract class EndpointsStrings {
 }
 
 class AppConstants {
-  static const mapDurationApiKey = "AIzaSyAG_-zCk6oBioWgVoGG-GfHpRt7rG5QP4s";
+  static const mapDurationApiKey = "AIzaSyDwLVtmIbV48zAYFqnE2KLMmC2-ZUeOQ4Q";
 }

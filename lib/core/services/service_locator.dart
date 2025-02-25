@@ -219,7 +219,6 @@ void setupLocator() {
   getIt.registerLazySingleton<FcmRepository>(
       () => FcmRepositoryImpl(getIt<ApiConsumer>()));
 
-
   getIt.registerLazySingleton<BranchesApiServices>(
     () => BranchesApiServicesImp(getIt()),
   );
@@ -347,7 +346,7 @@ void setupLocator() {
   getIt
       .registerLazySingleton<MapRemoteDataSource>(() => MapRemoteDataSourceImpl(
             getIt(),
-            googleApiKey: "AIzaSyBKHhTQI6x7OVbOTiozcbPpX63deiLYoTI",
+            googleApiKey: "AIzaSyDwLVtmIbV48zAYFqnE2KLMmC2-ZUeOQ4Q",
           ));
 
   ///! -- Repositories -- ///
@@ -742,7 +741,7 @@ void setupLocator() {
   getIt.registerFactory<GetDeliveryDetailsCubit>(
     () => GetDeliveryDetailsCubit(getIt()),
   );
-    getIt.registerFactory<StoreFcmTokenCubit>(
+  getIt.registerFactory<StoreFcmTokenCubit>(
     () => StoreFcmTokenCubit(getIt()),
   );
   getIt.registerFactory<MapCubit>(

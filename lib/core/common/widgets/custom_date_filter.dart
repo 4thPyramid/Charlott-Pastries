@@ -47,8 +47,6 @@ class _CustomDateFilterState extends State<CustomDateFilter> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   side: const BorderSide(color: AppColors.primaryColor),
-                  minimumSize: Size(100.w, 40.h),
-                  maximumSize: Size(140.w, 40),
                   fixedSize: Size(140.w, 50.h),
                 ),
                 icon: const Icon(Icons.calendar_today_outlined),
@@ -70,8 +68,6 @@ class _CustomDateFilterState extends State<CustomDateFilter> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   side: const BorderSide(color: AppColors.primaryColor),
-                  minimumSize: Size(100.w, 40.h),
-                  maximumSize: Size(140.w, 40),
                   fixedSize: Size(140.w, 50.h),
                 ),
                 icon: const Icon(Icons.calendar_today),
@@ -89,8 +85,6 @@ class _CustomDateFilterState extends State<CustomDateFilter> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.white,
                     foregroundColor: AppColors.primaryColor,
-                    minimumSize: const Size(40, 40),
-                    maximumSize: Size(100.w, 40.h),
                     fixedSize: Size(70.w, 50.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
