@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OrderDetailsState<T> {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+  TResult when<TResult extends Object?>( {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel errorMessage) failure,

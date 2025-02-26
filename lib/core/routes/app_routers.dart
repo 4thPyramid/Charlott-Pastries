@@ -223,6 +223,7 @@ final GoRouter router = GoRouter(
             from: data['from'] as String? ?? '',
             title: data['title'] as String? ?? '',
             orderId: data['orderId'] as int? ?? 0,
+            deliveryBoyId: data['deliveryBoyId'] as int? ?? 0,
           );
         }),
     GoRoute(
@@ -386,6 +387,7 @@ final GoRouter router = GoRouter(
 
         return OrderTrackingView(
           orderId: data['orderId'] as int? ?? 0,
+          deliveryBoyId: data['deliveryBoyId'] as int? ?? 0,
         );
       },
     ),
@@ -514,8 +516,7 @@ final GoRouter router = GoRouter(
             )),
     GoRoute(
       path: RouterNames.chefBottomNavigationBarRoot,
-      builder: (context, state) =>  const ChefBottomNavigationBarRoot(),
-      
+      builder: (context, state) => const ChefBottomNavigationBarRoot(),
     ),
     GoRoute(
       path: RouterNames.chefChangePassword,

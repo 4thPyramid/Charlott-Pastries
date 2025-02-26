@@ -30,8 +30,12 @@ class OrdersInProgressList extends StatelessWidget {
               final orders = ordersResponse.orders;
 
               if (orders.isEmpty) {
-                              return Center(child: Text(AppStrings.noCurrentOrders.tr()));
-
+                return Center(
+                  child: Text(
+                    AppStrings.noCurrentOrders.tr(),
+                    style: TextStyle(fontSize: 20.sp),
+                  ),
+                );
               }
 
               return SizedBox(

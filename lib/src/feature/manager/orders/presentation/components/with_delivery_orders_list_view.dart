@@ -33,6 +33,7 @@ class WithDeliveryOrdersListView extends StatelessWidget {
                       return Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.h),
                         child: SharedOrderItemCard(
+                          deleviryBoyId: ordersResponse.orders[index].deliveryId,
                           orderResponse: ordersResponse.orders[index],
                         ),
                       );

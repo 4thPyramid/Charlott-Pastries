@@ -86,8 +86,8 @@ class AuthApiServicesImpl extends AuthApiServices {
               '${userResponse.user.firstName}  ${userResponse.user.lastName}');
       CacheHelper.saveData(
           key: 'image', value: userResponse.user.image.toString());
-          
-            await initializeFcmAndLocalNotifications();
+
+      await initializeFcmAndLocalNotifications();
 
       final fcmToken = await CacheHelper.getData(
         key: 'fcm_token',

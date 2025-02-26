@@ -28,6 +28,8 @@ class ChefOrderDetailsContent extends StatelessWidget {
             orderStatus: orderDetailsResponse.status,
             startAt: orderDetailsResponse.createdAt ?? "2021-01-10",
             endAt: orderDetailsResponse.deliveryDate ?? "2021-01-10",
+            from: '',
+            to: '',
           ),
           SizedBox(height: 16.h),
           ClientData(
@@ -38,11 +40,11 @@ class ChefOrderDetailsContent extends StatelessWidget {
             customerAddress:
                 orderDetailsResponse.additionalData ?? 'لم يتم اضافه عنوان',
           ),
-        orderDetailsResponse.orderDetails != 'No details'
+          orderDetailsResponse.orderDetails != 'No details'
               ? OrderData(
                   title: AppStrings.orderData.tr(),
                   orderDetails: orderDetailsResponse.orderDetails ?? '',
-                  orderType: orderDetailsResponse.orderType??'',
+                  orderType: orderDetailsResponse.orderType ?? '',
                   image: orderDetailsResponse.images.isNotEmpty
                       ? orderDetailsResponse.images[0].image
                       : '',
@@ -52,12 +54,11 @@ class ChefOrderDetailsContent extends StatelessWidget {
               ? OrderData(
                   title: AppStrings.flowerData.tr(),
                   orderDetails: '',
-                  orderType: orderDetailsResponse.description ??'',
+                  orderType: orderDetailsResponse.description ?? '',
                   image: orderDetailsResponse.image ??
                       'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
                 )
               : const SizedBox(),
-
           OrderPrice(
             price: orderDetailsResponse.totalPrice ?? 0.0,
             deposit: orderDetailsResponse.deposit ?? 0.0,

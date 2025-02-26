@@ -30,6 +30,8 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
           orderStatus: orderStatus,
           startAt: orderDetailsResponse.createdAt,
           endAt: orderDetailsResponse.deliveryDate ?? '2024-12-12',
+          from: orderDetailsResponse.from ?? '',
+          to: orderDetailsResponse.to ?? '',
         ),
         SizedBox(height: 16.h),
         ClientData(

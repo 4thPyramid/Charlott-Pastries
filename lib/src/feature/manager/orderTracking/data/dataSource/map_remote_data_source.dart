@@ -20,8 +20,9 @@ abstract class MapRemoteDataSource {
 
 class MapRemoteDataSourceImpl implements MapRemoteDataSource {
   final String googleApiKey;
-final MapTrackingApiService mapTrackingApiService;
-  MapRemoteDataSourceImpl(this.mapTrackingApiService, { required this.googleApiKey});
+  final MapTrackingApiService mapTrackingApiService;
+  MapRemoteDataSourceImpl(this.mapTrackingApiService,
+      {required this.googleApiKey});
 
   @override
   Future<List<LatLng>> getRoutePolyline({
@@ -53,10 +54,10 @@ final MapTrackingApiService mapTrackingApiService;
     return await mapTrackingApiService.getDestenationAndTime(
         origin, destination);
   }
-@override
+
+  @override
   Future<Either<ErrorModel, LocationModel>> getDeliveryBoyLocation(
       int deliveryId) async {
     return await mapTrackingApiService.getDeliveryBoyLocation(deliveryId);
   }
-
 }

@@ -42,7 +42,10 @@ class SalesOrderDetailsContent extends StatelessWidget {
                         OrderTimes(
                           orderStatus: orderDetailsResponse.status,
                           startAt: orderDetailsResponse.createdAt,
-                          endAt: orderDetailsResponse.updatedAt??'0000-00-00 00:00:00',
+                          endAt: orderDetailsResponse.deliveryTime ??
+                              '0000-00-00 00:00:00',
+                          from: '',
+                          to: '',
                         ),
                         SizedBox(height: 16.h),
                         ClientData(
@@ -58,10 +61,10 @@ class SalesOrderDetailsContent extends StatelessWidget {
                         //   chefName: orderDetailsResponse.order.chefName,
                         //   deliveryName: orderDetailsResponse.deliveryName,
                         // ),
-                                      orderDetailsResponse.orderDetails != 'No details'
+                        orderDetailsResponse.orderDetails != 'No details'
                             ? OrderData(
                                 title: AppStrings.orderData.tr(),
-                                orderDetails: orderDetailsResponse.orderDetails ,
+                                orderDetails: orderDetailsResponse.orderDetails,
                                 orderType: orderDetailsResponse.orderType,
                                 image: orderDetailsResponse.images.isNotEmpty
                                     ? orderDetailsResponse.images[0].image
@@ -71,17 +74,18 @@ class SalesOrderDetailsContent extends StatelessWidget {
                         orderDetailsResponse.description != 'No flowers'
                             ? OrderData(
                                 title: AppStrings.flowerData.tr(),
-                                orderDetails:'',
-                                orderType: orderDetailsResponse.description??'',
+                                orderDetails: '',
+                                orderType:
+                                    orderDetailsResponse.description ?? '',
                                 image: orderDetailsResponse.image ??
                                     'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
                               )
                             : const SizedBox(),
                         OrderPrice(
-                          price: orderDetailsResponse.price ?? 0.0,
+                          price: orderDetailsResponse.totalPrice ?? 0.0,
                           deposit: orderDetailsResponse.deposit,
                           remaining: orderDetailsResponse.remaining ?? 0.0,
-                          flowerPrice:  0.0,
+                          flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
                         ),
                         SizedBox(height: 16.h),
                       ],

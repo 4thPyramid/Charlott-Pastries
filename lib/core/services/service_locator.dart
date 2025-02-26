@@ -204,7 +204,8 @@ void setupLocator() {
   getIt.registerLazySingleton<ImagePicker>(() => ImagePicker());
 
 //!Api Services //
-getIt.registerLazySingleton<SalesRegisterApiServices>(() => SalesRegisterApiServicesImpl(getIt()));
+  getIt.registerLazySingleton<SalesRegisterApiServices>(
+      () => SalesRegisterApiServicesImpl(getIt()));
   getIt.registerLazySingleton<ProfileApiService>(
       () => ProfileApiServiceImpl(getIt()));
 
@@ -336,7 +337,7 @@ getIt.registerLazySingleton<SalesRegisterApiServices>(() => SalesRegisterApiServ
   getIt
       .registerLazySingleton<MapRemoteDataSource>(() => MapRemoteDataSourceImpl(
             getIt(),
-            googleApiKey: "AIzaSyDwLVtmIbV48zAYFqnE2KLMmC2-ZUeOQ4Q",
+            googleApiKey: "AIzaSyBMaCjdzcpOgRcN1OYGQZCN9CuqiK8KlZs",
           ));
 
   ///! -- Repositories -- ///

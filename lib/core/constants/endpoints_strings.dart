@@ -84,5 +84,5 @@ abstract class EndpointsStrings {
 }
 
 class AppConstants {
-  static const mapDurationApiKey = "AIzaSyDwLVtmIbV48zAYFqnE2KLMmC2-ZUeOQ4Q";
+  static const mapDurationApiKey = "AIzaSyBMaCjdzcpOgRcN1OYGQZCN9CuqiK8KlZs";
 }

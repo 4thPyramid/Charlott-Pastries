@@ -5,21 +5,24 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class DatesContainerWidget extends StatelessWidget {
   const DatesContainerWidget({
     super.key,
     required this.startData,
     required this.endData,
+    required this.from,
+    required this.to,
   });
 
   final String startData;
   final String endData;
+  final String from;
+  final String to;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 102.h,
+      height: 204.h,
       width: 353.w,
       decoration: BoxDecoration(
         color: AppColors.white,
@@ -48,13 +51,47 @@ class DatesContainerWidget extends StatelessWidget {
             const Divider(),
             Row(
               children: [
-                Text( 
+                Text(
                   AppStrings.orderdeliveryTime.tr(),
                   style: AppStyles.s14,
                 ),
                 const Spacer(),
                 Text(
                   endData,
+                  style: AppStyles.s14.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16.h),
+            const Divider(),
+            SizedBox(height: 16.h),
+            Row(
+              children: [
+                Text(
+                  "From Time",
+                  style: AppStyles.s14,
+                ),
+                const Spacer(),
+                Text(
+                  from,
+                  style: AppStyles.s14.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                Text(
+                  "To Time",
+                  style: AppStyles.s14,
+                ),
+                const Spacer(),
+                Text(
+                  from,
                   style: AppStyles.s14.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

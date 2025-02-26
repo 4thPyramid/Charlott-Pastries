@@ -11,8 +11,13 @@ import '../../../src/feature/manager/orders/data/model/orders_response.dart';
 import '../../routes/router_names.dart';
 
 class SharedOrderItemCard extends StatelessWidget {
-  const SharedOrderItemCard({super.key, required this.orderResponse});
+  const SharedOrderItemCard({
+    super.key,
+    required this.orderResponse,
+     this.deleviryBoyId,
+  });
   final Order orderResponse;
+  final int? deleviryBoyId;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,39 +52,40 @@ class SharedOrderItemCard extends StatelessWidget {
               CircleAvatar(
                 radius: 60.r,
                 backgroundImage: NetworkImage(
-                  orderResponse.images.isNotEmpty ? orderResponse.images[0].image
-                      :'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_104615256_stock-vector-no-image-available-icon-flat-vector.html&psig=AOvVaw3Q6Q6Q9',
+                  orderResponse.images.isNotEmpty
+                      ? orderResponse.images[0].image
+                      : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_104615256_stock-vector-no-image-available-icon-flat-vector.html&psig=AOvVaw3Q6Q6Q9',
                 ),
               ),
             ],
           ),
-         
-            CustomButton(
-                width: 150.w,
-                height: 30.h,
-                text: AppStrings.orderDetails.tr(),
-                textStyle: AppStyles.s12.copyWith(
-                  color: AppColors.white,
-                ),
-                onPressed: () {
-                  if (orderResponse.status == 'returned' ||
-                      orderResponse.status == 'refused') {
-                    context
-                        .push(RouterNames.returnAndRefusedOrderDetails, extra: {
-                      'from': orderResponse.status,
-                      'title': orderResponse.status,
-                      'orderStatus': orderResponse.status,
-                      'orderId': orderResponse.id,
-                    });
-                  } else {
-                    context.push(RouterNames.ordersDetails, extra: {
-                      'from': orderResponse.status,
-                      'title': orderResponse.status,
-                      'orderStatus': orderResponse.status,
-                      "orderId": orderResponse.id,
-                    });
-                  }
-                }),
+          CustomButton(
+              width: 150.w,
+              height: 30.h,
+              text: AppStrings.orderDetails.tr(),
+              textStyle: AppStyles.s12.copyWith(
+                color: AppColors.white,
+              ),
+              onPressed: () {
+                if (orderResponse.status == 'returned' ||
+                    orderResponse.status == 'refused') {
+                  context
+                      .push(RouterNames.returnAndRefusedOrderDetails, extra: {
+                    'from': orderResponse.status,
+                    'title': orderResponse.status,
+                    'orderStatus': orderResponse.status,
+                    'orderId': orderResponse.id,
+                  });
+                } else {
+                  context.push(RouterNames.ordersDetails, extra: {
+                    'from': orderResponse.status,
+                    'title': orderResponse.status,
+                    'orderStatus': orderResponse.status,
+                    "orderId": orderResponse.id,
+                    'deliveryBoyId': deleviryBoyId,
+                  });
+                }
+              }),
         ],
       ),
     );

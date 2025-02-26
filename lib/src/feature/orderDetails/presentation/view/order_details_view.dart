@@ -19,11 +19,13 @@ class OrderDetailsView extends StatelessWidget {
     required this.from,
     required this.title,
     required this.orderId,
+     this.deliveryBoyId,
   });
 
   final String from;
   final int orderId;
   final String title;
+  final int? deliveryBoyId;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class OrderDetailsView extends StatelessWidget {
         body: BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
           builder: (context, state) {
             return state.when(
-              initial: () =>  Center(child: Text(AppStrings.loading.tr())),
+              initial: () => Center(child: Text(AppStrings.loading.tr())),
               loading: () => const Center(child: CircularProgressIndicator()),
               failure: (error) =>
                   Center(child: Text('حدث خطأ: ${error.message}')),

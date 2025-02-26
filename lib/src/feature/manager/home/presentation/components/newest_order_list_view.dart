@@ -1,4 +1,5 @@
 import 'package:charlot/core/common/widgets/custom_date_filter.dart';
+import 'package:charlot/core/common/widgets/failure_widget.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -56,7 +57,14 @@ class _NewestOrderListViewState extends State<NewestOrderListView> {
                 success: (ordersResponse) {
                   final orders = ordersResponse.orders;
                   if (orders.isEmpty) {
-                    return Center(child: Text(AppStrings.noCurrentOrders.tr()));
+                    return const Center(
+                      child: FailureWidget(
+                        iconSize: 200,
+                        title: 'No orders found',
+                        subtitle: 'Wait for new orders',
+                        icon: Icons.shopping_bag_outlined,
+                      ),
+                    );
                   }
                   return ListView.separated(
                     shrinkWrap: true,

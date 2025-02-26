@@ -17,11 +17,13 @@ import '../view/show_pop_to_choice_chef.dart';
 class OrderDetailsActions extends StatelessWidget {
   final String orderStatus;
   final int orderId;
+  final int? deliveryBoyId;
 
   const OrderDetailsActions({
     super.key,
     required this.orderStatus,
     required this.orderId,
+    this.deliveryBoyId,
   });
 
   @override
@@ -42,7 +44,7 @@ class OrderDetailsActions extends StatelessWidget {
           },
         ),
       );
-    } else if (orderStatus ==  "manager accepted") {
+    } else if (orderStatus == "manager accepted") {
       return Align(
         alignment: Alignment.bottomCenter,
         child: CustomButton(
@@ -70,14 +72,12 @@ class OrderDetailsActions extends StatelessWidget {
           onPressed: () {
             context.push(RouterNames.orderTrackingView, extra: {
               'orderId': orderId,
+              "deliveryBoyId": deliveryBoyId,
             });
-     
-         
           },
         ),
       );
-    } 
-    else if (orderStatus == "new" ) {
+    } else if (orderStatus == "new") {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -90,7 +90,8 @@ class OrderDetailsActions extends StatelessWidget {
                     backgroundColor: Colors.green,
                   ),
                 );
-                showPopToChoiceChef(context, orderId, RouterNames.managerBottomNavigationBarRoot);
+                showPopToChoiceChef(context, orderId,
+                    RouterNames.managerBottomNavigationBarRoot);
               } else if (state is AcceptOrderFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

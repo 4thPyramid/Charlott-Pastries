@@ -3,6 +3,7 @@ import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_del
 import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_destenation_and_time_uc.dart';
 import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'map_state.dart';
 
@@ -19,21 +20,36 @@ class MapCubit extends Cubit<MapState> {
     this.apiService,
   ) : super(MapInitial());
 
-  void getRoute(LatLng origin, LatLng destination) async {
-    emit(MapLoading());
+  Future<void> getRoute(LatLng origin, LatLng destination) async {
+    // emit(MapLoading());
     try {
-      final route =
-          await getRouteUseCase(origin: origin, destination: destination);
-      emit(MapLoaded(route, origin));
-      // _animateMarker(route);
+      PolylinePoints polylinePoints = PolylinePoints();
+      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        request: PolylineRequest(
+          origin: PointLatLng(origin.latitude, origin.longitude),
+          destination: PointLatLng(destination.latitude, destination.longitude),
+          mode: TravelMode.driving,
+        ),
+        googleApiKey: "AIzaSyBMaCjdzcpOgRcN1OYGQZCN9CuqiK8KlZs",
+      );
+
+      if (result.points.isNotEmpty) {
+        List<LatLng> polylineCoordinates = result.points
+            .map((point) => LatLng(point.latitude, point.longitude))
+            .toList();
+        emit(MapLoaded(polylineCoordinates, origin));
+        // _animateMarker(polylineCoordinates);
+      } else {
+        emit(MapError("No route found"));
+      }
     } catch (e) {
-      emit(MapError("فشل تحميل المسار: $e"));
+      emit(MapError(e.toString()));
     }
   }
 
   void _animateMarker(List<LatLng> routeCoordinates) async {
     for (int i = 0; i < routeCoordinates.length; i++) {
-      await Future.delayed(const Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 500));
 
       if (!isClosed) {
         emit(MapMarkerMoved(routeCoordinates[i]));
@@ -42,18 +58,29 @@ class MapCubit extends Cubit<MapState> {
       }
     }
   }
+
   void fetchDeliveryBoyLocation(int deliveryId) async {
-    emit(MapLoading());
     try {
       final result = await getDeliveryBoyLocation(deliveryId);
       result.fold(
         (error) => emit(MapError(error.message)),
-        (location) => emit(MapDeliveryBoyLocationLoaded(location)),
+        (location) {
+          emit(MapDeliveryBoyLocationLoaded(location));
+          _startLocationUpdates(deliveryId);
+        },
       );
     } catch (e) {
       emit(MapError("خطأ في تحميل موقع عامل التوصيل: $e"));
     }
   }
+
+  void _startLocationUpdates(int deliveryId) async {
+    while (!isClosed) {
+      await Future.delayed(const Duration(seconds: 30));
+      fetchDeliveryBoyLocation(deliveryId);
+    }
+  }
+
   void fetchDistanceAndTime(LatLng origin, LatLng destination) async {
     try {
       final result = await getDestenationAndTimeUc(

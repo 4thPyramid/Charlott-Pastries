@@ -38,10 +38,17 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
     super.initState();
     _mapCubit = context.read<MapCubit>();
     _loadCustomMarker();
-    _initializeMarkers();
 
-    _mapCubit.getRoute(widget.origin, widget.destination);
-    _mapCubit.fetchDistanceAndTime(widget.currentPosition, widget.destination);
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          _initializeMarkers();
+          _mapCubit.getRoute(widget.origin, widget.destination);
+          _mapCubit.fetchDistanceAndTime(
+              widget.currentPosition, widget.destination);
+        });
+      }
+    });
   }
 
   Future<void> _loadCustomMarker() async {
@@ -80,8 +87,20 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
     currentPosition = widget.currentPosition;
   }
 
-  void _updateMovingMarker(LatLng newPosition) {
+  void _onMapCreated(GoogleMapController controller) {
     setState(() {
+      _mapController = controller;
+    });
+
+    _mapController
+        ?.animateCamera(CameraUpdate.newLatLngZoom(widget.currentPosition, 16));
+  }
+
+  void _updateMovingMarker(LatLng newPosition) {
+    debugPrint('🔄 تحديث موقع العلامة إلى: $newPosition');
+
+    setState(() {
+      currentPosition = newPosition;
       _markers[const MarkerId("moving_marker")] = Marker(
         markerId: const MarkerId("moving_marker"),
         position: newPosition,
@@ -95,17 +114,6 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
   }
 
   void _updatePolyline(List<LatLng> coordinates) {
-    setState(() {
-      _polylines[const PolylineId("route")] = Polyline(
-        polylineId: const PolylineId("route"),
-        color: Colors.blue,
-        width: 5,
-        points: coordinates,
-      );
-    });
-  }
-
-  void _updateMovingMarkerPolyline(List<LatLng> coordinates) {
     setState(() {
       _polylines[const PolylineId("route")] = Polyline(
         polylineId: const PolylineId("route"),
@@ -131,10 +139,15 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
         BlocListener<MapCubit, MapState>(
           listener: (context, state) {
             if (state is MapLoaded) {
+              debugPrint("✅ المسار جاهز، تحديث الخريطة");
               _updatePolyline(state.polylineCoordinates);
             } else if (state is MapMarkerMoved) {
+              debugPrint(
+                  "🚗 تحديث موقع العلامة المتحركة إلى: ${state.newPosition}");
               _updateMovingMarker(state.newPosition);
             } else if (state is MapDistanceLoaded) {
+              debugPrint(
+                  "📏 المسافة: ${state.distance} | ⏳ المدة: ${state.duration}");
               setState(() {
                 distanceText = state.distance;
                 durationText = state.duration;
@@ -151,14 +164,14 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
 
               return GoogleMap(
                 myLocationEnabled: true,
-                padding: EdgeInsets.only(bottom: 250.h),
+                padding: EdgeInsets.only(bottom: 160.h),
                 myLocationButtonEnabled: true,
                 zoomControlsEnabled: true,
                 zoomGesturesEnabled: true,
                 compassEnabled: true,
                 initialCameraPosition:
                     CameraPosition(target: widget.origin, zoom: 16),
-                onMapCreated: (controller) => _mapController = controller,
+                onMapCreated: _onMapCreated,
                 markers: Set<Marker>.of(_markers.values),
                 polylines: Set<Polyline>.of(_polylines.values),
               );

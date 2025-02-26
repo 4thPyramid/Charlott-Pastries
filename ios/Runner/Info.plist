@@ -2,27 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIBackgroundModes</key>
-	<array>
-	<string>remote-notification</string>
-	</array>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Charlot</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>GMSApiKey</key>
+    <string>AIzaSyBMaCjdzcpOgRcN1OYGQZCN9CuqiK8KlZs</string>
+
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-    <string>We need your permission to save photos to your library.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires access to your photo library.</string>
-
 	<key>CFBundleName</key>
 	<string>charlot</string>
 	<key>CFBundlePackageType</key>
@@ -33,8 +27,25 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>نحتاج إلى الوصول إلى موقعك لعرض الخريطة.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>نحتاج إلى الوصول إلى موقعك لعرض الخريطة.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need your permission to save photos to your library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to your photo library.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -52,15 +63,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-
-	<!-- إضافة أذونات الموقع هنا -->
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>نحتاج إلى الوصول إلى موقعك لعرض الخريطة.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>نحتاج إلى الوصول إلى موقعك لعرض الخريطة.</string>
 </dict>
 </plist>
