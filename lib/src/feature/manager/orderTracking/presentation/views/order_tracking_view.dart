@@ -53,8 +53,8 @@ class OrderTrackingView extends StatelessWidget {
                       double.parse(orderDetailsResponse.latitude ?? '0.0'),
                     ),
                     currentPosition: LatLng(
-                      locationModel?.lat != null ? locationModel!.lat : 0.0,
-                      locationModel?.long != null ? locationModel!.long : 0.0,
+                      locationModel?.lat != null ? locationModel!.lat : 31.0,
+                      locationModel?.long != null ? locationModel!.long : 31.0,
                       // double.parse(orderDetailsResponse.latitude ?? '0.0'),
                       // double.parse(orderDetailsResponse.latitude ?? '0.0'),
                     ),

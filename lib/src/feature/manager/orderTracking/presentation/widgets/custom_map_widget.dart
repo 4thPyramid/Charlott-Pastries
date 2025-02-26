@@ -1,3 +1,4 @@
+import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_cubit.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_state.dart';
@@ -44,6 +45,8 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
         setState(() {
           _initializeMarkers();
           _mapCubit.getRoute(widget.origin, widget.destination);
+          _mapCubit.getRoute(widget.currentPosition, widget.origin);
+
           _mapCubit.fetchDistanceAndTime(
               widget.currentPosition, widget.destination);
         });
@@ -117,8 +120,8 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
     setState(() {
       _polylines[const PolylineId("route")] = Polyline(
         polylineId: const PolylineId("route"),
-        color: Colors.blue,
-        width: 5,
+        color: AppColors.primaryColor,
+        width: 8,
         points: coordinates,
       );
     });
