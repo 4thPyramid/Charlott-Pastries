@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/data/cached/cache_helper.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
-import '../../../../../../generated/app_strings.g.dart';
 
 class ChefHomeAppBar extends StatelessWidget {
   const ChefHomeAppBar({super.key, this.name1});

@@ -1,9 +1,6 @@
-import 'package:charlot/core/app_cubit/app_cubit.dart';
 import 'package:charlot/core/common/widgets/custom_date_filter.dart';
 import 'package:charlot/core/common/widgets/shared_order_item_card.dart';
 import 'package:charlot/core/services/service_locator.dart';
-import 'package:charlot/core/theme/app_colors.dart';
-import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/logic/completed/completed_order_cubit.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/logic/completed/completed_order_state.dart';
 import 'package:flutter/material.dart';

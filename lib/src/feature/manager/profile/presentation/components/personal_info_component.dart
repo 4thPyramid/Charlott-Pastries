@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
-import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../generated/app_strings.g.dart';
 import '../logic/profile_cubit.dart';
 import '../widget/personal_circle_image.dart';

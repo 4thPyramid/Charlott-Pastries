@@ -45,9 +45,6 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
   SpecializationModel? selectedSpecialization;
   File? selectedImage;
 
-  bool _passwordsMatch() {
-    return passwordController.text == confirmPasswordController.text;
-  }
 
   bool _validateInputs() {
     if (!formKey.currentState!.validate()) return false;
@@ -171,7 +168,7 @@ class _ChefRegisterFormState extends State<ChefRegisterForm> {
                   isPassword: true,
                   controller: passwordController,
                   validator: Validator.validatePassword,
-                  hintText: AppStrings.enterPasswordHint.tr(),
+                  hintText: AppStrings.enterYourPassword.tr(),
                   titleOfField: AppStrings.password.tr(),
                   prefixIcon: Icons.lock_outline,
                 ),

@@ -1,4 +1,3 @@
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_cubit.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_state.dart';
 import 'package:easy_localization/easy_localization.dart';

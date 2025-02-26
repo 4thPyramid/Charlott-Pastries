@@ -1,4 +1,3 @@
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.dart';
 import 'package:charlot/src/feature/chef/orders/presentation/view/chef_orders_view.dart';
 import 'package:charlot/src/feature/chef/profile/presentation/views/chef_profile_view.dart';

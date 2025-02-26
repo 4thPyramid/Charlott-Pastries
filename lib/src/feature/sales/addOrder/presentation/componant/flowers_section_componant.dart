@@ -1,15 +1,11 @@
 import 'dart:io';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/datails_field.dart';
-import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/image_picker_section.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FlowersSectionComponant extends StatelessWidget {
   final ValueChanged<File?>? onImagesChanged;

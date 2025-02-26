@@ -6,8 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../core/services/service_locator.dart';
-import '../../../../../../core/utils/app_strings.dart';
-import '../../../../../../generated/app_strings.g.dart';
 import '../../../../manager/profile/presentation/logic/profile_cubit.dart';
 
 class SalesProfileView extends StatelessWidget {

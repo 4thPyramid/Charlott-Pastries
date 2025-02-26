@@ -1,9 +1,7 @@
-import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class NotificationCardWidget extends StatelessWidget {
   const NotificationCardWidget({

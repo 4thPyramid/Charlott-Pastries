@@ -91,6 +91,7 @@ abstract class AppStrings {
   static const lastName = 'lastName';
   static const email = 'email';
   static const enterYourEmail = 'enterYourEmail';
+  static const enterYourEmailOrPhoneToResetPassword = 'enterYourEmailOrPhoneToResetPassword';
   static const confirmPassword = 'confirmPassword';
   static const alreadyHaveAccount = 'alreadyHaveAccount';
   static const enterVerificationCode = 'enterVerificationCode';
@@ -226,7 +227,7 @@ abstract class AppStrings {
   static const expectedTime = 'expectedTime';
   static const reasonForRejection = 'reasonForRejection';
   static const resendOreder = 'resendOreder';
-  static const Donthaveanaccountyet = 'Donthaveanaccountyet';
+  static const dontHaveAnAccount = 'dontHaveAnAccount';
   static const signUp = 'signUp';
   static const Passwordsdonotmatch = 'Passwordsdonotmatch';
   static const pleaseEnterAnEmail = 'Pleaseenteranemail';

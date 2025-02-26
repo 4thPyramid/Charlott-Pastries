@@ -79,7 +79,7 @@ class SalesOrderDetailsContent extends StatelessWidget {
                             : const SizedBox(),
                         OrderPrice(
                           price: orderDetailsResponse.price ?? 0.0,
-                          deposit: orderDetailsResponse.deposit ?? 0.0,
+                          deposit: orderDetailsResponse.deposit,
                           remaining: orderDetailsResponse.remaining ?? 0.0,
                           flowerPrice:  0.0,
                         ),

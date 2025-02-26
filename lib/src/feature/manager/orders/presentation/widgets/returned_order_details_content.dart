@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../generated/app_strings.g.dart';
 import '../../../../orderDetails/data/model/order_details_response.dart';
 import '../../../../orderDetails/presentation/components/client_data.dart';

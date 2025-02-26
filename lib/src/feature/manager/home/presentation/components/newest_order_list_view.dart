@@ -1,7 +1,6 @@
 import 'package:charlot/core/common/widgets/custom_date_filter.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

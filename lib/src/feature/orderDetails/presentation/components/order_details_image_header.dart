@@ -1,4 +1,3 @@
-import 'package:charlot/core/common/functions/image_downloader.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/components/order_images_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

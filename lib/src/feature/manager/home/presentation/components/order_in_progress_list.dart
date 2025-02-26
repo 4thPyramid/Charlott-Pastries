@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
-import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../generated/app_strings.g.dart';
 import '../logic/in_progress_orders/in_progress_orders_cubit.dart';
 import '../logic/in_progress_orders/in_progress_orders_state.dart';

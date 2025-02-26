@@ -20,7 +20,6 @@ import 'package:charlot/src/feature/auth/presentation/view/login_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/reset_password_view.dart';
 import 'package:charlot/src/feature/auth/presentation/view/verification_code_password.dart';
 import 'package:charlot/src/feature/chef/chef_bottom_navigation_bar_root.dart';
-import 'package:charlot/src/feature/chef/chef_orders_status/presentation/logic/new_order/new_orders_cubit.dart';
 import 'package:charlot/src/feature/chef/home/presentation/view/chef_home_view.dart';
 import 'package:charlot/src/feature/chef/notification/presentation/view/notification_view.dart';
 import 'package:charlot/src/feature/chef/orders/presentation/view/cheaf_order_datails_view.dart';

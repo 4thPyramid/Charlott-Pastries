@@ -10,7 +10,6 @@ import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/services/service_locator.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
-import '../../../../../../generated/app_strings.g.dart';
 import '../../../chef_orders_status/data/models/order_types_response.dart';
 import '../../../chef_orders_status/presentation/logic/orders_type/order_types_cubit.dart';
 import '../../../chef_orders_status/presentation/logic/orders_type/order_types_state.dart';

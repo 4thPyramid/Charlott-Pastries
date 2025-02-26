@@ -18,13 +18,15 @@ class ForgetPasswordView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
+             // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 100.h),
                 const Center(child: AppImageView(AppAssets.blackLogo)),
                 SizedBox(height: 40.h),
                 CustomAuthAppBar(
                     title: AppStrings.forgetPassword.tr(),
-                    subTitle: AppStrings.enterYourEmail.tr()),
+                    subTitle:
+                        AppStrings.enterYourEmailOrPhoneToResetPassword.tr()),
                 SizedBox(height: 60.h),
                 ForgetPasswordForm(
                   userType: userType,

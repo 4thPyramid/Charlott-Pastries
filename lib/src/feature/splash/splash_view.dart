@@ -1,6 +1,7 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -125,7 +126,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
                   offset: Offset(0, MediaQuery.of(context).size.height * _bottomAnimation.value),
                   child: Center(
                     child: CustomButton(
-                      text: 'التالي',
+                      text: 'next'.tr(),
                       onPressed: _navigateToNextScreen,
                     ),
                   ),

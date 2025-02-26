@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../core/routes/router_names.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/url_launcher_methods.dart';
-import '../../../../../../generated/app_strings.g.dart';
 import '../../../../manager/profile/presentation/widget/custom_list_tile.dart';
 import '../../../../manager/profile/presentation/widget/delete_account_pop.dart';
 

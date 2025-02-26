@@ -5,7 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../generated/app_strings.g.dart';
 import '../components/not_started_order_list_view_tab.dart';
 import '../components/completed_order_list_view_tab.dart';
 import '../components/pending_order_list_view_tab.dart';

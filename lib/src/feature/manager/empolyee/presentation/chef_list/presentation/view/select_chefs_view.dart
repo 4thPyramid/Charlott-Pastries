@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../../../core/common/widgets/custom_app_bar.dart';
 import '../../../../../../../../core/theme/app_colors.dart';
-import '../../../../../../../../core/utils/app_strings.dart';
 import '../../../../../../../../generated/app_strings.g.dart';
 import '../components/select_chefs_list_view.dart';
 

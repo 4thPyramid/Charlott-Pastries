@@ -2,7 +2,6 @@ import 'package:charlot/core/common/widgets/custom_app_bar.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/componant/client_details_componant.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/add_order_header.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ClientDetailsView extends StatelessWidget {

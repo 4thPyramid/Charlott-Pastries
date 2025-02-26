@@ -8,8 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/common/functions/validator.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/services/service_locator.dart';
-import '../../../../../../core/utils/app_strings.dart';
-import '../../../../../../generated/app_strings.g.dart';
 import '../../../../auth/presentation/widgets/auth_text_form_field_widget.dart';
 import '../../../../manager/profile/presentation/logic/delete_account_cubit.dart';
 

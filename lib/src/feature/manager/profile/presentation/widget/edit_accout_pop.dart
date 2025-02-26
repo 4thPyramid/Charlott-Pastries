@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../core/common/widgets/custom_text_form_field.dart';
 import '../../../../../../core/theme/app_colors.dart';
-import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../generated/app_strings.g.dart';
 import '../../data/model/profile_model.dart';

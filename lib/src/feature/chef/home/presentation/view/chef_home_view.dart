@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/utils/app_styles.dart';
-import '../../../../../../generated/app_strings.g.dart';
 import '../widget/chef_home_app_bar.dart';
 
 class ChefHomeView extends StatelessWidget {

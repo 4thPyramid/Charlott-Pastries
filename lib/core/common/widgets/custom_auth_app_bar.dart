@@ -13,19 +13,20 @@ class CustomAuthAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: AppStyles.s24,
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          subTitle,
-          style: AppStyles.s14.copyWith(color: Colors.grey),
-        ),
-      ],
-    );
+    return  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppStyles.s24,
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              subTitle,
+              style: AppStyles.s14.copyWith(color: Colors.grey),
+            ),
+            
+          ],
+        );
   }
 }

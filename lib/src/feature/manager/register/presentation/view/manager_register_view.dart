@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../generated/app_strings.g.dart';
 import '../components/manager_register_form.dart';
 

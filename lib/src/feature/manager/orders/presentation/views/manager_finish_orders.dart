@@ -1,4 +1,3 @@
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';

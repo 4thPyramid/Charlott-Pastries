@@ -1,4 +1,3 @@
-import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_customer_request_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../data/models/ordermodels/add_order_request_model.dart';
 
 class ClientDetailsComponant extends StatelessWidget {
   ClientDetailsComponant({

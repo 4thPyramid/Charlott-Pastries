@@ -1,7 +1,6 @@
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/core/errors/exceptions.dart';
-import 'package:charlot/src/feature/manager/home/data/model/newest_orders_response.dart';
 import 'package:charlot/src/feature/sales/orders/data/models/orders_statues_response_model.dart';
 import 'package:dartz/dartz.dart';
 

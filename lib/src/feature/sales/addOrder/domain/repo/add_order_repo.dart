@@ -1,14 +1,10 @@
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/datasourc/add_order_remote_data_source.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_customer_request_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/clientModels/add_order_client_data_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_order_price_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_request_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_response_model.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/priceModels/add_price_request_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/all_ready_product_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/single_product_model.dart';
-import 'package:charlot/src/feature/sales/addOrder/data/models/readyOrdersModes/store_ready_orders_model.dart';
+
 import 'package:dartz/dartz.dart';
 
 import '../../../../manager/empolyee/data/model/delivery_details_response.dart';

@@ -18,13 +18,14 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding:  EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 100.h),
               const Center(child: AppImageView(AppAssets.blackLogo)),
-              SizedBox(height: 40.h),
+              SizedBox(height: 30.h),
               CustomAuthAppBar(
                   title: AppStrings.welcome.tr(),
                   subTitle: AppStrings.happyToSeeYouAgain.tr()),
@@ -43,7 +44,7 @@ class LoginView extends StatelessWidget {
                     context.push(RouterNames.chefRegister);
                   }
                 },
-                title1: AppStrings.Donthaveanaccountyet.tr(),
+                title1: AppStrings.dontHaveAnAccount.tr(),
                 title2: AppStrings.signUp.tr(),
               ),
             ],

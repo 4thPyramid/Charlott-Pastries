@@ -49,8 +49,6 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
 
   void _handleDateChanged(DateTime date) => setState(() => selectedDate = date);
 
-  final GlobalKey<DateRowWidgetState> _dateRowKey =
-      GlobalKey<DateRowWidgetState>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(

@@ -6,7 +6,6 @@ import 'package:charlot/src/feature/chef/problems/presentation/widget/problem_op
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../generated/app_strings.g.dart';
 
 class ReportProblemScreen extends StatefulWidget {
   const ReportProblemScreen({super.key});

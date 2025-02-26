@@ -1,5 +1,4 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

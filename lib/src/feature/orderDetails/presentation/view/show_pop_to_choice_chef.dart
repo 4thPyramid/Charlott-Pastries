@@ -1,6 +1,5 @@
 
 import 'package:charlot/core/routes/router_names.dart';
-import 'package:charlot/core/utils/app_strings.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,6 @@ import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_image_view.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/main_function.dart';
-import '../../../../../generated/app_strings.g.dart';
 
 showPopToChoiceChef(
   BuildContext context,

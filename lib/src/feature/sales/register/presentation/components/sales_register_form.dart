@@ -135,7 +135,7 @@ class _SalesRegisterFormState extends State<SalesRegisterForm> {
               isPassword: true,
               validator: Validator.validatePassword,
               controller: passwordController,
-              hintText: AppStrings.enterPasswordHint.tr(),
+              hintText: AppStrings.enterYourPassword.tr(),
               titleOfField: AppStrings.password.tr(),
               prefixIcon: Icons.lock_outline,
             ),

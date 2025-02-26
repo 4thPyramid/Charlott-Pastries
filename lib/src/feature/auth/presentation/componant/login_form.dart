@@ -78,7 +78,7 @@ class _LoginFormState extends State<LoginForm>
                   EmailAndPhoneTapBarWidget(
                       tabController: _tabController,
                       title1: AppStrings.phoneNumber.tr(),
-                      title2: AppStrings.email),
+                      title2: AppStrings.email.tr()),
                   SizedBox(
                     height: 145.h,
                     child: TabBarView(
@@ -93,7 +93,7 @@ class _LoginFormState extends State<LoginForm>
                           isPassword: false,
                         ),
                         AuthTextFieldWidget(
-                          titleOfField: AppStrings.email,
+                          titleOfField: AppStrings.email.tr(),
                           prefixIcon: Icons.email,
                           controller: _emailController,
                           validator: Validator.validateEmail,
@@ -108,13 +108,13 @@ class _LoginFormState extends State<LoginForm>
                     prefixIcon: Icons.lock_open_outlined,
                     controller: _passwordController,
                     validator: Validator.validatePassword,
-                    hintText: AppStrings.enterPasswordHint.tr(),
+                    hintText: AppStrings.enterYourPassword.tr(),
                     isPassword: true,
                   ),
                   CustomTextButton(
                     title: AppStrings.forgetPassword.tr(),
                     onTap: () {
-                      context.go(RouterNames.forgetPasswordView, extra: {
+                      context.push(RouterNames.forgetPasswordView, extra: {
                         'userType': widget.userType,
                       });
                     },
