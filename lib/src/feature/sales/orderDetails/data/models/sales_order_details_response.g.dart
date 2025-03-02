@@ -53,7 +53,6 @@ SalesOrder _$SalesOrderFromJson(Map<String, dynamic> json) => SalesOrder(
       managerId: (json['manager_id'] as num?)?.toInt(),
       chefId: (json['chef_id'] as num?)?.toInt(),
       deliveryId: (json['delivery_id'] as num?)?.toInt(),
-    
       rejectionCause: json['rejection_cause'] as String?,
       images: (json['images'] as List<dynamic>)
           .map((e) => OrderImageDetails.fromJson(e as Map<String, dynamic>))
@@ -90,7 +89,6 @@ Map<String, dynamic> _$SalesOrderToJson(SalesOrder instance) =>
       'manager_id': instance.managerId,
       'chef_id': instance.chefId,
       'delivery_id': instance.deliveryId,
-     
       'rejection_cause': instance.rejectionCause,
       'images': instance.images,
       'from': instance.from,

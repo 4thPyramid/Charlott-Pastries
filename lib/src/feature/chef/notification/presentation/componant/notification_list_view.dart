@@ -66,6 +66,7 @@ class NotificationListView extends StatelessWidget {
 
                       return NotificationCardWidget(
                         imageUrl: imageUrl,
+                        id: notification.data.orderId??0,
                         title: notification.data.title,
                         type: notification.data.body,
                       );

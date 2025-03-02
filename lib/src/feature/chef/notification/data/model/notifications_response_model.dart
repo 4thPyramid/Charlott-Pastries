@@ -33,8 +33,10 @@ class NotificationItem {
 class NotificationData {
   final String title;
   final String body;
+  @JsonKey(name: 'order_id')
+  final int? orderId;
 
-  NotificationData({required this.title, required this.body});
+  NotificationData({required this.title, required this.body , this.orderId});
 
   factory NotificationData.fromJson(Map<String, dynamic> json) =>
       _$NotificationDataFromJson(json);

@@ -9,10 +9,12 @@ class NotificationCardWidget extends StatelessWidget {
     required this.imageUrl,
     required this.title,
     required this.type,
+    required this.id,
   });
   final String imageUrl;
   final String type;
   final String title;
+  final int id;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,8 +43,9 @@ class NotificationCardWidget extends StatelessWidget {
             width: 54.w,
           ),
         ),
+        
         title: Text(
-          title,
+         " $title   $id",
           overflow: TextOverflow.ellipsis,
           style: AppStyles.s14.copyWith(color: Colors.black),
         ),
