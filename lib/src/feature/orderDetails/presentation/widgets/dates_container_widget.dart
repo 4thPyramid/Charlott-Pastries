@@ -9,13 +9,11 @@ class DatesContainerWidget extends StatelessWidget {
   const DatesContainerWidget({
     super.key,
     required this.startData,
-    required this.endData,
     required this.from,
     required this.to,
   });
 
   final String startData;
-  final String endData;
   final String from;
   final String to;
 
@@ -49,28 +47,11 @@ class DatesContainerWidget extends StatelessWidget {
               ],
             ),
             const Divider(),
-            Row(
-              children: [
-                Text(
-                  AppStrings.orderdeliveryTime.tr(),
-                  style: AppStyles.s14,
-                ),
-                const Spacer(),
-                Text(
-                  endData,
-                  style: AppStyles.s14.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 16.h),
-            const Divider(),
             SizedBox(height: 16.h),
             Row(
               children: [
                 Text(
-                  "From Time",
+                  AppStrings.from.tr(),
                   style: AppStyles.s14,
                 ),
                 const Spacer(),
@@ -86,12 +67,12 @@ class DatesContainerWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "To Time",
+                  AppStrings.to.tr(),
                   style: AppStyles.s14,
                 ),
                 const Spacer(),
                 Text(
-                  from,
+                  to,
                   style: AppStyles.s14.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

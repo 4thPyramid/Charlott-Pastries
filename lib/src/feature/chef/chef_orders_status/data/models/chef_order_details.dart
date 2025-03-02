@@ -37,8 +37,9 @@ class ChefOrderDetails {
 
   @JsonKey(name: 'delivery_date')
   final String? deliveryDate;
-
-  @JsonKey(name: 'cake_price') // Corrected from 'price'
+  final String? from;
+  final String? to;
+  @JsonKey(name: 'cake_price') 
   final double? cakePrice;
 
   @JsonKey(name: 'flower_price')
@@ -123,6 +124,8 @@ class ChefOrderDetails {
     this.flowerQuantity,
     this.image,
     this.quantity,
+    this.from,
+    this.to,
     this.deliveryTime,
     this.deliveryDate,
     this.cakePrice, 

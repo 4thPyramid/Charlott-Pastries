@@ -11,21 +11,17 @@ class OrderTimes extends StatelessWidget {
     super.key,
     required this.orderStatus,
     required this.startAt,
-    required this.endAt,
+   
     required this.from,
     required this.to,
   });
   final String orderStatus;
   final String startAt;
-  final String endAt;
+  
   final String from;
   final String to;
 
-  String _formatDate(String dateTimeString) {
-    final dateTime = DateTime.parse(dateTimeString);
-    final formatter = DateFormat('yyyy-MM-dd');
-    return formatter.format(dateTime);
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +33,8 @@ class OrderTimes extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         DatesContainerWidget(
-          startData: _formatDate(startAt),
-          endData: _formatDate(endAt),
+          startData: startAt,
+        
           from: from,
           to: to,
         ),

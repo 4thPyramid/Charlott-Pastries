@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../orderDetails/presentation/components/order_details_header.dart';
 
@@ -21,17 +22,16 @@ class SalesOrderDetailsContent extends StatelessWidget {
     return BlocBuilder<SalesOrderDetailsCubit, SalesOrderDetailsState>(
       builder: (context, state) {
         return state.when(
-            initial: () => const Center(child: Text('جاري التحميل...')),
+            initial: () => const Center(child: Text('loading...')),
             loading: () => const Center(child: CircularProgressIndicator()),
-            failure: (error) =>
-                Center(child: Text('حدث خطأ: ${error.message}')),
+            failure: (error) => Center(child: Text(' error: ${error.message}')),
             success: (orderDetailsResponse) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   OrderDetailsHeader(
-                    title: "Order Details",
-                    onBackPressed: () => Navigator.pop(context),
+                    title: AppStrings.orderDetails.tr(),
+                    onBackPressed: () => context.pop(context),
                     images: orderDetailsResponse.images,
                   ),
                   Padding(
@@ -40,23 +40,19 @@ class SalesOrderDetailsContent extends StatelessWidget {
                       children: [
                         SizedBox(height: 16.h),
                         OrderTimes(
-                          orderStatus: orderDetailsResponse.status,
-                          startAt: orderDetailsResponse.createdAt,
-                          endAt: orderDetailsResponse.deliveryTime ??
-                              '0000-00-00 00:00:00',
-                          from: '',
-                          to: '',
-                        ),
+                            orderStatus: orderDetailsResponse.status,
+                            startAt:orderDetailsResponse.deliveryDate,
+
+                            from: orderDetailsResponse.from,
+                            to: orderDetailsResponse.to,
+                            ),
                         SizedBox(height: 16.h),
                         ClientData(
-                          customerName: orderDetailsResponse.customerName ??
-                              'لم يتم اضافه اسم',
-                          customerPhone: orderDetailsResponse.customerPhone ??
-                              'لم يتم اضافه رقم',
+                          customerName: orderDetailsResponse.customerName ?? '',
+                          customerPhone:
+                              orderDetailsResponse.customerPhone ?? '',
                           customerAddress:
-                              orderDetailsResponse.additionalData ??
-                                  'لم يتم اضافه عنوان',
-                        ),
+                              orderDetailsResponse.additionalData ??""                        ),
                         // TeamData(
                         //   chefName: orderDetailsResponse.order.chefName,
                         //   deliveryName: orderDetailsResponse.deliveryName,

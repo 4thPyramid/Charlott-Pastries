@@ -28,7 +28,6 @@ class OrderDetailsContent extends StatelessWidget {
           OrderTimes(
             orderStatus: orderDetailsResponse.status,
             startAt: orderDetailsResponse.createdAt,
-            endAt: orderDetailsResponse.deliveryDate ?? '2024-12-12',
             from: orderDetailsResponse.from ?? '',
             to: orderDetailsResponse.to ?? '',
           ),

@@ -8,6 +8,8 @@ abstract class AppStrings {
   static const sales = 'sales';
   static const chef = 'chef';
   static const skip = 'skip';
+  static const to = 'to';
+  static const from = 'from';
   static const waitingOrders = 'waitingOrders';
   static const forgetPassword = 'forgetPassword';
   static const choiceSpecialization = 'choiceSpecialization';

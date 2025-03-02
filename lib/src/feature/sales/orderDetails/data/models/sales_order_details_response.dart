@@ -18,8 +18,6 @@ class SalesOrderDetailsResponse {
 
 @JsonSerializable()
 class SalesOrder {
-
-  
   final int id;
   @JsonKey(name: 'order_type')
   final String orderType;
@@ -66,22 +64,35 @@ class SalesOrder {
   final int? chefId;
   @JsonKey(name: 'delivery_id')
   final int? deliveryId;
-  @JsonKey(name: 'created_at')
-  final String createdAt;
-  @JsonKey(name: 'updated_at')
-  final String? updatedAt;
   @JsonKey(name: 'rejection_cause')
   final String? rejectionCause;
   @JsonKey(name: 'images')
   final List<OrderImageDetails> images;
+  final String from;
+  final String to;
+  @JsonKey(name: "chef_name")
+  final String? chefName;
+
+  @JsonKey(name: "delivery_name")
+  final String? deliveryName;
+  @JsonKey(name: "cake_price")
+  final double? cakePrice;
+  @JsonKey(name: "flower image")
+  final String? flowerImage;
 
   SalesOrder({
     required this.id,
     required this.orderType,
     required this.orderDetails,
+    this.chefName,
+    this.deliveryName,
+    this.cakePrice,
+    this.flowerImage,
     this.flowerId,
     this.flowerQuantity,
     this.image,
+    required this.from,
+    required this.to,
     this.description,
     this.deliveryTime,
     required this.deliveryDate,
@@ -104,8 +115,6 @@ class SalesOrder {
     this.managerId,
     this.chefId,
     this.deliveryId,
-    required this.createdAt,
-     this.updatedAt,
     this.rejectionCause,
     required this.images,
   });

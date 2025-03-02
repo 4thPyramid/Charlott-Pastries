@@ -113,6 +113,8 @@
     "notAssignedOrders": "Unassigned Orders",
     "notAssignOrders": "Unassigned Orders",
     "next": "Next",
+    "to": "To",
+    "from": "From",
     "completedOrders": "Completed Orders",
     "chefsList": "Chefs List",
     "available": "Available",

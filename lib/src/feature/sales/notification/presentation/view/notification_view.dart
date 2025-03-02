@@ -9,14 +9,17 @@ class SalesNotificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(children: [
-        CustomAppBar(
-          title: AppStrings.notifications,
-        ),
-         NotificationListView(
-          userType: 'sales',
-        ),      ]),
+    return  const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: Column(children: [
+          CustomAppBar(
+            title: AppStrings.notifications,
+          ),
+          NotificationListView(
+            userType: 'sales',
+          ),
+        ]
+      ),
     );
   }
 }

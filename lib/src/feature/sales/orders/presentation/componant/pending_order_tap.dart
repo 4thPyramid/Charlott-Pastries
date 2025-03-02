@@ -26,23 +26,22 @@ class PendingOrderTap extends StatelessWidget {
                 const Center(child: SizedBox(child: Text("loading"))),
             error: (error) => Center(child: Text(error.message)),
             loaded: (orders) {
-              List<OrderItem> sortedOrders = List.from(orders.orders);
-              sortedOrders.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+           
 
               return SizedBox(
                 child: ListView.builder(
                  
-                  itemCount: sortedOrders.length,
+                  itemCount: orders.orders.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
                       child: OrdersTapsItemCardWidget(
-                        orderId: sortedOrders[index].id,
-                        time: sortedOrders[index].updatedAt,
+                        orderId: orders.orders[index].id,
+                        time: orders.orders[index].updatedAt,
                         onPressed: () {
                           context.push(
-                              "${RouterNames.salesOrderDetails}/${sortedOrders[index].id}");
+                              "${RouterNames.salesOrderDetails}/${orders.orders[index].id}");
                         },
                       ),
                     );

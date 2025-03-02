@@ -27,9 +27,8 @@ class ChefOrderDetailsContent extends StatelessWidget {
           OrderTimes(
             orderStatus: orderDetailsResponse.status,
             startAt: orderDetailsResponse.createdAt ?? "2021-01-10",
-            endAt: orderDetailsResponse.deliveryDate ?? "2021-01-10",
-            from: '',
-            to: '',
+            from: orderDetailsResponse.from ?? '',
+            to: orderDetailsResponse.to ?? '',
           ),
           SizedBox(height: 16.h),
           ClientData(
