@@ -1,13 +1,40 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Network permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    
+    <!-- Notification permissions -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    
+    <!-- Install permissions -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    
+    <!-- Storage permissions -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/>
+    
+    <!-- Location permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="true"/>
 
     <application
         android:label="charlot"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true">
+        <provider
+          android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
+          android:authorities="${applicationId}.flutter_downloader.provider"
+          android:exported="false"
+          android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -44,7 +71,4 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-feature android:name="android.hardware.location.gps" android:required="true"/>
 </manifest>
