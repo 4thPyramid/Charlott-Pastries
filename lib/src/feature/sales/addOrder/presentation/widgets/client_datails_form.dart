@@ -47,6 +47,7 @@ class ClientDatailsForm extends StatelessWidget {
           CustomTextFormField(
             hintText: 'Enter Phone Number',
             controller: phoneController,
+            keyboardType: TextInputType.number,
             prefixIcon: const Icon(
               Icons.phone,
               size: 30,

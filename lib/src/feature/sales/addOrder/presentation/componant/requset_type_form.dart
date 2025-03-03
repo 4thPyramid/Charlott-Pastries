@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:charlot/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/models/ordermodels/add_order_request_model.dart';
@@ -32,6 +33,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
   List<File> cakeImages = [];
   File? flowerImages;
   bool isDeliveryTimeValid = true;
+  bool isFormValid = true;
 
   void _handleDeliveryTimeToChanged(TimeOfDay time) {
     setState(() {
@@ -60,7 +62,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
             BlocBuilder<AddOrderCubit, AddOrderState>(
               builder: (context, state) {
                 return Card(
-                  elevation: 4,
+                  color: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
                   ),
@@ -74,8 +76,9 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                           children: [
                             Icon(
                               Icons.delivery_dining,
-                              color:
-                                  state.isSameDay ? Colors.green : Colors.grey,
+                              color: state.isSameDay
+                                  ? AppColors.primaryColor
+                                  : Colors.grey,
                             ),
                             const SizedBox(width: 10),
                             Text(
@@ -84,7 +87,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 color: state.isSameDay
-                                    ? Colors.green
+                                    ? AppColors.primaryColor
                                     : Colors.black87,
                               ),
                             ),
@@ -92,19 +95,17 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                         ),
                         Switch(
                           value: state.isSameDay,
-                          activeColor: Colors.green,
-                          inactiveTrackColor: Colors.grey,
-                          inactiveThumbColor: Colors.black,
+                          activeColor: AppColors.primaryColor,
+                          inactiveTrackColor: AppColors.grey,
+                          inactiveThumbColor: AppColors.greyForText,
                           onChanged: (value) {
-                            
-
                             context
                                 .read<AddOrderCubit>()
                                 .updateSameDayDelivery(value);
-                              //  isSameDay = value;
-                                setState(() {
-                                  isSameDay = value;
-                                });
+                            //  isSameDay = value;
+                            setState(() {
+                              isSameDay = value;
+                            });
                           },
                         ),
                       ],
@@ -181,13 +182,13 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
               ),
             isSameDay
                 ? const SizedBox(height: 16.0)
-                : DateRowWidget(onDateChanged: _handleDateChanged),
+                : DatePickerWidget(onDateChanged: _handleDateChanged),
             BlocConsumer<AddOrderCubit, AddOrderState>(
               listener: (context, state) {
                 state.whenOrNull(
                   success: (requestModel, _) {
                     context.go(
-                        "${RouterNames.priceDetailsView}/${requestModel.order?.id}/${requestModel.order?.isSameday}");
+                        "${RouterNames.priceDetailsView}/${requestModel.order?.id}/${requestModel.order?.isSameday}/$selectedType");
                   },
                   failure: (error, _) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -204,28 +205,45 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                   orElse: () => CustomButton(
                     text: "Next",
                     onPressed: () {
-                      if (deliveryTimeFrom == null || deliveryTimeTo == null) {
-                        setState(() {
-                          isDeliveryTimeValid = false;
-                        });
+                      setState(() {
+                        isFormValid = selectedDate != null &&
+                            deliveryTimeFrom != null &&
+                            deliveryTimeTo != null &&
+                            ((selectedType == "cake" &&
+                                    cakeDetailsController.text.isNotEmpty) ||
+                                (selectedType == "flower" &&
+                                    flowerDetailsController.text.isNotEmpty) ||
+                                (selectedType == "cake and flower" &&
+                                    cakeDetailsController.text.isNotEmpty &&
+                                    flowerDetailsController.text.isNotEmpty));
+                      });
+
+                      if (!isFormValid) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content:
+                                Text("Please fill in all required fields."),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
                         return;
                       }
 
                       final requestModel = AddOrderRequestModel(
-                          images: cakeImages,
-                          image: flowerImages,
-                          isSameDay: state.isSameDay,
-                          orderType: selectedType,
-                          orderDetails: cakeDetailsController.text,
-                          quantity: quantity,
-                          deliveryDate: selectedDate?.toIso8601String() ?? '',
-                          description: flowerDetailsController.text,
-                          from: deliveryTimeFrom != null
-                              ? '${deliveryTimeFrom!.hour.toString().padLeft(2, '0')}:${deliveryTimeFrom!.minute.toString().padLeft(2, '0')}'
-                              : '',
-                          to: deliveryTimeTo != null
-                              ? '${deliveryTimeTo!.hour.toString().padLeft(2, '0')}:${deliveryTimeTo!.minute.toString().padLeft(2, '0')}'
-                              : '');
+                        images:
+                            cakeImages, // الصور ستظل تُرسل لكن لن يتم التحقق منها
+                        image: flowerImages,
+                        isSameDay:
+                            context.read<AddOrderCubit>().state.isSameDay,
+                        orderType: selectedType,
+                        orderDetails: cakeDetailsController.text,
+                        quantity: quantity,
+                        deliveryDate: selectedDate?.toIso8601String() ?? '',
+                        description: flowerDetailsController.text,
+                        from:
+                            '${deliveryTimeFrom!.hour.toString().padLeft(2, '0')}:${deliveryTimeFrom!.minute.toString().padLeft(2, '0')}',
+                        to: '${deliveryTimeTo!.hour.toString().padLeft(2, '0')}:${deliveryTimeTo!.minute.toString().padLeft(2, '0')}',
+                      );
 
                       context
                           .read<AddOrderCubit>()

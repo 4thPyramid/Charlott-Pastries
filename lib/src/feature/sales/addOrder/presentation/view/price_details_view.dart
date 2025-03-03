@@ -5,9 +5,14 @@ import 'package:charlot/src/feature/sales/addOrder/presentation/widgets/add_orde
 import 'package:flutter/material.dart';
 
 class PriceDetailsView extends StatelessWidget {
-  const PriceDetailsView({super.key, required this.orderId, required this.isSameday});
+  const PriceDetailsView(
+      {super.key,
+      required this.orderId,
+      required this.isSameday,
+      required this.orderType});
   final int orderId;
   final String isSameday;
+  final String orderType;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +28,7 @@ class PriceDetailsView extends StatelessWidget {
             PriceForm(
               orderId: orderId,
               isSameday: isSameday,
+              orderType: orderType,
             ),
             const SizedBox(height: 20),
           ],

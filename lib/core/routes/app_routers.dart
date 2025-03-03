@@ -273,14 +273,16 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: "${RouterNames.priceDetailsView}/:orderId/:isSameday",
+      path: "${RouterNames.priceDetailsView}/:orderId/:isSameday/:orderType",
       builder: (context, state) {
         final orderId =
             int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
         final isSameday = state.pathParameters['isSameday'] ?? '';
+        final String orderType = state.pathParameters['orderType'] ?? '';
         return BlocProvider(
           create: (context) => getIt<AddOrderCubit>(),
           child: PriceDetailsView(
+            orderType: orderType,
             orderId: orderId,
             isSameday: isSameday,
           ),

@@ -624,7 +624,7 @@ void setupLocator() {
   );
 
   getIt.registerFactory(
-      () => MapPickerCubit(apiKey: 'AIzaSyAvRUO9js6cWK6PC42iKxLr7X0T0wVyOBE'));
+      () => MapPickerCubit(apiKey: 'AIzaSyBMaCjdzcpOgRcN1OYGQZCN9CuqiK8KlZs'));
 
   getIt.registerFactory<ManagerRegisterCubit>(
       () => ManagerRegisterCubit(getIt()));
