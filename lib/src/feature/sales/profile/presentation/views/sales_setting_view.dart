@@ -26,7 +26,7 @@ class _SalesSettingViewState extends State<SalesSettingView> {
   }
 
   Future<bool> _onWillPop() async {
-    context.push(RouterNames.managerBottomNavigationBarRoot);
+    context.push(RouterNames.salesBottomNavigationBarRoot);
     return false;
   }
 
