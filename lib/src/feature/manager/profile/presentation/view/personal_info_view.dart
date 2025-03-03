@@ -10,28 +10,46 @@ import '../logic/profile_cubit.dart';
 import '../widget/edit_accout_pop.dart';
 import '../widget/profile_header.dart';
 
-class PersonalInfoView extends StatelessWidget {
+class PersonalInfoView extends StatefulWidget {
   const PersonalInfoView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-     WidgetsBinding.instance.addPostFrameCallback((_) {
+  State<PersonalInfoView> createState() => _PersonalInfoViewState();
+}
+
+class _PersonalInfoViewState extends State<PersonalInfoView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ProfileCubit>().getProfile(userTyp: 'manager');
     });
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        title: ProfileHeader(
-          title: AppStrings.personalInfoData.tr(),
-          onPressed: () {
+  }
+
+  Future<bool> _onWillPop() async {
+    context.push(RouterNames.managerBottomNavigationBarRoot);
+    return false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          title: ProfileHeader(
+            title: AppStrings.personalInfoData.tr(),
+            onPressed: () {
               context.push(RouterNames.managerBottomNavigationBarRoot);
-          },
-            onPressedEdit: (){
+            },
+            onPressedEdit: () {
               editAccountPop(context, 'manager');
             },
+          ),
         ),
+        body: const PersonalInfoComponent(),
       ),
-      body: const PersonalInfoComponent(),
     );
   }
 }

@@ -30,7 +30,7 @@ class ChefProfileViewComponent extends StatelessWidget {
                 phone: user.phone,
                 image: user.image,
               ),
-              error: (error) => Text(error.toString()),
+              error: (error) => Text("Error : ${error.toString()}"),
             );
            
           },

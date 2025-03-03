@@ -11,31 +11,46 @@ import '../../../../manager/profile/presentation/widget/edit_accout_pop.dart';
 import '../../../../manager/profile/presentation/widget/profile_header.dart';
 import '../component/sales_profile_info_component.dart';
 
-class SalesProfileInfo extends StatelessWidget {
+class SalesProfileInfo extends StatefulWidget {
   const SalesProfileInfo({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<SalesProfileInfo> createState() => _SalesProfileInfoState();
+}
+
+class _SalesProfileInfoState extends State<SalesProfileInfo> {
+  @override
+  void initState() {
+    super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ProfileCubit>().getProfile(userTyp: 'sales');
     });
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        title: ProfileHeader(
-          title: AppStrings.personalInfoData.tr(),
-          onPressed: () {
-          
+  }
+
+  Future<bool> _onWillPop() async {
+    context.push(RouterNames.managerBottomNavigationBarRoot);
+    return false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          title: ProfileHeader(
+            title: AppStrings.personalInfoData.tr(),
+            onPressed: () {
               context.push(RouterNames.salesBottomNavigationBarRoot);
-          
-          
-          },
-           onPressedEdit: (){
-            editAccountPop(context, 'sales');
-          },
+            },
+            onPressedEdit: () {
+              editAccountPop(context, 'sales');
+            },
+          ),
         ),
+        body: const SalesProfileInfoComponent(),
       ),
-      body: const SalesProfileInfoComponent(),
     );
   }
 }

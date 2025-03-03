@@ -10,29 +10,50 @@ import '../../../../manager/profile/presentation/logic/profile_cubit.dart';
 import '../../../../manager/profile/presentation/widget/edit_accout_pop.dart';
 import '../../../../manager/profile/presentation/widget/profile_header.dart';
 import '../component/chef_profile_info_component.dart';
-
-class ChefProfileInfo extends StatelessWidget {
+class ChefProfileInfo extends StatefulWidget {
   const ChefProfileInfo({super.key});
 
   @override
-  Widget build(BuildContext context) {
-     WidgetsBinding.instance.addPostFrameCallback((_) {
+  State<ChefProfileInfo> createState() => _ChefProfileInfoState();
+}
+
+class _ChefProfileInfoState extends State<ChefProfileInfo> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ProfileCubit>().getProfile(userTyp: "chef");
     });
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        title: ProfileHeader(
-          title: AppStrings.personalInfoData.tr(),
-          onPressed: () {
-            context.push(RouterNames.chefBottomNavigationBarRoot);
-          },
-           onPressedEdit: (){
-            editAccountPop(context, AppStrings.chef.tr());
-          },
+  }
+
+  Future<bool> _onWillPop() async {
+    context.go(RouterNames.chefBottomNavigationBarRoot);
+    return false; 
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          centerTitle: false, 
+           
+          title: ProfileHeader(
+            title: AppStrings.personalInfoData.tr(),
+            onPressed: () {
+              context.go(RouterNames.chefBottomNavigationBarRoot);
+            },
+            onPressedEdit: () {
+              editAccountPop(context, AppStrings.chef.tr());
+            },
+          ),
+         
         ),
+        body: const ChefProfileInfoComponent(),
       ),
-      body: const ChefProfileInfoComponent(),
     );
   }
 }

@@ -9,37 +9,58 @@ import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../component/sales_setting_component.dart';
 
-class SalesSettingView extends StatelessWidget {
+class SalesSettingView extends StatefulWidget {
   const SalesSettingView({super.key});
 
   @override
+  State<SalesSettingView> createState() => _SalesSettingViewState();
+}
+
+class _SalesSettingViewState extends State<SalesSettingView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // context.read<ProfileCubit>().getProfile(userTyp: "chef");
+    });
+  }
+
+  Future<bool> _onWillPop() async {
+    context.push(RouterNames.managerBottomNavigationBarRoot);
+    return false;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50.h,
-            ),
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.black,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50.h,
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.black,
+                    ),
+                    onPressed: () {
+                      context.push(RouterNames.salesBottomNavigationBarRoot);
+                    },
                   ),
-                  onPressed: () {
-                    context.push(RouterNames.salesBottomNavigationBarRoot);
-                  },
-                ),
-                Text(
-                  AppStrings.settings.tr(),
-                  style: AppStyles.s24.copyWith(color: AppColors.black),
-                ),
-              ],
-            ),
-            const SalesSettingComponent(),
-          ],
+                  Text(
+                    AppStrings.settings.tr(),
+                    style: AppStyles.s24.copyWith(color: AppColors.black),
+                  ),
+                ],
+              ),
+              const SalesSettingComponent(),
+            ],
+          ),
         ),
       ),
     );
