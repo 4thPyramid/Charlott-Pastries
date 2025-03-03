@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +17,7 @@ class ManagerNotAssignOrders extends StatelessWidget {
         body: Column(
           children: [
             CustomAppBar(
-              title: AppStrings.notAssignOrders,
+              title: AppStrings.notAssignOrders.tr(),
               iconLeft: Icons.arrow_back_ios,
               onPressedLeft: () => context.pop(),
             ),

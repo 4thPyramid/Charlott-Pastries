@@ -127,7 +127,7 @@ class _LoginFormState extends State<LoginForm>
                       return CustomButton(
                         width: 230.w,
                         height: 40.h,
-                        text: AppStrings.signIn,
+                        text: AppStrings.signIn.tr(),
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             final activeIndex = _tabController.index;

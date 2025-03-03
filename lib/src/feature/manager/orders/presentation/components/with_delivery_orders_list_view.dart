@@ -22,20 +22,18 @@ class WithDeliveryOrdersListView extends StatelessWidget {
             failure: (error) => Center(child: Text('Error: ${error.message}')),
             success: (ordersResponse) {
               if (ordersResponse.orders.isEmpty) {
-                return const Center(child: Text('لا توجد طلبات قيد التوصيل'));
+                return const Center(child: Text('No orders available '));
               }
               return Expanded(
                 child: SizedBox(
                   child: ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    padding: EdgeInsets.symmetric(horizontal: 10.w,),
                     itemCount: ordersResponse.orders.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child: SharedOrderItemCard(
+                      return  SharedOrderItemCard(
                           deleviryBoyId: ordersResponse.orders[index].deliveryId,
                           orderResponse: ordersResponse.orders[index],
-                        ),
+                       
                       );
                     },
                   ),

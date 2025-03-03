@@ -17,12 +17,12 @@ class SelectChefsListView extends StatelessWidget {
      BlocBuilder<EmployeesCubit, EmployeesState>(
       builder: (context, state) {
         return state.when(
-          initial: () => const Center(child: Text('البيانات الأولية')),
+          initial: () => const Center(child: Text('Loading...')),
           loading: () => const Center(child: CircularProgressIndicator()),
-          failure: (error) => Center(child: Text('حدث خطأ: ${error.message}')),
+          failure: (error) => Center(child: Text(' Error: ${error.message}')),
           success: (employeesResponse) {
             if (employeesResponse.employees.isEmpty) {
-              return const Center(child: Text('لا توجد بيانات متاحة'));
+              return const Center(child: Text('No chefs available '));
             }
             return ListView.builder(
               itemCount: employeesResponse.employees.length,

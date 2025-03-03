@@ -79,25 +79,38 @@ class _BuildSuccessView extends StatelessWidget {
             ordersCount: chef.completedOrdersCount,
           ),
           SizedBox(height: 20.h),
-           CustomTitle(title:AppStrings.aboutChef.tr()),
+          CustomTitle(title: AppStrings.aboutChef.tr()),
           SizedBox(height: 10.h),
-          Text(
-            chef.bio,
-            style: AppStyles.s12.copyWith(
-              color: AppColors.greyForText,
-              fontWeight: FontWeight.w500,
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
+            decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    offset: const Offset(0, 1),
+                    blurRadius: 1,
+                  ),
+                ]),
+            child: Text(
+              chef.bio,
+              style: AppStyles.s14.copyWith(
+                color: AppColors.greyForText,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-
           ),
           SizedBox(height: 20.h),
-          const CustomTitle(title: 'طرق التواصل بالشيف'),
+          CustomTitle(title: AppStrings.connectWithChef.tr()),
           SizedBox(height: 20.h),
           ConnectWithChefCard(
             email: chef.email,
             phone: chef.phone,
           ),
           SizedBox(height: 20.h),
-          const CustomTitle(title: 'قائمه الطلباتة الحاليه'),
+           CustomTitle(title: AppStrings.currentOrderList.tr()),
           SizedBox(height: 20.h),
           _BuildOrdersList(orders: chef.orders),
           SizedBox(height: 40.h),
@@ -128,9 +141,9 @@ class _BuildOrdersList extends StatelessWidget {
       itemBuilder: (context, index) {
         final order = orders[index];
         return NewestOrdersCardItem(
-          orderId: order.deliveryId??0,
+          orderId: order.deliveryId ?? 0,
           orderName: order.orderType,
-          date: order.deliveryDate??'',
+          date: order.deliveryDate ?? '',
         );
       },
     );

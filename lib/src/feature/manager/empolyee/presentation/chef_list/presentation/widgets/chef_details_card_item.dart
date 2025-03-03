@@ -1,7 +1,10 @@
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../../../../generated/app_strings.g.dart';
 
 class ChefAndDeliveryDetailsCardItem extends StatelessWidget {
   final String name;
@@ -76,39 +79,25 @@ class ChefAndDeliveryDetailsCardItem extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('#عدد الطلبات المنفذه',
+              Text('#${AppStrings.orderCount.tr()}',
                   style: AppStyles.s12.copyWith(
                     color: AppColors.darkTextGrey,
                     fontWeight: FontWeight.w400,
                   )),
-              const Spacer(),
-              _buildInfoItem(
-                Icons.date_range_outlined,
-                '$ordersCount من الطلبات',
+              Text(
+                '$ordersCount  ${AppStrings.orders.tr()} ',
+                style: AppStyles.s12.copyWith(
+                  color: AppColors.darkTextGrey,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-         
         ],
       ),
-    );
-  }
-
-  Widget _buildInfoItem(IconData icon, String text) {
-    return Row(
-      children: [
-        Icon(icon, size: 20, color: Colors.grey),
-        const SizedBox(width: 8),
-        Text(
-          text,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.grey,
-          ),
-        ),
-      ],
     );
   }
 }

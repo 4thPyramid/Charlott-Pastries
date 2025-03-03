@@ -82,7 +82,7 @@ class _NewestOrderListViewState extends State<NewestOrderListView> {
                         child: NewestOrdersCardItem(
                           orderId: order.id,
                           orderName: order.orderType,
-                          date: order.deliveryDate ?? 'لا يوجد تاريخ',
+                          date: order.deliveryDate ?? 'No date available',
                         ),
                       );
                     },

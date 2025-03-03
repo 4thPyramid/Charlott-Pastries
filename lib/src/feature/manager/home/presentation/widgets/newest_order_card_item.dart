@@ -29,7 +29,7 @@ final String date;
           subtitle: Text(
             orderName,
             style: AppStyles.s12.copyWith(
-              color: AppColors.grey,
+              color: AppColors.greyForText,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -39,7 +39,7 @@ final String date;
               Text(
                date,
                 style: AppStyles.s14.copyWith(
-                  color: AppColors.grey,
+                  color: AppColors.greyForText,
                   fontWeight: FontWeight.w600,
                 ),
               ),

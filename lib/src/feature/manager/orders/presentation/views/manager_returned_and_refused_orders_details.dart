@@ -34,10 +34,10 @@ class ReturnedAndRefusedOrderDetails extends StatelessWidget {
         body: BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
           builder: (context, state) {
             return state.when(
-              initial: () => const Center(child: Text('جاري التحميل...')),
+              initial: () => const Center(child: Text('Loading...')),
               loading: () => const Center(child: CircularProgressIndicator()),
               failure: (error) =>
-                  Center(child: Text('حدث خطأ: ${error.message}')),
+                  Center(child: Text('Error : ${error.message}')),
               success: (orderDetailsResponse) {
                 return SingleChildScrollView(
                   child: Column(
@@ -47,7 +47,8 @@ class ReturnedAndRefusedOrderDetails extends StatelessWidget {
                         title: title,
                         onBackPressed: () {
                           Navigator.pop(context);
-                        }, images: orderDetailsResponse.images,
+                        },
+                        images: orderDetailsResponse.images,
                       ),
                       ReturnedOrderDetailsContent(
                         orderStatus: orderStatus,
@@ -55,11 +56,9 @@ class ReturnedAndRefusedOrderDetails extends StatelessWidget {
                       ),
                       ReturnedOrderDetailsActions(
                         onResendPressed: () {
-                                context.push(RouterNames.selectDeliveryBoy, extra: {
-              'orderId': orderId,
-            });
-
-                          //  resend order
+                          context.push(RouterNames.selectDeliveryBoy, extra: {
+                            'orderId': orderId,
+                          });
                         },
                       ),
                       SizedBox(height: 16.h),

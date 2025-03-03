@@ -18,20 +18,20 @@ class RefusedOrderListView extends StatelessWidget {
         builder: (context, state) {
           return state.when(
             initial: () => const Center(
-                child: Text('لا توجد بيانات حتى الآن')), 
+                child: Text("Loading...")), 
             loading: () => const Center(
                 child: CircularProgressIndicator()), 
             failure: (error) =>
-                Center(child: Text('حدث خطأ: ${error.message}')), 
+                Center(child: Text('Error: ${error.message}')), 
             success: (refusedOrderResponse) {
               if (refusedOrderResponse.orders.isEmpty) {
                 return const Center(
                     child:
-                        Text('لا توجد طلبات مرفوضة'));
+                        Text('No orders available '));
               }
               return Expanded(
                 child: ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w,),
                   shrinkWrap: true,
                   itemCount: refusedOrderResponse.orders.length,
                   itemBuilder: (context, index) {

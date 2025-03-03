@@ -23,6 +23,7 @@ class SharedOrderItemCard extends StatelessWidget {
     return Container(
       //height: 205.h,
       width: 370.w,
+      margin: EdgeInsets.symmetric(vertical: 10.h),
       padding: EdgeInsets.symmetric(vertical: 16.h),
       decoration: BoxDecoration(
           color: AppColors.white,
@@ -108,7 +109,7 @@ class ThirdColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "حالة الطلب",
+         AppStrings.orderStatus.tr(),
           style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w700,
           ),
@@ -116,27 +117,28 @@ class ThirdColumn extends StatelessWidget {
         SizedBox(height: 8.h),
         Text(
           orderStatus,
-          style: AppStyles.s12.copyWith(
+          style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w400,
             color: color ?? AppColors.green,
           ),
         ),
         SizedBox(height: 32.h),
-        Text("تاريخ التسليم",
+        Text(
+          AppStrings.deliveryDate.tr(),
             style: AppStyles.s14.copyWith(
               fontWeight: FontWeight.w700,
             )),
         SizedBox(height: 8.h),
         Row(children: [
-          Icon(
+          const Icon(
             Icons.calendar_month_outlined,
-            color: AppColors.darkTextGrey.withOpacity(0.7),
+            color: AppColors.darkTextGrey,
           ),
           Text(
-            "11/11/2023",
+           orderDate,
             style: AppStyles.s12.copyWith(
               fontWeight: FontWeight.w400,
-              color: AppColors.darkTextGrey.withOpacity(0.7),
+              color: AppColors.darkTextGrey,
             ),
           ),
         ]),
@@ -160,7 +162,7 @@ class FirstColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "نوع الطلب",
+          AppStrings.orderType.tr(),
           style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w700,
           ),
@@ -168,14 +170,14 @@ class FirstColumn extends StatelessWidget {
         SizedBox(height: 8.h),
         Text(
           order,
-          style: AppStyles.s12.copyWith(
+          style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w400,
-            color: AppColors.darkTextGrey.withOpacity(0.7),
+            color: AppColors.darkTextGrey,
           ),
         ),
         SizedBox(height: 32.h),
         Text(
-          "اسم العميل",
+          AppStrings.customerName.tr(),
           style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w700,
           ),
@@ -183,9 +185,9 @@ class FirstColumn extends StatelessWidget {
         SizedBox(height: 8.h),
         Text(
           customer,
-          style: AppStyles.s12.copyWith(
+          style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w400,
-            color: AppColors.darkTextGrey.withOpacity(0.7),
+            color: AppColors.darkTextGrey,
           ),
         ),
       ],

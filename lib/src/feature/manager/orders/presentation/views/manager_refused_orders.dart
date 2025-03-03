@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/custom_app_bar.dart';
@@ -15,7 +16,7 @@ class ManagerRefusedOrders extends StatelessWidget {
         body: Column(
           children: [
             CustomAppBar(
-              title: AppStrings.refusedOrder,
+              title: AppStrings.refusedOrder.tr(),
               iconLeft: Icons.arrow_back_ios,
               onPressedLeft: () {
                 Navigator.pop(context);

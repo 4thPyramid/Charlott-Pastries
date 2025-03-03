@@ -65,9 +65,11 @@ class AcceptEmployeeCardItem extends StatelessWidget {
                       value: '${employee.firstName} ${employee.lastName}'),
                   SizedBox(height: 10.h),
                   buildInfoRow(
-                      label: AppStrings.phoneNumber.tr(), value: employee.phone),
+                      label: AppStrings.phoneNumber.tr(),
+                      value: employee.phone),
                   SizedBox(height: 10.h),
-                  buildInfoRow(label: AppStrings.email.tr(), value: employee.email),
+                  buildInfoRow(
+                      label: AppStrings.email.tr(), value: employee.email),
                   SizedBox(height: 10.h),
                   buildInfoRow(
                       label: AppStrings.createdAt.tr(),
@@ -81,7 +83,7 @@ class AcceptEmployeeCardItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AcceptAndRefuseButton(
-                text: 'قبول',
+                text: AppStrings.accept.tr(),
                 backgroundColor: AppColors.green,
                 onPressed: () {
                   onAccept(employee.id);
@@ -89,7 +91,7 @@ class AcceptEmployeeCardItem extends StatelessWidget {
               ),
               SizedBox(width: 16.w),
               AcceptAndRefuseButton(
-                text: 'رفض',
+                text: AppStrings.reject.tr(),
                 backgroundColor: AppColors.red,
                 onPressed: () {
                   onReject(employee.id);

@@ -1,10 +1,12 @@
 import 'package:charlot/src/feature/manager/empolyee/presentation/logic/select/select_chef_delivery_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../../../../core/services/service_locator.dart';
+import '../../../../../../../../generated/app_strings.g.dart';
 import '../../../../../home/presentation/widgets/newest_order_card_item.dart';
 import '../../../../data/model/delivery_details_response.dart';
 import '../../../chef_list/presentation/widgets/chef_details_card_item.dart';
@@ -72,14 +74,16 @@ class _BuildSuccessView extends StatelessWidget {
             ordersCount: delivery.deliveredOrdersCount,
           ),
           SizedBox(height: 20.h),
-          const CustomTitle(title: 'طرق التواصل بالمندوب'),
+           CustomTitle(title: AppStrings.connectWithDelivery.tr(),
+          ),
           SizedBox(height: 20.h),
           ConnectWithChefCard(
             email: delivery.email,
             phone: delivery.phone,
           ),
           SizedBox(height: 20.h),
-          const CustomTitle(title: 'قائمه الطلباتة الحاليه'),
+           CustomTitle(title: AppStrings.currentOrderList.tr(),
+          ),
           SizedBox(height: 20.h),
           _BuildOrdersList(orders: delivery.orders),
           SizedBox(height: 40.h),

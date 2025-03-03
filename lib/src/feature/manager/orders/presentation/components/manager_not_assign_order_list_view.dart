@@ -3,6 +3,7 @@ import 'package:charlot/core/common/widgets/shared_order_item_card.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../logic/not_assign/not_assign_order_cubit.dart';
 import '../logic/not_assign/not_assign_order_state.dart';
 
@@ -50,12 +51,13 @@ class _ManagerNotAssignOrdersListViewState
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
                   failure: (error) =>
-                      Center(child: Text('خطأ: ${error.message}')),
+                      Center(child: Text('Error: ${error.message}')),
                   success: (ordersResponse) {
                     if (ordersResponse.orders.isEmpty) {
                       return const Center(child: Text('No orders found')); 
                     }
                     return ListView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w,),
                       itemCount: ordersResponse.orders.length,
                       itemBuilder: (context, index) => SharedOrderItemCard(
                         orderResponse: ordersResponse.orders[index],

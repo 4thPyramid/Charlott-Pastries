@@ -18,7 +18,7 @@ class ChefAndDeliveryCard extends StatelessWidget {
     super.key,
     required this.employee,
     required this.from,
-     required this.orderId,
+    required this.orderId,
   });
 
   @override
@@ -44,9 +44,9 @@ class ChefAndDeliveryCard extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
             leading: CircleAvatar(
               radius: 25,
-              backgroundImage: NetworkImage(employee.image ?? 
-         'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
-
+              backgroundImage: NetworkImage(
+                employee.image ??
+                    'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc',
               ),
             ),
             title: Text(
@@ -69,16 +69,17 @@ class ChefAndDeliveryCard extends StatelessWidget {
                 vertical: 10.h,
               ),
               decoration: BoxDecoration(
-                color:employee.status == null ?employee.canTakeOrder == 'Available'
-                    ? AppColors.green
-                    : AppColors.red
-                    :employee.status == 'Available'
-                    ? AppColors.green
-                    : AppColors.red,
+                color: employee.status == null
+                    ? employee.canTakeOrder == 'Available'
+                        ? AppColors.green
+                        : AppColors.red
+                    : employee.status == 'Available'
+                        ? AppColors.green
+                        : AppColors.red,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                employee.canTakeOrder??employee.status!,
+                employee.canTakeOrder ?? employee.status!,
                 style: AppStyles.s12.copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.w700,
@@ -88,16 +89,20 @@ class ChefAndDeliveryCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+
               Text('#${AppStrings.orderCount.tr()}',
                   style: AppStyles.s12.copyWith(
                     color: AppColors.darkTextGrey,
                     fontWeight: FontWeight.w400,
                   )),
-              const Spacer(),
-              _buildInfoItem(
-                Icons.date_range_outlined,
-                '${employee.orderCount}${AppStrings.orders.tr()} ',
+              Text(
+                '${employee.orderCount}  ${AppStrings.orders.tr()} ',
+                style: AppStyles.s12.copyWith(
+                  color: AppColors.darkTextGrey,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ],
           ),
@@ -106,25 +111,24 @@ class ChefAndDeliveryCard extends StatelessWidget {
             alignment: Alignment.center,
             child: CustomButton(
                 width: 160.w,
-                text: AppStrings.viewDetails,
-                  textStyle: AppStyles.s14.copyWith(
-            color: AppColors.white,
-            fontWeight: FontWeight.w700,
-          ),
+                text: AppStrings.viewDetails.tr(),
+                textStyle: AppStyles.s14.copyWith(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.w700,
+                ),
                 onPressed: () {
-                  if(from == 'delivery') {
-                    context.push(RouterNames.deliveryBoyDetails,extra: {
+                  if (from == 'delivery') {
+                    context.push(RouterNames.deliveryBoyDetails, extra: {
                       'deliveryId': employee.id,
                       'orderId': orderId,
                     });
                   } else if (from == 'chef') {
-                    context.push(RouterNames.chefDetails,extra: {
+                    context.push(RouterNames.chefDetails, extra: {
                       'chefId': employee.id,
                       'orderId': orderId,
                     });
-                  }else{
-                     
-                     context.push(RouterNames.salesDeliveryDetails,extra: {
+                  } else {
+                    context.push(RouterNames.salesDeliveryDetails, extra: {
                       'deliveryId': employee.id,
                       'orderId': orderId,
                     });
@@ -136,19 +140,4 @@ class ChefAndDeliveryCard extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoItem(IconData icon, String text) {
-    return Row(
-      children: [
-        Icon(icon, size: 20, color: Colors.grey),
-        const SizedBox(width: 8),
-        Text(
-          text,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.grey,
-          ),
-        ),
-      ],
-    );
-  }
 }

@@ -56,7 +56,7 @@ class ConnectWithChefRow extends StatelessWidget {
       title: Text(
         title,
         style: AppStyles.s14.copyWith(
-          color: AppColors.grey,
+          color: AppColors.greyForText,
           fontWeight: FontWeight.w500,
         ),
       ),

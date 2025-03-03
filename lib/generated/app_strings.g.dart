@@ -10,6 +10,12 @@ abstract class AppStrings {
   static const skip = 'skip';
   static const to = 'to';
   static const from = 'from';
+  static const exitApp = 'exitApp';
+  static const exitAppConfirmation = 'exitAppConfirmation';
+  static const exit = 'exit';
+  
+
+
   static const waitingOrders = 'waitingOrders';
   static const forgetPassword = 'forgetPassword';
   static const choiceSpecialization = 'choiceSpecialization';
@@ -18,9 +24,14 @@ abstract class AppStrings {
   static const welcome = 'welcome';
   static const ignore = 'ignore';
   static const save = 'save';
+  static const orderSendToDelivery = 'orderSendToDelivery';
+  static const orderSendToChef = 'orderSendToChef';
   static const sendOrderToDelivery = 'sendOrderToDelivery';
+  static const sendOrderToChef = 'sendOrderToChef';
   static const currentOrdersList = 'currentOrdersList';
   static const connectWithDelivery = 'connectWithDelivery';
+  static const connectWithChef = 'connectWithChef';
+  static const currentOrderList = 'currentOrderList';
   static const aboutChef = 'aboutChef';
   static const aboutDelivery = 'aboutDelivery';
   static const orderCount = 'orderCount';
@@ -93,7 +104,8 @@ abstract class AppStrings {
   static const lastName = 'lastName';
   static const email = 'email';
   static const enterYourEmail = 'enterYourEmail';
-  static const enterYourEmailOrPhoneToResetPassword = 'enterYourEmailOrPhoneToResetPassword';
+  static const enterYourEmailOrPhoneToResetPassword =
+      'enterYourEmailOrPhoneToResetPassword';
   static const confirmPassword = 'confirmPassword';
   static const alreadyHaveAccount = 'alreadyHaveAccount';
   static const enterVerificationCode = 'enterVerificationCode';
@@ -130,13 +142,14 @@ abstract class AppStrings {
   static const orderAccepted = 'orderAccepted';
   static const delegateName = 'delegateName';
   static const accept = 'accept';
+  static const reject = 'reject';
   static const refused = 'refused';
   static const chefName = 'chefName';
   static const completed = 'completed';
   static const notStarted = 'notStarted';
   static const orderDetailsChef = 'orderDetailsChef';
   static const finishedOrderDetails = 'finishedOrderDetails';
-  static const delegateDetails = 'delegateDetails';
+  static const deliveryDetails = 'deliveryDetails';
   static const numberOfCurrentOrders = 'numberOfCurrentOrders';
   static const numberOfSuccessfullyCompletedOrders =
       'numberOfSuccessfullyCompletedOrders';

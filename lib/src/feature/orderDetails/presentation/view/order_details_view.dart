@@ -46,7 +46,7 @@ class OrderDetailsView extends StatelessWidget {
               initial: () => Center(child: Text(AppStrings.loading.tr())),
               loading: () => const Center(child: CircularProgressIndicator()),
               failure: (error) =>
-                  Center(child: Text('حدث خطأ: ${error.message}')),
+                  Center(child: Text('Error: ${error.message}')),
               success: (orderDetailsResponse) {
                 return SingleChildScrollView(
                   child: Column(

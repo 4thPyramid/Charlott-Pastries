@@ -5,6 +5,7 @@ import 'package:charlot/src/feature/manager/orders/presentation/logic/completed/
 import 'package:charlot/src/feature/manager/orders/presentation/logic/completed/completed_order_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ManagerCompleteOrdersListView extends StatefulWidget {
   const ManagerCompleteOrdersListView({super.key});
@@ -46,23 +47,22 @@ class _ManagerCompleteOrdersListViewState
             child: BlocBuilder<CompletedOrdersCubit, CompletedOrderState>(
               builder: (context, state) {
                 return state.when(
-                  initial: () => const Center(
-                      child: Text('الرجاء تحديد تاريخ البداية والنهاية')),
+                  initial: () =>
+                      const Center(child: Text('choice Date to show orders')),
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
                   failure: (error) =>
-                      Center(child: Text('خطأ: ${error.message}')),
+                      Center(child: Text('Error: ${error.message}')),
                   success: (ordersResponse) {
                     if (ordersResponse.orders.isEmpty) {
                       return const Center(
-                          child:
-                              Text('لا توجد طلبات مكتملة في الفترة المحددة'));
+                          child: Text(
+                              'No orders available for the selected date'));
                     }
                     return ListView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       itemCount: ordersResponse.orders.length,
                       itemBuilder: (context, index) => SharedOrderItemCard(
-                        
-                        
                         orderResponse: ordersResponse.orders[index],
                       ),
                     );

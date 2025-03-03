@@ -11,7 +11,7 @@ class CustomTitle extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Text(title,
+    return   Text(title,
         style: AppStyles.s20.copyWith(
           color: AppColors.black,
           fontWeight: FontWeight.w700,

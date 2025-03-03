@@ -24,19 +24,17 @@ class ReturnedOrdersListView extends StatelessWidget {
                   if (ordersResponse.orders.isEmpty) {
                 return const Center(
                     child:
-                        Text('لا توجد طلبات مرتجعه'));
+                        Text('No orders available '));
               }
               return Expanded(
                 child: SizedBox(
                   child: ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    padding: EdgeInsets.symmetric(horizontal: 10.w,),
                     itemCount: ordersResponse.orders.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child: SharedOrderItemCard(             
+                      return SharedOrderItemCard(             
                           orderResponse: ordersResponse.orders[index],
-                        ),
+                        
                       );
                     },
                   ),

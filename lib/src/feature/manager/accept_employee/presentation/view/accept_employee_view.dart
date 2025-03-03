@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,14 +13,14 @@ class AcceptEmployeeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return  SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal:10.w),
-        child:  const Column(
+        child:   Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
              CustomAppBar(
-              title:AppStrings.addEmployees,
+              title:AppStrings.addEmployees.tr(),
             ),
             
-         SizedBox(
+         const SizedBox(
                //height: MediaQuery.of(context).size.height * 0.9, 
                child: AcceptEmployeeComponents(),
              ),

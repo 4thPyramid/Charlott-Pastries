@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,8 +46,8 @@ class _AcceptEmployeeComponentsState extends State<AcceptEmployeeComponents>
             children: [
               EmailAndPhoneTapBarWidget(
                 tabController: _tabController,
-                title1: AppStrings.chefRequest,
-                title2: AppStrings.deliveryRequest,
+                title1: AppStrings.chefRequest.tr(),
+                title2: AppStrings.deliveryRequest.tr(),
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 6.h),
