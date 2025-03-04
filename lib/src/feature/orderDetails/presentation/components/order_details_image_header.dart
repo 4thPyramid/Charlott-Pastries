@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:charlot/src/feature/orderDetails/presentation/components/order_images_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -133,6 +134,16 @@ class _OrderDetailsImageHeaderState extends State<OrderDetailsImageHeader> {
                   await _requestPermissions();
                   await _downloadCurrentImage();
                 },
+              ),
+            ),
+            Positioned(
+              left: 10.w,
+              right: 10.w,
+              bottom: 20,
+              child: OrderImagesListView(
+                images: widget.images,
+                pageController: _pageController,
+                currentPage: _currentPage,
               ),
             ),
           ],

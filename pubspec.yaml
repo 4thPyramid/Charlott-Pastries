@@ -77,6 +77,8 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.13
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
+
   flutter_test:
     sdk: flutter
   freezed: ^2.5.7
@@ -99,3 +101,9 @@ flutter:
           weight: 700
         - asset: assets/fonts/Cairo-Light.ttf
           weight: 300
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/char.png"
+  adaptive_icon_foreground: "assets/images/char.png"
+  adaptive_icon_background: "assets/images/char.png"
