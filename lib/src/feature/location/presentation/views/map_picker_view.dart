@@ -10,13 +10,21 @@ import 'package:charlot/src/feature/location/presentation/widgets/search_field.d
 import 'package:go_router/go_router.dart';
 
 class MapPickerView extends StatelessWidget {
-  const MapPickerView({super.key, required this.orderId, required this.isSameday});
+  const MapPickerView(
+      {super.key, required this.orderId, required this.isSameday});
   final int orderId;
   final String isSameday;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Select Location'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () => context.pop(),
+        ),
+      ),
       body: BlocBuilder<MapPickerCubit, MapPickerState>(
         builder: (context, state) {
           return Stack(

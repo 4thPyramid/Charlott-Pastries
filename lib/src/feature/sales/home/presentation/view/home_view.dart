@@ -27,7 +27,7 @@ class SalesHomeView extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                 // 'readyForDelivery'.tr(),
+                  // 'readyForDelivery'.tr(),
                   AppStrings.readyForDelivery.tr(),
                   style: AppStyles.s20.copyWith(
                     fontWeight: FontWeight.w700,
@@ -43,7 +43,7 @@ class SalesHomeView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.go(RouterNames.addOrder);
+          context.push(RouterNames.addOrder);
         },
         child: const Icon(
           Icons.add,

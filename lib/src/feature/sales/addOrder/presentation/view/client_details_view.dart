@@ -25,7 +25,12 @@ class ClientDetailsView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomAppBar(title: "Add New Order"),
+            CustomAppBar(
+                title: "Add Client Details",
+                iconLeft: Icons.arrow_back_ios,
+                onPressedLeft: () {
+                  Navigator.pop(context);
+                }),
             const AddOrderHeader(
               image: AppAssets.addOrder2,
               title: 'Client Details',

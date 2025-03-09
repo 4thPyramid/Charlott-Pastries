@@ -187,7 +187,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (requestModel, _) {
-                    context.go(
+                    context.push(
                         "${RouterNames.priceDetailsView}/${requestModel.order?.id}/${requestModel.order?.isSameday}/$selectedType");
                   },
                   failure: (error, _) {
@@ -206,7 +206,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                     text: "Next",
                     onPressed: () {
                       setState(() {
-                        isFormValid = selectedDate != null &&
+                        isFormValid = (isSameDay || selectedDate != null) &&
                             deliveryTimeFrom != null &&
                             deliveryTimeTo != null &&
                             ((selectedType == "cake" &&
@@ -230,8 +230,7 @@ class _RequestTypeFormState extends State<RequestTypeForm> {
                       }
 
                       final requestModel = AddOrderRequestModel(
-                        images:
-                            cakeImages, // الصور ستظل تُرسل لكن لن يتم التحقق منها
+                        images: cakeImages,
                         image: flowerImages,
                         isSameDay:
                             context.read<AddOrderCubit>().state.isSameDay,

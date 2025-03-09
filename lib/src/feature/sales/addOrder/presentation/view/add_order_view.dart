@@ -10,11 +10,20 @@ class AddOrderViewFirst extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(title: "addNewOrder".tr()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CustomAppBar(
+                title: "addNewOrder".tr(),
+                iconLeft: Icons.arrow_back_ios,
+                onPressedLeft: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
             AddOrderHeader(
               image: AppAssets.addOrder1,
               title: 'orderData'.tr(),

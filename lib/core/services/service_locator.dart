@@ -65,6 +65,11 @@ import 'package:charlot/src/feature/sales/search/data/datasource/sales_search_re
 import 'package:charlot/src/feature/sales/search/domain/repo/sales_search_repo.dart';
 import 'package:charlot/src/feature/sales/search/domain/usecase/get_sales_search_uc.dart';
 import 'package:charlot/src/feature/sales/search/presentation/cubit/sales_search_cubit.dart';
+import 'package:charlot/src/feature/sales/updataOrder/data/datasource/update_order_api_service.dart';
+import 'package:charlot/src/feature/sales/updataOrder/data/datasource/update_order_data_source.dart';
+import 'package:charlot/src/feature/sales/updataOrder/domain/repo/update_order_repo.dart';
+import 'package:charlot/src/feature/sales/updataOrder/domain/usecase/update_order_uc.dart';
+import 'package:charlot/src/feature/sales/updataOrder/presentation/cubit/update_order_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -277,6 +282,9 @@ void setupLocator() {
     () => getIt<MapTrackingApiServiceImpl>(),
   );
 
+  getIt.registerLazySingleton<UpdateOrderApiService>(
+      () => UpdateOrderApiServiceImpl(getIt()));
+
   ///! --DataSources-- ///
   getIt.registerLazySingleton<ProfileRemoteDs>(
       () => ProfileRemoteDSImpl(getIt()));
@@ -340,6 +348,9 @@ void setupLocator() {
             googleApiKey: "AIzaSyBMaCjdzcpOgRcN1OYGQZCN9CuqiK8KlZs",
           ));
 
+  getIt.registerLazySingleton<UpdateOrderRemoteDataSource>(
+      () => UpdateOrderRemoteDataSourceImpl(getIt()));
+
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(getIt()));
@@ -400,6 +411,9 @@ void setupLocator() {
   getIt.registerLazySingleton<MapRepository>(
     () => MapRepositoryImpl(getIt()),
   );
+
+  getIt.registerLazySingleton<UpdateOrderRepo>(
+      () => UpdateOrderRepoImpl(getIt()));
 
   ///! -- UseCases -- ///
 
@@ -609,6 +623,9 @@ void setupLocator() {
   getIt.registerLazySingleton<SalesGetDeliveryDetailsUseCase>(
       () => SalesGetDeliveryDetailsUseCase(getIt()));
 
+  getIt.registerLazySingleton<UpdateOrderUseCase>(
+      () => UpdateOrderUseCase(getIt()));
+
   //! Cubits //
   getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
         getIt(),
@@ -732,6 +749,12 @@ void setupLocator() {
       getIt(),
       getIt(),
       getIt(),
+      getIt(),
+    ),
+  );
+
+  getIt.registerFactory<UpdateOrderCubit>(
+    () => UpdateOrderCubit(
       getIt(),
     ),
   );

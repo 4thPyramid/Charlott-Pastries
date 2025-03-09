@@ -20,7 +20,12 @@ class PriceDetailsView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomAppBar(title: "Add New Order"),
+            CustomAppBar(
+                title: "Add New Order",
+                iconLeft: Icons.arrow_back_ios,
+                onPressedLeft: () {
+                  Navigator.pop(context);
+                }),
             const AddOrderHeader(
               image: AppAssets.addOrder2,
               title: 'Price Details',

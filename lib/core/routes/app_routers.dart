@@ -8,6 +8,8 @@ import 'package:charlot/src/feature/sales/profile/presentation/views/sales_profi
 import 'package:charlot/src/feature/sales/profile/presentation/views/sales_setting_view.dart';
 import 'package:charlot/src/feature/sales/search/presentation/cubit/sales_search_cubit.dart';
 import 'package:charlot/src/feature/sales/search/presentation/view/sales_search_view.dart';
+import 'package:charlot/src/feature/sales/updataOrder/presentation/cubit/update_order_cubit.dart';
+import 'package:charlot/src/feature/sales/updataOrder/presentation/view/update_order_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -206,9 +208,16 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final orderId =
             int.tryParse(state.pathParameters['orderId'] ?? '') ?? 0;
-        return BlocProvider(
-          create: (context) => getIt<SalesOrderDetailsCubit>()
-            ..getOrderDetails(orderId.toString()),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt<SalesOrderDetailsCubit>()
+                ..getOrderDetails(orderId.toString()),
+            ),
+            BlocProvider(
+              create: (context) => getIt<UpdateOrderCubit>(),
+            ),
+          ],
           child: SalesOrderDetailsView(
             orderId: orderId,
           ),
@@ -229,6 +238,25 @@ final GoRouter router = GoRouter(
     GoRoute(
         path: RouterNames.managerBeingDeliveredOrdersView,
         builder: (context, state) => const ManagerBeingDeliveredOrdersView()),
+
+    GoRoute(
+      path: RouterNames.updateOrderView,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        final orderId = extra['orderId'] as int;
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt<UpdateOrderCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<SalesOrderDetailsCubit>(),
+            ),
+          ],
+          child: UpdateOrderView(orderId: orderId),
+        );
+      },
+    ),
 
     //! Sales
 
