@@ -3,15 +3,16 @@ import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-
 class OrdersRowPriceWidget extends StatelessWidget {
   const OrdersRowPriceWidget({
     super.key,
     required this.priceTitle,
     required this.price,
+    this.color,
   });
   final String priceTitle;
   final String price;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +20,12 @@ class OrdersRowPriceWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 18, right: 18, top: 6, bottom: 6),
       child: Row(
         children: [
-          Text(priceTitle, style: AppStyles.s14),
+          Text(priceTitle, style: AppStyles.s14.copyWith(color: color)),
           const Spacer(),
           Text(
-            "$price ${AppStrings.aDE.tr()}",
-            style: AppStyles.s14.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            "$price AED",
+            style: AppStyles.s14
+                .copyWith(fontWeight: FontWeight.w700, color: color),
           )
         ],
       ),

@@ -19,7 +19,7 @@ class OrderDetailsView extends StatelessWidget {
     required this.from,
     required this.title,
     required this.orderId,
-     this.deliveryBoyId,
+    this.deliveryBoyId,
   });
 
   final String from;
@@ -61,6 +61,7 @@ class OrderDetailsView extends StatelessWidget {
                       ),
                       OrderDetailsContent(
                         orderDetailsResponse: orderDetailsResponse,
+                        orderId: orderId,
                       ),
                       OrderDetailsActions(
                         orderStatus: orderDetailsResponse.status,

@@ -10,6 +10,7 @@ class ClientItemDataRowWidget extends StatelessWidget {
     required this.icon,
     required this.iconColor,
   });
+
   final String title;
   final String name;
   final IconData icon;
@@ -26,23 +27,27 @@ class ClientItemDataRowWidget extends StatelessWidget {
           size: 25,
         ),
         SizedBox(width: 10.w),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: AppStyles.s14,
-            ),
-            SizedBox(height: 5.h),
-            Text(
-              name,
-              style: AppStyles.s14.copyWith(
-                fontWeight: FontWeight.bold,
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: AppStyles.s14,
               ),
-            ),
-          ],
-        )
+              SizedBox(height: 5.h),
+              Text(
+                name,
+                style: AppStyles.s14.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

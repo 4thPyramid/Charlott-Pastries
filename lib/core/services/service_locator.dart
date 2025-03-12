@@ -36,6 +36,11 @@ import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_des
 import 'package:charlot/src/feature/manager/orderTracking/domain/usecase/get_route.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/cubit/map_cubit.dart';
 import 'package:charlot/src/feature/manager/register/domain/usecase/manager_register_usecase.dart';
+import 'package:charlot/src/feature/manager/search/data/datasource/manager_search_api_service.dart';
+import 'package:charlot/src/feature/manager/search/data/datasource/manager_search_remote_data.dart';
+import 'package:charlot/src/feature/manager/search/domain/repo/manager_search_repo.dart';
+import 'package:charlot/src/feature/manager/search/domain/usecase/get_manager_search_uc.dart';
+import 'package:charlot/src/feature/manager/search/presentation/cubit/manager_search_cubit.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/datasourc/add_order_api_service.dart';
 import 'package:charlot/src/feature/sales/addOrder/data/datasourc/add_order_remote_data_source.dart';
 import 'package:charlot/src/feature/sales/addOrder/domain/repo/add_order_repo.dart';
@@ -214,6 +219,9 @@ void setupLocator() {
   getIt.registerLazySingleton<ProfileApiService>(
       () => ProfileApiServiceImpl(getIt()));
 
+  getIt.registerLazySingleton<ManagerSearchApiService>(
+      () => ManagerSearchApiServiceImpl(getIt()));
+
   getIt.registerLazySingleton<ManagerRegisterApiServices>(
       () => ManagerRegisterApiServicesImpl(getIt()));
   getIt.registerLazySingleton<FcmRepository>(
@@ -291,6 +299,10 @@ void setupLocator() {
   getIt.registerLazySingleton<MapPickerRemoteDataSource>(
     () => MapPickerRemoteDataSourceImpl(),
   );
+  getIt.registerLazySingleton<ManagerSearchRemoteData>(
+    () => ManagerSearchRemoteDataImpl(getIt()),
+  );
+
   getIt.registerLazySingleton<ManagerRegisterRemoteDs>(
       () => ManagerRegisterRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<SalesRegisterRemoteDs>(
@@ -354,6 +366,10 @@ void setupLocator() {
   ///! -- Repositories -- ///
   getIt.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(getIt()));
+
+  getIt.registerLazySingleton<ManagerSearchRepo>(
+    () => ManagerSearchRepoImpl(getIt()),
+  );
 
   getIt.registerLazySingleton<ManagerRegisterRepo>(
       () => ManagerRegisterRepoImpl(getIt()));
@@ -419,6 +435,10 @@ void setupLocator() {
 
   getIt.registerLazySingleton<GetProfileDataUC>(
     () => GetProfileDataUC(getIt()),
+  );
+
+  getIt.registerLazySingleton<GetManagerSearchUC>(
+    () => GetManagerSearchUC(getIt()),
   );
   getIt.registerLazySingleton<DeleteAccountUC>(
     () => DeleteAccountUC(getIt()),
@@ -755,6 +775,12 @@ void setupLocator() {
 
   getIt.registerFactory<UpdateOrderCubit>(
     () => UpdateOrderCubit(
+      getIt(),
+    ),
+  );
+
+  getIt.registerFactory<ManagerSearchCubit>(
+    () => ManagerSearchCubit(
       getIt(),
     ),
   );

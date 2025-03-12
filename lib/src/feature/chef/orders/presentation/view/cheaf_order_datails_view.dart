@@ -18,7 +18,7 @@ class ChefOrdersDetailsView extends StatelessWidget {
       {super.key, required this.orderId, required this.title});
   final int orderId;
   final String title;
-  
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -36,10 +36,11 @@ class ChefOrdersDetailsView extends StatelessWidget {
         body: BlocBuilder<ChefOrderDetailsCubit, ChefOrderDetailsState>(
           builder: (context, state) {
             return state.when(
-              initial: () =>  Center(child: Text(AppStrings.loading.tr())),
+              initial: () => Center(child: Text(AppStrings.loading.tr())),
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (error) =>
-                  Center(child: Text('${AppStrings.anerroroccurred.tr()}: ${error.message}')),
+              error: (error) => Center(
+                  child: Text(
+                      '${AppStrings.anerroroccurred.tr()}: ${error.message}')),
               loaded: (orderDetailsResponse) {
                 return SingleChildScrollView(
                   child: Column(
@@ -54,6 +55,7 @@ class ChefOrdersDetailsView extends StatelessWidget {
                       ),
                       ChefOrderDetailsContent(
                         orderDetailsResponse: orderDetailsResponse,
+                        orderId: orderId,
                       ),
                       ChefOrderDetailsActions(
                         orderStatus: orderDetailsResponse.status,

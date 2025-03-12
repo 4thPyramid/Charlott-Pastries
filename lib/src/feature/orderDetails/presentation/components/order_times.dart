@@ -13,17 +13,31 @@ class OrderTimes extends StatelessWidget {
     required this.startAt,
     required this.from,
     required this.to,
+    required this.creationDate,
   });
+
   final String orderStatus;
   final String startAt;
-
+  final String creationDate;
   final String from;
   final String to;
+
   String _formatDate(String dateTimeString) {
     final dateTime = DateTime.parse(dateTimeString);
     final formatter = DateFormat('yyyy-MM-dd');
     return formatter.format(dateTime);
   }
+
+  String _formatTime(String timeString) {
+    try {
+      final dateTime = DateFormat("HH:mm:ss").parse(timeString);
+      final formatter = DateFormat('hh:mm a'); 
+      return formatter.format(dateTime);
+    } catch (e) {
+      return timeString; 
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,9 +48,10 @@ class OrderTimes extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         DatesContainerWidget(
-          startData:_formatDate(startAt),
-          from: from,
-          to: to,
+          startData: _formatDate(startAt),
+          from: _formatTime(from),
+          to: _formatTime(to),
+          creationDate: _formatDate(creationDate),
         ),
       ],
     );

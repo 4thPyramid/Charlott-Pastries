@@ -1,3 +1,4 @@
+import 'package:charlot/core/common/functions/date_time_formate.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -84,8 +85,7 @@ class NotStartedOrderListViewTab extends StatelessWidget {
               style: AppStyles.s16,
             ),
             subtitle: Text(
-              '${formatDate(order.updatedAt.toString())} ',
-
+              formatDateFunction(order.updatedAt.toString()),
               style: AppStyles.s14.copyWith(
                 color: AppColors.whiteGreyForText,
               ),

@@ -49,7 +49,8 @@ class _CustomDateFilterState extends State<CustomDateFilter> {
                   side: const BorderSide(color: AppColors.primaryColor),
                   fixedSize: Size(140.w, 50.h),
                 ),
-                icon: const Icon(Icons.calendar_today_outlined),
+                icon: const Icon(Icons.calendar_today_outlined,
+                    color: AppColors.white),
                 label: Text(
                   startDate != null
                       ? '${startDate!.day}/${startDate!.month}/${startDate!.year}'
@@ -70,7 +71,7 @@ class _CustomDateFilterState extends State<CustomDateFilter> {
                   side: const BorderSide(color: AppColors.primaryColor),
                   fixedSize: Size(140.w, 50.h),
                 ),
-                icon: const Icon(Icons.calendar_today),
+                icon: const Icon(Icons.calendar_today, color: AppColors.white),
                 label: Text(
                   endDate != null
                       ? '${endDate!.day}/${endDate!.month}/${endDate!.year}'
@@ -90,7 +91,8 @@ class _CustomDateFilterState extends State<CustomDateFilter> {
                       borderRadius: BorderRadius.circular(8),
                     )),
                 onPressed: _applyFilter,
-                child: const Icon(Icons.filter_list_rounded),
+                child: const Icon(Icons.filter_list_rounded,
+                    size: 30, color: AppColors.primaryColor),
               ),
             ],
           ),
@@ -104,7 +106,7 @@ class _CustomDateFilterState extends State<CustomDateFilter> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
-      lastDate: DateTime.now(),
+      lastDate: DateTime(2100),
       helpText: isStartDate ? 'From' : 'To',
     );
 

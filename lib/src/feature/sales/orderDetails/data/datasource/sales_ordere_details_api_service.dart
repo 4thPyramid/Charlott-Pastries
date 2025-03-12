@@ -4,8 +4,7 @@ import 'package:charlot/src/feature/sales/orderDetails/data/models/sales_order_d
 import 'package:dartz/dartz.dart';
 
 abstract class SalesOrderDetailsApiService {
-  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(
-      String orderId);
+  Future<Either<ErrorModel, SalesOrder>> getSalesOrderDetails(String orderId);
 }
 
 class SalesOrderDetailsApiServiceImpl implements SalesOrderDetailsApiService {

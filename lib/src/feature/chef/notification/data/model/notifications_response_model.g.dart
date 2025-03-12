@@ -34,7 +34,7 @@ NotificationData _$NotificationDataFromJson(Map<String, dynamic> json) =>
     NotificationData(
       title: json['title'] as String,
       body: json['body'] as String,
-      orderId: json['order_id'] as int?,
+      orderId: (json['order_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$NotificationDataToJson(NotificationData instance) =>

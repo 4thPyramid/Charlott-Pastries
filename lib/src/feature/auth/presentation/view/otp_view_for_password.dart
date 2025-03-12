@@ -16,7 +16,7 @@ class OtpViewForPassword extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: SingleChildScrollView(
+        child: SingleChildScrollView(    
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

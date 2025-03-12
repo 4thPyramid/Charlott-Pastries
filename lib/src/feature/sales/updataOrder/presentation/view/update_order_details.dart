@@ -1,3 +1,8 @@
+import 'dart:io';
+import 'package:charlot/core/theme/app_colors.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:image_picker/image_picker.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/generated/app_strings.g.dart';
@@ -13,8 +18,10 @@ import 'package:go_router/go_router.dart';
 
 class UpdateOrderView extends StatefulWidget {
   final int orderId;
+  final String orderType;
 
-  const UpdateOrderView({super.key, required this.orderId});
+  const UpdateOrderView(
+      {super.key, required this.orderId, required this.orderType});
 
   @override
   State<UpdateOrderView> createState() => _UpdateOrderViewState();
@@ -28,7 +35,10 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
       TextEditingController();
   final TextEditingController _customerAddressController =
       TextEditingController();
-  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _cakePriceController = TextEditingController();
+  final TextEditingController _flowerPriceController = TextEditingController();
+  final TextEditingController _deliveryPriceController =
+      TextEditingController();
   final TextEditingController _depositController = TextEditingController();
 
   TimeOfDay? deliveryTimeFrom;
@@ -36,11 +46,13 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
   DateTime? selectedDate;
   bool isDeliveryTimeValid = true;
   bool isLoading = true;
+  List<XFile>? _images;
+  List<String> _existingImageUrls = [];
+  List<int> _existingImageIds = []; // لتخزين معرفات الصور الموجودة
 
   @override
   void initState() {
     super.initState();
-    // Load order data when the screen opens
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context
           .read<SalesOrderDetailsCubit>()
@@ -54,7 +66,9 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
     _customerNameController.dispose();
     _customerPhoneController.dispose();
     _customerAddressController.dispose();
-    _priceController.dispose();
+    _cakePriceController.dispose();
+    _flowerPriceController.dispose();
+    _deliveryPriceController.dispose();
     _depositController.dispose();
     super.dispose();
   }
@@ -94,39 +108,170 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
       _customerNameController.text = orderData['customer_name'] ?? '';
       _customerPhoneController.text = orderData['customer_phone'] ?? '';
       _customerAddressController.text = orderData['additional_data'] ?? '';
-      _priceController.text = (orderData['cake_price'] ?? '').toString();
+
+      _cakePriceController.text = (orderData['cake_price'] ?? '').toString();
+      _flowerPriceController.text =
+          (orderData['flower_price'] ?? '').toString();
+      _deliveryPriceController.text =
+          (orderData['delivery_price'] ?? '').toString();
       _depositController.text = (orderData['deposit'] ?? '').toString();
 
-      if (orderData['delivery_date'] != null) {
+      if (orderData['delivery_date'] != null &&
+          orderData['delivery_date'].toString().isNotEmpty) {
         try {
           selectedDate = DateTime.parse(orderData['delivery_date']);
         } catch (e) {
-          // Handle date parsing error
+          print("خطأ في تحليل تاريخ التسليم: $e");
         }
       }
 
-      if (orderData['delivery_time_from'] != null) {
-        final timeParts = orderData['delivery_time_from'].split(':');
+      // التحقق من صحة وقت التسليم "من"
+      if (orderData['delivery_time_from'] != null &&
+          orderData['delivery_time_from'].toString().isNotEmpty) {
+        final timeParts = orderData['delivery_time_from'].toString().split(':');
         if (timeParts.length == 2) {
           deliveryTimeFrom = TimeOfDay(
-            hour: int.parse(timeParts[0]),
-            minute: int.parse(timeParts[1]),
+            hour: int.tryParse(timeParts[0]) ?? 0,
+            minute: int.tryParse(timeParts[1]) ?? 0,
           );
         }
       }
 
-      if (orderData['delivery_time_to'] != null) {
-        final timeParts = orderData['delivery_time_to'].split(':');
+      // التحقق من صحة وقت التسليم "إلى"
+      if (orderData['delivery_time_to'] != null &&
+          orderData['delivery_time_to'].toString().isNotEmpty) {
+        final timeParts = orderData['delivery_time_to'].toString().split(':');
         if (timeParts.length == 2) {
           deliveryTimeTo = TimeOfDay(
-            hour: int.parse(timeParts[0]),
-            minute: int.parse(timeParts[1]),
+            hour: int.tryParse(timeParts[0]) ?? 0,
+            minute: int.tryParse(timeParts[1]) ?? 0,
           );
         }
       }
+
+      // تحسين استخراج الصور
+      if (orderData['images'] is List) {
+        final List imageList = orderData['images'] as List;
+        _existingImageUrls = [];
+        _existingImageIds = [];
+
+        for (var image in imageList) {
+          if (image is Map<String, dynamic>) {
+            final String imageUrl = image['image'] as String? ?? '';
+            final int imageId = image['id'] as int? ?? 0;
+
+            if (imageUrl.isNotEmpty) {
+              _existingImageUrls.add(imageUrl);
+              _existingImageIds.add(imageId);
+            }
+          }
+        }
+      } else {
+        _existingImageUrls = [];
+        _existingImageIds = [];
+      }
+
+      print("📸 Existing Images: $_existingImageUrls");
+      print("🆔 Existing Image IDs: $_existingImageIds");
 
       isLoading = false;
     });
+  }
+
+  Future _pickImages() async {
+    try {
+      final List<XFile> pickedFiles = await ImagePicker().pickMultiImage();
+      if (pickedFiles.isNotEmpty) {
+        setState(() {
+          _images = pickedFiles;
+        });
+      }
+    } catch (e) {
+      print("خطأ في اختيار الصور: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("حدث خطأ أثناء اختيار الصور: $e")),
+      );
+    }
+  }
+
+  void _removeExistingImage(int index) {
+    setState(() {
+      if (index >= 0 && index < _existingImageUrls.length) {
+        _existingImageUrls.removeAt(index);
+        _existingImageIds.removeAt(index);
+      }
+    });
+  }
+
+  void _removeNewImage(int index) {
+    setState(() {
+      if (index >= 0 && index < (_images?.length ?? 0)) {
+        _images!.removeAt(index);
+      }
+    });
+  }
+
+  Future<void> _submitForm() async {
+    if (_formKey.currentState!.validate() && isDeliveryTimeValid) {
+      String? formattedTimeFrom;
+      if (deliveryTimeFrom != null) {
+        formattedTimeFrom =
+            '${deliveryTimeFrom!.hour.toString().padLeft(2, '0')}:${deliveryTimeFrom!.minute.toString().padLeft(2, '0')}';
+      }
+
+      String? formattedTimeTo;
+      if (deliveryTimeTo != null) {
+        formattedTimeTo =
+            '${deliveryTimeTo!.hour.toString().padLeft(2, '0')}:${deliveryTimeTo!.minute.toString().padLeft(2, '0')}';
+      }
+
+      final updatedFields = {
+        'order_details': _orderDetailsController.text,
+        'customer_name': _customerNameController.text,
+        'customer_phone': _customerPhoneController.text,
+        'additional_data': _customerAddressController.text,
+        'cake_price': _cakePriceController.text,
+        'flower_price': _flowerPriceController.text,
+        'delivery_price': _deliveryPriceController.text,
+        'deposit': _depositController.text,
+        'delivery_date': selectedDate?.toIso8601String().split('T').first,
+        'delivery_time_from': formattedTimeFrom,
+        "from": formattedTimeFrom,
+        "to": formattedTimeTo,
+        'delivery_time_to': formattedTimeTo,
+        'image_ids': _existingImageIds,
+      };
+
+      List<dio.MultipartFile>? multipartImages;
+      if (_images != null && _images!.isNotEmpty) {
+        try {
+          multipartImages = await Future.wait(_images!.map((image) async {
+            return await dio.MultipartFile.fromFile(
+              image.path,
+              filename: image.name,
+            );
+          }));
+        } catch (e) {
+          print("خطأ في تحويل الصور: $e");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("حدث خطأ أثناء تحضير الصور: $e")),
+          );
+          return;
+        }
+      }
+
+      context.read<UpdateOrderCubit>().updateOrder(
+            widget.orderId,
+            updatedFields,
+            multipartImages,
+          );
+    } else {
+      if (!isDeliveryTimeValid) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("الرجاء التأكد من صحة أوقات التسليم")),
+        );
+      }
+    }
   }
 
   @override
@@ -143,14 +288,15 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
         listeners: [
           BlocListener<UpdateOrderCubit, UpdateOrderState>(
             listener: (context, state) {
-              if (state is UpdateOrderSuccess) {
+              if (state is UpdateOrderLoading) {
+                // يمكن إظهار مؤشر تحميل هنا
+              } else if (state is UpdateOrderSuccess) {
                 context
                     .read<SalesOrderDetailsCubit>()
                     .getOrderDetails(widget.orderId.toString());
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Order updated successfully")),
                 );
-
                 context
                     .push("${RouterNames.salesOrderDetails}/${widget.orderId}");
               } else if (state is UpdateOrderFailure) {
@@ -201,7 +347,6 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
                         ),
                         SizedBox(height: 16.h),
 
-                        // Order Details
                         TextFormField(
                           controller: _orderDetailsController,
                           decoration: InputDecoration(
@@ -279,18 +424,58 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
                         ),
                         SizedBox(height: 16.h),
 
+                        if (widget.orderType != "flower")
+                          TextFormField(
+                            controller: _cakePriceController,
+                            decoration: const InputDecoration(
+                              labelText: "Cake Price",
+                              border: OutlineInputBorder(),
+                            ),
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter the cake price";
+                              }
+                              if (double.tryParse(value) == null) {
+                                return "Please enter a valid number";
+                              }
+                              return null;
+                            },
+                          ),
+                        if (widget.orderType != "flower")
+                          SizedBox(height: 12.h),
+
+                        if (widget.orderType !=
+                            "cake") // إخفاء حقل الورد إذا كان الطلب كيكًا
+                          TextFormField(
+                            controller: _flowerPriceController,
+                            decoration: const InputDecoration(
+                              labelText: "Flower Price",
+                              border: OutlineInputBorder(),
+                            ),
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              if (value != null &&
+                                  value.isNotEmpty &&
+                                  double.tryParse(value) == null) {
+                                return "Please enter a valid number";
+                              }
+                              return null;
+                            },
+                          ),
+                        if (widget.orderType != "cake") SizedBox(height: 12.h),
+
                         TextFormField(
-                          controller: _priceController,
-                          decoration: InputDecoration(
-                            labelText: AppStrings.totalPrice.tr(),
-                            border: const OutlineInputBorder(),
+                          controller: _deliveryPriceController,
+                          decoration: const InputDecoration(
+                            labelText: "Delivery Price",
+                            border: OutlineInputBorder(),
                           ),
                           keyboardType: TextInputType.number,
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter the cake price";
-                            }
-                            if (double.tryParse(value) == null) {
+                            if (value != null &&
+                                value.isNotEmpty &&
+                                double.tryParse(value) == null) {
                               return "Please enter a valid number";
                             }
                             return null;
@@ -372,47 +557,137 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
                           onDateChanged: _handleDateChanged,
                           initialDate: selectedDate,
                         ),
+                        SizedBox(height: 16.h),
+
+                        // Image Selection Section
+                        Row(
+                          children: [
+                            Text(
+                              "Images",
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            IconButton(
+                              onPressed: _pickImages,
+                              icon: Icon(
+                                Icons.add_a_photo,
+                                color: AppColors.primaryColor,
+                                size: 30.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16.h),
+
+                        // Existing Images with Remove Option
+                        if (_existingImageUrls.isNotEmpty)
+                          Wrap(
+                            children: List.generate(_existingImageUrls.length,
+                                (index) {
+                              return Stack(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.all(8.0),
+                                    width: 100.w,
+                                    height: 100.h,
+                                    child: CachedNetworkImage(
+                                      imageUrl: _existingImageUrls[index],
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: GestureDetector(
+                                      onTap: () => _removeExistingImage(index),
+                                      child: Container(
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Icon(
+                                          Icons.close,
+                                          color: Colors.white,
+                                          size: 16.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
+                          ),
+
+                        // New Images with Remove Option
+                        if (_images != null && _images!.isNotEmpty)
+                          Wrap(
+                            children: List.generate(_images!.length, (index) {
+                              return Stack(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.all(8.0),
+                                    width: 100.w,
+                                    height: 100.h,
+                                    child: Image.file(
+                                      File(_images![index].path),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: GestureDetector(
+                                      onTap: () => _removeNewImage(index),
+                                      child: Container(
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Icon(
+                                          Icons.close,
+                                          color: Colors.white,
+                                          size: 16.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
+                          ),
 
                         SizedBox(height: 32.h),
-                        CustomButton(
-                          text: "Update Order",
-                          onPressed: () {
-                            String? formattedTimeFrom;
-                            if (deliveryTimeFrom != null) {
-                              formattedTimeFrom =
-                                  '${deliveryTimeFrom!.hour.toString().padLeft(2, '0')}:${deliveryTimeFrom!.minute.toString().padLeft(2, '0')}';
-                            }
 
-                            String? formattedTimeTo;
-                            if (deliveryTimeTo != null) {
-                              formattedTimeTo =
-                                  '${deliveryTimeTo!.hour.toString().padLeft(2, '0')}:${deliveryTimeTo!.minute.toString().padLeft(2, '0')}';
-                            }
+                        // Submit Button
+                        Center(
+                          child:
+                              BlocBuilder<UpdateOrderCubit, UpdateOrderState>(
+                            builder: (context, state) {
+                              final isSubmitting = state is UpdateOrderLoading;
 
-                            final updatedFields = {
-                              'order_details': _orderDetailsController.text,
-                              'customer_name': _customerNameController.text,
-                              'customer_phone': _customerPhoneController.text,
-                              'additional_data':
-                                  _customerAddressController.text,
-                              'delivery_date':
-                                  selectedDate?.toIso8601String() ??
-                                      DateTime.now().toIso8601String(),
-                              'delivery_time_from': formattedTimeFrom,
-                              'delivery_time_to': formattedTimeTo,
-                              'cake_price':
-                                  double.tryParse(_priceController.text) ?? 0.0,
-                              'deposit':
-                                  double.tryParse(_depositController.text) ??
-                                      0.0,
-                            };
-
-                            context.read<UpdateOrderCubit>().updateOrder(
-                                  int.parse(widget.orderId.toString()),
-                                  updatedFields,
-                                );
-                          },
+                              return CustomButton(
+                                text: isSubmitting
+                                    ? "Updating..."
+                                    : "Update Order",
+                                onPressed: _submitForm,
+                              );
+                            },
+                          ),
                         ),
+                        SizedBox(height: 16.h),
                       ],
                     ),
                   ),

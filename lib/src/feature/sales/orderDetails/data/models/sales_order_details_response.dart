@@ -79,8 +79,11 @@ class SalesOrder {
   final double? cakePrice;
   @JsonKey(name: "flower image")
   final String? flowerImage;
+  @JsonKey(name: 'created_at')
+  final String? createdAt;
 
-  SalesOrder({
+  SalesOrder(
+    this.createdAt, {
     required this.id,
     required this.orderType,
     required this.orderDetails,

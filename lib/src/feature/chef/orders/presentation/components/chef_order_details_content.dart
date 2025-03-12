@@ -1,3 +1,4 @@
+import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,12 @@ import '../../../chef_orders_status/data/models/chef_order_details.dart';
 
 class ChefOrderDetailsContent extends StatelessWidget {
   final ChefOrderDetails orderDetailsResponse;
+  final int orderId;
 
   const ChefOrderDetailsContent({
     super.key,
     required this.orderDetailsResponse,
+    required this.orderId,
   });
 
   @override
@@ -24,11 +27,15 @@ class ChefOrderDetailsContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text("# $orderId",
+              style: TextStyle(fontSize: 22.sp, color: AppColors.primaryColor)),
+          SizedBox(height: 16.h),
           OrderTimes(
             orderStatus: orderDetailsResponse.status,
-            startAt: orderDetailsResponse.createdAt ?? "2021-01-10",
+            startAt: orderDetailsResponse.deliveryDate ?? "2021-01-10",
             from: orderDetailsResponse.from ?? '',
             to: orderDetailsResponse.to ?? '',
+            creationDate: orderDetailsResponse.createdAt ?? '',
           ),
           SizedBox(height: 16.h),
           ClientData(
@@ -37,7 +44,9 @@ class ChefOrderDetailsContent extends StatelessWidget {
             customerPhone:
                 orderDetailsResponse.customerPhone ?? 'لم يتم اضافه رقم',
             customerAddress:
-                orderDetailsResponse.additionalData ?? 'لم يتم اضافه عنوان',
+                orderDetailsResponse.mapDesc ?? 'لم يتم اضافه عنوان',
+            customerBuilding:
+                orderDetailsResponse.additionalData ?? 'لم يتم اضافه مبني',
           ),
           orderDetailsResponse.orderDetails != 'No details'
               ? OrderData(
@@ -63,6 +72,9 @@ class ChefOrderDetailsContent extends StatelessWidget {
             deposit: orderDetailsResponse.deposit ?? 0.0,
             remaining: orderDetailsResponse.remaining ?? 0.0,
             flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
+            cakePrice: orderDetailsResponse.cakePrice ?? 0.0,
+            deliveryPrice: orderDetailsResponse.deliveryPrice ?? 0.0,
+            orderType: orderDetailsResponse.orderType ?? '',
           ),
           SizedBox(height: 16.h),
         ],

@@ -1,5 +1,8 @@
+import 'package:charlot/src/feature/chef/chef_orders_status/data/models/order_types_response.dart';
 import 'package:charlot/src/feature/manager/orderTracking/presentation/views/order_tracking_view.dart';
 import 'package:charlot/src/feature/manager/orders/presentation/logic/completed/completed_order_cubit.dart';
+import 'package:charlot/src/feature/manager/search/presentation/cubit/manager_search_cubit.dart';
+import 'package:charlot/src/feature/manager/search/presentation/view/manager_search_view.dart';
 import 'package:charlot/src/feature/sales/addOrder/presentation/logic/addOrder/add_order_cubit.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/cubit/sales_order_details_cubit.dart';
 import 'package:charlot/src/feature/sales/orderDetails/presentation/view/sales_order_details_view.dart';
@@ -244,6 +247,7 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final extra = state.extra as Map<String, dynamic>;
         final orderId = extra['orderId'] as int;
+        final orderType = extra['orderType'] as String;
         return MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -253,7 +257,10 @@ final GoRouter router = GoRouter(
               create: (context) => getIt<SalesOrderDetailsCubit>(),
             ),
           ],
-          child: UpdateOrderView(orderId: orderId),
+          child: UpdateOrderView(
+            orderId: orderId,
+            orderType: orderType,
+          ),
         );
       },
     ),
@@ -570,5 +577,13 @@ final GoRouter router = GoRouter(
     GoRoute(
         path: RouterNames.chefSettingView,
         builder: (context, state) => const ChefSettingView()),
+
+    GoRoute(
+      path: RouterNames.managerSearch,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<ManagerSearchCubit>(),
+        child: const ManagerSearchView(),
+      ),
+    ),
   ],
 );

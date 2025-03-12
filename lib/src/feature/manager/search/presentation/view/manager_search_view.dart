@@ -1,20 +1,21 @@
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:charlot/src/feature/manager/search/data/model/manager_search_model.dart';
+import 'package:charlot/src/feature/manager/search/presentation/cubit/manager_search_cubit.dart';
 import 'package:charlot/src/feature/sales/search/presentation/cubit/sales_search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_styles.dart';
-import 'package:charlot/src/feature/sales/search/data/model/sales_search_model.dart';
 import 'package:go_router/go_router.dart';
 
-class SalesSearchView extends StatefulWidget {
-  const SalesSearchView({super.key});
+class ManagerSearchView extends StatefulWidget {
+  const ManagerSearchView({super.key});
 
   @override
-  State<SalesSearchView> createState() => _SalesSearchViewState();
+  State<ManagerSearchView> createState() => _ManagerSearchViewState();
 }
 
-class _SalesSearchViewState extends State<SalesSearchView> {
+class _ManagerSearchViewState extends State<ManagerSearchView> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -35,14 +36,17 @@ class _SalesSearchViewState extends State<SalesSearchView> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
             const SizedBox(height: 10),
             SearchBar(
               controller: _searchController,
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              )),
               onChanged: (query) {
-                context.read<SalesSearchCubit>().search(query);
+                context.read<ManagerSearchCubit>().search(query);
               },
               leading: const Icon(Icons.search, color: AppColors.darkTextGrey),
               hintText: "Search for orders",
@@ -52,13 +56,13 @@ class _SalesSearchViewState extends State<SalesSearchView> {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: BlocBuilder<SalesSearchCubit, SalesSearchState>(
+              child: BlocBuilder<ManagerSearchCubit, ManagerSearchState>(
                 builder: (context, state) {
                   return state.when(
                     initial: () => _buildMessage("Start searching..."),
                     loading: () =>
                         const Center(child: CircularProgressIndicator()),
-                    loaded: (sales) => _buildResultsList(sales),
+                    loaded: (order) => _buildResultsList(order),
                     error: (error) =>
                         _buildMessage("حدث خطأ: ${error.message}"),
                   );
@@ -71,15 +75,15 @@ class _SalesSearchViewState extends State<SalesSearchView> {
     );
   }
 
-  Widget _buildResultsList(List<SalesSearchModel> sales) {
-    if (sales.isEmpty) {
-      return _buildMessage("لا توجد طلبات متطابقة");
+  Widget _buildResultsList(List<ManagerSearchModel> orders) {
+    if (orders.isEmpty) {
+      return _buildMessage("No matching orders found.");
     }
 
     return ListView.builder(
-      itemCount: sales.length,
+      itemCount: orders.length,
       itemBuilder: (context, index) {
-        final order = sales[index];
+        final order = orders[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -89,11 +93,13 @@ class _SalesSearchViewState extends State<SalesSearchView> {
             ),
             child: ListTile(
               title: Text(order.customerName ?? "", style: AppStyles.s18),
-              subtitle:
-                  Text("النوع: ${order.orderType} | الحالة: ${order.status}"),
+              subtitle: Text(
+                  "Order Type: ${order.orderType} | Status: ${order.status}"),
               trailing: Text(order.deliveryDate ?? 'N/A'),
               onTap: () {
-                context.push("${RouterNames.salesOrderDetails}/${order.id}");
+                context.push(RouterNames.ordersDetails, extra: {
+                  "orderId": order.id,
+                });
               },
             ),
           ),

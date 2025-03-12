@@ -1,3 +1,4 @@
+import 'package:charlot/core/common/widgets/failure_widget.dart';
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/services/service_locator.dart';
 import 'package:charlot/src/feature/sales/orders/presentation/cubit/sales_order_statues_cubit.dart';
@@ -26,8 +27,13 @@ class NewOrderTap extends StatelessWidget {
                   const Center(child: SizedBox(child: Text("loading"))),
               error: (error) => Center(child: Text(error.message)),
               loaded: (orders) {
-              
-
+                if (orders.orders.isEmpty) {
+                  return const FailureWidget(
+                    title: "No New Orders Now",
+                    icon: Icons.add_shopping_cart,
+                    subtitle: 'Wait for new orders',
+                  );
+                }
                 return SizedBox(
                   child: ListView.builder(
                     itemCount: orders.orders.length,

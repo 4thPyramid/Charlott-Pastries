@@ -1,3 +1,5 @@
+import 'package:charlot/core/common/functions/add_base_url.dart';
+import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +14,12 @@ import 'team_data.dart';
 
 class OrderDetailsContent extends StatelessWidget {
   final OrderDetailsResponse orderDetailsResponse;
+  final int orderId;
 
   const OrderDetailsContent({
     super.key,
     required this.orderDetailsResponse,
+    required this.orderId,
   });
 
   @override
@@ -25,11 +29,15 @@ class OrderDetailsContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text("# $orderId",
+              style: TextStyle(fontSize: 22.sp, color: AppColors.primaryColor)),
+          SizedBox(height: 16.h),
           OrderTimes(
-            orderStatus: orderDetailsResponse.status,
-            startAt: orderDetailsResponse.createdAt,
+            orderStatus: orderDetailsResponse.deliveryDate ?? '',
+            startAt: orderDetailsResponse.deliveryDate ?? '',
             from: orderDetailsResponse.from ?? '',
             to: orderDetailsResponse.to ?? '',
+            creationDate: orderDetailsResponse.createdAt,
           ),
           SizedBox(height: 16.h),
           ClientData(
@@ -37,8 +45,9 @@ class OrderDetailsContent extends StatelessWidget {
                 orderDetailsResponse.customerName ?? 'لم يتم اضافه اسم',
             customerPhone:
                 orderDetailsResponse.customerPhone ?? 'لم يتم اضافه رقم',
-            customerAddress:
-                orderDetailsResponse.additionalData ?? 'لم يتم اضافه عنوان',
+            customerAddress: "${orderDetailsResponse.mapDesc}",
+            customerBuilding:
+                orderDetailsResponse.additionalData ?? 'لم يتم اضافه مبني',
           ),
           TeamData(
             chefName: orderDetailsResponse.chefName,
@@ -50,7 +59,7 @@ class OrderDetailsContent extends StatelessWidget {
                   orderDetails: orderDetailsResponse.orderDetails ?? '',
                   orderType: orderDetailsResponse.orderType,
                   image: orderDetailsResponse.images.isNotEmpty
-                      ? orderDetailsResponse.images[0].image
+                      ? addBaseUrlIfNeeded(orderDetailsResponse.images[0].image)
                       : '',
                 )
               : const SizedBox(),
@@ -59,8 +68,8 @@ class OrderDetailsContent extends StatelessWidget {
                   title: AppStrings.flowerData.tr(),
                   orderDetails: orderDetailsResponse.description,
                   orderType: orderDetailsResponse.orderType,
-                  image: orderDetailsResponse.flowerImage ??
-                      'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
+                  image: addBaseUrlIfNeeded(orderDetailsResponse.flowerImage ??
+                      'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg'),
                 )
               : const SizedBox(),
           OrderPrice(
@@ -68,6 +77,9 @@ class OrderDetailsContent extends StatelessWidget {
             deposit: orderDetailsResponse.deposit ?? 0.0,
             remaining: orderDetailsResponse.remaining ?? 0.0,
             flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
+            cakePrice: orderDetailsResponse.cakePrice ?? 0.0,
+            deliveryPrice: orderDetailsResponse.deposit ?? 0.0,
+            orderType: orderDetailsResponse.orderType,
           ),
           SizedBox(height: 16.h),
         ],

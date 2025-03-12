@@ -38,6 +38,8 @@ abstract class RouterNames {
   static const String managerBottomNavigationBarRoot =
       '/manager-bottom-navigation-bar-root';
 
+static const String managerSearch = '/manager-search';
+
   static const String managerHomView = '/manager-home';
   static const String managerNotAssignedOrders = '/manager-not-assigned-orders';
   static const String managerAssignedOrders = '/manager-assigned-orders';

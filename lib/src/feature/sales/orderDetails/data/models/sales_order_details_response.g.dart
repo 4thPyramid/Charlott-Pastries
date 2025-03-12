@@ -19,6 +19,7 @@ Map<String, dynamic> _$SalesOrderDetailsResponseToJson(
     };
 
 SalesOrder _$SalesOrderFromJson(Map<String, dynamic> json) => SalesOrder(
+      json['created_at'] as String?,
       id: (json['id'] as num).toInt(),
       orderType: json['order_type'] as String,
       orderDetails: json['order_details'] as String,
@@ -97,4 +98,5 @@ Map<String, dynamic> _$SalesOrderToJson(SalesOrder instance) =>
       'delivery_name': instance.deliveryName,
       'cake_price': instance.cakePrice,
       'flower image': instance.flowerImage,
+      'created_at': instance.createdAt,
     };

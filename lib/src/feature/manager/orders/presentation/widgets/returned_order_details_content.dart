@@ -28,17 +28,19 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
       children: [
         OrderTimes(
           orderStatus: orderStatus,
-          startAt: orderDetailsResponse.createdAt,
+          startAt: orderDetailsResponse.deliveryDate ?? '',
           from: orderDetailsResponse.from ?? '',
           to: orderDetailsResponse.to ?? '',
+          creationDate: orderDetailsResponse.createdAt,
         ),
         SizedBox(height: 16.h),
         ClientData(
           customerName: orderDetailsResponse.customerName ?? 'لم يتم اضافه اسم',
           customerPhone:
               orderDetailsResponse.customerPhone ?? 'لم يتم اضافه رقم',
-          customerAddress:
-              orderDetailsResponse.additionalData ?? 'لم يتم اضافه عنوان',
+          customerAddress: orderDetailsResponse.mapDesc ?? 'لم يتم اضافه عنوان',
+          customerBuilding:
+              orderDetailsResponse.additionalData ?? 'لم يتم اضافه مبني',
         ),
         TeamData(
           chefName: orderDetailsResponse.chefName,
@@ -72,6 +74,9 @@ class ReturnedOrderDetailsContent extends StatelessWidget {
           deposit: orderDetailsResponse.deposit ?? 0.0,
           remaining: orderDetailsResponse.remaining ?? 0.0,
           flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
+          cakePrice: orderDetailsResponse.cakePrice ?? 0.0,
+          deliveryPrice: orderDetailsResponse.price ?? 0.0,
+          orderType: orderDetailsResponse.orderType,
         ),
       ],
     );

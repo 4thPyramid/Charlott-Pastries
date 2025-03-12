@@ -11,11 +11,13 @@ class DatesContainerWidget extends StatelessWidget {
     required this.startData,
     required this.from,
     required this.to,
+    required this.creationDate,
   });
 
   final String startData;
   final String from;
   final String to;
+  final String creationDate;
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +36,28 @@ class DatesContainerWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  AppStrings.orderPickupTime.tr(),
+                  "Order Delivery Date",
                   style: AppStyles.s14,
                 ),
                 const Spacer(),
                 Text(
                   startData,
+                  style: AppStyles.s14.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                Text(
+                  "Order Creation Date",
+                  style: AppStyles.s14,
+                ),
+                const Spacer(),
+                Text(
+                  creationDate,
                   style: AppStyles.s14.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

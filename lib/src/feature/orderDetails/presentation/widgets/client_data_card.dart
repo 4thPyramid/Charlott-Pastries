@@ -5,17 +5,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class ClientDataCard extends StatelessWidget {
   const ClientDataCard({
     super.key,
     required this.name,
     required this.phone,
     required this.address,
+    required this.building,
   });
   final String name;
   final String phone;
   final String address;
+  final String building;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,13 @@ class ClientDataCard extends StatelessWidget {
               name: address,
               icon: Icons.location_on_outlined,
               iconColor: Colors.red,
+            ),
+            const Divider(),
+            ClientItemDataRowWidget(
+              title: "Addetional Info",
+              name: building,
+              icon: Icons.location_city_rounded,
+              iconColor: Colors.green,
             ),
             SizedBox(height: 16.h),
           ],

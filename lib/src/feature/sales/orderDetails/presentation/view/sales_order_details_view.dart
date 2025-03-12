@@ -3,9 +3,11 @@ import 'package:charlot/src/feature/sales/orderDetails/presentation/componant/sa
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class SalesOrderDetailsView extends StatelessWidget {
-  const SalesOrderDetailsView({super.key, required this.orderId, });
+  const SalesOrderDetailsView({
+    super.key,
+    required this.orderId,
+  });
 
   final int orderId;
   @override
@@ -16,8 +18,9 @@ class SalesOrderDetailsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          
-            const SalesOrderDetailsContent(),
+            SalesOrderDetailsContent(
+              orderId: orderId,
+            ),
             SizedBox(height: 24.h),
           ],
         ),

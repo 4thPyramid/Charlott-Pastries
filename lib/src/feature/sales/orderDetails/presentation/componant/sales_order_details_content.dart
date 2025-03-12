@@ -1,5 +1,7 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
 import 'package:charlot/core/routes/router_names.dart';
+import 'package:charlot/core/theme/app_colors.dart';
+import 'package:charlot/core/utils/app_styles.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/components/client_data.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/components/order_data.dart';
@@ -15,7 +17,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../orderDetails/presentation/components/order_details_header.dart';
 
 class SalesOrderDetailsContent extends StatelessWidget {
-  const SalesOrderDetailsContent({super.key});
+  const SalesOrderDetailsContent({super.key, required this.orderId});
+  final int orderId;
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +41,31 @@ class SalesOrderDetailsContent extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Column(
                     children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "# $orderId",
+                          style: AppStyles.s20.copyWith(
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 16.h),
                       OrderTimes(
                         orderStatus: orderDetailsResponse.status,
                         startAt: orderDetailsResponse.deliveryDate,
                         from: orderDetailsResponse.from,
                         to: orderDetailsResponse.to,
+                        creationDate: orderDetailsResponse.createdAt ?? '',
                       ),
                       SizedBox(height: 16.h),
                       ClientData(
                         customerName: orderDetailsResponse.customerName ?? '',
                         customerPhone: orderDetailsResponse.customerPhone ?? '',
-                        customerAddress:
-                            orderDetailsResponse.additionalData ?? "",
+                        customerAddress: orderDetailsResponse.mapDesc ?? "",
+                        customerBuilding:
+                            orderDetailsResponse.additionalData ?? '',
                       ),
                       orderDetailsResponse.orderDetails != 'No details'
                           ? OrderData(
@@ -76,16 +91,39 @@ class SalesOrderDetailsContent extends StatelessWidget {
                         deposit: orderDetailsResponse.deposit,
                         remaining: orderDetailsResponse.remaining ?? 0.0,
                         flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
+                        cakePrice: orderDetailsResponse.cakePrice ?? 0.0,
+                        deliveryPrice:
+                            orderDetailsResponse.deliveryPrice ?? 0.0,
+                        orderType: orderDetailsResponse.orderType,
                       ),
                       SizedBox(height: 16.h),
-                      CustomButton(
-                        text: "Edit Order",
-                        onPressed: () {
-                          context.push(RouterNames.updateOrderView, extra: {
-                            "orderId": orderDetailsResponse.id,
-                          });
-                        },
-                      ),
+                      orderDetailsResponse.status == "new" ||
+                              orderDetailsResponse.status ==
+                                  "manager accepted" ||
+                              orderDetailsResponse.status == "chef waiting" ||
+                              orderDetailsResponse.status == "chef approved"
+                          ? CustomButton(
+                              text: "Edit Order",
+                              onPressed: () {
+                                context
+                                    .push(RouterNames.updateOrderView, extra: {
+                                  "orderId": orderDetailsResponse.id,
+                                  "orderType": orderDetailsResponse.orderType,
+                                });
+                              },
+                            )
+                          : const Padding(
+                              padding: EdgeInsets.only(bottom: 20),
+                              child: Text(
+                                "You can't edit this order",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                      SizedBox(height: 16.h),
                     ],
                   ),
                 ),

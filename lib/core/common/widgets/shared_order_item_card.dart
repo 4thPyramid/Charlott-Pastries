@@ -14,10 +14,11 @@ class SharedOrderItemCard extends StatelessWidget {
   const SharedOrderItemCard({
     super.key,
     required this.orderResponse,
-     this.deleviryBoyId,
+    this.deleviryBoyId,
   });
   final Order orderResponse;
   final int? deleviryBoyId;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,15 +27,16 @@ class SharedOrderItemCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10.h),
       padding: EdgeInsets.symmetric(vertical: 16.h),
       decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              offset: const Offset(0, 1),
-              blurRadius: 1,
-            ),
-          ]),
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            offset: const Offset(0, 1),
+            blurRadius: 1,
+          ),
+        ],
+      ),
       child: Column(
         children: [
           Row(
@@ -43,7 +45,8 @@ class SharedOrderItemCard extends StatelessWidget {
             children: [
               FirstColumn(
                 order: orderResponse.orderType,
-                customer: orderResponse.customerName ?? 'لا يوجد',
+                orderId: orderResponse.id, // Pass the order id here
+                customer: orderResponse.customerName ?? 'nothing',
               ),
               ThirdColumn(
                 orderStatus: orderResponse.status,
@@ -61,32 +64,38 @@ class SharedOrderItemCard extends StatelessWidget {
             ],
           ),
           CustomButton(
-              width: 150.w,
-              height: 30.h,
-              text: AppStrings.orderDetails.tr(),
-              textStyle: AppStyles.s12.copyWith(
-                color: AppColors.white,
-              ),
-              onPressed: () {
-                if (orderResponse.status == 'returned' ||
-                    orderResponse.status == 'refused') {
-                  context
-                      .push(RouterNames.returnAndRefusedOrderDetails, extra: {
+            width: 150.w,
+            height: 30.h,
+            text: AppStrings.orderDetails.tr(),
+            textStyle: AppStyles.s12.copyWith(
+              color: AppColors.white,
+            ),
+            onPressed: () {
+              if (orderResponse.status == 'returned' ||
+                  orderResponse.status == 'refused') {
+                context.push(
+                  RouterNames.returnAndRefusedOrderDetails,
+                  extra: {
                     'from': orderResponse.status,
                     'title': orderResponse.status,
                     'orderStatus': orderResponse.status,
                     'orderId': orderResponse.id,
-                  });
-                } else {
-                  context.push(RouterNames.ordersDetails, extra: {
+                  },
+                );
+              } else {
+                context.push(
+                  RouterNames.ordersDetails,
+                  extra: {
                     'from': orderResponse.status,
                     'title': orderResponse.status,
                     'orderStatus': orderResponse.status,
-                    "orderId": orderResponse.id,
+                    'orderId': orderResponse.id,
                     'deliveryBoyId': deleviryBoyId,
-                  });
-                }
-              }),
+                  },
+                );
+              }
+            },
+          ),
         ],
       ),
     );
@@ -103,13 +112,14 @@ class ThirdColumn extends StatelessWidget {
   final String orderStatus;
   final String orderDate;
   final Color? color;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-         AppStrings.orderStatus.tr(),
+          AppStrings.orderStatus.tr(),
           style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w700,
           ),
@@ -125,23 +135,26 @@ class ThirdColumn extends StatelessWidget {
         SizedBox(height: 32.h),
         Text(
           AppStrings.deliveryDate.tr(),
-            style: AppStyles.s14.copyWith(
-              fontWeight: FontWeight.w700,
-            )),
-        SizedBox(height: 8.h),
-        Row(children: [
-          const Icon(
-            Icons.calendar_month_outlined,
-            color: AppColors.darkTextGrey,
+          style: AppStyles.s14.copyWith(
+            fontWeight: FontWeight.w700,
           ),
-          Text(
-           orderDate,
-            style: AppStyles.s12.copyWith(
-              fontWeight: FontWeight.w400,
+        ),
+        SizedBox(height: 8.h),
+        Row(
+          children: [
+            const Icon(
+              Icons.calendar_month_outlined,
               color: AppColors.darkTextGrey,
             ),
-          ),
-        ]),
+            Text(
+              orderDate,
+              style: AppStyles.s12.copyWith(
+                fontWeight: FontWeight.w400,
+                color: AppColors.darkTextGrey,
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
@@ -151,9 +164,12 @@ class FirstColumn extends StatelessWidget {
   const FirstColumn({
     super.key,
     required this.order,
+    required this.orderId,
     required this.customer,
   });
+
   final String order;
+  final int orderId;
   final String customer;
 
   @override
@@ -173,6 +189,25 @@ class FirstColumn extends StatelessWidget {
           style: AppStyles.s14.copyWith(
             fontWeight: FontWeight.w400,
             color: AppColors.darkTextGrey,
+          ),
+        ),
+        SizedBox(height: 8.h),
+        RichText(
+          text: TextSpan(
+            style: AppStyles.s14.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+            children: [
+              const TextSpan(text: "Order ID: "),
+              TextSpan(
+                text: "$orderId",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
           ),
         ),
         SizedBox(height: 32.h),
