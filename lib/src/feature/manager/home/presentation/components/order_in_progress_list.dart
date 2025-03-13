@@ -60,6 +60,7 @@ class OrdersInProgressList extends StatelessWidget {
                       progressColor: AppColors.blue,
                       orderName: order.orderDetails ?? '',
                       orderType: order.orderType,
+                      orderNumber: order.id,
                       progress: 70 / 100,
                     );
                   },

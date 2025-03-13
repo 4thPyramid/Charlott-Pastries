@@ -9,6 +9,7 @@ part of 'order_details_response.dart';
 OrderDetailsResponse _$OrderDetailsResponseFromJson(
         Map<String, dynamic> json) =>
     OrderDetailsResponse(
+      (json['delivery_price'] as num?)?.toDouble(),
       success: json['success'] as bool,
       deliveryDate: json['delivery_date'] as String?,
       from: json['from'] as String?,
@@ -71,6 +72,7 @@ Map<String, dynamic> _$OrderDetailsResponseToJson(
       'flower image': instance.flowerImage,
       'cake_price': instance.cakePrice,
       'flower_price': instance.flowerPrice,
+      'delivery_price': instance.deliveryPrice,
       'total_price': instance.totalPrice,
       'longitude': instance.longitude,
       'latitude': instance.latitude,

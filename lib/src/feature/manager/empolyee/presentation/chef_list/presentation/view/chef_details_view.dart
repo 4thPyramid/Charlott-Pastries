@@ -7,9 +7,10 @@ import '../../../../../../../../generated/app_strings.g.dart';
 import '../components/chef_details_components.dart';
 
 class ChefDetailsView extends StatelessWidget {
-  const ChefDetailsView({super.key, required this.chefId, required this.orderId});
-final int chefId;
-final int orderId;
+  const ChefDetailsView(
+      {super.key, required this.chefId, required this.orderId});
+  final int chefId;
+  final int orderId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ final int orderId;
                   Navigator.pop(context);
                 },
               ),
-               ChefDetailsComponents(chefId:chefId , orderId: orderId),
+              ChefDetailsComponents(chefId: chefId, orderId: orderId),
             ],
           ),
         ));

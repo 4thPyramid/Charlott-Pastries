@@ -63,7 +63,7 @@ class ChefOrderDetailsContent extends StatelessWidget {
                   title: AppStrings.flowerData.tr(),
                   orderDetails: '',
                   orderType: orderDetailsResponse.description ?? '',
-                  image: orderDetailsResponse.image ??
+                  image: orderDetailsResponse.flowerImage ??
                       'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flower_jtca001.jpg',
                 )
               : const SizedBox(),

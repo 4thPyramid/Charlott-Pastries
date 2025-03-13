@@ -45,6 +45,8 @@ class OrderDetailsResponse {
   final double? cakePrice;
   @JsonKey(name: 'flower_price')
   final double? flowerPrice;
+  @JsonKey(name: 'delivery_price')
+  final double? deliveryPrice;
   @JsonKey(name: "total_price")
   final double? totalPrice;
   @JsonKey(name: "longitude")
@@ -56,7 +58,8 @@ class OrderDetailsResponse {
   @JsonKey(name: "branch")
   final Branch? branch;
 
-  OrderDetailsResponse({
+  OrderDetailsResponse(
+    this.deliveryPrice, {
     required this.success,
     this.deliveryDate,
     this.from,
@@ -72,7 +75,7 @@ class OrderDetailsResponse {
     this.deposit,
     this.remaining,
     this.additionalData,
-    required this.images,
+    required List<OrderImageDetails> images,
     required this.status,
     this.problem,
     this.rejectionCause,
@@ -86,7 +89,24 @@ class OrderDetailsResponse {
     this.latitude,
     this.mapDesc,
     this.branch,
-  });
+  }) : images = _mergeImages(images, flowerImage);
+
+  static List<OrderImageDetails> _mergeImages(
+      List<OrderImageDetails> images, String? flowerImage) {
+    List<OrderImageDetails> mergedImages = List.from(images);
+
+    if (flowerImage != null && flowerImage.isNotEmpty) {
+      mergedImages.add(OrderImageDetails(
+        id: -1,
+        orderId: -1,
+        image: flowerImage,
+        createdAt: DateTime.now().toIso8601String(),
+        updatedAt: DateTime.now().toIso8601String(),
+      ));
+    }
+
+    return mergedImages;
+  }
 
   factory OrderDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$OrderDetailsResponseFromJson(json);

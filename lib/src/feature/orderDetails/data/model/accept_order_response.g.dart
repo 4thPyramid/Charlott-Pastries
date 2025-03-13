@@ -9,8 +9,8 @@ part of 'accept_order_response.dart';
 AcceptOrderResponse _$AcceptOrderResponseFromJson(Map<String, dynamic> json) =>
     AcceptOrderResponse(
       message: json['message'] as String,
-      orderId: (json['order_id'] as num).toInt(),
-      managerId: (json['manager_id'] as num).toInt(),
+      orderId: (json['order_id'] as num? ?? 0).toInt(),
+      managerId: (json['manager_id'] as num? ?? 0).toInt(),
       status: json['status'] as String,
     );
 

@@ -30,6 +30,9 @@ class UpdateOrderView extends StatefulWidget {
 class _UpdateOrderViewState extends State<UpdateOrderView> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _orderDetailsController = TextEditingController();
+  final TextEditingController _flowerDetailsController =
+      TextEditingController();
+
   final TextEditingController _customerNameController = TextEditingController();
   final TextEditingController _customerPhoneController =
       TextEditingController();
@@ -63,6 +66,7 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
   @override
   void dispose() {
     _orderDetailsController.dispose();
+    _flowerDetailsController.dispose();
     _customerNameController.dispose();
     _customerPhoneController.dispose();
     _customerAddressController.dispose();
@@ -105,6 +109,7 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
   void _populateFormWithOrderData(Map<String, dynamic> orderData) {
     setState(() {
       _orderDetailsController.text = orderData['order_details'] ?? '';
+      _flowerDetailsController.text = orderData['description'] ?? '';
       _customerNameController.text = orderData['customer_name'] ?? '';
       _customerPhoneController.text = orderData['customer_phone'] ?? '';
       _customerAddressController.text = orderData['additional_data'] ?? '';
@@ -227,6 +232,7 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
 
       final updatedFields = {
         'order_details': _orderDetailsController.text,
+        'description': _flowerDetailsController.text,
         'customer_name': _customerNameController.text,
         'customer_phone': _customerPhoneController.text,
         'additional_data': _customerAddressController.text,
@@ -289,7 +295,6 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
           BlocListener<UpdateOrderCubit, UpdateOrderState>(
             listener: (context, state) {
               if (state is UpdateOrderLoading) {
-                // يمكن إظهار مؤشر تحميل هنا
               } else if (state is UpdateOrderSuccess) {
                 context
                     .read<SalesOrderDetailsCubit>()
@@ -338,30 +343,65 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          AppStrings.orderDetails.tr(),
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
+                        if (widget.orderType != "flower")
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                AppStrings.orderDetails.tr(),
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 16.h),
+                              TextFormField(
+                                controller: _orderDetailsController,
+                                decoration: InputDecoration(
+                                  labelText: AppStrings.orderDetails.tr(),
+                                  border: const OutlineInputBorder(),
+                                ),
+                                maxLines: 3,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please enter the order details";
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(height: 16.h),
+                            ],
                           ),
-                        ),
-                        SizedBox(height: 16.h),
 
-                        TextFormField(
-                          controller: _orderDetailsController,
-                          decoration: InputDecoration(
-                            labelText: AppStrings.orderDetails.tr(),
-                            border: const OutlineInputBorder(),
+                        if (widget.orderType != "cake")
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Flower Description",
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 16.h),
+                              TextFormField(
+                                controller: _flowerDetailsController,
+                                decoration: InputDecoration(
+                                  labelText: AppStrings.orderDetails.tr(),
+                                  border: const OutlineInputBorder(),
+                                ),
+                                maxLines: 3,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please enter the flower description";
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(height: 16.h),
+                            ],
                           ),
-                          maxLines: 3,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter the order details";
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 16.h),
 
                         // Customer Information
                         Text(
@@ -445,8 +485,7 @@ class _UpdateOrderViewState extends State<UpdateOrderView> {
                         if (widget.orderType != "flower")
                           SizedBox(height: 12.h),
 
-                        if (widget.orderType !=
-                            "cake") // إخفاء حقل الورد إذا كان الطلب كيكًا
+                        if (widget.orderType != "cake")
                           TextFormField(
                             controller: _flowerPriceController,
                             decoration: const InputDecoration(

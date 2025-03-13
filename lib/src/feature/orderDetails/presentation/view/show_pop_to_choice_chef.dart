@@ -1,4 +1,3 @@
-
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/generated/app_strings.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -31,7 +30,6 @@ showPopToChoiceChef(
           const Center(
             child: AppImageView(
               AppAssets.successIcon,
-            
             ),
           ),
           SizedBox(height: 13.h),
@@ -58,13 +56,14 @@ showPopToChoiceChef(
             textStyle: AppStyles.s16.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
+              
             ),
             onPressed: () {
-              context.go(RouterNames.selectChef,extra: {
+              context.push(RouterNames.selectChef, extra: {
                 'orderId': orderId,
               });
             },
-          ), 
+          ),
           CustomButton(
             height: 40.h,
             width: 180.w,
@@ -74,7 +73,9 @@ showPopToChoiceChef(
               fontWeight: FontWeight.w700,
             ),
             onPressed: () {
-            context.push(routeName);
+              context.push(routeName);
+
+              
             },
           )
         ],

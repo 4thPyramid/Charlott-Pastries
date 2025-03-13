@@ -66,13 +66,11 @@ class SalesOrder {
   final int? deliveryId;
   @JsonKey(name: 'rejection_cause')
   final String? rejectionCause;
-  @JsonKey(name: 'images')
   final List<OrderImageDetails> images;
   final String from;
   final String to;
   @JsonKey(name: "chef_name")
   final String? chefName;
-
   @JsonKey(name: "delivery_name")
   final String? deliveryName;
   @JsonKey(name: "cake_price")
@@ -119,8 +117,26 @@ class SalesOrder {
     this.chefId,
     this.deliveryId,
     this.rejectionCause,
-    required this.images,
-  });
+    required List<OrderImageDetails> images,
+  }) : images = _mergeImages(images, flowerImage);
+
+  /// دمج الصور داخل الموديل
+  static List<OrderImageDetails> _mergeImages(
+      List<OrderImageDetails> images, String? flowerImage) {
+    List<OrderImageDetails> mergedImages = List.from(images);
+
+    if (flowerImage != null && flowerImage.isNotEmpty) {
+      mergedImages.add(OrderImageDetails(
+        id: -1, // تعيين ID افتراضي
+        orderId: -1, // تعيين Order ID افتراضي
+        image: flowerImage,
+        createdAt: DateTime.now().toIso8601String(),
+        updatedAt: DateTime.now().toIso8601String(),
+      ));
+    }
+
+    return mergedImages;
+  }
 
   factory SalesOrder.fromJson(Map<String, dynamic> json) =>
       _$SalesOrderFromJson(json);

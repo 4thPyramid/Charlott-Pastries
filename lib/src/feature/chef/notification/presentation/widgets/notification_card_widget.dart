@@ -10,11 +10,13 @@ class NotificationCardWidget extends StatelessWidget {
     required this.title,
     required this.type,
     required this.id,
+    required this.onTap,
   });
   final String imageUrl;
   final String type;
   final String title;
   final int id;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,6 +35,7 @@ class NotificationCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListTile(
+        onTap: onTap,
         contentPadding: EdgeInsets.zero,
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(10),
@@ -43,9 +46,9 @@ class NotificationCardWidget extends StatelessWidget {
             width: 54.w,
           ),
         ),
-        
+
         title: Text(
-         " $title   $id",
+          " $title   $id",
           overflow: TextOverflow.ellipsis,
           style: AppStyles.s14.copyWith(color: Colors.black),
         ),

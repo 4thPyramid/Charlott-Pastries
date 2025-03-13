@@ -48,27 +48,34 @@ class OrderDetailsView extends StatelessWidget {
               failure: (error) =>
                   Center(child: Text('Error: ${error.message}')),
               success: (orderDetailsResponse) {
-                return SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      OrderDetailsHeader(
-                        title: title,
-                        onBackPressed: () {
-                          Navigator.pop(context);
-                        },
-                        images: orderDetailsResponse.images,
-                      ),
-                      OrderDetailsContent(
-                        orderDetailsResponse: orderDetailsResponse,
-                        orderId: orderId,
-                      ),
-                      OrderDetailsActions(
-                        orderStatus: orderDetailsResponse.status,
-                        orderId: orderId,
-                      ),
-                      SizedBox(height: 16.h),
-                    ],
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    context.read<OrderDetailsCubit>().call(orderId);
+                  },
+                  child: SingleChildScrollView(
+                    physics:
+                        const AlwaysScrollableScrollPhysics(), 
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        OrderDetailsHeader(
+                          title: title,
+                          onBackPressed: () {
+                            Navigator.pop(context);
+                          },
+                          images: orderDetailsResponse.images,
+                        ),
+                        OrderDetailsContent(
+                          orderDetailsResponse: orderDetailsResponse,
+                          orderId: orderId,
+                        ),
+                        OrderDetailsActions(
+                          orderStatus: orderDetailsResponse.status,
+                          orderId: orderId,
+                        ),
+                        SizedBox(height: 16.h),
+                      ],
+                    ),
                   ),
                 );
               },

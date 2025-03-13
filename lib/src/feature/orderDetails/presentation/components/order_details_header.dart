@@ -21,7 +21,7 @@ class OrderDetailsHeader extends StatelessWidget {
     return Column(
       children: [
         CustomAppBar(
-          title: title,
+          title: "Order Details",
           iconLeft: Icons.arrow_back_ios,
           onPressedLeft: onBackPressed,
         ),

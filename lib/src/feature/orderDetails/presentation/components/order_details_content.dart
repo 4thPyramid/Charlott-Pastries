@@ -33,7 +33,7 @@ class OrderDetailsContent extends StatelessWidget {
               style: TextStyle(fontSize: 22.sp, color: AppColors.primaryColor)),
           SizedBox(height: 16.h),
           OrderTimes(
-            orderStatus: orderDetailsResponse.deliveryDate ?? '',
+            orderStatus: orderDetailsResponse.status ?? '',
             startAt: orderDetailsResponse.deliveryDate ?? '',
             from: orderDetailsResponse.from ?? '',
             to: orderDetailsResponse.to ?? '',
@@ -78,7 +78,7 @@ class OrderDetailsContent extends StatelessWidget {
             remaining: orderDetailsResponse.remaining ?? 0.0,
             flowerPrice: orderDetailsResponse.flowerPrice ?? 0.0,
             cakePrice: orderDetailsResponse.cakePrice ?? 0.0,
-            deliveryPrice: orderDetailsResponse.deposit ?? 0.0,
+            deliveryPrice: orderDetailsResponse.deliveryPrice ?? 0.0,
             orderType: orderDetailsResponse.orderType,
           ),
           SizedBox(height: 16.h),

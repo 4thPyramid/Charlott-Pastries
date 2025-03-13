@@ -14,10 +14,10 @@ class ChefOrderDetails {
   @JsonKey(name: 'order_details')
   final String? orderDetails;
 
-  @JsonKey(name: 'description') // Added
+  @JsonKey(name: 'description')
   final String? description;
 
-  @JsonKey(name: 'is_sameday') // Added
+  @JsonKey(name: 'is_sameday')
   final int? isSameDay;
 
   @JsonKey(name: 'flower_id')
@@ -26,8 +26,8 @@ class ChefOrderDetails {
   @JsonKey(name: 'flower_quantity')
   final int? flowerQuantity;
 
-  @JsonKey(name: 'image')
-  final String? image;
+  @JsonKey(name: 'flower image')
+  final String? flowerImage;
 
   @JsonKey(name: 'quantity')
   final int? quantity;
@@ -37,9 +37,11 @@ class ChefOrderDetails {
 
   @JsonKey(name: 'delivery_date')
   final String? deliveryDate;
+
   final String? from;
   final String? to;
-  @JsonKey(name: 'cake_price') 
+
+  @JsonKey(name: 'cake_price')
   final double? cakePrice;
 
   @JsonKey(name: 'flower_price')
@@ -111,24 +113,23 @@ class ChefOrderDetails {
   @JsonKey(name: 'rejection_cause')
   final String? rejectionCause;
 
-  @JsonKey(name: 'images')
   final List<OrderImageDetails> images;
 
   ChefOrderDetails({
     required this.id,
     this.orderType,
     this.orderDetails,
-    this.description, 
-    this.isSameDay, 
+    this.description,
+    this.isSameDay,
     this.flowerId,
     this.flowerQuantity,
-    this.image,
+    this.flowerImage,
     this.quantity,
     this.from,
     this.to,
     this.deliveryTime,
     this.deliveryDate,
-    this.cakePrice, 
+    this.cakePrice,
     this.flowerPrice,
     this.deliveryPrice,
     this.totalPrice,
@@ -152,11 +153,28 @@ class ChefOrderDetails {
     this.createdAt,
     this.updatedAt,
     this.rejectionCause,
-    required this.images,
-  });
+    required List<OrderImageDetails> images,
+  }) : images = _mergeImages(images, flowerImage);
+
+  static List<OrderImageDetails> _mergeImages(
+      List<OrderImageDetails> images, String? flowerImage) {
+    List<OrderImageDetails> mergedImages = List.from(images);
+
+    if (flowerImage != null && flowerImage.isNotEmpty) {
+      mergedImages.add(OrderImageDetails(
+        id: -1,
+        orderId: -1,
+        image: flowerImage,
+        createdAt: DateTime.now().toIso8601String(),
+        updatedAt: DateTime.now().toIso8601String(),
+      ));
+    }
+
+    return mergedImages;
+  }
 
   factory ChefOrderDetails.fromJson(Map<String, dynamic> json) =>
       _$ChefOrderDetailsFromJson(json);
-      
+
   Map<String, dynamic> toJson() => _$ChefOrderDetailsToJson(this);
 }

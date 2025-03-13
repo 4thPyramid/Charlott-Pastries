@@ -10,7 +10,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/services/service_locator.dart';
 
-
 class OrderListViewSection extends StatelessWidget {
   const OrderListViewSection({super.key});
 
@@ -19,48 +18,44 @@ class OrderListViewSection extends StatelessWidget {
     return BlocProvider(
         create: (context) => getIt<NewOrdersCubit>()..getNewOrders(),
         child: BlocBuilder<NewOrdersCubit, NewOrderState>(
-      builder: (context, state) {
-        return state.when(
-            initial: () => const CircularProgressIndicator(),
-            loading: () => const CircularProgressIndicator(),
-            loaded: (order) => order.orders.isEmpty
-                ? Center(
-
-                   
-                    child: Text(AppStrings.Noneworders.tr()),
-
-                  )
-                : ListView.separated(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.zero,
-                    itemCount: order.orders.length,
-                    itemBuilder: (context, index) {
-                      final orders = order.orders[index];
-                      return InkWell(
-                        onTap: () {
-                          context.push(
-                            RouterNames.chefOrdersDetailsView,
-                            extra: {
-                              'orderId': orders.id,
-                              'title': AppStrings.newOrderDetails.tr()
+          builder: (context, state) {
+            return state.when(
+                initial: () => const CircularProgressIndicator(),
+                loading: () => const CircularProgressIndicator(),
+                loaded: (order) => order.orders.isEmpty
+                    ? Center(
+                        child: Text(AppStrings.Noneworders.tr()),
+                      )
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        itemCount: order.orders.length,
+                        itemBuilder: (context, index) {
+                          final orders = order.orders[index];
+                          return InkWell(
+                            onTap: () {
+                              context.push(
+                                RouterNames.chefOrdersDetailsView,
+                                extra: {
+                                  'orderId': orders.id,
+                                  'title': AppStrings.newOrderDetails.tr()
+                                },
+                              );
                             },
+                            child: OrdersCardItem(
+                              orderName: orders.orderType,
+                              orderId: orders.id,
+                              date: orders.deliveryDate ??
+                                  AppStrings.nodateavailable.tr(),
+                            ),
                           );
                         },
-                        child: OrdersCardItem(
-                          orderName: orders.orderType,
-                          orderType: orders.orderType,
-                          date: orders.deliveryDate ??
-                              AppStrings.nodateavailable.tr(),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 10.h);
-                    },
-                  ),
-            error: (error) => Center(child: Text(error.message)));
-      },
-      )
-    );
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: 10.h);
+                        },
+                      ),
+                error: (error) => Center(child: Text(error.message)));
+          },
+        ));
   }
 }

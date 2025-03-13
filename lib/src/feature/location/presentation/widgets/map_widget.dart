@@ -18,7 +18,7 @@ class MapWidget extends StatelessWidget {
         return GoogleMap(
           onMapCreated: onMapCreated,
           initialCameraPosition: const CameraPosition(
-            target: LatLng(30.0444, 31.2357),
+            target: LatLng(25.276987, 55.296249),
             zoom: 12,
           ),
           onTap: (location) => _handleMapTap(location, context),
@@ -27,7 +27,7 @@ class MapWidget extends StatelessWidget {
           zoomControlsEnabled: true,
           zoomGesturesEnabled: true,
           myLocationEnabled: true,
-          padding: EdgeInsets.only(bottom: 200),
+          padding: const EdgeInsets.only(bottom: 200),
           // myLocationButtonEnabled: true,
           compassEnabled: true,
           liteModeEnabled: false,

@@ -12,6 +12,7 @@ Widget buildOrderCard(
     required String orderName,
     required String orderType,
     required double progress,
+    required int orderNumber,
     void Function()? onTap}) {
   return InkWell(
     onTap: onTap,
@@ -27,6 +28,11 @@ Widget buildOrderCard(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text("# $orderNumber",
+              style: AppStyles.s14.copyWith(
+                color: AppColors.primaryColor,
+                fontWeight: FontWeight.bold,
+              )),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
