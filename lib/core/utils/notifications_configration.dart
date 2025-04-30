@@ -21,7 +21,7 @@ Future<void> _setupLocalNotifications() async {
       AndroidInitializationSettings('@mipmap/ic_launcher');
 
   const DarwinInitializationSettings iosSettings = DarwinInitializationSettings(
-    requestAlertPermission: false, 
+    requestAlertPermission: false,
     requestBadgePermission: true,
     requestSoundPermission: true,
   );
@@ -33,8 +33,7 @@ Future<void> _setupLocalNotifications() async {
 
   await flutterLocalNotificationsPlugin.initialize(
     initSettings,
-    onDidReceiveNotificationResponse: (details) {
-    },
+    onDidReceiveNotificationResponse: (details) {},
   );
 }
 
@@ -43,10 +42,19 @@ Future<void> _requestNotificationPermissions() async {
     alert: true,
     badge: true,
     sound: true,
-    provisional: true, // مهم لـ iOS (إذن مؤقت)
+    provisional: false,
   );
 
   print('إعدادات الصلاحيات: ${settings.authorizationStatus}');
+
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    try {
+      final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+      print('APNs Token: $apnsToken');
+    } catch (e) {
+      print('خطأ في الحصول على APNs Token: ${e.toString()}');
+    }
+  }
 }
 
 Future<void> _handleFcmToken() async {
@@ -56,7 +64,7 @@ Future<void> _handleFcmToken() async {
 
     if (token != null) {
       await CacheHelper.saveData(key: 'fcm_token', value: token);
-     // await getIt<StoreFcmTokenCubit>().storeToken(token);
+      await getIt<StoreFcmTokenCubit>().storeToken(token);
     }
 
     FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
