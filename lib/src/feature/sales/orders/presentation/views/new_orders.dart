@@ -19,7 +19,7 @@ class NewOrdersView extends StatelessWidget {
             context.go(RouterNames.salesBottomNavigationBarRoot);
           },
         ),
-        WaitingOrdersListView()
+        const WaitingOrdersListView()
       ],
     ));
   }

@@ -1,7 +1,6 @@
 import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/src/feature/manager/search/data/model/manager_search_model.dart';
 import 'package:charlot/src/feature/manager/search/presentation/cubit/manager_search_cubit.dart';
-import 'package:charlot/src/feature/sales/search/presentation/cubit/sales_search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:charlot/core/theme/app_colors.dart';

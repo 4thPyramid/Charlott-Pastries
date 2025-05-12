@@ -73,7 +73,7 @@ Future<FormData> toFormData() async {
     }
 
     print(
-        "FormData files: ${formData.values.where((e) => e is MultipartFile).map((e) => (e as MultipartFile).filename).toList()}");
+        "FormData files: ${formData.values.whereType<MultipartFile>().map((e) => (e as MultipartFile).filename).toList()}");
 
     return FormData.fromMap(formData);
   }

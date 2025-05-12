@@ -120,7 +120,7 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
             child: CircleAvatar(
               radius: 20.r,
               backgroundColor: AppColors.primaryColor,
-              child: Icon(
+              child: const Icon(
                 Icons.file_upload_outlined,
                 color: AppColors.white,
               ),

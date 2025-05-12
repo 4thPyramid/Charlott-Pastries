@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../data/models/orders_statues_response_model.dart';
 import '../widgets/orders_taps_item_card_widget.dart';
 
 class PendingOrderTap extends StatelessWidget {

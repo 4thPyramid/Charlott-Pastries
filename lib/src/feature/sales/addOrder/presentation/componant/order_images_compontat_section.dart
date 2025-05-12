@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class OrederImageSection extends StatefulWidget {
-  const OrederImageSection({Key? key}) : super(key: key);
+  const OrederImageSection({super.key});
 
   @override
   State<OrederImageSection> createState() => _OrederImageSectionState();

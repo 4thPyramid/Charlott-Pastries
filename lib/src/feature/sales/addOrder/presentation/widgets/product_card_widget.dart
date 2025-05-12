@@ -70,7 +70,7 @@ class ProductCardWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   price,
                   style: AppStyles.s16.copyWith(

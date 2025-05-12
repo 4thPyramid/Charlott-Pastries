@@ -130,14 +130,14 @@ class AppImageView extends StatelessWidget {
             imageBuilder: (context, imageProvider) => InkWell(
               onDoubleTap: () {
                 imageHeroFunction(context, imageProvider,
-                    tag: tag ?? "$imagePath${this.hashCode}");
+                    tag: tag ?? "$imagePath$hashCode");
               },
               onLongPress: () {
                 imageHeroFunction(context, imageProvider,
-                    tag: tag ?? "$imagePath${hashCode}");
+                    tag: tag ?? "$imagePath$hashCode");
               },
               child: Hero(
-                tag: tag ?? "$imagePath${this.hashCode}",
+                tag: tag ?? "$imagePath$hashCode",
                 child: Container(
                   height: height,
                   width: width,

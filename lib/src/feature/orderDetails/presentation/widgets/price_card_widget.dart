@@ -1,6 +1,4 @@
-import 'package:charlot/generated/app_strings.g.dart';
 import 'package:charlot/src/feature/orderDetails/presentation/widgets/order_row_price_widget.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PriceCardWidget extends StatelessWidget {

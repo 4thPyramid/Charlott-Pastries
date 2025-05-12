@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:charlot/core/errors/error_model.dart';
 import 'package:charlot/src/feature/manager/search/data/model/manager_search_model.dart';
 import 'package:charlot/src/feature/manager/search/domain/usecase/get_manager_search_uc.dart';
-import 'package:charlot/src/feature/sales/search/data/model/sales_search_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'manager_search_state.dart';
