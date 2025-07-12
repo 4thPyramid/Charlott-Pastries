@@ -1,4 +1,5 @@
 import 'package:charlot/core/common/widgets/custom_btn.dart';
+import 'package:charlot/core/routes/router_names.dart';
 import 'package:charlot/core/theme/app_colors.dart';
 import 'package:charlot/core/utils/app_assets.dart';
 import 'package:charlot/core/utils/app_image_view.dart';
@@ -6,6 +7,7 @@ import 'package:charlot/core/utils/app_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class ReadyToDeliverOrderCard extends StatelessWidget {
   const ReadyToDeliverOrderCard(
@@ -85,7 +87,8 @@ class ReadyToDeliverOrderCard extends StatelessWidget {
                     width: 130.w,
                     height: 30.h,
                     text: "showdetails".tr(),
-                    onPressed: () {}),
+                  
+                    ),
                 SizedBox(height: 10.h),
               ],
             ),

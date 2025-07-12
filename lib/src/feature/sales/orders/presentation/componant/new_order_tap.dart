@@ -38,15 +38,17 @@ class NewOrderTap extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: orders.orders.length,
                     itemBuilder: (context, index) {
+                      final reversedIndex = orders.orders.length - 1 - index;
+                      final order = orders.orders[reversedIndex];
                       return Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
                           child: OrdersTapsItemCardWidget(
-                            orderId: orders.orders[index].id,
-                            time: orders.orders[index].updatedAt,
+                            orderId: order.id,
+                            time: order.updatedAt,
                             onPressed: () {
                               context.push(
-                                  "${RouterNames.salesOrderDetails}/${orders.orders[index].id}");
+                                  "${RouterNames.salesOrderDetails}/${order.id}");
                             },
                           ));
                     },

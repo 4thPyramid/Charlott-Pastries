@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../core/common/branches_feature/data/models/branch_model.dart';
 import '../../../../../../../core/utils/app_styles.dart';
 import '../../../../../manager/register/presentation/widgets/choice_branch_widget.dart';
+
 Future<int?> popToChoiceBranch(BuildContext context,
     {required String title,
     required String buttonTitle,

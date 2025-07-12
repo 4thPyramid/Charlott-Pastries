@@ -20,10 +20,10 @@ Chef _$ChefFromJson(Map<String, dynamic> json) => Chef(
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String,
       phone: json['phone'] as String,
-      image: json['image'] as String?,
+      image: json['image'] as String?, // ✅ تعديل هنا
       email: json['email'] as String,
       specialization: json['specialization'] as String,
-      bio: json['bio'] as String,
+      bio: json['bio'] as String?, // ✅ تعديل هنا
       completedOrdersCount: (json['completed_orders_count'] as num).toInt(),
       canTakeOrder: json['canTakeOrder'] as String,
       orders: (json['orders'] as List<dynamic>)
@@ -36,10 +36,10 @@ Map<String, dynamic> _$ChefToJson(Chef instance) => <String, dynamic>{
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'phone': instance.phone,
-      'image': instance.image,
+      'image': instance.image, // ✅ حذف ??''
       'email': instance.email,
       'specialization': instance.specialization,
-      'bio': instance.bio,
+      'bio': instance.bio, // ✅ حذف ??''
       'completed_orders_count': instance.completedOrdersCount,
       'canTakeOrder': instance.canTakeOrder,
       'orders': instance.orders,

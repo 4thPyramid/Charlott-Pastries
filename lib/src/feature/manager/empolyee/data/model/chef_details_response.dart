@@ -18,7 +18,6 @@ class ChefDetails {
   
   Map<String, dynamic> toJson() => _$ChefDetailsToJson(this);
 }
-
 @JsonSerializable()
 class Chef {
   final int id;
@@ -30,7 +29,7 @@ class Chef {
   final String? image;
   final String email;
   final String specialization;
-  final String bio;
+  final String? bio; // ✅ تم التعديل هنا
   @JsonKey(name: 'completed_orders_count')
   final int completedOrdersCount;
   @JsonKey(name: 'canTakeOrder')
@@ -45,7 +44,7 @@ class Chef {
     this.image,
     required this.email,
     required this.specialization,
-    required this.bio,
+    this.bio, // ✅ لازم يكون nullable كمان هنا
     required this.completedOrdersCount,
     required this.canTakeOrder,
     required this.orders,
@@ -54,6 +53,7 @@ class Chef {
   factory Chef.fromJson(Map<String, dynamic> json) => _$ChefFromJson(json);
   Map<String, dynamic> toJson() => _$ChefToJson(this);
 }
+
 
 @JsonSerializable()
 class ChefOrder {

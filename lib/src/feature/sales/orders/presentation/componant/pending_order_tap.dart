@@ -5,9 +5,9 @@ import 'package:charlot/src/feature/sales/orders/presentation/cubit/sales_order_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../data/models/orders_statues_response_model.dart';
 import '../widgets/orders_taps_item_card_widget.dart';
+
+
 
 class PendingOrderTap extends StatelessWidget {
   const PendingOrderTap({
@@ -38,15 +38,17 @@ class PendingOrderTap extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: orders.orders.length,
                   itemBuilder: (context, index) {
+                    final reversedIndex = orders.orders.length - 1 - index;
+                    final order = orders.orders[reversedIndex];
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
                       child: OrdersTapsItemCardWidget(
-                        orderId: orders.orders[index].id,
-                        time: orders.orders[index].updatedAt,
+                        orderId: order.id,
+                        time: order.updatedAt,
                         onPressed: () {
                           context.push(
-                              "${RouterNames.salesOrderDetails}/${orders.orders[index].id}");
+                              "${RouterNames.salesOrderDetails}/${order.id}");
                         },
                       ),
                     );

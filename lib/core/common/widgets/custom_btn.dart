@@ -5,7 +5,7 @@ import '../../utils/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final Color? backgroundColor;
   final double? height;
   final double? width;
@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.text,
-    required this.onPressed,
+     this.onPressed,
     this.backgroundColor,
     this.height,
     this.width,

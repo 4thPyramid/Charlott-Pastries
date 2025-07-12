@@ -32,10 +32,12 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
         : 'https://imgs.search.brave.com/J5-KJNoclGIgO9mgbMuULm8xw_ri-hvqZYOyhc50Q64/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE3LzM0LzY3/LzM2MF9GXzIxNzM0/Njc4Ml83WHBDVHQ4/YkxOSnF2VkFhRFpK/d3Zaam0wZXBRbWo2/ai5qcGc';
   }
 
+
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
+    XFile? pickedFile;
 
-    final XFile? pickedFile = await showModalBottomSheet<XFile?>(
+    final String? source = await showModalBottomSheet<String>(
       context: context,
       builder: (BuildContext context) {
         return SafeArea(
@@ -44,27 +46,15 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
               ListTile(
                 leading: const Icon(Icons.camera),
                 title: const Text('Take a photo'),
-                onTap: () async {
-                  final XFile? image =
-                      await picker.pickImage(source: ImageSource.camera);
-                  if (image != null) {
-                    if (context.mounted) {
-                      Navigator.pop(context, image);
-                    }
-                  }
+                onTap: () {
+                  Navigator.pop(context, 'camera');
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.photo),
                 title: const Text('Choose from gallery'),
-                onTap: () async {
-                  final XFile? image =
-                      await picker.pickImage(source: ImageSource.gallery);
-                  if (image != null) {
-                    if (context.mounted) {
-                      Navigator.pop(context, image);
-                    }
-                  }
+                onTap: () {
+                  Navigator.pop(context, 'gallery');
                 },
               ),
             ],
@@ -72,6 +62,12 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
         );
       },
     );
+
+    if (source == 'camera') {
+      pickedFile = await picker.pickImage(source: ImageSource.camera);
+    } else if (source == 'gallery') {
+      pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    }
 
     if (pickedFile != null) {
       final File imageFile = File(pickedFile.path);
@@ -120,7 +116,7 @@ class _CustomPersonalCircleImageState extends State<CustomPersonalCircleImage> {
             child: CircleAvatar(
               radius: 20.r,
               backgroundColor: AppColors.primaryColor,
-              child: Icon(
+              child: const Icon(
                 Icons.file_upload_outlined,
                 color: AppColors.white,
               ),

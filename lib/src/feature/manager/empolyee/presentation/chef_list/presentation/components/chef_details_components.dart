@@ -95,7 +95,7 @@ class _BuildSuccessView extends StatelessWidget {
                   ),
                 ]),
             child: Text(
-              chef.bio,
+              chef.bio??'',
               style: AppStyles.s14.copyWith(
                 color: AppColors.greyForText,
                 fontWeight: FontWeight.w500,

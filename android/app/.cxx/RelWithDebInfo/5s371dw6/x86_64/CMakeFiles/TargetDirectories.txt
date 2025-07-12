@@ -1,0 +1,2 @@
+/Users/ahmedmousa/Documents/Ahmed/charlot/android/app/.cxx/RelWithDebInfo/5s371dw6/x86_64/CMakeFiles/edit_cache.dir
+/Users/ahmedmousa/Documents/Ahmed/charlot/android/app/.cxx/RelWithDebInfo/5s371dw6/x86_64/CMakeFiles/rebuild_cache.dir

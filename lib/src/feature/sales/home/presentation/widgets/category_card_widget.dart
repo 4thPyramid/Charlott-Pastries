@@ -17,27 +17,24 @@ class CategoryCardWidget extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        height: 112.h,
-        width: 112.w,
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(10.r),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(image),
-            SizedBox(height: 5.h),
-            Text(title, style: TextStyle(fontSize: 8.sp)),
-            SizedBox(height: 5.h),
-            Text(subTitle,
-                maxLines: 1,
-                style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold)),
-          ],
-        ),
+    return Container(
+      height: 112.h,
+      width: 112.w,
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(image),
+          SizedBox(height: 5.h),
+          Text(title, style: TextStyle(fontSize: 8.sp)),
+          SizedBox(height: 5.h),
+          Text(subTitle,
+              maxLines: 1,
+              style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold)),
+        ],
       ),
     );
   }

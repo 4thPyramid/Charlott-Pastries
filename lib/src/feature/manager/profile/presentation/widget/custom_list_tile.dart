@@ -26,29 +26,30 @@ class CustomListTile extends StatelessWidget {
       // margin: EdgeInsets.symmetric(
       //   horizontal: 16.w,
       // ),
-      child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        leading: CircleAvatar(
-            radius: 24.r,
-            backgroundColor: AppColors.lightGrey,
-            child: Icon(
-              icon,
-              color: iconColor ?? AppColors.black,
-              size: 24.r,
-            )),
-        title: Text(
-          title,
-          style:   AppStyles.s14.copyWith(
-            color: AppColors.black,
-            fontWeight: FontWeight.w600,
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(16.r),
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.r),
           ),
-        ),
-        trailing: IconButton(
-          icon: const Icon(Icons.arrow_forward_ios,size: 16,),
-          onPressed: onPressed,
+          leading: CircleAvatar(
+              radius: 24.r,
+              backgroundColor: AppColors.lightGrey,
+              child: Icon(
+                icon,
+                color: iconColor ?? AppColors.black,
+                size: 24.r,
+              )),
+          title: Text(
+            title,
+            style: AppStyles.s14.copyWith(
+              color: AppColors.black,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          trailing: Icon(Icons.arrow_forward_ios, size: 16),
         ),
       ),
     );

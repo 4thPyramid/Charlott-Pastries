@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>1.0.6</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>6</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>GMSApiKey</key>
@@ -37,16 +37,19 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>نحتاج إلى الوصول إلى موقعك لعرض الخريطة.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>نحتاج إلى الوصول إلى موقعك لعرض الخريطة.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>نحتاج إلى إذنك لحفظ الصور إلى مكتبة الصور.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>نحتاج إلى إذنك للوصول إلى مكتبة الصور.</string>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+<key>NSCameraUsageDescription</key>
+<string>We need access to the camera to take a profile photo.</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>We need access to your location to display the map.</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need access to your location to display the map.</string>
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>We need your permission to save photos to the photo library.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>We need your permission to access the photo library.</string>
+<key>UIApplicationSupportsIndirectInputEvents</key>
+<true/>
+
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

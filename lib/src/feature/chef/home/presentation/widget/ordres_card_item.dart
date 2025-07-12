@@ -42,10 +42,7 @@ final String date;
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.date_range_outlined),
-                onPressed: () {},
-              ),
+              const Icon(Icons.date_range_outlined),
             ],
           ),
         ));
