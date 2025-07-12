@@ -1,4 +1,3 @@
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/errors/error_model.dart';

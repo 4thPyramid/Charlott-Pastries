@@ -6,11 +6,11 @@ class GalleryThumbnail extends StatelessWidget {
   final VoidCallback onTap;
 
   const GalleryThumbnail({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.isSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

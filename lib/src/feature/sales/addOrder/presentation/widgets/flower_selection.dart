@@ -11,12 +11,12 @@ class FlowerSelectionDropdowns extends StatelessWidget {
   final ValueChanged<String?> onColorChanged;
 
   const FlowerSelectionDropdowns({
-    Key? key,
+    super.key,
     this.selectedType,
     this.selectedColor,
     required this.onTypeChanged,
     required this.onColorChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

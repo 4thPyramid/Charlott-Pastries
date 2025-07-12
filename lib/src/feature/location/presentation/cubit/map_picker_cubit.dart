@@ -23,7 +23,7 @@ class MapPickerCubit extends Cubit<MapPickerState> {
       final predictions = await _placesSdk.findAutocompletePredictions(query);
 
       if (predictions.predictions.isEmpty) {
-        emit(MapPickerError('No results found'));
+        emit(const MapPickerError('No results found'));
         return;
       }
 
@@ -37,7 +37,7 @@ class MapPickerCubit extends Cubit<MapPickerState> {
       final lng = placeDetails.place?.latLng?.lng;
 
       if (lat == null || lng == null) {
-        emit(MapPickerError('Invalid coordinates'));
+        emit(const MapPickerError('Invalid coordinates'));
         return;
       }
 

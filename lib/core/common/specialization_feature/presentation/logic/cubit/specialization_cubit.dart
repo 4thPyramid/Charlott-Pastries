@@ -5,7 +5,7 @@ import 'specialization_state.dart';
 
 class SpecializationCubit extends Cubit<SpecializationState> {
   final GetSpecializationUc getSpecializationUseCase;
-  SpecializationCubit(this.getSpecializationUseCase) : super(SpecializationState.initial());
+  SpecializationCubit(this.getSpecializationUseCase) : super(const SpecializationState.initial());
 
   Future<void> getSpecialization() async {
     emit(const SpecializationState.loading());

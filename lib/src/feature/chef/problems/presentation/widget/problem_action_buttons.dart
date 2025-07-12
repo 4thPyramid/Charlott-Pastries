@@ -7,10 +7,10 @@ class ProblemActionButtons extends StatelessWidget {
   final VoidCallback onReject;
 
   const ProblemActionButtons({
-    Key? key,
+    super.key,
     required this.onAccept,
     required this.onReject,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

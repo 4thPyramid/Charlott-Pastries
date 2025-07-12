@@ -1,7 +1,6 @@
 import 'package:charlot/core/data/api/api_consumer.dart';
 import 'package:charlot/core/data/cached/cache_helper.dart';
 import 'package:charlot/core/errors/error_model.dart';
-import 'package:charlot/core/errors/exceptions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 

@@ -13,11 +13,11 @@ class ImagePickerWidget extends StatefulWidget {
   final ValueChanged<List<File>>? onChanged;
 
   const ImagePickerWidget({
-    Key? key,
+    super.key,
     required this.title,
     this.initialImages = const [],
     this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();

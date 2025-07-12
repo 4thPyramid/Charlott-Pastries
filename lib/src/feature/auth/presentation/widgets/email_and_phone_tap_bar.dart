@@ -37,11 +37,11 @@ final String title2;
           ),
           tabs:  [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Tab(text:title1),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Tab(text: title2),
             ),
           ],

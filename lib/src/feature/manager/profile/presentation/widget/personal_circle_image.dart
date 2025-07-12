@@ -79,10 +79,10 @@ class _PersonalCircleImageState extends State<PersonalCircleImage> {
     );
 
     if (pickedFile != null) {
-      final File? imageFile = File(pickedFile.path);
+      final File imageFile = File(pickedFile.path);
 
       setState(() {
-        profileImage = imageFile!.path;
+        profileImage = imageFile.path;
       });
 
       context

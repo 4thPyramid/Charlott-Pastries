@@ -21,23 +21,14 @@ void main() async {
   
   await EasyLocalization.ensureInitialized();
   await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
-  try {
-    // Initialize Firebase first
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    
-    // Now that Firebase is initialized, we can request permissions
-    await _requestPermissions();
-    
-    // Only initialize Firebase Messaging on physical devices, not simulators
-    if (!Platform.isIOS || !_isSimulator()) {
-      await _initializeFirebaseMessaging();
-    }
-  } catch (e) {
-    print('Firebase initialization error: $e');
-    // Continue app execution even if Firebase fails
-  }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+
+  // Initialize FCM and Local Notifications
+  await initializeFcmAndLocalNotifications();
 
   runApp(
     EasyLocalization(

@@ -9,11 +9,11 @@ class OrderImageGallery extends StatelessWidget {
   final ValueChanged<int> onImageSelected;
 
   const OrderImageGallery({
-    Key? key,
+    super.key,
     required this.images,
     required this.selectedIndex,
     required this.onImageSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
