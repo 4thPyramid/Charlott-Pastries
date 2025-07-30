@@ -1,13 +1,11 @@
-plugins {
-    id "com.android.application"
-    id 'com.google.gms.google-services'
-    id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
-}
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "com.google.gms.google-services"
+apply plugin: "dev.flutter.flutter-gradle-plugin"
 
 android {
     namespace "com.example.charlot"
-    compileSdk 34
+    compileSdk 35
     ndkVersion "25.1.8937393"
 
     compileOptions {
@@ -23,7 +21,7 @@ android {
     defaultConfig {
         applicationId "com.example.charlot"
         minSdk 21
-        targetSdk 33
+        targetSdk 35
         versionCode flutter.versionCode
         versionName flutter.versionName
         multiDexEnabled true
